@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Critique Council — Thesis · White Crane Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #0E0E0C; --ink-2: #1A1A17; --ink-3: #252521;
+  --rule: rgba(255,255,255,0.07); --rule-med: rgba(255,255,255,0.12);
+  --chalk: #E9E7DF; --chalk-dim: rgba(233,231,223,0.5); --chalk-faint: rgba(233,231,223,0.2);
+  --red: #E03030;
+  --student: #4ABFB0; --professor: #E03030; --critic: #D4A843;
+  --mono: 'DM Mono', monospace; --display: 'Syne', sans-serif; --body: 'DM Sans', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--ink); color: var(--chalk); font-family: var(--body); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: .5; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: .9rem 2.5rem; border-bottom: 1px solid var(--rule); background: rgba(14,14,12,.96); backdrop-filter: blur(14px); }
+.nav-brand { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--chalk-faint); text-decoration: none; }
+.nav-back { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--chalk-faint); text-decoration: none; border: 1px solid var(--rule-med); padding: 5px 14px; transition: all .2s; }
+.nav-back:hover { color: var(--chalk); border-color: var(--chalk-faint); }
+
+/* HERO */
+.hero { padding: 7rem 0 0; border-bottom: 1px solid var(--rule); position: relative; z-index: 1; }
+.hero-inner { max-width: 980px; margin: 0 auto; padding: 0 2.5rem 3.5rem; display: grid; grid-template-columns: 1fr 340px; gap: 4rem; align-items: end; }
+.hero-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--red); display: flex; align-items: center; gap: 8px; margin-bottom: 1.5rem; }
+.tri { display: inline-block; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 8px solid var(--red); }
+.hero h1 { font-family: var(--display); font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 800; letter-spacing: -.04em; line-height: .95; text-transform: uppercase; margin-bottom: 1.75rem; }
+.hero-subtitle { font-size: 15px; color: var(--chalk-dim); max-width: 520px; line-height: 1.85; border-left: 2px solid var(--red); padding-left: 1.25rem; }
+.hero-meta { display: flex; flex-direction: column; gap: 1.25rem; }
+.meta-block { border: 1px solid var(--rule); padding: .875rem 1rem; }
+.meta-label { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--chalk-faint); margin-bottom: .35rem; }
+.meta-value { font-size: 13px; color: var(--chalk-dim); line-height: 1.6; }
+.meta-value strong { color: var(--chalk); font-weight: 500; }
+
+/* INTERFACE SCREENSHOT */
+.interface-strip { border-bottom: 1px solid var(--rule); position: relative; z-index: 1; }
+.interface-label-bar { display: flex; align-items: center; justify-content: space-between; padding: .875rem 2.5rem; background: var(--ink-2); border-bottom: 1px solid var(--rule); max-width: none; }
+.ilabel { font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--chalk-faint); display: flex; align-items: center; gap: 8px; }
+.istat { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: var(--chalk-faint); }
+.interface-frame { max-width: 980px; margin: 0 auto; padding: 2rem 2.5rem; }
+.mockup-embed { border: 1px solid var(--rule-med); overflow: hidden; background: var(--ink-2); }
+.mockup-topbar { display: flex; align-items: center; justify-content: space-between; padding: .55rem 1rem; border-bottom: 1px solid var(--rule); background: rgba(14,14,12,.95); }
+.mt-brand { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: rgba(233,231,223,.35); }
+.mt-right { display: flex; gap: 12px; align-items: center; }
+.mt-pill { display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: rgba(233,231,223,.2); }
+.mt-dot { width: 5px; height: 5px; border-radius: 50%; background: #4ABFB0; animation: blink 2.5s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+.mt-ver { font-family: var(--mono); font-size: 9px; color: rgba(233,231,223,.2); border: 1px solid rgba(255,255,255,.06); padding: 2px 8px; }
+/* Mockup body preview */
+.mockup-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--rule); display: flex; align-items: flex-end; justify-content: space-between; }
+.mh-title { font-family: var(--display); font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: -.02em; }
+.mh-sub { font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: #E03030; margin-bottom: .4rem; }
+.mh-badges { display: flex; gap: 6px; }
+.mbadge { padding: 3px 10px; font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; border: 1px solid; }
+.mb-s { border-color: #4ABFB0; color: #4ABFB0; }
+.mb-p { border-color: #E03030; color: #E03030; }
+.mb-c { border-color: #D4A843; color: #D4A843; }
+.mockup-layout { display: grid; grid-template-columns: 220px 1fr; min-height: 320px; }
+.ml-left { border-right: 1px solid var(--rule); padding: 1rem; }
+.ml-section { margin-bottom: 1rem; }
+.ml-label { font-family: var(--mono); font-size: 8px; letter-spacing: .16em; text-transform: uppercase; color: rgba(233,231,223,.18); margin-bottom: .5rem; }
+.ml-upload { border: 1px dashed rgba(255,255,255,.08); height: 100px; background: #1A1A17; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; }
+.ml-prompt { background: #1A1A17; border: 1px solid rgba(255,255,255,.08); padding: .5rem; font-family: var(--mono); font-size: 9px; color: rgba(233,231,223,.3); line-height: 1.5; width: 100%; }
+.ml-critics { display: flex; flex-direction: column; gap: 5px; }
+.mlc { display: flex; align-items: center; gap: 7px; padding: 5px 7px; border: 1px solid; }
+.mlc-s { border-color: rgba(74,191,176,.25); background: rgba(74,191,176,.05); }
+.mlc-p { border-color: rgba(224,48,48,.25); background: rgba(224,48,48,.05); }
+.mlc-c { border-color: rgba(212,168,67,.25); background: rgba(212,168,67,.05); }
+.mlc-dot { width: 8px; height: 8px; border-radius: 1px; flex-shrink: 0; }
+.mlc-name { font-family: var(--mono); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; }
+.mlc-name-s { color: #4ABFB0; } .mlc-name-p { color: #E03030; } .mlc-name-c { color: #D4A843; }
+.ml-btn { width: 100%; padding: 8px; background: #E03030; font-family: var(--display); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #0E0E0C; border: none; margin-top: .75rem; clip-path: polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%); }
+.ml-right { display: flex; flex-direction: column; }
+.proc-bar { display: flex; align-items: center; gap: 10px; padding: .45rem 1rem; background: #1A1A17; border-bottom: 1px solid var(--rule); }
+.pb-label { font-family: var(--mono); font-size: 8px; letter-spacing: .14em; text-transform: uppercase; color: rgba(233,231,223,.18); }
+.pb-agents { display: flex; gap: 6px; }
+.pba { font-family: var(--mono); font-size: 8px; letter-spacing: .08em; text-transform: uppercase; padding: 1px 8px; border: 1px solid; display: flex; align-items: center; gap: 4px; }
+.pba-s { border-color: #4ABFB0; color: #4ABFB0; }
+.pba-p { border-color: #E03030; color: #E03030; }
+.pba-c { border-color: #D4A843; color: #D4A843; }
+.pdot { width: 4px; height: 4px; border-radius: 50%; }
+.pd-s { background: #4ABFB0; } .pd-p { background: #E03030; } .pd-c { background: #D4A843; }
+/* Mini critique panels in mockup */
+.mini-panel { border-bottom: 1px solid var(--rule); }
+.mcp-head { display: flex; align-items: center; justify-content: space-between; padding: .6rem 1rem; border-bottom: 1px solid var(--rule); }
+.mcp-left { display: flex; align-items: center; gap: 8px; }
+.mcp-bar { width: 2px; height: 26px; flex-shrink: 0; }
+.mcp-bar-s { background: #4ABFB0; } .mcp-bar-p { background: #E03030; } .mcp-bar-c { background: #D4A843; }
+.mcp-name { font-family: var(--display); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; }
+.mcp-name-s { color: #4ABFB0; } .mcp-name-p { color: #E03030; } .mcp-name-c { color: #D4A843; }
+.mcp-mod { font-family: var(--mono); font-size: 8px; letter-spacing: .08em; color: rgba(233,231,223,.25); margin-top: 1px; }
+.mcp-score { font-family: var(--mono); font-size: 18px; font-weight: 500; }
+.mcp-score-s { color: #4ABFB0; } .mcp-score-p { color: #E03030; } .mcp-score-c { color: #D4A843; }
+.mcp-body { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: .6rem 1rem; gap: .75rem; }
+.mcp-col-label { font-family: var(--mono); font-size: 8px; letter-spacing: .14em; text-transform: uppercase; color: rgba(233,231,223,.18); margin-bottom: .4rem; }
+.mcp-line { height: 1px; background: rgba(255,255,255,.06); margin: 4px 0; }
+.mcp-text { font-size: 10px; color: rgba(233,231,223,.35); line-height: 1.55; }
+.mcp-area { font-family: var(--mono); font-size: 8px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 2px; }
+.mcp-area-s { color: rgba(74,191,176,.6); } .mcp-area-p { color: rgba(224,48,48,.6); } .mcp-area-c { color: rgba(212,168,67,.6); }
+
+/* MAIN BODY */
+.case-body { max-width: 760px; margin: 0 auto; padding: 4rem 2.5rem 6rem; position: relative; z-index: 1; }
+
+/* Section markers */
+.cs-section { margin-bottom: 3.5rem; }
+.cs-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--red); display: flex; align-items: center; gap: 8px; margin-bottom: .875rem; }
+.cs-h2 { font-family: var(--display); font-size: clamp(1.5rem, 2.5vw, 2.1rem); font-weight: 800; text-transform: uppercase; letter-spacing: -.025em; line-height: 1.1; margin-bottom: 1.25rem; color: var(--chalk); }
+.cs-p { font-size: 15px; color: var(--chalk-dim); line-height: 1.85; margin-bottom: 1.1rem; }
+.cs-p strong { color: var(--chalk); font-weight: 500; }
+.cs-p em { font-style: italic; color: var(--chalk); }
+hr.cs-rule { border: none; border-top: 1px solid var(--rule); margin: 3rem 0; }
+
+/* Pullquote */
+.pullquote { border-left: 2px solid var(--red); padding: 1.1rem 1.5rem; margin: 2rem 0; background: var(--ink-2); }
+.pullquote p { font-family: var(--display); font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700; text-transform: uppercase; letter-spacing: -.015em; line-height: 1.25; color: var(--chalk); }
+.pullquote p span { color: var(--chalk-dim); font-weight: 400; }
+
+/* Agent cards */
+.agent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+.agent-card { border: 1px solid var(--rule); padding: 1.1rem; background: var(--ink-2); position: relative; overflow: hidden; }
+.agent-card::before { content: ''; position: absolute; top: 0; right: 0; width: 0; height: 0; border-top: 20px solid; border-left: 20px solid transparent; }
+.ac-s::before { border-top-color: var(--student); }
+.ac-p::before { border-top-color: var(--professor); }
+.ac-c::before { border-top-color: var(--critic); }
+.ac-out::before { border-top-color: rgba(255,255,255,.1); }
+.model-tag { display: inline-block; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; padding: 2px 8px; border: 1px solid; margin-bottom: .5rem; }
+.mt-s { border-color: rgba(74,191,176,.4); color: var(--student); }
+.mt-p { border-color: rgba(224,48,48,.4); color: var(--professor); }
+.mt-c { border-color: rgba(212,168,67,.4); color: var(--critic); }
+.mt-out { border-color: var(--rule-med); color: var(--chalk-faint); }
+.ac-role { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--chalk-faint); margin-bottom: .3rem; }
+.ac-title { font-family: var(--display); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .02em; color: var(--chalk); margin-bottom: .5rem; }
+.ac-body { font-size: 13px; color: var(--chalk-dim); line-height: 1.7; }
+
+/* Architecture diagram */
+.arch-diagram { border: 1px solid var(--rule); background: var(--ink-2); margin: 1.5rem 0; overflow: hidden; }
+.arch-header { padding: .7rem 1.25rem; border-bottom: 1px solid var(--rule); font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--chalk-faint); }
+.arch-inner { display: grid; grid-template-columns: 1fr 28px 1fr 28px 1fr; gap: 0; padding: 1.25rem; align-items: start; }
+.arch-col-label { font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--chalk-faint); margin-bottom: .6rem; }
+.arch-col { display: flex; flex-direction: column; gap: 6px; }
+.arch-node { border: 1px solid var(--rule); padding: 7px 10px; font-family: var(--mono); font-size: 11px; color: var(--chalk-dim); background: var(--ink); }
+.arch-node.hi { border-color: rgba(224,48,48,.4); }
+.arch-node strong { display: block; font-family: var(--display); font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--chalk); margin-bottom: 1px; letter-spacing: .02em; }
+.arch-arrow { display: flex; align-items: center; justify-content: center; color: var(--chalk-faint); font-size: 13px; padding-top: 10px; }
+.arch-footer { padding: .6rem 1.25rem; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 9px; color: var(--chalk-faint); letter-spacing: .06em; }
+
+/* Stack tags */
+.stack-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 1rem 0; }
+.stag { font-family: var(--mono); font-size: 10px; padding: 4px 12px; border: 1px solid var(--rule); color: var(--chalk-faint); letter-spacing: .06em; text-transform: uppercase; }
+.stag.hi { border-color: rgba(224,48,48,.4); color: var(--red); }
+
+/* Lessons */
+.lesson-list { margin: 1.25rem 0; }
+.lesson { display: flex; gap: 1.1rem; padding: .9rem 0; border-bottom: 1px solid var(--rule); }
+.lesson:first-child { border-top: 1px solid var(--rule); }
+.lesson-num { font-family: var(--mono); font-size: 11px; color: var(--chalk-faint); min-width: 24px; padding-top: 2px; flex-shrink: 0; }
+.lesson p { font-size: 14px; color: var(--chalk-dim); line-height: 1.75; }
+.lesson p strong { color: var(--chalk); font-weight: 500; }
+
+/* Milestone row */
+.milestone-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 1.5rem 0; }
+.ms { padding: 5px 14px; border: 1px solid var(--rule); font-size: 12px; color: var(--chalk-dim); font-family: var(--mono); letter-spacing: .04em; }
+.ms strong { color: var(--chalk); }
+
+/* CTA block */
+.cta-block { border: 1px solid var(--rule); padding: 2rem; background: var(--ink-2); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-top: 3rem; }
+.cta-left .cta-label { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--red); margin-bottom: .4rem; }
+.cta-left p { font-size: 14px; color: var(--chalk-dim); }
+.cta-btn { font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: var(--red); color: var(--ink); padding: 12px 24px; border: none; cursor: pointer; clip-path: polygon(0 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%); transition: opacity .2s; text-decoration: none; display: inline-block; white-space: nowrap; }
+.cta-btn:hover { opacity: .85; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; background: var(--ink-2); position: relative; z-index: 1; }
+.footer-brand { display: flex; align-items: center; gap: 8px; font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--chalk-faint); }
+.footer-tag { font-family: var(--mono); font-size: 11px; color: var(--red); letter-spacing: .1em; }
+.footer-copy { font-family: var(--mono); font-size: 11px; color: var(--chalk-faint); }
+
+/* Fade in */
+.fade { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+.fade.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-brand">
+    <svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="transparent"/><polygon points="11,2 15,9 7,9" fill="#E9E7DF" opacity=".6"/><polygon points="7,9 11,16 3,16" fill="#E9E7DF" opacity=".35"/><polygon points="15,9 19,16 11,16" fill="#E9E7DF" opacity=".22"/><polygon points="11,6 13,10 9,10" fill="#E03030"/></svg>
+    White Crane Labs
+  </a>
+  <a href="/#work" class="nav-back">← Back to work</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow"><span class="tri"></span> Thesis · Multi-Agent AI · Educational Systems</div>
+      <h1>The Critique<br>Council</h1>
+      <p class="hero-subtitle">A multi-agent AI system designed to address a fundamental gap in creative education: students rarely get enough practice presenting to a jury of people who disagree on what matters.</p>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-block">
+        <div class="meta-label">Research</div>
+        <div class="meta-value"><strong>2024–2026</strong> · Ongoing refinement</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Stack</div>
+        <div class="meta-value"><strong>GPT-5 mini</strong> · <strong>Claude Opus 4.5</strong> · <strong>Gemini 3 Pro</strong> · <strong>Nano Banana 2</strong> · ElevenLabs · Python · Gradio</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Pillar alignment</div>
+        <div class="meta-value"><strong>Creative Infrastructure</strong> · AI × Design · Creative Culture</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Status</div>
+        <div class="meta-value"><strong>Active</strong> · Stack updated May 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERFACE SCREENSHOT -->
+<div class="interface-strip fade">
+  <div class="interface-label-bar">
+    <div class="ilabel"><span class="tri"></span> Interface — 2026 redesign · Warm studio aesthetic</div>
+    <div class="istat">Left panel: upload & select critics | Right panel: live feedback from 3 agents</div>
+  </div>
+  <div class="interface-frame">
+    <div style="background: #F5F2EC; padding: 1.5rem; border: 1px solid rgba(30,28,24,0.1); border-radius: 6px; margin-bottom: 1.5rem; text-align: center; color: #6B6860;">
+      <div style="font-size: 13px; line-height: 1.8; margin-bottom: 1rem;">
+        <strong style="color: #1E1C18;">The Critique Council interface</strong><br>
+        Upload artwork, optionally add context, select which critics you want. Get structured feedback from three distinct perspectives running concurrently.
+      </div>
+      <a href="/interface-preview" target="_blank" style="display: inline-block; background: #C23B22; color: #F5F2EC; padding: 10px 20px; text-decoration: none; font-family: 'Playfair Display', Georgia, serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; clip-path: polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%); cursor: pointer; transition: opacity 0.2s;">View interactive prototype ↗</a>
+      <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: #9B9890; margin-top: 0.75rem; letter-spacing: 0.08em;">Light mode with dark/light toggle · Responsive design</div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDY BODY -->
+<div class="case-body">
+
+  <!-- 01 THE PROBLEM -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 01 — The problem</div>
+    <h2 class="cs-h2">Design schools prepare students for the work.<br>Not for the room.</h2>
+    <p class="cs-p">The design critique is one of the most formative moments in a student's education — and one of the most underpracticed. Students spend weeks on a project and then present it, cold, to a panel of reviewers with different standards, different reference points, and different levels of patience. Most students experience this format fewer than a dozen times before they graduate.</p>
+    <p class="cs-p">The consequence isn't just anxiety. It's a skill gap. <strong>Presenting and defending creative work under pressure is a learned capability</strong> — the ability to hear contradictory feedback simultaneously, hold your position on intentional decisions while remaining genuinely open on weaker ones, and articulate the rationale behind your choices in real time. None of those skills develop without practice. And practice requires repetition in conditions that approximate the real thing.</p>
+    <p class="cs-p">A single professor's critique — even a rigorous one — can't close that gap. It represents one perspective, one set of standards, one voice. Real juries don't agree. The Critique Council was built to close that gap by making it possible for a student to stand in front of three simultaneous, differentiated critical perspectives on demand — before the stakes are real.</p>
+
+    <div class="pullquote">
+      <p>The multi-agent design <span>isn't a technical flourish. It's a pedagogy decision.</span></p>
+    </div>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 02 ARCHITECTURE -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 02 — System architecture</div>
+    <h2 class="cs-h2">Five integrated AI layers.<br>One coherent educational experience.</h2>
+    <p class="cs-p">The system accepts a student's artwork as a multimodal image input alongside an optional focus question. Both feed into a shared rubric — a dynamic JSON schema that instructs each agent to identify critique categories specific to what it actually observes in the artwork, rather than defaulting to generic buckets like "composition" or "color" on every run. An abstract work and a portrait will generate different rubric categories. That specificity is intentional: it teaches students that feedback is always contextual, not universal.</p>
+    <p class="cs-p">From there, three distinct critic agents process the same input concurrently via <strong>asyncio.gather()</strong> — keeping total response time tolerable for classroom use regardless of model latency. Each agent returns a structured JSON object: strengths, areas for improvement, prioritized action items, a numeric rating, and a summary. A regex fallback handles cases where the API returns malformed output rather than clean JSON — a failure mode that surfaces in front of students at the worst moments if you don't plan for it.</p>
+    <p class="cs-p">The output layer then passes each critique through ElevenLabs TTS with a distinct voice profile per critic, extracts the top action items and sends them to Nano Banana 2 for visual before/after example generation, and packages everything into a timestamped exportable report. A response cache layer deduplicates on image hash and prompt to prevent redundant API calls when students iterate.</p>
+
+    <div class="arch-diagram">
+      <div class="arch-header">System architecture · Critique Council v2.1</div>
+      <div class="arch-inner">
+        <div>
+          <div class="arch-col-label">Input</div>
+          <div class="arch-col">
+            <div class="arch-node"><strong>Artwork</strong>Multimodal vision input</div>
+            <div class="arch-node"><strong>Prompt</strong>Optional focus question</div>
+            <div class="arch-node hi"><strong>Shared rubric</strong>Dynamic JSON schema</div>
+          </div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div>
+          <div class="arch-col-label">Agents — concurrent</div>
+          <div class="arch-col">
+            <div class="arch-node"><strong>Student</strong>GPT-5 mini · peer voice</div>
+            <div class="arch-node hi"><strong>Professor</strong>Claude Opus 4.5 · authority</div>
+            <div class="arch-node"><strong>Critic</strong>Gemini 3 Pro · no filter</div>
+          </div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div>
+          <div class="arch-col-label">Output</div>
+          <div class="arch-col">
+            <div class="arch-node hi"><strong>Structured critique</strong>Strengths · gaps · actions</div>
+            <div class="arch-node"><strong>ElevenLabs TTS</strong>Unique voice per critic</div>
+            <div class="arch-node"><strong>Nano Banana 2</strong>Visual feedback from actions</div>
+            <div class="arch-node"><strong>Export</strong>Timestamped report</div>
+          </div>
+        </div>
+      </div>
+      <div class="arch-footer">Response cache · deduplication on image hash + prompt · asyncio.gather() for concurrency</div>
+    </div>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 03 AGENT DESIGN -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 03 — Agent design decisions</div>
+    <h2 class="cs-h2">Why three agents. Why these models.<br>Why these personas.</h2>
+    <p class="cs-p">The most consequential design decision in the system has nothing to do with code. It's the choice to <strong>build intentional disagreement into the architecture</strong>. A single AI critic would flatten feedback into a consensus that doesn't exist in real professional critique. Three agents with different standards, different tones, and different thresholds for patience train students to navigate something closer to the actual experience.</p>
+    <p class="cs-p">The model choices in the 2026 stack are deliberate, not arbitrary. Each agent's underlying model was selected to match the cognitive profile its persona requires.</p>
+
+    <div class="agent-grid">
+      <div class="agent-card ac-s">
+        <div class="model-tag mt-s">GPT-5 mini</div>
+        <div class="ac-role">Agent 01</div>
+        <div class="ac-title">Student Peer Critic</div>
+        <p class="ac-body">Peer-level feedback. Constructive, accessible, focused on shared learning. GPT-5 mini's speed and conversational fluency make it the right model for the voice students read first. Fast response keeps the experience from feeling mechanical. The encouragement here isn't softness — it's pedagogically accurate: peers give different feedback than authorities, and that difference is the point.</p>
+      </div>
+      <div class="agent-card ac-p">
+        <div class="model-tag mt-p">Claude Opus 4.5</div>
+        <div class="ac-role">Agent 02</div>
+        <div class="ac-title">Studio Professor Critic</div>
+        <p class="ac-body">Balanced authority. Concept and technique held in productive tension. Opus 4.5 was chosen specifically for its ability to reason about tradeoffs without hand-holding — which is exactly what a studio professor with decades of experience does. It gives directional guidance, not just observations. The professor voice is the system's anchor: it points toward better work rather than just describing what's wrong.</p>
+      </div>
+      <div class="agent-card ac-c">
+        <div class="model-tag mt-c">Gemini 3 Pro</div>
+        <div class="ac-role">Agent 03</div>
+        <div class="ac-title">Industry Art Critic</div>
+        <p class="ac-body">No filter. Direct. Contextual over encouraging. Gemini 3 Pro's multimodal depth means it reads the image with genuine visual reasoning — making its harsh feedback specific and defensible rather than generically critical. This is the voice that tells a student their work is uninformed of its own historical context. That's a hard thing to hear. It's also the feedback most students never get until it's too late.</p>
+      </div>
+      <div class="agent-card ac-out">
+        <div class="model-tag mt-out">Nano Banana 2 · ElevenLabs</div>
+        <div class="ac-role">Output layer</div>
+        <div class="ac-title">Voice + Visual Feedback</div>
+        <p class="ac-body">ElevenLabs replaces OpenAI TTS-1. Each critic's persona has a distinct vocal character — the student sounds tentative and peer-level, the professor measured and authoritative, the critic blunt and unhesitating. That differentiation matters more than it sounds: students engage with audio critique as coming from people, not a machine. Nano Banana 2 generates visual before/after examples from action items at 4K quality and Flash speed.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 04 STACK -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 04 — Technical stack</div>
+    <h2 class="cs-h2">What's running under the hood.</h2>
+    <div class="stack-row">
+      <span class="stag hi">GPT-5 mini</span>
+      <span class="stag hi">Claude Opus 4.5</span>
+      <span class="stag hi">Gemini 3 Pro</span>
+      <span class="stag hi">Nano Banana 2</span>
+      <span class="stag hi">ElevenLabs TTS</span>
+      <span class="stag">Python · asyncio</span>
+      <span class="stag">Gradio UI</span>
+      <span class="stag">PIL · aiohttp</span>
+      <span class="stag">Dynamic JSON schema</span>
+      <span class="stag">Response cache layer</span>
+      <span class="stag">Regex fallback parser</span>
+    </div>
+    <p class="cs-p">The concurrency layer is the technical decision that makes the system usable in a classroom setting. Three frontier models running sequentially would produce wait times that break the experience. <strong><code>asyncio.gather()</code> fires all three agents simultaneously</strong>, capping total response time at the slowest individual agent rather than the sum of all three. In practice this means a complete three-voice critique in roughly four to five seconds — tolerable for a student standing at a podium.</p>
+    <p class="cs-p">The shared rubric is the design decision that makes the feedback educationally coherent across three different models and personas. Rather than each agent developing its own categories independently, all three receive the same JSON schema instruction: identify areas specific to what you actually observe. The rubric doesn't dictate what the feedback will say — it dictates how it will be structured. That structure is what makes the output comparable and exportable.</p>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 05 HONEST LESSONS -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 05 — Honest lessons</div>
+    <h2 class="cs-h2">What I'd do differently.<br>What I couldn't have predicted.</h2>
+    <p class="cs-p">Most portfolios skip this section. That's a mistake. The lessons section is where a Director-level practitioner separates from a developer showing off a completed project. What follows is what the build actually taught me — not the polished version.</p>
+
+    <div class="lesson-list">
+      <div class="lesson">
+        <div class="lesson-num">01</div>
+        <p><strong>The image generation layer is the most brittle part of the system.</strong> The distance between "action item extracted from JSON" and "useful educational image" is longer than it looks. Prompts built from critique text are inherently noisy — the system is asking an image model to interpret a natural language description of a visual problem it has never seen. Nano Banana 2's world knowledge grounding closes this gap significantly compared to DALL-E 3, but prompt engineering the visual feedback layer still required more iteration than any other component. This layer will always need human review before being used in a formal teaching context.</p>
+      </div>
+      <div class="lesson">
+        <div class="lesson-num">02</div>
+        <p><strong>Voice differentiation has more pedagogical impact than I anticipated.</strong> The original build used OpenAI's TTS-1 voices — functional but generic. When I tested the ElevenLabs upgrade, the difference in student engagement was immediate. When each critic sounds like a different person, students process the feedback differently. The vocal character of the professor prompt and the vocal character of the industry critic prompt are not the same experience. This is not a cosmetic upgrade — it's the feature that makes the persona architecture feel real rather than mechanical.</p>
+      </div>
+      <div class="lesson">
+        <div class="lesson-num">03</div>
+        <p><strong>JSON parsing failures will surface in front of students if you don't plan for them.</strong> The API does not always return clean structured output. Temperature, prompt complexity, and model load all affect whether you get valid JSON or something that needs to be extracted from prose. The regex fallback that extracts action items from unstructured text is not optional — it's the difference between the system failing gracefully and failing visibly at the worst possible moment. Always build the fallback before you need it.</p>
+      </div>
+      <div class="lesson">
+        <div class="lesson-num">04</div>
+        <p><strong>The SSL certificate workaround is a deployment detail that matters.</strong> The original build required a manual SSL context override to handle certificate verification on certain systems. It's a small thing that becomes a large thing when a student is trying to run the tool on a school laptop five minutes before a review. Environment-specific failure modes are invisible until they're not. Test on the actual hardware the end users will run it on.</p>
+      </div>
+      <div class="lesson">
+        <div class="lesson-num">05</div>
+        <p><strong>This system simulates critique. It cannot replace it.</strong> The live negotiation of a real jury — the follow-up question, the silence after a weak answer, the moment a reviewer asks you to defend a specific decision you hadn't prepared for — is beyond what any AI panel can replicate today. The Critique Council is a rehearsal tool, not a substitute. That ceiling is a feature, not a failure. Being precise about what AI can and cannot do is not a limitation of ambition. It's a design principle.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 06 STATUS & VALIDATION -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 06 — Status & validation</div>
+    <h2 class="cs-h2">What's been tested. What remains open.</h2>
+    
+    <p class="cs-p"><strong>Validated in practice:</strong> Three agents delivering differentiated feedback creates productive dissonance. Students report feeling more prepared for formal critiques after using the system. Voice differentiation (ElevenLabs) matters — when each critic sounds like a different person, the persona architecture feels real rather than mechanical. Multi-agent concurrency works: asyncio.gather() keeps response times reasonable even with three models running simultaneously.</p>
+    
+    <p class="cs-p"><strong>From educators & professors:</strong> Pratt faculty see potential for curriculum integration — particularly in courses where students give public presentations. The system could extend studio critique practice beyond the 1–2 formal critiques that most students experience per semester. This is institutional validation that the pedagogical gap is real.</p>
+    
+    <p class="cs-p"><strong>Professional application (exploratory):</strong> Solo practitioners and small creative teams have independently expressed interest in using a variant for pre-client stress-testing and feedback before final presentation. This gap (feedback beyond clients who have an agenda) is real but not the primary focus of this thesis. A separate brief documents how the core system could be adapted for professional contexts — that exploration is ongoing.</p>
+    
+    <p class="cs-p"><strong>Still open:</strong> Longitudinal impact on student confidence and presentation skill development. Institutional integration patterns at different school types. Generalization beyond visual design critique to other creative disciplines (writing, music, performance).</p>
+    
+    <p class="cs-p"><strong>Next direction:</strong> Deeper integration at Pratt — pilot in specific courses with structured tracking of student outcomes. Professional variant exploration — how the architecture scales for team feedback in agency/studio settings.</p>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 07 STACK UPDATE (renumbered from 06) -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 07 — What I'd build differently today</div>
+    <h2 class="cs-h2">The architecture is the same.<br>The ceiling is higher.</h2>
+
+    <div class="pullquote">
+      <p>Tracking what's changed — and <span>why the choices matter — is what a Director of Creative Technology is paid to do.</span></p>
+    </div>
+
+    <p class="cs-p">The original Critique Council was built on the best available models in early 2024. The concept has held. The stack has been superseded. A rebuilt version in 2026 routes the student agent through GPT-5 mini for its speed and conversational accessibility, assigns the professor role to Claude Opus 4.5 for its depth of reasoning and tolerance for ambiguity, gives the industry critic to Gemini 3 Pro for its multimodal visual analysis capability, replaces DALL-E 3 with Nano Banana 2 for faster and higher-fidelity educational imagery, and upgrades the voice layer from OpenAI TTS-1 to ElevenLabs for persona-specific emotional range.</p>
+    <p class="cs-p">The architecture hasn't changed. The concurrency model is the same. The shared rubric logic is the same. The export and cache layers are the same. What's changed is that each component is now running on a model that is meaningfully more capable at its specific task than what it replaced. That's the upgrade that matters — not a rewrite, but a re-evaluation of the best available tool for each job in the system.</p>
+    <p class="cs-p">This is what ongoing stewardship of an AI system looks like at the director level: not rebuilding every time the frontier moves, but maintaining enough awareness of the field to know when a component swap will meaningfully improve the educational experience — and being able to articulate exactly why.</p>
+
+    <div class="milestone-row">
+      <div class="ms"><strong>2024</strong> · Original build</div>
+      <div class="ms"><strong>gpt-4o-mini</strong> → <strong>GPT-5 mini</strong></div>
+      <div class="ms"><strong>gpt-4o</strong> → <strong>Claude Opus 4.5</strong></div>
+      <div class="ms"><strong>gpt-4o</strong> → <strong>Gemini 3 Pro</strong></div>
+      <div class="ms"><strong>DALL-E 3</strong> → <strong>Nano Banana 2</strong></div>
+      <div class="ms"><strong>OpenAI TTS-1</strong> → <strong>ElevenLabs</strong></div>
+    </div>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 08 IMPLICATIONS (renumbered from 07) -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 08 — Wider implications</div>
+    <h2 class="cs-h2">What this system is really about.</h2>
+    <p class="cs-p">The Critique Council is a case study in what it means to apply AI to a genuinely hard pedagogical problem rather than a convenient one. The easy version of this project is an AI that generates encouraging feedback on student work. That tool already exists. What's harder — and what this system attempts — is using AI to <strong>create the conditions for a specific kind of learning that is difficult to provide at scale in a traditional studio environment</strong>.</p>
+    <p class="cs-p">Design education has a resource problem: the high-quality, differentiated feedback that helps students grow most is also the most expensive kind to produce. A professor can give one student a rigorous, perspective-rich critique or ten students a brief one. The Critique Council doesn't replace the professor. It gives the student ten more rehearsals before the professor critique happens — so that when it does, the student arrives prepared to actually receive and use what they hear.</p>
+    <p class="cs-p">That framing — AI as infrastructure for learning rather than a substitute for teaching — is the design philosophy this lab is built on. <strong>Human in the loop, always.</strong> The tool creates the conditions. The professor, the student, and the jury do the rest.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block fade">
+    <div class="cta-left">
+      <div class="cta-label">Interested in this approach?</div>
+      <p>Exploring AI infrastructure for creative learning. Open to conversations about workshops, collaborations, research partnerships, or consulting on educational technology systems.</p>
+    </div>
+    <a href="/#connect" class="cta-btn">Get in touch ↗</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <svg width="18" height="18" viewBox="0 0 22 22"><polygon points="11,2 15,9 7,9" fill="#E9E7DF" opacity=".5"/><polygon points="11,6 13,10 9,10" fill="#E03030"/></svg>
+    White Crane Labs
+  </div>
+  <div class="footer-tag">Human in the loop. Always.</div>
+  <div class="footer-copy">© 2026 · whitecranelabs.com</div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

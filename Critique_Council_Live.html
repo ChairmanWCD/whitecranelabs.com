@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Critique Council — Live Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --paper: #F5F2EC; --paper-2: #EDE9E0; --paper-3: #E4E0D6;
+  --ink: #1E1C18; --ink-2: #3A3830; --ink-3: #6B6860; --ink-4: #9B9890;
+  --rule: rgba(30,28,24,0.1); --rule-med: rgba(30,28,24,0.18);
+  --student: #2A7A6E; --student-pale: #E8F4F2; --student-mid: #4ABFB0;
+  --professor: #C23B22; --professor-pale: #FAF0ED; --professor-mid: #E8623A;
+  --critic: #8B6914; --critic-pale: #FDF6E3; --critic-mid: #D4A843;
+  --topbar-bg: rgba(245,242,236,0.95);
+  --display: 'Playfair Display', Georgia, serif;
+  --body: 'DM Sans', sans-serif; --mono: 'DM Mono', monospace;
+}
+[data-theme="dark"] {
+  --paper: #1C1B18; --paper-2: #252521; --paper-3: #2E2D29;
+  --ink: #E8E6E0; --ink-2: #C8C6BE; --ink-3: #8A8880; --ink-4: #5A5850;
+  --rule: rgba(232,230,224,0.07); --rule-med: rgba(232,230,224,0.13);
+  --student: #4ABFB0; --student-pale: rgba(74,191,176,0.09); --student-mid: #4ABFB0;
+  --professor: #E03030; --professor-pale: rgba(224,48,48,0.09); --professor-mid: #E03030;
+  --critic: #D4A843; --critic-pale: rgba(212,168,67,0.09); --critic-mid: #D4A843;
+  --topbar-bg: rgba(28,27,24,0.97);
+}
+body, body * { transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease; }
+html { scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 14px; line-height: 1.65; min-height: 100vh; }
+
+/* TOPBAR */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.9rem 2rem; background: var(--topbar-bg);
+  border-bottom: 1px solid var(--rule); backdrop-filter: blur(12px);
+}
+.topbar-brand { display: flex; align-items: center; gap: 10px; }
+.brand-logo { width: 28px; height: 28px; }
+.brand-name { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
+.topbar-center { position: absolute; left: 50%; transform: translateX(-50%); }
+.topbar-title { font-family: var(--display); font-size: 16px; font-weight: 500; color: var(--ink-2); }
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+.live-badge { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--student); padding: 4px 10px; border: 1px solid rgba(42,122,110,0.25); background: var(--student-pale); }
+.live-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--student); animation: pulse 2.5s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.theme-toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; background: none; border: none; padding: 0; }
+.toggle-track { width: 40px; height: 22px; border: 1px solid var(--rule-med); background: var(--paper-3); border-radius: 11px; position: relative; flex-shrink: 0; }
+.toggle-thumb { position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--ink-3); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1); }
+[data-theme="dark"] .toggle-thumb { transform: translateX(18px); background: var(--professor); }
+.toggle-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-4); }
+
+/* WELCOME */
+.welcome { text-align: center; padding: 3rem 2rem 2.5rem; border-bottom: 1px solid var(--rule); background: linear-gradient(to bottom, var(--paper), var(--paper-2)); }
+.welcome-eyebrow { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--professor); margin-bottom: 1rem; }
+.welcome h1 { font-family: var(--display); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 400; line-height: 1.15; color: var(--ink); margin-bottom: 0.875rem; }
+.welcome h1 em { font-style: italic; color: var(--ink-2); }
+.welcome-sub { font-size: 14px; color: var(--ink-3); max-width: 500px; margin: 0 auto 1.75rem; line-height: 1.75; }
+.critic-trio { display: inline-flex; gap: 0; border: 1px solid var(--rule-med); overflow: hidden; }
+.trio-item { display: flex; align-items: center; gap: 7px; padding: 6px 14px; border-right: 1px solid var(--rule-med); font-size: 12px; }
+.trio-item:last-child { border-right: none; }
+.trio-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.trio-name { color: var(--ink-2); font-weight: 500; }
+.trio-model { font-family: var(--mono); font-size: 9px; color: var(--ink-4); letter-spacing: 0.06em; margin-left: 2px; }
+
+/* APP LAYOUT */
+.app { display: grid; grid-template-columns: 340px 1fr; min-height: calc(100vh - 180px); }
+
+/* STUDIO PANEL */
+.studio { background: var(--paper-2); border-right: 1px solid var(--rule-med); display: flex; flex-direction: column; }
+.studio-step { padding: 1.5rem 1.75rem; border-bottom: 1px solid var(--rule); }
+.step-label { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+.step-num { width: 22px; height: 22px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 50%; }
+.step-title { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+
+/* Upload zone */
+.upload-zone { position: relative; overflow: hidden; border: 1.5px dashed var(--rule-med); background: var(--paper); cursor: pointer; transition: border-color 0.2s, background 0.2s; height: 180px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
+.upload-zone:hover { border-color: var(--professor-mid); background: var(--professor-pale); }
+.upload-zone.has-image { border-style: solid; border-color: var(--professor-mid); }
+.upload-icon { font-size: 28px; opacity: 0.4; }
+.upload-hint { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-4); }
+.upload-preview { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+.upload-input { display: none; }
+
+/* Prompt */
+.prompt-textarea { width: 100%; min-height: 72px; background: var(--paper); border: 1px solid var(--rule-med); padding: 0.75rem; resize: none; outline: none; font-family: var(--body); font-size: 13px; color: var(--ink); line-height: 1.6; transition: border-color 0.2s; }
+.prompt-textarea:focus { border-color: var(--professor-mid); }
+.prompt-textarea::placeholder { color: var(--ink-4); }
+.prompt-hint { font-size: 11px; color: var(--ink-4); margin-top: 0.5rem; font-style: italic; }
+
+/* Critics */
+.critic-cards { display: flex; flex-direction: column; gap: 8px; }
+.critic-card { display: flex; align-items: flex-start; gap: 12px; padding: 10px 12px; border: 1.5px solid var(--rule); background: var(--paper); cursor: pointer; transition: all 0.2s; }
+.critic-card:hover { background: var(--paper-2); }
+.critic-card.selected-s { border-color: rgba(42,122,110,0.4); background: var(--student-pale); }
+.critic-card.selected-p { border-color: rgba(194,59,34,0.35); background: var(--professor-pale); }
+.critic-card.selected-c { border-color: rgba(139,105,20,0.35); background: var(--critic-pale); }
+.critic-avatar { width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 14px; font-style: italic; font-weight: 500; color: var(--paper); margin-top: 1px; }
+.av-s { background: var(--student); } .av-p { background: var(--professor); } .av-c { background: var(--critic); }
+.critic-card-body { flex: 1; }
+.critic-card-name { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 1px; }
+.critic-card-role { font-size: 11px; color: var(--ink-4); line-height: 1.4; margin-bottom: 3px; }
+.critic-card-model { font-family: var(--mono); font-size: 9px; letter-spacing: 0.07em; text-transform: uppercase; }
+.cm-s { color: var(--student); } .cm-p { color: var(--professor); } .cm-c { color: var(--critic); }
+.check-mark { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--rule-med); flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.selected-s .check-mark { background: var(--student); border-color: var(--student); }
+.selected-p .check-mark { background: var(--professor); border-color: var(--professor); }
+.selected-c .check-mark { background: var(--critic); border-color: var(--critic); }
+.check-mark::after { content: ''; width: 8px; height: 5px; border-left: 1.5px solid var(--paper); border-bottom: 1.5px solid var(--paper); transform: rotate(-45deg) translate(1px,-1px); display: none; }
+.selected-s .check-mark::after, .selected-p .check-mark::after, .selected-c .check-mark::after { display: block; }
+
+/* Run button */
+.run-section { padding: 1.5rem 1.75rem; }
+.run-btn { width: 100%; padding: 14px; background: var(--ink); color: var(--paper); font-family: var(--display); font-size: 15px; font-style: italic; font-weight: 400; border: none; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: space-between; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%); }
+.run-btn:hover:not(:disabled) { background: var(--ink-2); }
+.run-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.run-btn-sub { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-4); font-style: normal; margin-top: 6px; }
+.progress-track { height: 2px; background: var(--paper-3); margin-top: 10px; overflow: hidden; display: none; }
+.progress-track.active { display: block; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--student-mid), var(--professor-mid), var(--critic-mid)); animation: sweep 1.8s ease-in-out infinite; }
+@keyframes sweep { 0%{transform:translateX(-100%)} 100%{transform:translateX(250%)} }
+.studio-footer { margin-top: auto; padding: 1rem 1.75rem; border-top: 1px solid var(--rule); display: flex; gap: 8px; }
+.ghost-btn { flex: 1; padding: 8px; background: transparent; border: 1px solid var(--rule-med); color: var(--ink-3); font-family: var(--body); font-size: 12px; cursor: pointer; transition: all 0.15s; }
+.ghost-btn:hover { border-color: var(--ink-3); color: var(--ink); }
+
+/* CANVAS */
+.canvas { background: var(--paper); display: flex; flex-direction: column; }
+.status-ribbon { display: flex; align-items: center; gap: 10px; padding: 0.6rem 1.75rem; background: var(--paper-2); border-bottom: 1px solid var(--rule); }
+.sr-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-4); }
+.sr-agents { display: flex; gap: 8px; }
+.sr-agent { display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border: 1px solid; border-radius: 99px; }
+.sr-s { border-color: rgba(42,122,110,0.3); color: var(--student); background: var(--student-pale); }
+.sr-p { border-color: rgba(194,59,34,0.25); color: var(--professor); background: var(--professor-pale); }
+.sr-c { border-color: rgba(139,105,20,0.25); color: var(--critic); background: var(--critic-pale); }
+.sr-dot { width: 5px; height: 5px; border-radius: 50%; }
+.sr-dot-s { background: var(--student); } .sr-dot-p { background: var(--professor); } .sr-dot-c { background: var(--critic); }
+.sr-time { font-family: var(--mono); font-size: 9px; color: var(--ink-4); margin-left: auto; }
+
+/* Empty state */
+.empty-state { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 4rem; color: var(--ink-4); text-align: center; }
+.empty-icon { font-size: 48px; opacity: 0.3; }
+.empty-title { font-family: var(--display); font-size: 1.4rem; font-style: italic; color: var(--ink-3); }
+.empty-sub { font-size: 13px; max-width: 320px; line-height: 1.7; }
+
+/* Voice panels */
+.voice-panel { border-bottom: 1px solid var(--rule); }
+.vp-header { display: grid; grid-template-columns: 1fr auto; align-items: start; padding: 1.5rem 1.75rem 1.25rem; border-bottom: 1px solid var(--rule); }
+.vp-identity { display: flex; align-items: flex-start; gap: 14px; }
+.vp-avatar { width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 18px; font-style: italic; color: var(--paper); }
+.av-bg-s { background: var(--student); } .av-bg-p { background: var(--professor); } .av-bg-c { background: var(--critic); }
+.vp-name { font-family: var(--display); font-size: 1.25rem; font-weight: 500; color: var(--ink); line-height: 1.2; margin-bottom: 2px; }
+.vp-role { font-size: 12px; color: var(--ink-3); margin-bottom: 4px; }
+.vp-model { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border: 1px solid; }
+.vm-s { border-color: rgba(42,122,110,0.3); color: var(--student); background: var(--student-pale); }
+.vm-p { border-color: rgba(194,59,34,0.25); color: var(--professor); background: var(--professor-pale); }
+.vm-c { border-color: rgba(139,105,20,0.25); color: var(--critic); background: var(--critic-pale); }
+.vp-score-block { text-align: right; }
+.vp-score { font-family: var(--display); font-size: 2.4rem; font-weight: 400; line-height: 1; }
+.vs-s { color: var(--student); } .vs-p { color: var(--professor); } .vs-c { color: var(--critic); }
+.vp-score-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; color: var(--ink-4); text-transform: uppercase; margin-top: 2px; }
+.vp-body { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; }
+.vp-col { padding: 1.25rem 1.5rem; border-right: 1px solid var(--rule); }
+.vp-col:last-child { border-right: none; }
+.vp-col-head { font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); padding-bottom: 0.625rem; border-bottom: 1px solid var(--rule); margin-bottom: 0.875rem; }
+.fb-item { margin-bottom: 1rem; }
+.fb-area { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 3px; }
+.fb-area-s { color: var(--student); } .fb-area-p { color: var(--professor); } .fb-area-c { color: var(--critic); }
+.fb-text { font-size: 13px; color: var(--ink-2); line-height: 1.65; }
+.action-item { display: flex; gap: 10px; margin-bottom: 0.875rem; }
+.action-num { font-family: var(--mono); font-size: 10px; flex-shrink: 0; margin-top: 3px; }
+.an-s { color: var(--student); } .an-p { color: var(--professor); } .an-c { color: var(--critic); }
+.action-text { font-size: 13px; color: var(--ink-2); line-height: 1.65; }
+.vp-summary { padding: 1.1rem 1.75rem; border-top: 1px solid var(--rule); background: var(--paper-2); display: flex; gap: 12px; align-items: flex-start; }
+.vp-summary-bar { width: 2px; align-self: stretch; flex-shrink: 0; border-radius: 1px; }
+.sb-s { background: var(--student); } .sb-p { background: var(--professor); } .sb-c { background: var(--critic); }
+.vp-summary-text { font-family: var(--display); font-size: 13.5px; font-style: italic; color: var(--ink-2); line-height: 1.75; }
+
+/* Loading skeleton */
+.skeleton-panel { padding: 1.5rem 1.75rem; border-bottom: 1px solid var(--rule); animation: shimmer 1.5s infinite; }
+@keyframes shimmer { 0%,100%{opacity:0.6} 50%{opacity:1} }
+.skel-bar { height: 10px; background: var(--paper-3); border-radius: 4px; margin-bottom: 10px; }
+
+/* Error banner */
+.error-banner { margin: 1.5rem; padding: 1rem 1.25rem; background: var(--professor-pale); border: 1px solid var(--professor-mid); border-left: 3px solid var(--professor); font-size: 13px; color: var(--professor); line-height: 1.6; }
+
+/* WCL footer */
+.wcl-footer { padding: 1rem 1.75rem; border-top: 1px solid var(--rule); background: var(--paper-2); display: flex; justify-content: space-between; align-items: center; }
+.wcl-brand { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-4); }
+.wcl-tag { font-family: var(--mono); font-size: 9px; color: var(--professor); letter-spacing: 0.1em; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">
+    <svg class="brand-logo" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+      <rect width="28" height="28" fill="var(--paper-2)" rx="4"/>
+      <polygon points="14,4 18,11 10,11" fill="var(--ink-2)" opacity="0.7"/>
+      <polygon points="10,11 14,18 6,18" fill="var(--ink-2)" opacity="0.4"/>
+      <polygon points="18,11 22,18 14,18" fill="var(--ink-2)" opacity="0.25"/>
+      <polygon points="14,8 16.5,12.5 11.5,12.5" fill="var(--professor)"/>
+    </svg>
+    <span class="brand-name">White Crane Labs</span>
+  </div>
+  <div class="topbar-center"><div class="topbar-title">The Critique Council</div></div>
+  <div class="topbar-right">
+    <button class="theme-toggle" id="themeToggle">
+      <span id="toggleIcon">☀︎</span>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <span class="toggle-label" id="toggleLabel">Light</span>
+    </button>
+    <div class="live-badge"><span class="live-dot"></span> Live · Claude API</div>
+  </div>
+</div>
+
+<div class="welcome">
+  <div class="welcome-eyebrow">AI Pedagogy · White Crane Labs</div>
+  <h1>Your work deserves<br><em>more than one opinion.</em></h1>
+  <p class="welcome-sub">Upload a piece. Choose who you want to hear from. Get honest, differentiated feedback from three distinct AI critics — so you walk into your next critique prepared.</p>
+  <div class="critic-trio">
+    <div class="trio-item"><span class="trio-dot" style="background:var(--student)"></span><span class="trio-name">Student Peer</span><span class="trio-model">claude-sonnet</span></div>
+    <div class="trio-item"><span class="trio-dot" style="background:var(--professor)"></span><span class="trio-name">Studio Professor</span><span class="trio-model">claude-sonnet</span></div>
+    <div class="trio-item"><span class="trio-dot" style="background:var(--critic)"></span><span class="trio-name">Art Critic</span><span class="trio-model">claude-sonnet</span></div>
+  </div>
+</div>
+
+<div class="app">
+  <div class="studio">
+
+    <div class="studio-step">
+      <div class="step-label"><div class="step-num">1</div><div class="step-title">Upload your work</div></div>
+      <div class="upload-zone" id="uploadZone">
+        <span class="upload-icon">🖼</span>
+        <span class="upload-hint">Click to upload · PNG, JPG, GIF, WEBP</span>
+        <input type="file" class="upload-input" id="fileInput" accept="image/*">
+      </div>
+    </div>
+
+    <div class="studio-step">
+      <div class="step-label"><div class="step-num">2</div><div class="step-title">Focus the conversation</div></div>
+      <textarea class="prompt-textarea" id="promptInput" placeholder="What would you like the critics to focus on? (Optional — leave blank to let them respond freely.)"></textarea>
+      <div class="prompt-hint">e.g. "Analyze the tension between structure and spontaneity"</div>
+    </div>
+
+    <div class="studio-step">
+      <div class="step-label"><div class="step-num">3</div><div class="step-title">Choose your critics</div></div>
+      <div class="critic-cards">
+        <div class="critic-card selected-s" data-critic="student" onclick="toggleCritic(this,'student')">
+          <div class="critic-avatar av-s">P</div>
+          <div class="critic-card-body">
+            <div class="critic-card-name">The Student Peer</div>
+            <div class="critic-card-role">Constructive, accessible — the voice of a classmate who gets it.</div>
+            <div class="critic-card-model cm-s">claude-sonnet · peer persona</div>
+          </div>
+          <div class="check-mark"></div>
+        </div>
+        <div class="critic-card selected-p" data-critic="professor" onclick="toggleCritic(this,'professor')">
+          <div class="critic-avatar av-p">Pr</div>
+          <div class="critic-card-body">
+            <div class="critic-card-name">The Studio Professor</div>
+            <div class="critic-card-role">Balanced authority. Points toward better work.</div>
+            <div class="critic-card-model cm-p">claude-sonnet · professor persona</div>
+          </div>
+          <div class="check-mark"></div>
+        </div>
+        <div class="critic-card selected-c" data-critic="critic" onclick="toggleCritic(this,'critic')">
+          <div class="critic-avatar av-c">C</div>
+          <div class="critic-card-body">
+            <div class="critic-card-name">The Art Critic</div>
+            <div class="critic-card-role">No filter. Direct contextual analysis.</div>
+            <div class="critic-card-model cm-c">claude-sonnet · critic persona</div>
+          </div>
+          <div class="check-mark"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="run-section">
+      <button class="run-btn" id="runBtn" onclick="runCritique()">
+        <span>Begin the critique</span>
+        <span style="font-style:normal;font-size:18px;opacity:0.6">→</span>
+      </button>
+      <div class="progress-track" id="progressTrack"><div class="progress-fill"></div></div>
+      <div class="run-btn-sub" id="runSub">Upload an image to begin</div>
+    </div>
+
+    <div class="studio-footer">
+      <button class="ghost-btn" onclick="resetAll()">⟳ Reset</button>
+    </div>
+  </div>
+
+  <div class="canvas" id="canvas">
+    <div class="status-ribbon">
+      <div class="sr-label">Status</div>
+      <div class="sr-agents" id="statusAgents">
+        <div class="sr-agent sr-s" id="st-student"><span class="sr-dot sr-dot-s"></span><span>Student ready</span></div>
+        <div class="sr-agent sr-p" id="st-professor"><span class="sr-dot sr-dot-p"></span><span>Professor ready</span></div>
+        <div class="sr-agent sr-c" id="st-critic"><span class="sr-dot sr-dot-c"></span><span>Critic ready</span></div>
+      </div>
+      <div class="sr-time" id="srTime">Awaiting submission</div>
+    </div>
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">◈</div>
+      <div class="empty-title">Upload your work to begin</div>
+      <div class="empty-sub">Three critics will review your piece and return structured feedback — strengths, areas to push, and specific action items.</div>
+    </div>
+    <div id="feedbackArea"></div>
+  </div>
+</div>
+
+<div class="wcl-footer">
+  <div class="wcl-brand">White Crane Labs · whitecranelabs.com</div>
+  <div class="wcl-tag">Human in the loop. Always.</div>
+</div>
+
+<script>
+const html = document.documentElement;
+const btn = document.getElementById('themeToggle');
+const icon = document.getElementById('toggleIcon');
+const label = document.getElementById('toggleLabel');
+if (localStorage.getItem('cc-theme') === 'dark') applyDark();
+btn.addEventListener('click', () => html.getAttribute('data-theme') === 'dark' ? applyLight() : applyDark());
+function applyDark() { html.setAttribute('data-theme','dark'); icon.textContent='☽'; label.textContent='Dark'; localStorage.setItem('cc-theme','dark'); }
+function applyLight() { html.removeAttribute('data-theme'); icon.textContent='☀︎'; label.textContent='Light'; localStorage.setItem('cc-theme','light'); }
+
+let uploadedImageBase64 = null;
+let uploadedImageType = null;
+let selectedCritics = new Set(['student','professor','critic']);
+
+// Upload handling
+const uploadZone = document.getElementById('uploadZone');
+const fileInput = document.getElementById('fileInput');
+uploadZone.addEventListener('click', () => fileInput.click());
+uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.style.borderColor = 'var(--professor-mid)'; });
+uploadZone.addEventListener('dragleave', () => { uploadZone.style.borderColor = ''; });
+uploadZone.addEventListener('drop', e => { e.preventDefault(); handleFile(e.dataTransfer.files[0]); });
+fileInput.addEventListener('change', e => handleFile(e.target.files[0]));
+
+function handleFile(file) {
+  if (!file || !file.type.startsWith('image/')) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const dataURL = e.target.result;
+    uploadedImageBase64 = dataURL.split(',')[1];
+    uploadedImageType = file.type;
+    uploadZone.innerHTML = `<img src="${dataURL}" class="upload-preview" alt="Uploaded artwork">`;
+    uploadZone.classList.add('has-image');
+    document.getElementById('runSub').textContent = 'Ready — click to run all selected critics';
+    document.getElementById('runBtn').disabled = false;
+  };
+  reader.readAsDataURL(file);
+}
+
+function toggleCritic(el, key) {
+  const classes = { student: 'selected-s', professor: 'selected-p', critic: 'selected-c' };
+  if (selectedCritics.has(key)) {
+    selectedCritics.delete(key);
+    el.classList.remove(classes[key]);
+  } else {
+    selectedCritics.add(key);
+    el.classList.add(classes[key]);
+  }
+}
+
+function updateStatus(key, text) {
+  const el = document.getElementById(`st-${key}`);
+  if (el) el.querySelector('span:last-child').textContent = text;
+}
+
+async function callCritic(persona, imageBase64, imageType, focusPrompt) {
+  const personas = {
+    student: {
+      name: "Student Peer Critic",
+      system: `You are a Student Peer Critic in an art and design critique session. You give constructive, accessible peer-level feedback. You are encouraging but specific. You identify genuine strengths and concrete areas to push. You are NOT generic — you look closely at what's actually in front of you. Your tone is warm, direct, and engaged like a thoughtful classmate who cares about the work.`,
+      color: "student",
+      initial: "P",
+      role: "Constructive · accessible · from inside the room",
+      model_label: "claude-sonnet · peer persona"
+    },
+    professor: {
+      name: "Studio Professor",
+      system: `You are a Studio Professor in an art and design critique. You have decades of teaching experience. You balance concept and craft. You hold students accountable for their ideas while pointing toward better work. You don't hand-hold. You identify what's conceptually working, what's unresolved, and you give specific directional guidance. Your tone is measured, authoritative, and genuinely invested in the student's growth.`,
+      color: "professor",
+      initial: "Pr",
+      role: "Balanced authority · concept and craft in tension",
+      model_label: "claude-sonnet · professor persona"
+    },
+    critic: {
+      name: "Art Critic",
+      system: `You are an Art Critic reviewing work in a professional context. You have no filter. You are direct, specific, and contextual. You situate work within its art historical and cultural context. You identify when work is uninformed of the conversation it's entering. You do not soften feedback for encouragement. You give the hardest, most useful feedback the student will hear. Your tone is precise, demanding, and unsentimental.`,
+      color: "critic",
+      initial: "C",
+      role: "No filter · contextual analysis · the hardest voice",
+      model_label: "claude-sonnet · critic persona"
+    }
+  };
+
+  const p = personas[persona];
+  const focusLine = focusPrompt ? `\n\nThe student has asked you to focus on: "${focusPrompt}"` : '';
+
+  const userMessage = {
+    role: "user",
+    content: [
+      {
+        type: "image",
+        source: { type: "base64", media_type: imageType, data: imageBase64 }
+      },
+      {
+        type: "text",
+        text: `Please critique this artwork from your perspective as ${p.name}.${focusLine}
+
+Return ONLY a JSON object with this exact structure (no markdown, no extra text):
+{
+  "score": <number 0-100>,
+  "strengths": [
+    {"area": "<short area name>", "text": "<2-3 sentence observation>"},
+    {"area": "<short area name>", "text": "<2-3 sentence observation>"}
+  ],
+  "push": [
+    {"area": "<short area name>", "text": "<2-3 sentence observation>"},
+    {"area": "<short area name>", "text": "<2-3 sentence observation>"}
+  ],
+  "actions": [
+    "<specific, actionable step 1>",
+    "<specific, actionable step 2>",
+    "<specific, actionable step 3>"
+  ],
+  "summary": "<2-3 sentence honest summary of the work and what the student should take away>"
+}`
+      }
+    ]
+  };
+
+  const response = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "claude-sonnet-4-6",
+      max_tokens: 1000,
+      system: p.system,
+      messages: [userMessage]
+    })
+  });
+
+  const data = await response.json();
+  if (data.error) throw new Error(data.error.message);
+  const raw = data.content[0].text;
+  const clean = raw.replace(/```json|```/g, '').trim();
+  const parsed = JSON.parse(clean);
+  return { ...parsed, persona: p, key: persona };
+}
+
+function renderCriticPanel(result) {
+  const { score, strengths, push, actions, summary, persona, key } = result;
+  const c = persona.color;
+  return `
+<div class="voice-panel" id="panel-${key}">
+  <div class="vp-header">
+    <div class="vp-identity">
+      <div class="vp-avatar av-bg-${c}">${persona.initial}</div>
+      <div>
+        <div class="vp-name">${persona.name}</div>
+        <div class="vp-role">${persona.role}</div>
+        <div class="vp-model vm-${c}">${persona.model_label}</div>
+      </div>
+    </div>
+    <div class="vp-score-block">
+      <div class="vp-score vs-${c}">${score}</div>
+      <div class="vp-score-label">out of 100</div>
+    </div>
+  </div>
+  <div class="vp-body">
+    <div class="vp-col">
+      <div class="vp-col-head">What's working</div>
+      ${(strengths||[]).map(s=>`<div class="fb-item"><div class="fb-area fb-area-${c}">${s.area||''}</div><div class="fb-text">${s.text||''}</div></div>`).join('')}
+    </div>
+    <div class="vp-col">
+      <div class="vp-col-head">Where to push</div>
+      ${(push||[]).map(s=>`<div class="fb-item"><div class="fb-area fb-area-${c}">${s.area||''}</div><div class="fb-text">${s.text||''}</div></div>`).join('')}
+    </div>
+    <div class="vp-col">
+      <div class="vp-col-head">Try this next</div>
+      ${(actions||[]).map((a,i)=>`<div class="action-item"><div class="action-num an-${c}">0${i+1}</div><div class="action-text">${a}</div></div>`).join('')}
+    </div>
+  </div>
+  <div class="vp-summary">
+    <div class="vp-summary-bar sb-${c}"></div>
+    <div class="vp-summary-text">${summary||''}</div>
+  </div>
+</div>`;
+}
+
+function renderSkeleton(key) {
+  return `<div class="skeleton-panel" id="skel-${key}">
+    <div class="skel-bar" style="width:40%"></div>
+    <div class="skel-bar" style="width:60%"></div>
+    <div class="skel-bar" style="width:80%"></div>
+    <div class="skel-bar" style="width:50%"></div>
+  </div>`;
+}
+
+async function runCritique() {
+  if (!uploadedImageBase64) return;
+  if (selectedCritics.size === 0) { alert('Please select at least one critic.'); return; }
+
+  const runBtn = document.getElementById('runBtn');
+  const progressTrack = document.getElementById('progressTrack');
+  const feedbackArea = document.getElementById('feedbackArea');
+  const emptyState = document.getElementById('emptyState');
+  const srTime = document.getElementById('srTime');
+  const focusPrompt = document.getElementById('promptInput').value.trim();
+
+  runBtn.disabled = true;
+  progressTrack.classList.add('active');
+  emptyState.style.display = 'none';
+  feedbackArea.innerHTML = '';
+
+  const criticOrder = ['student','professor','critic'].filter(k => selectedCritics.has(k));
+
+  // Show skeletons
+  criticOrder.forEach(key => {
+    feedbackArea.innerHTML += renderSkeleton(key);
+    updateStatus(key, 'Thinking…');
+  });
+
+  srTime.textContent = 'Running…';
+  const startTime = Date.now();
+
+  // Run all critics in parallel
+  const promises = criticOrder.map(key =>
+    callCritic(key, uploadedImageBase64, uploadedImageType, focusPrompt)
+      .then(result => {
+        updateStatus(key, 'Done ✓');
+        return { key, result };
+      })
+      .catch(err => {
+        updateStatus(key, 'Error');
+        return { key, error: err.message };
+      })
+  );
+
+  const results = await Promise.all(promises);
+  const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+
+  // Replace skeletons with real panels
+  feedbackArea.innerHTML = '';
+  let hasError = false;
+  results.forEach(({ key, result, error }) => {
+    if (error) {
+      hasError = true;
+      feedbackArea.innerHTML += `<div class="error-banner">Error from ${key} critic: ${error}</div>`;
+    } else {
+      feedbackArea.innerHTML += renderCriticPanel(result);
+    }
+  });
+
+  srTime.textContent = `${criticOrder.length} voices · ${elapsed}s`;
+  progressTrack.classList.remove('active');
+  runBtn.disabled = false;
+  runBtn.querySelector('span').textContent = 'Run again';
+}
+
+function resetAll() {
+  uploadedImageBase64 = null;
+  uploadedImageType = null;
+  const uploadZone = document.getElementById('uploadZone');
+  uploadZone.innerHTML = `<span class="upload-icon">🖼</span><span class="upload-hint">Click to upload · PNG, JPG, GIF, WEBP</span><input type="file" class="upload-input" id="fileInput" accept="image/*">`;
+  uploadZone.classList.remove('has-image');
+  document.getElementById('fileInput').addEventListener('change', e => handleFile(e.target.files[0]));
+  document.getElementById('promptInput').value = '';
+  document.getElementById('feedbackArea').innerHTML = '';
+  document.getElementById('emptyState').style.display = 'flex';
+  document.getElementById('runBtn').querySelector('span').textContent = 'Begin the critique';
+  document.getElementById('runSub').textContent = 'Upload an image to begin';
+  document.getElementById('srTime').textContent = 'Awaiting submission';
+  ['student','professor','critic'].forEach(k => updateStatus(k, `${k.charAt(0).toUpperCase()+k.slice(1)} ready`));
+  document.getElementById('progressTrack').classList.remove('active');
+}
+</script>
+</body>
+</html>

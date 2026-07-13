@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>White Crane Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #1C1B18;
+    --surface: #2C2C2A;
+    --border:  #444441;
+    --white:   #E8E6E0;
+    --white-muted: rgba(232,230,224,0.5);
+    --white-dim:   rgba(232,230,224,0.28);
+    --red:     #E03030;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body:    'Inter', sans-serif;
+    --mono: 'SF Mono','Fira Code','Courier New',monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(28,27,24,0.92);
+    backdrop-filter: blur(14px);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-display); font-size: 13px;
+    font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--white);
+    text-decoration: none;
+  }
+  /* Geometric triangle crane mark */
+  .logo-mark { width: 32px; height: 32px; flex-shrink: 0; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--font-body); font-size: 12px;
+    color: var(--white-muted); text-decoration: none;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    font-family: var(--font-display); font-size: 11px; font-weight: 600;
+    color: var(--red); border: 1px solid var(--red);
+    padding: 7px 18px; text-decoration: none;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--red); color: var(--black); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; padding-top: 64px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 3rem;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  /* angled divider — triangle motif */
+  .hero-left::after {
+    content: ''; position: absolute; bottom: 0; right: -1px;
+    width: 0; height: 0;
+    border-left: 40px solid transparent;
+    border-bottom: 40px solid var(--surface);
+    display: none; /* decorative, keep off for cleanliness */
+  }
+  .eyebrow {
+    font-family: var(--font-body); font-size: 11px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 1.75rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  /* small red triangle bullet */
+  .tri { display: inline-block; width: 0; height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid var(--red); }
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 700; letter-spacing: -0.03em;
+    line-height: 1.0; margin-bottom: 1.75rem;
+    text-transform: uppercase;
+  }
+  h1 em { font-style: normal; color: var(--white-muted); }
+  .hero-sub {
+    font-size: 14px; color: var(--white-muted);
+    max-width: 420px; line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: var(--font-display); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--red); color: var(--white);
+    padding: 13px 30px; border: none; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: opacity 0.2s;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost {
+    font-size: 13px; color: var(--white-muted);
+    text-decoration: none; display: flex; align-items: center; gap: 6px;
+    transition: color 0.2s; letter-spacing: 0.02em;
+  }
+  .btn-ghost:hover { color: var(--white); }
+  .btn-ghost::after { content: '→'; color: var(--red); }
+
+  .hero-right {
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    padding: 5rem 3rem;
+    background: var(--surface);
+    position: relative; overflow: hidden;
+  }
+  /* Big background triangle texture */
+  .hero-right::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 0; height: 0;
+    border-left: 280px solid transparent;
+    border-top: 280px solid rgba(68,68,65,0.35);
+    pointer-events: none;
+  }
+  .hero-right::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 0; height: 0;
+    border-right: 200px solid transparent;
+    border-bottom: 200px solid rgba(68,68,65,0.2);
+    pointer-events: none;
+  }
+  .crane-diagram { position: relative; z-index: 1; flex: 1; display: flex; align-items: center; justify-content: center; }
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    border-top: 1px solid var(--border); padding-top: 2rem;
+    position: relative; z-index: 1;
+  }
+  .stat { padding-right: 1.5rem; }
+  .stat:not(:last-child) { border-right: 1px solid var(--border); margin-right: 1.5rem; }
+  .stat-num {
+    font-family: var(--font-display); font-size: 2.2rem;
+    font-weight: 700; color: var(--white); display: block;
+  }
+  .stat-label { font-size: 10px; color: var(--white-dim); letter-spacing: 0.12em; text-transform: uppercase; }
+
+  /* ── SECTION SCAFFOLD ── */
+  section { border-top: 1px solid var(--border); }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border);
+  }
+  .section-label {
+    font-family: var(--font-body); font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--red); display: flex; align-items: center; gap: 8px;
+  }
+  .section-label .tri { border-top-color: var(--red); }
+  .section-aside {
+    font-size: 11px; color: var(--white-dim); letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    transition: color 0.2s;
+  }
+  .section-aside:hover { color: var(--white); }
+
+  /* ── PILLARS ── */
+  .pillars-grid { display: grid; grid-template-columns: repeat(3,1fr); }
+  .pillar {
+    padding: 2.75rem 2.5rem;
+    border-right: 1px solid var(--border);
+    transition: background 0.25s; position: relative; overflow: hidden;
+  }
+  .pillar:last-child { border-right: none; }
+  .pillar:hover { background: var(--surface); }
+  /* red corner triangle on hover */
+  .pillar::after {
+    content: ''; position: absolute; top: 0; right: 0;
+    width: 0; height: 0;
+    border-top: 32px solid var(--red);
+    border-left: 32px solid transparent;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .pillar:hover::after { opacity: 1; }
+  .pillar-num {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--white-dim); letter-spacing: 0.16em;
+    text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .pillar-name {
+    font-family: var(--font-display); font-size: 19px;
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: -0.01em; margin-bottom: 1rem;
+    color: var(--white);
+  }
+  .pillar-desc {
+    font-size: 13px; color: var(--white-muted);
+    line-height: 1.75; margin-bottom: 1.5rem;
+  }
+  .pillar-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 10px; padding: 3px 10px;
+    border: 1px solid var(--border);
+    color: var(--white-dim); letter-spacing: 0.06em;
+    text-transform: uppercase; font-family: var(--mono);
+  }
+
+  /* ── WORK GRID ── */
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .project-card {
+    padding: 2.5rem; border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s; cursor: pointer;
+    position: relative; overflow: hidden;
+  }
+  .project-card:nth-child(even) { border-right: none; }
+  .project-card:nth-last-child(-n+2) { border-bottom: none; }
+  .project-card:hover { background: var(--surface); }
+  /* red border on hover */
+  .project-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    right: 0; bottom: 0;
+    border: 1px solid var(--red);
+    opacity: 0; transition: opacity 0.15s ease;
+    pointer-events: none;
+  }
+  .project-card:hover::before { opacity: 1; }
+  /* red corner triangle */
+  .project-card::after {
+    content: ''; position: absolute; top: 0; right: 0;
+    width: 0; height: 0;
+    border-top: 24px solid var(--red);
+    border-left: 24px solid transparent;
+    opacity: 0; transition: opacity 0.15s;
+  }
+  .project-card:hover::after { opacity: 1; }
+  .card-type {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-family: var(--mono); color: var(--white-dim);
+    margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;
+  }
+  .cat-pill {
+    font-size: 10px; font-family: var(--font-body);
+    font-weight: 500; padding: 2px 10px;
+    background: var(--red); color: var(--white);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .card-title {
+    font-family: var(--font-display); font-size: 22px;
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: -0.01em; line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+  .card-desc {
+    font-size: 13px; color: var(--white-muted);
+    line-height: 1.7; margin-bottom: 1.5rem;
+  }
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .card-stack {
+    font-size: 10px; color: var(--white-dim);
+    font-family: var(--mono); letter-spacing: 0.08em;
+  }
+  .card-arrow { font-size: 18px; color: var(--white-dim); transition: color 0.2s, transform 0.2s; }
+  .project-card:hover .card-arrow { color: var(--red); transform: translate(2px,-2px); }
+
+  /* ── PHILOSOPHY ── */
+  .philosophy { display: grid; grid-template-columns: 5fr 7fr; }
+  .phil-left {
+    padding: 3.5rem 2.5rem; border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 2rem;
+  }
+  .phil-right { padding: 3.5rem 2.5rem; }
+  .manifesto {
+    font-family: var(--font-display); font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: -0.02em; line-height: 1.15; color: var(--white);
+  }
+  .manifesto span { color: var(--white-muted); }
+  .phil-note { font-size: 13px; color: var(--white-muted); line-height: 1.8; }
+  .avail {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; color: var(--red);
+    font-family: var(--mono); letter-spacing: 0.1em;
+  }
+  .pulse {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--red); animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.25} }
+  .principles { display: flex; flex-direction: column; }
+  .principle {
+    padding: 1.25rem 0; border-top: 1px solid var(--border);
+    display: flex; gap: 1.5rem;
+  }
+  .principle:last-child { border-bottom: 1px solid var(--border); }
+  .p-num { font-family: var(--mono); font-size: 11px; color: var(--white-dim); min-width: 24px; padding-top: 2px; }
+  .p-txt { font-size: 13px; color: var(--white-muted); line-height: 1.7; }
+  .p-txt strong { color: var(--white); font-weight: 600; }
+
+  /* ── PROCESS ── */
+  .process-wrap { padding: 3rem 2.5rem; }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(5,1fr);
+    gap: 0; margin-top: 2.5rem; position: relative;
+  }
+  .process-steps::before {
+    content: ''; position: absolute;
+    top: 19px; left: 8%; right: 8%;
+    height: 1px; background: var(--border); z-index: 0;
+  }
+  .step { text-align: center; position: relative; z-index: 1; }
+  .step-hex {
+    width: 38px; height: 38px; border: 1px solid var(--border);
+    background: var(--black);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 10px; font-family: var(--mono); color: var(--white-dim);
+    transition: all 0.25s;
+  }
+  .step:hover .step-hex { background: var(--red); color: var(--white); border-color: var(--red); }
+  .step-name { font-family: var(--font-display); font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+  .step-desc { font-size: 11px; color: var(--white-dim); line-height: 1.5; padding: 0 6px; }
+
+  /* ── ABOUT STRIP ── */
+  .about-strip {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border);
+  }
+  .about-left {
+    padding: 3.5rem 2.5rem; border-right: 1px solid var(--border);
+  }
+  .about-right { padding: 3.5rem 2.5rem; display: flex; flex-direction: column; justify-content: space-between; }
+  h2 {
+    font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1.25rem;
+  }
+  .about-body { font-size: 13px; color: var(--white-muted); line-height: 1.8; }
+  .about-body + .about-body { margin-top: 1rem; }
+  .creds { display: flex; flex-direction: column; gap: 0; margin-top: 2rem; }
+  .cred {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 0; border-bottom: 1px solid var(--border);
+    font-size: 13px; color: var(--white-muted);
+  }
+  .cred:first-child { border-top: 1px solid var(--border); }
+  .cred-label { font-family: var(--font-display); font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--white); }
+
+  /* ── LABS BANNER ── */
+  .labs-banner {
+    background: var(--surface); padding: 1.75rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+  }
+  .labs-live { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--red); font-family: var(--mono); letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
+  .labs-text { font-size: 13px; color: var(--white-muted); max-width: 520px; line-height: 1.7; }
+
+  /* ── CONNECT ── */
+  .connect-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .connect-left { padding: 4rem 2.5rem; border-right: 1px solid var(--border); }
+  .connect-right { padding: 4rem 2.5rem; display: flex; flex-direction: column; justify-content: space-between; }
+  .connect-links { display: flex; flex-direction: column; }
+  .connect-link {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 0; border-bottom: 1px solid var(--border);
+    text-decoration: none; color: var(--white-muted); font-size: 14px;
+    transition: color 0.2s; position: relative; overflow: hidden;
+  }
+  .connect-link:first-child { border-top: 1px solid var(--border); }
+  .connect-link:hover { color: var(--white); }
+  .connect-link:hover .link-arrow { color: var(--red); }
+  .link-label { display: flex; align-items: center; gap: 10px; }
+  .link-arrow { transition: color 0.2s; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--surface);
+  }
+  .footer-brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white-dim); }
+  .footer-copy { font-size: 11px; color: var(--white-dim); font-family: var(--mono); }
+  .footer-tagline { font-size: 11px; color: var(--red); font-family: var(--mono); letter-spacing: 0.1em; }
+
+  /* ── FADE IN ── */
+  .fade { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── FEATURED PROJECT CARD ── */
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    padding: 0;
+  }
+  .featured-left {
+    padding: 2.5rem;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .featured-right {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .featured-right::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 0; height: 0;
+    border-left: 160px solid transparent;
+    border-top: 160px solid rgba(224,48,48,0.06);
+    pointer-events: none;
+  }
+  .agent-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin: 1.25rem 0;
+  }
+  .agent-pill {
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    font-size: 10px;
+    font-family: var(--mono);
+    color: var(--white-dim);
+    letter-spacing: 0.06em;
+  }
+  .agent-pill strong {
+    display: block;
+    color: var(--white-muted);
+    font-size: 11px;
+    margin-bottom: 2px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .agent-pill.red-accent { border-color: rgba(224,48,48,0.35); }
+  .agent-pill.red-accent strong { color: var(--red); }
+  .cs-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-display); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--red); color: var(--white);
+    padding: 11px 22px; border: none; cursor: pointer;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%);
+    transition: opacity 0.2s;
+    margin-top: 1.5rem;
+    align-self: flex-start;
+  }
+  .cs-btn:hover { opacity: 0.85; }
+
+  /* ── CASE STUDY OVERLAY ── */
+  .cs-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: var(--black);
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .cs-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .cs-close {
+    position: fixed; top: 1.25rem; right: 1.5rem; z-index: 210;
+    font-family: var(--mono); font-size: 11px; color: var(--white-dim);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    background: none; border: 1px solid var(--border);
+    padding: 7px 14px; cursor: pointer;
+    transition: all 0.2s;
+    display: none;
+  }
+  .cs-overlay.open ~ .cs-close,
+  .cs-close.visible { display: block; }
+  .cs-close:hover { color: var(--white); border-color: var(--white-muted); }
+
+  .cs-body { max-width: 860px; margin: 0 auto; padding: 6rem 2.5rem 5rem; }
+
+  .cs-eyebrow {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--red); font-family: var(--mono);
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 1.5rem;
+  }
+  .cs-h1 {
+    font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em;
+    line-height: 1.05; margin-bottom: 1rem; color: var(--white);
+  }
+  .cs-subtitle {
+    font-size: 15px; color: var(--white-muted);
+    max-width: 600px; line-height: 1.8; margin-bottom: 3rem;
+    border-left: 2px solid var(--red); padding-left: 1.25rem;
+  }
+
+  .cs-divider {
+    border: none; border-top: 1px solid var(--border); margin: 2.5rem 0;
+  }
+  .cs-section-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--red); font-family: var(--mono); margin-bottom: 1rem;
+  }
+  .cs-h2 {
+    font-family: var(--font-display); font-size: 1.5rem;
+    font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em;
+    margin-bottom: 0.75rem; color: var(--white);
+  }
+  .cs-p {
+    font-size: 14px; color: var(--white-muted);
+    line-height: 1.85; margin-bottom: 1.25rem;
+  }
+  .cs-p strong { color: var(--white); font-weight: 600; }
+
+  .cs-two-col {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin: 1.5rem 0;
+  }
+  .cs-box {
+    border: 1px solid var(--border); padding: 1.25rem;
+    background: var(--surface);
+  }
+  .cs-box-label {
+    font-size: 10px; font-family: var(--mono); letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--white-dim); margin-bottom: 0.5rem;
+  }
+  .cs-box-title {
+    font-family: var(--font-display); font-size: 14px; font-weight: 700;
+    text-transform: uppercase; color: var(--white); margin-bottom: 0.5rem;
+  }
+  .cs-box p { font-size: 13px; color: var(--white-muted); line-height: 1.7; }
+  .cs-box .model-tag {
+    display: inline-block; font-size: 9px; font-family: var(--mono);
+    letter-spacing: 0.08em; padding: 2px 8px;
+    border: 1px solid rgba(224,48,48,0.4); color: var(--red);
+    text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+
+  .cs-stack-row {
+    display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0;
+  }
+  .cs-tag {
+    font-size: 10px; font-family: var(--mono); padding: 4px 12px;
+    border: 1px solid var(--border); color: var(--white-dim);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .cs-tag.highlight { border-color: rgba(224,48,48,0.4); color: var(--red); }
+
+  .cs-lesson {
+    display: flex; gap: 1.25rem; padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .cs-lesson:first-child { border-top: 1px solid var(--border); }
+  .cs-lesson-num { font-family: var(--mono); font-size: 11px; color: var(--white-dim); min-width: 24px; padding-top: 2px; }
+  .cs-lesson p { font-size: 13px; color: var(--white-muted); line-height: 1.7; }
+  .cs-lesson p strong { color: var(--white); }
+
+  .cs-quote {
+    border-left: 2px solid var(--red); padding: 1rem 1.5rem;
+    margin: 2rem 0; background: var(--surface);
+    font-family: var(--font-display); font-size: 1.1rem;
+    font-weight: 600; text-transform: uppercase; letter-spacing: -0.01em;
+    color: var(--white); line-height: 1.4;
+  }
+  .cs-quote span { color: var(--white-muted); font-weight: 400; }
+
+  .cs-arch-diagram {
+    border: 1px solid var(--border); padding: 2rem;
+    background: var(--surface); margin: 1.5rem 0;
+  }
+  .arch-row {
+    display: grid; grid-template-columns: 1fr 24px 1fr 24px 1fr;
+    gap: 0; align-items: start; margin-bottom: 0.5rem;
+  }
+  .arch-col { display: flex; flex-direction: column; gap: 6px; }
+  .arch-node {
+    border: 1px solid var(--border); padding: 8px 10px;
+    font-size: 11px; font-family: var(--mono);
+    color: var(--white-muted); letter-spacing: 0.04em;
+    background: var(--black);
+  }
+  .arch-node.accent { border-color: rgba(224,48,48,0.45); }
+  .arch-node strong { display: block; color: var(--white); font-family: var(--font-display); font-size: 11px; font-weight: 600; text-transform: uppercase; margin-bottom: 1px; }
+  .arch-arrow { display: flex; align-items: center; justify-content: center; color: var(--white-dim); font-size: 14px; padding-top: 12px; }
+  .arch-col-label { font-size: 9px; font-family: var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--white-dim); margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <!-- Geometric triangle crane mark: black field, white triangles, red inverted triangle accent -->
+    <svg class="logo-mark" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <rect width="32" height="32" fill="#1C1B18"/>
+      <!-- white body triangles -->
+      <polygon points="16,4 22,14 10,14" fill="#E8E6E0"/>
+      <polygon points="10,14 16,24 4,24" fill="#E8E6E0" opacity="0.7"/>
+      <polygon points="22,14 28,24 16,24" fill="#E8E6E0" opacity="0.5"/>
+      <!-- red inverted accent triangle — the eye, the signal -->
+      <polygon points="16,10 19,15 13,15" fill="#E03030"/>
+    </svg>
+    White Crane Labs
+  </a>
+  <ul class="nav-links">
+    <li><a href="#pillars">Pillars</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#case-studies">Case Studies</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#connect">Connect</a></li>
+  </ul>
+  <a href="#connect" class="nav-cta">Work with the lab</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="eyebrow"><span class="tri"></span> Creative Technology Director · NYC</div>
+    <h1>Where<br>Design<br>Meets<br><em>Machine.</em></h1>
+    <p class="hero-sub">White Crane Labs builds AI workflows, generative systems, and creative infrastructure that let creative teams move faster — without handing creative judgment to the machine.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-primary">See the work</a>
+      <a href="#about" class="btn-ghost">About the lab</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- SVG system diagram with triangle motif -->
+    <div class="crane-diagram">
+      <svg viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px;">
+        <!-- Central polygon node -->
+        <polygon points="160,100 190,150 160,200 130,150" stroke="#E03030" stroke-width="1" fill="rgba(224,48,48,0.05)"/>
+        <text x="160" y="154" text-anchor="middle" fill="#E03030" font-size="8" font-family="SF Mono,monospace" letter-spacing="2">WCL</text>
+        <!-- Satellite nodes -->
+        <polygon points="50,60 70,90 30,90" stroke="rgba(232,230,224,0.35)" stroke-width="0.8" fill="rgba(44,44,42,0.6)"/>
+        <text x="50" y="78" text-anchor="middle" fill="rgba(232,230,224,0.4)" font-size="6" font-family="SF Mono,monospace">INFRA</text>
+        <polygon points="270,60 290,90 250,90" stroke="rgba(232,230,224,0.35)" stroke-width="0.8" fill="rgba(44,44,42,0.6)"/>
+        <text x="270" y="78" text-anchor="middle" fill="rgba(232,230,224,0.4)" font-size="6" font-family="SF Mono,monospace">AI+CT</text>
+        <polygon points="50,190 70,220 30,220" stroke="rgba(232,230,224,0.25)" stroke-width="0.8" fill="rgba(44,44,42,0.5)"/>
+        <text x="50" y="208" text-anchor="middle" fill="rgba(232,230,224,0.3)" font-size="6" font-family="SF Mono,monospace">CULTURE</text>
+        <polygon points="270,190 290,220 250,220" stroke="rgba(232,230,224,0.2)" stroke-width="0.8" fill="rgba(44,44,42,0.4)"/>
+        <text x="270" y="208" text-anchor="middle" fill="rgba(232,230,224,0.25)" font-size="6" font-family="SF Mono,monospace">BUILD</text>
+        <!-- Connector lines, dashed -->
+        <line x1="130" y1="140" x2="70" y2="90" stroke="rgba(224,48,48,0.3)" stroke-width="0.7" stroke-dasharray="4,5"/>
+        <line x1="190" y1="140" x2="250" y2="90" stroke="rgba(224,48,48,0.2)" stroke-width="0.7" stroke-dasharray="4,5"/>
+        <line x1="130" y1="165" x2="70" y2="205" stroke="rgba(232,230,224,0.15)" stroke-width="0.7" stroke-dasharray="4,5"/>
+        <line x1="190" y1="165" x2="250" y2="205" stroke="rgba(232,230,224,0.12)" stroke-width="0.7" stroke-dasharray="4,5"/>
+        <!-- Angled grid lines — triangle motif -->
+        <line x1="0" y1="240" x2="320" y2="40" stroke="rgba(68,68,65,0.3)" stroke-width="0.5"/>
+        <line x1="0" y1="280" x2="320" y2="80" stroke="rgba(68,68,65,0.2)" stroke-width="0.5"/>
+        <line x1="60" y1="280" x2="320" y2="130" stroke="rgba(68,68,65,0.15)" stroke-width="0.5"/>
+        <!-- Human-in-loop label -->
+        <text x="160" y="268" text-anchor="middle" fill="rgba(224,48,48,0.5)" font-size="8" font-family="SF Mono,monospace" letter-spacing="3">HUMAN IN THE LOOP</text>
+      </svg>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">Yrs building</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Pillars</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">NYC</span>
+        <span class="stat-label">Based</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PILLARS ═══ -->
+<section id="foundation">
+  <div class="section-header">
+    <div class="section-label"><span class="tri"></span> 01 — Foundation & Practice</div>
+    <a href="#work" class="section-aside">See the work →</a>
+  </div>
+  
+  <!-- PILLARS -->
+  <div style="margin-bottom: 4rem;">
+    <div style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-dim); margin-bottom: 2rem; display: flex; align-items: center; gap: 8px;">
+      <span style="width: 6px; height: 6px; background: var(--red); display: inline-block;"></span> Core pillars
+    </div>
+    <div class="pillars-grid fade">
+      <div class="pillar">
+        <div class="pillar-num">01 / Pillar</div>
+        <div class="pillar-name">AI × Design</div>
+        <p class="pillar-desc">How AI changes — and doesn't change — creative work. Generative experiments, workflow breakdowns, and the philosophy of human-in-the-loop design. The most timely pillar; the sharpest differentiator.</p>
+        <div class="pillar-tags">
+          <span class="tag">Generative systems</span>
+          <span class="tag">LLM workflows</span>
+          <span class="tag">Prompt architecture</span>
+          <span class="tag">AI tooling</span>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02 / Pillar</div>
+        <div class="pillar-name">Creative Infrastructure</div>
+        <p class="pillar-desc">Building the environments where creative teams thrive — physical labs, digital systems, team culture, and the invisible architecture of great creative work. Backed by 10+ years at Pratt.</p>
+        <div class="pillar-tags">
+          <span class="tag">Systems design</span>
+          <span class="tag">Creative ops</span>
+          <span class="tag">Toolstack architecture</span>
+          <span class="tag">DAM</span>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03 / Pillar</div>
+        <div class="pillar-name">The Hybrid Perspective</div>
+        <p class="pillar-desc">What pure designers and pure engineers each miss. The advantage of being fluent in both worlds — and the opinions that only come from operating at the intersection of craft and systems thinking.</p>
+        <div class="pillar-tags">
+          <span class="tag">Designer + engineer</span>
+          <span class="tag">Creative tech direction</span>
+          <span class="tag">Thought leadership</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHILOSOPHY INTEGRATED -->
+  <div style="border-top: 1px solid var(--border); padding: 3rem 0; margin-bottom: 4rem;">
+    <div style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-dim); margin-bottom: 2rem; display: flex; align-items: center; gap: 8px;">
+      <span style="width: 6px; height: 6px; background: var(--red); display: inline-block;"></span> Guiding principle
+    </div>
+    <div class="philosophy fade">
+      <div class="phil-left">
+        <div class="manifesto">AI is<br>a tool.<br><span>Humans still<br>direct every-<br>thing that<br>matters.</span></div>
+        <p class="phil-note">At a moment when most people are either AI maximalists or AI skeptics, this position is specific, defensible, and rare. Human-in-the-loop is not a safety guardrail. It's a design principle.</p>
+      </div>
+      <div class="phil-right">
+        <div class="principles">
+          <div class="principle">
+            <span class="p-num">01</span>
+            <p class="p-txt"><strong>Human-in-the-loop — always.</strong> AI handles the execution layer — generation, iteration, automation. The human stays in the director's chair. Not a compromise. A design decision.</p>
+          </div>
+          <div class="principle">
+            <span class="p-num">02</span>
+            <p class="p-txt"><strong>Infrastructure serves the work.</strong> No system should be more complex than the problem it solves. Creative teams don't need more tools — they need the right ones, connected well.</p>
+          </div>
+          <div class="principle">
+            <span class="p-num">03</span>
+            <p class="p-txt"><strong>The hybrid identity is the advantage.</strong> Pure designers and pure engineers each have blind spots. Fluency in both worlds is not a compromise between disciplines — it is the discipline.</p>
+          </div>
+          <div class="principle">
+            <span class="p-num">04</span>
+            <p class="p-txt"><strong>Build to learn. Then build to last.</strong> Experimentation isn't separate from production work — it's how you find out what production work should be. The lab is always running.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW I WORK INTEGRATED -->
+  <div style="border-top: 1px solid var(--border); padding: 3rem 0; margin-bottom: 4rem;">
+    <div style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-dim); margin-bottom: 2rem; display: flex; align-items: center; gap: 8px;">
+      <span style="width: 6px; height: 6px; background: var(--red); display: inline-block;"></span> How I work
+    </div>
+    <div class="process-wrap fade">
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-hex">DX</div>
+          <div class="step-name">Diagnose</div>
+          <div class="step-desc">Audit the system — tools, workflows, culture, friction points.</div>
+        </div>
+        <div class="step">
+          <div class="step-hex">MO</div>
+          <div class="step-name">Model</div>
+          <div class="step-desc">Map the desired state. Define what good actually looks like.</div>
+        </div>
+        <div class="step">
+          <div class="step-hex">BL</div>
+          <div class="step-name">Build</div>
+          <div class="step-desc">Prototype fast. Ship working things. Kill what doesn't fit.</div>
+        </div>
+        <div class="step">
+          <div class="step-hex">EX</div>
+          <div class="step-name">Experiment</div>
+          <div class="step-desc">Push the boundary. Test edge cases. Stay in the lab.</div>
+        </div>
+        <div class="step">
+          <div class="step-hex">SC</div>
+          <div class="step-name">Scale</div>
+          <div class="step-desc">Operationalize what works. Embed it in the team.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Adoption Playbook Integrated -->
+    <div style="margin-top: 3rem; padding: 2rem; border: 1px solid var(--border); border-radius: 4px; background: rgba(255,255,255,0.02);">
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-dim); margin-bottom: 1rem;">Practical Framework</div>
+      <div style="font-size: 18px; font-weight: 500; margin-bottom: 1rem; line-height: 1.4;">
+        <strong>AI Adoption Playbook</strong><br>
+        <span style="font-size: 14px; font-weight: 400; color: var(--white-dim);">A framework for creative directors navigating AI integration — tool evaluation criteria, team onboarding cadences, and cultural guardrails that preserve creative judgment.</span>
+      </div>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+        <span style="font-size: 12px; padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 3px; color: var(--white-dim);">Research</span>
+        <span style="font-size: 12px; padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 3px; color: var(--white-dim);">Framework design</span>
+        <span style="font-size: 12px; padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 3px; color: var(--white-dim);">Workshop</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT INTEGRATED -->
+  <div style="border-top: 1px solid var(--border); padding: 3rem 0;">
+    <div style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-dim); margin-bottom: 2rem; display: flex; align-items: center; gap: 8px;">
+      <span style="width: 6px; height: 6px; background: var(--red); display: inline-block;"></span> About
+    </div>
+    <div class="about-strip fade">
+      <div class="about-left">
+        <h2>Part designer.<br>Part engineer.<br>Part AI builder.</h2>
+        <p class="about-body">I'm Ken Bai — a Creative Technologist based in New York. I sit somewhere between a designer, an engineer, and an AI builder. My work is about removing the friction between creative people and the tools they use.</p>
+        <p class="about-body" style="margin-top:1rem;">At Pratt Institute, I work as a Technology Analyst in the Advanced Technology department — responsible for deploying and integrating AI applications across the Institute, building LLM-powered workflows, and maintaining the 120+ Apple endpoint ecosystem that supports thousands of designers, artists, and researchers each year. I work directly with faculty and departments to translate curriculum needs into technical solutions, with a focus on emerging AI tools and the infrastructure that makes them actually usable in a creative institution.</p>
+        <p class="about-body" style="margin-top:1rem;">Outside Pratt, I run White Crane Design — a creative studio and lab where I prototype AI-assisted design systems, generative pipelines, and automation workflows. White Crane Labs is the public-facing documentation of that work.</p>
+        <p class="about-body" style="margin-top:1rem;">I'm completing a Masters of Professional Studies in Design Management at Pratt, expected 2027. The work here is the practicum.</p>
+      </div>
+      <div class="about-right">
+        <div class="creds">
+          <div class="cred">
+            <span>Technology Analyst, Advanced Technology</span>
+            <span class="cred-label">Pratt Institute</span>
+          </div>
+          <div class="cred">
+            <span>Founder & Creative Director</span>
+            <span class="cred-label">White Crane Design LLC</span>
+          </div>
+          <div class="cred">
+            <span>MPS Design Management</span>
+            <span class="cred-label">Pratt Institute · Expected 2027</span>
+          </div>
+          <div class="cred">
+            <span>BA Interior Design</span>
+            <span class="cred-label">Pratt Institute · 2012</span>
+          </div>
+          <div class="cred">
+            <span>Jamf Certified Tech & Associate</span>
+            <span class="cred-label">Enterprise Apple systems · 2024</span>
+          </div>
+        </div>
+        <div class="avail" style="margin-top:2rem;"><span class="pulse"></span> Available for speaking, collaborations & consulting</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══ WORK ═══ -->
+<section id="work">
+  <div class="section-header">
+    <div class="section-label"><span class="tri"></span> 02 — The work</div>
+    <span class="section-aside" style="font-size:11px; color:var(--white-dim);">Everything here started as a question.</span>
+  </div>
+  <div class="projects-grid fade">
+    
+    <!-- THESIS: CRITIQUE COUNCIL — FEATURED FULL-WIDTH CARD AT TOP -->
+    <div class="project-card featured">
+      <div class="featured-left">
+        <div>
+          <div class="card-type">
+            <span class="cat-pill">Multi-Agent AI</span>
+            <span style="font-size:10px;font-family:var(--mono);color:var(--white-dim);letter-spacing:0.08em;">· Education · Pedagogy Systems</span>
+          </div>
+          <div class="card-title" style="font-size:clamp(1.6rem,2.5vw,2.2rem);margin-top:0.5rem;">The Critique Council</div>
+          <p class="card-desc" style="max-width:420px;"><strong>Thesis:</strong> A multi-agent AI system that simulates the experience of presenting to a real design jury — three critics with distinct personas, differentiated voices, and visual feedback generation. Built to close the gap between studio practice and the high-stakes critique format that defines professional design education.</p>
+        </div>
+        <div>
+          <div style="font-size:10px;font-family:var(--mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--white-dim);margin-bottom:10px;">Agent roster — 2026 stack</div>
+          <div class="agent-grid">
+            <div class="agent-pill">
+              <strong>Student</strong>
+              GPT-5 mini
+            </div>
+            <div class="agent-pill red-accent">
+              <strong>Professor</strong>
+              Claude Opus 4.5
+            </div>
+            <div class="agent-pill">
+              <strong>Critic</strong>
+              Gemini 3 Pro
+            </div>
+            <div class="agent-pill">
+              <strong>Image Gen</strong>
+              Nano Banana 2
+            </div>
+            <div class="agent-pill">
+              <strong>Voice</strong>
+              ElevenLabs TTS
+            </div>
+            <div class="agent-pill">
+              <strong>Interface</strong>
+              Gradio · Python
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="featured-right">
+        <div>
+          <div style="font-size:10px;font-family:var(--mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--white-dim);margin-bottom:1rem;">System architecture</div>
+          <!-- Mini architecture diagram — 4 column simplified -->
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:8px;height:8px;background:var(--red);flex-shrink:0;"></div>
+              <div style="font-size:11px;font-family:var(--mono);color:var(--white-muted);">Artwork + prompt</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding-left:16px;">
+              <div style="width:1px;height:20px;background:var(--border);margin-left:3px;"></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:8px;height:8px;border:1px solid var(--border);flex-shrink:0;"></div>
+              <div style="font-size:11px;font-family:var(--mono);color:var(--white-muted);">3 agents running concurrently</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding-left:16px;">
+              <div style="width:1px;height:20px;background:var(--border);margin-left:3px;"></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:8px;height:8px;background:var(--red);flex-shrink:0;opacity:0.5;"></div>
+              <div style="font-size:11px;font-family:var(--mono);color:var(--white-muted);">Structured feedback output</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-family:var(--mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--white-dim);margin-bottom:8px;">Pillar alignment</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="tag" style="border-color:rgba(224,48,48,0.35);color:var(--red);">Creative Infrastructure</span>
+            <span class="tag">AI × Design</span>
+            <span class="tag">Teaching & Learning</span>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:1.25rem;">
+            <a href="Critique_Council_Thesis.html" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:var(--white);padding:10px 18px;text-decoration:none;clip-path:polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%);transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Read thesis ↗</a>
+            <a href="Critique_Council_Live.html" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--red);border:1px solid var(--red);padding:9px 18px;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='var(--red)';this.style.color='var(--white)'" onmouseout="this.style.background='transparent';this.style.color='var(--red)'">Try live demo ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 2: PRATT AI INFRASTRUCTURE (NEW) -->
+    <div class="project-card featured">
+      <div class="featured-left">
+        <div>
+          <div class="card-type">
+            <span class="cat-pill" style="background:#C49A2A;color:#1C1B18;">Institutional AI</span>
+            <span style="font-size:10px;font-family:var(--mono);color:var(--white-dim);letter-spacing:0.08em;">· Strategy · Infrastructure</span>
+          </div>
+          <div class="card-title" style="font-size:clamp(1.6rem,2.5vw,2.2rem);margin-top:0.5rem;">Pratt's AI<br>Infrastructure</div>
+          <p class="card-desc" style="max-width:420px;"><strong>Case Study:</strong> How institutional financial crisis forced the choice to build rather than buy AI capability. What it cost to move fast under constraint. How we maintained institutional autonomy and culture while scaling to 500+ users.</p>
+        </div>
+        <div>
+          <div style="font-size:10px;font-family:var(--mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--white-dim);margin-bottom:10px;">Implementation timeline</div>
+          <div class="agent-grid">
+            <div class="agent-pill">
+              <strong>Planning</strong>
+              2024
+            </div>
+            <div class="agent-pill" style="border-color:rgba(196,154,42,0.4);">
+              <strong style="color:#C49A2A;">Launch</strong>
+              Jan 2025
+            </div>
+            <div class="agent-pill">
+              <strong>Scale</strong>
+              500+ users
+            </div>
+            <div class="agent-pill">
+              <strong>Scope</strong>
+              Campus-wide
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="featured-right">
+        <div>
+          <div style="font-size:10px;font-family:var(--mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--white-dim);margin-bottom:1rem;">Why this matters</div>
+          <p style="font-size:13px;color:var(--white-muted);line-height:1.8;">During a financial crisis, institutions don't have to choose between capability and cost. They can build infrastructure that's cheaper, faster, and more aligned with institutional values than any subscription model.</p>
+        </div>
+        <div style="margin-top:2rem;">
+          <div style="font-size:10px;font-family:var(--mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--white-dim);margin-bottom:8px;">Alignment</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="tag" style="border-color:rgba(196,154,42,0.4);color:#C49A2A;">Creative Infrastructure</span>
+            <span class="tag">AI × Design</span>
+            <span class="tag">Hybrid Perspective</span>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:1.25rem;">
+            <a href="Pratt_AI_Infrastructure_Case_Study.html" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:#C49A2A;color:#1C1B18;padding:10px 18px;text-decoration:none;clip-path:polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%);transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Read case study ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVELUPLIFE — PRODUCT STRATEGY / EDTECH -->
+    <div class="project-card featured" style="border-top:1px solid var(--border);">
+      <div class="featured-left">
+        <div>
+          <div class="card-type">
+            <span class="cat-pill" style="background:transparent;border:1px solid #2A9D8F;color:#2A9D8F;">Product Strategy</span>
+            <span style="font-size:10px;font-family:var(--mono);color:var(--white-dim);letter-spacing:0.08em;">· EdTech · AI × Design</span>
+          </div>
+          <div class="card-title" style="font-size:clamp(1.6rem,2.5vw,2.2rem);margin-top:0.5rem;">LevelUpLife</div>
+          <p class="card-desc" style="max-width:420px;"><strong>Course project:</strong> Soft-skill learning turned into narrative adventure for high school students navigating a world their classrooms never prepared them for. Story-first curriculum design, gamified quest system, and a human-in-the-loop content pipeline — purpose-built for the student who feels like nobody gave them the rulebook.</p>
+        </div>
+        <div>
+          <div style="font-size:10px;font-family:var(--mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--white-dim);margin-bottom:10px;">System layers</div>
+          <div class="agent-grid">
+            <div class="agent-pill" style="border-color:rgba(42,157,143,0.35);">
+              <strong style="color:#2A9D8F;">Story Engine</strong>
+              Narrative-first
+            </div>
+            <div class="agent-pill" style="border-color:rgba(42,157,143,0.35);">
+              <strong style="color:#2A9D8F;">Quest System</strong>
+              In-world + IRL
+            </div>
+            <div class="agent-pill" style="border-color:rgba(42,157,143,0.35);">
+              <strong style="color:#2A9D8F;">Habit Loop</strong>
+              Daily · 10 min
+            </div>
+            <div class="agent-pill">
+              <strong>Content</strong>
+              Human-in-loop
+            </div>
+            <div class="agent-pill">
+              <strong>TAM</strong>
+              $93M
+            </div>
+            <div class="agent-pill">
+              <strong>MVP</strong>
+              Figma · Live
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="featured-right">
+        <div>
+          <div style="font-size:10px;font-family:var(--mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--white-dim);margin-bottom:1rem;">The design decision</div>
+          <p style="font-size:13px;color:var(--white-muted);line-height:1.8;">The narrative wrapper isn't decorative. It's the only mechanism that creates emotional engagement without performance anxiety — so students practice hard decisions in a world where consequences are fictional and skill transfer is real.</p>
+          <div style="margin-top:1.25rem;border-left:2px solid #2A9D8F;padding-left:.875rem;background:rgba(42,157,143,.04);padding-top:.625rem;padding-bottom:.625rem;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#2A9D8F;margin-bottom:.25rem;">Human-in-the-loop content</div>
+            <p style="font-size:12px;color:var(--white-muted);line-height:1.65;">AI generates at speed; humans ensure skill transfer accuracy. The pipeline is the product.</p>
+          </div>
+        </div>
+        <div style="margin-top:1.5rem;">
+          <div style="font-size:10px;font-family:var(--mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--white-dim);margin-bottom:8px;">Pillar alignment</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="tag" style="border-color:rgba(42,157,143,0.4);color:#2A9D8F;">AI × Design</span>
+            <span class="tag">Creative Infrastructure</span>
+            <span class="tag">Hybrid Perspective</span>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:1rem;">
+            <a href="LevelUpLife_Case_Study.html" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:#2A9D8F;color:#1C1B18;padding:10px 18px;text-decoration:none;clip-path:polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%);transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Read case study ↗</a>
+            <a href="LevelUpLife_OnePager.html" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:#2A9D8F;border:1px solid #2A9D8F;padding:9px 18px;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='#2A9D8F';this.style.color='#1C1B18'" onmouseout="this.style.background='transparent';this.style.color='#2A9D8F'">One pager ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXISTING 4 PROJECTS BELOW -->
+    <div class="project-card">
+      <div class="card-type"><span class="cat-pill">AI Workflows</span></div>
+      <div class="card-title">AI Brief Generator</div>
+      <p class="card-desc">Transforms rough creative intent into structured, brand-aligned creative briefs. Built on Claude API with custom prompt architecture for studio contexts. Reduces brief-to-production time significantly.</p>
+      <div class="card-footer">
+        <span class="card-stack">Claude API · Node.js · React</span>
+        <span class="card-arrow">↗</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="card-type"><span class="cat-pill" style="background:transparent;border:1px solid var(--red);color:var(--red);">Generative Art — Active</span></div>
+      <div class="card-title">Generative Asset Pipeline</div>
+      <p class="card-desc">An experimental pipeline connecting brand guidelines, creative briefs, and generative AI into a coherent asset production system. Exploring exactly where automation ends and craft begins.</p>
+      <div class="card-footer">
+        <span class="card-stack">Replicate · Cloudflare · Anthropic API</span>
+        <span class="card-arrow">↗</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ═══ LABS LIVE BANNER ═══ -->
+<section>
+  <div class="labs-banner">
+    <div class="labs-live"><span class="pulse"></span> Labs — always running</div>
+    <p class="labs-text">Current experiments: generative brand systems, LLM-integrated design pipelines, and context-aware prompt architectures for studio environments. Nothing here is finished. That's the point.</p>
+    <a href="#connect" class="btn-primary" style="white-space:nowrap;font-size:11px;padding:10px 20px;">Work with the lab</a>
+  </div>
+</section>
+
+<!-- ═══ CONNECT ═══ -->
+<section id="connect">
+  <div class="section-header">
+    <div class="section-label"><span class="tri"></span> 03 — Connect</div>
+  </div>
+  <div class="connect-grid fade">
+    <div class="connect-left">
+      <h2>Work with<br>the lab.</h2>
+      <p style="font-size:14px; color:var(--white-muted); max-width:360px; line-height:1.8; margin-top:1rem;">Speaking, collaborations, consulting, or just an interesting conversation — reach out. Selected engagements only.</p>
+    </div>
+    <div class="connect-right">
+      <div class="connect-links">
+        <a href="mailto:ken@whitecranlabs.com" class="connect-link">
+          <span class="link-label"><span class="tri" style="border-top-color:var(--white-dim)"></span> ken@whitecranlabs.com</span>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="#" class="connect-link">
+          <span class="link-label"><span class="tri" style="border-top-color:var(--white-dim)"></span> LinkedIn — Ken Bai</span>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="#" class="connect-link">
+          <span class="link-label"><span class="tri" style="border-top-color:var(--white-dim)"></span> GitHub — @whitecranelabs</span>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="#" class="connect-link">
+          <span class="link-label"><span class="tri" style="border-top-color:var(--white-dim)"></span> Resume</span>
+          <span class="link-arrow">↗</span>
+        </a>
+      </div>
+      <div class="avail" style="margin-top:2.5rem;"><span class="pulse"></span> NYC + remote · 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-brand">
+    <svg width="20" height="20" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <rect width="32" height="32" fill="#2C2C2A"/>
+      <polygon points="16,4 22,14 10,14" fill="#E8E6E0" opacity="0.6"/>
+      <polygon points="10,14 16,24 4,24" fill="#E8E6E0" opacity="0.4"/>
+      <polygon points="22,14 28,24 16,24" fill="#E8E6E0" opacity="0.3"/>
+      <polygon points="16,10 19,15 13,15" fill="#E03030"/>
+    </svg>
+    White Crane Labs
+  </div>
+  <div class="footer-tagline">Human in the loop. Always.</div>
+  <div class="footer-copy">© 2026 · whitecranelabs.com · <a href="#" style="color:var(--white-dim);text-decoration:none;">Shop the collection at White Crane Design →</a></div>
+</footer>
+
+<!-- ═══ CASE STUDY OVERLAY ═══ -->
+<div class="cs-overlay" id="cs-overlay">
+  <div class="cs-body">
+
+    <!-- Header -->
+    <div class="cs-eyebrow"><span class="tri"></span> Case Study · Multi-Agent AI · Education</div>
+    <div class="cs-h1">The Critique<br>Council</div>
+    <p class="cs-subtitle">A multi-agent AI system designed to simulate the one thing design education rarely gives students enough of: practice presenting to a jury of people who don't agree.</p>
+
+    <!-- Meta row -->
+    <div style="display:flex;flex-wrap:wrap;gap:2rem;margin-bottom:2.5rem;">
+      <div>
+        <div class="cs-section-label">Built</div>
+        <div style="font-size:13px;color:var(--white-muted);">2024 · Updated stack 2026</div>
+      </div>
+      <div>
+        <div class="cs-section-label">Stack</div>
+        <div style="font-size:13px;color:var(--white-muted);">Python · OpenAI · Anthropic · Google · ElevenLabs · Gradio</div>
+      </div>
+      <div>
+        <div class="cs-section-label">Pillar</div>
+        <div style="font-size:13px;color:var(--white-muted);">Creative Infrastructure · AI × Design · Creative Culture</div>
+      </div>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- Problem -->
+    <div class="cs-section-label">01 — The problem</div>
+    <div class="cs-h2">Design schools prepare students for the work. Not for the room.</div>
+    <p class="cs-p">Design school critiques are one of the highest-stakes moments in a student's education — and one of the least practiced. Students arrive underprepared, receive feedback from a single professor's perspective, and have no way to rehearse presenting their work to a jury of people with different standards, agendas, and levels of patience.</p>
+    <p class="cs-p">The gap isn't technical skill. It's the ability to <strong>hear criticism from multiple directions simultaneously and defend your decisions under pressure.</strong> That's a learned skill. The Critique Council was built to train it.</p>
+
+    <div class="cs-quote">
+      The multi-agent design <span>isn't a technical flourish. It's a pedagogy decision. Real juries don't agree.</span>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- Architecture -->
+    <div class="cs-section-label">02 — System architecture</div>
+    <div class="cs-h2">Five integrated AI layers. One coherent educational experience.</div>
+    <p class="cs-p">The system routes a student's artwork and an optional focus question through a shared JSON rubric, then fires three distinct critic agents concurrently. Each agent processes the same image through its persona lens — returning structured feedback with dynamic critique categories determined by what it actually observes, not generic buckets.</p>
+
+    <div class="cs-arch-diagram">
+      <div style="display:grid;grid-template-columns:1fr 32px 1fr 32px 1fr;gap:0;align-items:start;">
+        <div>
+          <div class="arch-col-label">Input</div>
+          <div class="arch-col">
+            <div class="arch-node"><strong>Artwork</strong>Multimodal vision input</div>
+            <div class="arch-node"><strong>Prompt</strong>Optional focus question</div>
+            <div class="arch-node accent"><strong>Shared rubric</strong>Dynamic JSON schema</div>
+          </div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div>
+          <div class="arch-col-label">Agents — concurrent</div>
+          <div class="arch-col">
+            <div class="arch-node"><strong>Student</strong>GPT-5 mini · peer voice</div>
+            <div class="arch-node accent"><strong>Professor</strong>Claude Opus 4.5 · authority</div>
+            <div class="arch-node"><strong>Critic</strong>Gemini 3 Pro · no filter</div>
+          </div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div>
+          <div class="arch-col-label">Output</div>
+          <div class="arch-col">
+            <div class="arch-node"><strong>Structured critique</strong>Strengths · gaps · actions</div>
+            <div class="arch-node accent"><strong>ElevenLabs TTS</strong>Unique voice per critic</div>
+            <div class="arch-node"><strong>Nano Banana 2</strong>Visual feedback from actions</div>
+            <div class="arch-node"><strong>Export</strong>Timestamped report</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border);font-size:10px;font-family:var(--mono);color:var(--white-dim);letter-spacing:0.08em;">Response cache layer · deduplication on image hash + prompt · asyncio.gather() for concurrency</div>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- Agent design -->
+    <div class="cs-section-label">03 — Agent design decisions</div>
+    <div class="cs-h2">Why three agents. Why these models. Why these personas.</div>
+    <p class="cs-p">The most important design decision in the system has nothing to do with code. It's the choice to build <strong>intentional disagreement into the architecture</strong>. A single AI critic would flatten feedback into a consensus that doesn't exist in real professional critique. Three distinct personas — with different standards, different tones, and different levels of patience — train students to navigate something closer to reality.</p>
+
+    <div class="cs-two-col">
+      <div class="cs-box">
+        <div class="model-tag">GPT-5 mini</div>
+        <div class="cs-box-label">Agent 01</div>
+        <div class="cs-box-title">Student critic</div>
+        <p>Peer-level feedback. Constructive, encouraging, focused on shared learning. Uses the efficient end of the GPT-5 family — fast response, accessible language. The voice students read first and find easiest to absorb.</p>
+      </div>
+      <div class="cs-box">
+        <div class="model-tag">Claude Opus 4.5</div>
+        <div class="cs-box-label">Agent 02</div>
+        <div class="cs-box-title">Professor critic</div>
+        <p>Balanced authority. Concept and technique held in tension. Opus 4.5 was chosen specifically for its ability to reason about tradeoffs without hand-holding — which is what a studio professor with decades of experience actually does.</p>
+      </div>
+      <div class="cs-box">
+        <div class="model-tag">Gemini 3 Pro</div>
+        <div class="cs-box-label">Agent 03</div>
+        <div class="cs-box-title">Industry critic</div>
+        <p>No filter. Direct. Contextual analysis over encouragement. Gemini 3 Pro's multimodal depth means it reads the image with genuine visual reasoning — making its harsh feedback specific and defensible rather than generic.</p>
+      </div>
+      <div class="cs-box">
+        <div class="model-tag">Nano Banana 2 · ElevenLabs</div>
+        <div class="cs-box-label">Output layer</div>
+        <div class="cs-box-title">Voice + visual feedback</div>
+        <p>ElevenLabs replaces generic TTS — each critic's persona has a distinct vocal character. Nano Banana 2 generates before/after visual examples directly from critique action items at 4K quality and Flash speed.</p>
+      </div>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- Stack -->
+    <div class="cs-section-label">04 — Technical stack</div>
+    <div class="cs-h2">What's running under the hood.</div>
+    <div class="cs-stack-row">
+      <span class="cs-tag highlight">GPT-5 mini</span>
+      <span class="cs-tag highlight">Claude Opus 4.5</span>
+      <span class="cs-tag highlight">Gemini 3 Pro</span>
+      <span class="cs-tag highlight">Nano Banana 2</span>
+      <span class="cs-tag highlight">ElevenLabs TTS</span>
+      <span class="cs-tag">Python · asyncio</span>
+      <span class="cs-tag">Gradio UI</span>
+      <span class="cs-tag">PIL · aiohttp</span>
+      <span class="cs-tag">JSON schema</span>
+      <span class="cs-tag">Response cache layer</span>
+    </div>
+    <p class="cs-p" style="margin-top:1rem;">Three agents run concurrently via <code style="font-family:var(--mono);font-size:12px;color:var(--red);background:var(--surface);padding:1px 6px;">asyncio.gather()</code> — keeping total response time tolerable for classroom use regardless of which critics are selected. A cache layer deduplicates on image hash + prompt, preventing redundant API calls when students iterate on the same piece.</p>
+
+    <hr class="cs-divider">
+
+    <!-- Lessons -->
+    <div class="cs-section-label">05 — Honest lessons</div>
+    <div class="cs-h2">What I'd do differently. What I learned I couldn't predict.</div>
+    <p class="cs-p">This section exists because most portfolios skip it. That's a mistake — the lessons section is where a Director-level practitioner separates from a developer showing off a project.</p>
+
+    <div style="margin:1.5rem 0;">
+      <div class="cs-lesson">
+        <div class="cs-lesson-num">01</div>
+        <p><strong>The image generation layer is the most brittle.</strong> DALL-E 3 prompts built from critique text are noisy — the distance between "action item extracted from JSON" and "useful educational image" is longer than expected. Nano Banana 2's world knowledge grounding closes this gap significantly, but prompt engineering the visual feedback layer still requires more iteration than any other part of the system.</p>
+      </div>
+      <div class="cs-lesson">
+        <div class="cs-lesson-num">02</div>
+        <p><strong>Voice differentiation has more pedagogical impact than expected.</strong> When each critic sounds like a different person, students engage with the feedback differently. The TTS upgrade from OpenAI to ElevenLabs isn't cosmetic — it's the feature that makes the persona architecture feel real rather than mechanical.</p>
+      </div>
+      <div class="cs-lesson">
+        <div class="cs-lesson-num">03</div>
+        <p><strong>JSON parsing failures require graceful fallbacks.</strong> When the API doesn't return clean structured output — which happens — the system needs a regex fallback to extract action items. Relying solely on JSON parsing creates failure modes that surface in front of students at the worst moments.</p>
+      </div>
+      <div class="cs-lesson">
+        <div class="cs-lesson-num">04</div>
+        <p><strong>This system simulates critique. It cannot replace it.</strong> The live negotiation of a real jury — the follow-up question, the silence, the defense — is beyond what any AI panel can replicate today. The Critique Council is a rehearsal tool, not a substitute. That ceiling is a feature, not a failure. Being honest about what AI can and cannot do is part of the design philosophy here.</p>
+      </div>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- What I'd build today -->
+    <div class="cs-section-label">06 — What I'd build differently today</div>
+    <div class="cs-quote">
+      The architecture is the same. <span>The ceiling is higher.</span>
+    </div>
+    <p class="cs-p">The original Critique Council was built on the best available models in early 2024. The concept has held. The stack has been superseded. A rebuilt version routes the student agent through GPT-5's efficient tier for speed, assigns the professor role to Claude Opus 4.5 for its depth of reasoning and tolerance for ambiguity, gives the industry critic to Gemini 3 Pro for its multimodal visual analysis, replaces DALL-E 3 with Nano Banana 2 for faster and higher-fidelity educational imagery, and upgrades the voice layer from OpenAI TTS to ElevenLabs for persona-specific emotional range.</p>
+    <p class="cs-p">Tracking what's changed — and why the choices matter — is what a Director of Creative Technology is paid to do. The stack update is the portfolio update.</p>
+
+    <!-- Footer CTA -->
+    <hr class="cs-divider">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <div class="cs-section-label">Interested in this system?</div>
+        <div style="font-size:14px;color:var(--white-muted);">Reach out about workshops, consulting, or collaborations.</div>
+      </div>
+      <a href="#connect" class="cs-btn" onclick="closeCaseStudy()">Get in touch ↗</a>
+    </div>
+
+  </div>
+</div>
+<!-- Close button rendered outside overlay so it's always on top -->
+<button class="cs-close" id="cs-close-btn" onclick="closeCaseStudy()">✕ Close</button>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+  function openCaseStudy() {
+    const overlay = document.getElementById('cs-overlay');
+    const closeBtn = document.getElementById('cs-close-btn');
+    overlay.classList.add('open');
+    closeBtn.classList.add('visible');
+    overlay.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCaseStudy() {
+    const overlay = document.getElementById('cs-overlay');
+    const closeBtn = document.getElementById('cs-close-btn');
+    overlay.classList.remove('open');
+    closeBtn.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeCaseStudy();
+  });
+</script>
+</body>
+</html>
