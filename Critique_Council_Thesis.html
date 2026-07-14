@@ -234,13 +234,101 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
     <div class="istat">Left panel: upload & select critics | Right panel: live feedback from 3 agents</div>
   </div>
   <div class="interface-frame">
-    <div style="background: #F5F2EC; padding: 1.5rem; border: 1px solid rgba(30,28,24,0.1); border-radius: 6px; margin-bottom: 1.5rem; text-align: center; color: #6B6860;">
-      <div style="font-size: 13px; line-height: 1.8; margin-bottom: 1rem;">
-        <strong style="color: #1E1C18;">The Critique Council interface</strong><br>
-        Upload artwork, optionally add context, select which critics you want. Get structured feedback from three distinct perspectives running concurrently.
+    <div class="mockup-embed">
+      <!-- TOPBAR -->
+      <div class="mockup-topbar">
+        <div class="mt-brand">
+          <svg width="16" height="16" viewBox="0 0 22 22"><polygon points="11,2 15,9 7,9" fill="#E9E7DF" opacity=".6"/><polygon points="7,9 11,16 3,16" fill="#E9E7DF" opacity=".35"/><polygon points="15,9 19,16 11,16" fill="#E9E7DF" opacity=".22"/><polygon points="11,6 13,10 9,10" fill="#E03030"/></svg>
+          White Crane Labs · Critique Council
+        </div>
+        <div class="mt-right">
+          <div class="mt-pill"><span class="mt-dot"></span> Live · Claude API</div>
+          <div class="mt-ver">v2.1</div>
+        </div>
       </div>
-      <a href="/interface-preview" target="_blank" style="display: inline-block; background: #C23B22; color: #F5F2EC; padding: 10px 20px; text-decoration: none; font-family: 'Playfair Display', Georgia, serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; clip-path: polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%); cursor: pointer; transition: opacity 0.2s;">View interactive prototype ↗</a>
-      <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: #9B9890; margin-top: 0.75rem; letter-spacing: 0.08em;">Light mode with dark/light toggle · Responsive design</div>
+      <!-- HEADER -->
+      <div class="mockup-header">
+        <div>
+          <div class="mh-sub"><span class="tri"></span> AI Pedagogy · Multi-Agent Critique</div>
+          <div class="mh-title">The Critique Council</div>
+        </div>
+        <div class="mh-badges">
+          <span class="mbadge mb-s">Student</span>
+          <span class="mbadge mb-p">Professor</span>
+          <span class="mbadge mb-c">Critic</span>
+        </div>
+      </div>
+      <!-- LAYOUT -->
+      <div class="mockup-layout">
+        <!-- LEFT PANEL -->
+        <div class="ml-left">
+          <div class="ml-section">
+            <div class="ml-label">01 · Upload artwork</div>
+            <div class="ml-upload">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="6" y="8" width="16" height="14" rx="1" stroke="rgba(233,231,223,0.2)" stroke-width="1"/><path d="M10 16l3-3 3 3" stroke="rgba(233,231,223,0.25)" stroke-width="1" stroke-linecap="round"/><circle cx="11" cy="13" r="1.5" fill="rgba(233,231,223,0.18)"/></svg>
+            </div>
+          </div>
+          <div class="ml-section">
+            <div class="ml-label">02 · Focus the critique</div>
+            <textarea class="ml-prompt" rows="3" readonly placeholder="Optional — what should the critics focus on?"></textarea>
+          </div>
+          <div class="ml-section">
+            <div class="ml-label">03 · Select critics</div>
+            <div class="ml-critics">
+              <div class="mlc mlc-s"><div class="mlc-dot" style="background:#4ABFB0;"></div><span class="mlc-name mlc-name-s">Student Peer</span></div>
+              <div class="mlc mlc-p"><div class="mlc-dot" style="background:#E03030;"></div><span class="mlc-name mlc-name-p">Studio Professor</span></div>
+              <div class="mlc mlc-c"><div class="mlc-dot" style="background:#D4A843;"></div><span class="mlc-name mlc-name-c">Art Critic</span></div>
+            </div>
+          </div>
+          <button class="ml-btn">Begin the critique →</button>
+        </div>
+        <!-- RIGHT PANEL -->
+        <div class="ml-right">
+          <div class="proc-bar">
+            <span class="pb-label">Agent status</span>
+            <div class="pb-agents">
+              <div class="pba pba-s"><span class="pdot pd-s"></span>Student · ready</div>
+              <div class="pba pba-p"><span class="pdot pd-p"></span>Professor · ready</div>
+              <div class="pba pba-c"><span class="pdot pd-c"></span>Critic · ready</div>
+            </div>
+          </div>
+          <!-- MINI CRITIQUE PANEL: Student -->
+          <div class="mini-panel">
+            <div class="mcp-head">
+              <div class="mcp-left">
+                <div class="mcp-bar mcp-bar-s"></div>
+                <div><div class="mcp-name mcp-name-s">Student Peer</div><div class="mcp-mod">GPT-5 mini · peer persona</div></div>
+              </div>
+              <div class="mcp-score mcp-score-s">78</div>
+            </div>
+            <div class="mcp-body">
+              <div><div class="mcp-col-label">What's working</div><div class="mcp-area mcp-area-s">Composition</div><div class="mcp-line"></div><div class="mcp-text">The diagonal tension in the lower third creates real momentum — it pulls the eye exactly where you want it.</div></div>
+              <div><div class="mcp-col-label">Where to push</div><div class="mcp-area mcp-area-s">Color logic</div><div class="mcp-line"></div><div class="mcp-text">The warm tones in the background compete with the focal point. Try cooling the ground plane.</div></div>
+              <div><div class="mcp-col-label">Try this next</div><div class="mcp-area mcp-area-s">01</div><div class="mcp-line"></div><div class="mcp-text">Reduce background saturation by 30% and observe if the subject reads stronger.</div></div>
+            </div>
+          </div>
+          <!-- MINI CRITIQUE PANEL: Professor -->
+          <div class="mini-panel">
+            <div class="mcp-head">
+              <div class="mcp-left">
+                <div class="mcp-bar mcp-bar-p"></div>
+                <div><div class="mcp-name mcp-name-p">Studio Professor</div><div class="mcp-mod">Claude Opus 4.5 · authority</div></div>
+              </div>
+              <div class="mcp-score mcp-score-p">71</div>
+            </div>
+            <div class="mcp-body">
+              <div><div class="mcp-col-label">What's working</div><div class="mcp-area mcp-area-p">Conceptual intent</div><div class="mcp-line"></div><div class="mcp-text">The tension between structure and spontaneity is legible — and that's the hardest thing to achieve.</div></div>
+              <div><div class="mcp-col-label">Where to push</div><div class="mcp-area mcp-area-p">Resolution</div><div class="mcp-line"></div><div class="mcp-text">The edges are unresolved. That reads as incomplete rather than intentional. Be decisive about where this ends.</div></div>
+              <div><div class="mcp-col-label">Try this next</div><div class="mcp-area mcp-area-p">01</div><div class="mcp-line"></div><div class="mcp-text">Define a clear boundary condition on all four sides — even if that boundary is ambiguity itself.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- CTA -->
+    <div style="text-align:center; margin-top: 1.5rem;">
+      <a href="Critique_Council_Live.html" target="_blank" style="display:inline-block; background:#C23B22; color:#F5F2EC; padding:11px 24px; text-decoration:none; font-family:'DM Mono',monospace; font-size:10px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; clip-path:polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%); transition:opacity 0.2s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">Try the live demo — Claude API ↗</a>
+      <div style="font-family:'DM Mono',monospace; font-size:9px; color:rgba(233,231,223,0.25); margin-top:0.75rem; letter-spacing:0.08em;">Upload any image · Three critics · Concurrent responses · Light/dark toggle</div>
     </div>
   </div>
 </div>
