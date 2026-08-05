@@ -1,0 +1,15 @@
+# opencode tooling
+.opencode/
+
+# third-party skill pack (not part of the site)
+ui-ux-pro-max-skill-main/
+
+# redundant local source wrapper (files already live at repo root)
+whitecranelabs_site/
+
+# common site/build junk
+node_modules/
+dist/
+build/
+.DS_Store
+Thumbs.db
