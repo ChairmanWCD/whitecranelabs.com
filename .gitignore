@@ -1,3 +1,9 @@
+# opencode tooling
+.opencode/
+
+# third-party skill pack
+ui-ux-pro-max-skill-main/
+
 node_modules/
 dist/
 build/
