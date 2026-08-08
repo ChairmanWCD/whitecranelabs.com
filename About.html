@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  // Set theme before first paint to avoid a flash of the wrong mode
+  try { if (localStorage.getItem('wcl-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+</script>
+<title>About — White Crane Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:      #1C1B18;
+    --surface:    #212121;   /* neutral gray */
+    --maroon:     #2A1613;
+    --border:     #3A3A3A;
+    --border-lo:  #2C2C2C;
+    --white:      #ECEAE4;
+    --ink-fixed:  #1C1B18;
+    --paper-fixed:#ECEAE4;
+    --text:       #C7C4BC;
+    --text-dim:   #8C8980;
+    --red:        #E03030;
+    --red-solid:  #C22B2B;
+    --gold:       #C49A2A;
+    --teal:       #2A9D8F;
+    --fd: 'Space Grotesk', sans-serif;
+    --fb: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', monospace;
+    --measure: 60ch;
+  }
+
+  /* ── LIGHT THEME — toggled via [data-theme="light"] on <html> ── */
+  html[data-theme="light"] {
+    --black:      #F5F2EC;
+    --surface:    #EDE9E0;
+    --border:     rgba(30,28,24,0.14);
+    --border-lo:  rgba(30,28,24,0.09);
+    --white:      #1E1C18;
+    --text:       #3A3830;
+    --text-dim:   #6B6860;
+    --red:        #C23B22;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black); color: var(--text); font-family: var(--fb);
+    font-size: 16px; line-height: 1.7; overflow-x: hidden; position: relative;
+  }
+  a { color: inherit; }
+  img, svg { display: block; max-width: 100%; }
+  ::selection { background: var(--red); color: var(--paper-fixed); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* ── NAV — matches inner-page convention used by case studies ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.15rem clamp(1.25rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--border-lo);
+    background: rgba(28,27,24,0.88);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--fd); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.06em; color: var(--white); text-decoration: none;
+  }
+  .nav-back {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-dim); text-decoration: none; border: 1px solid var(--border);
+    padding: 6px 14px; border-radius: 2px; transition: all 0.2s;
+  }
+  .nav-back:hover { color: var(--white); border-color: var(--text-dim); }
+  .nav-right { display: flex; align-items: center; gap: clamp(1rem, 3vw, 1.75rem); }
+
+  /* ── THEME TOGGLE ── */
+  .theme-toggle { display: flex; align-items: center; gap: 7px; cursor: pointer; background: none; border: none; padding: 0; color: var(--text-dim); transition: color 0.15s; }
+  .theme-toggle:hover { color: var(--white); }
+  .toggle-icon { font-size: 12px; line-height: 1; }
+  .toggle-track { width: 34px; height: 19px; border: 1px solid var(--border); background: var(--surface); border-radius: 10px; position: relative; flex-shrink: 0; transition: background 0.2s, border-color 0.2s; }
+  .toggle-thumb { position: absolute; top: 2px; left: 2px; width: 13px; height: 13px; border-radius: 50%; background: var(--text-dim); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s; }
+  html[data-theme="light"] .toggle-thumb { transform: translateX(15px); background: var(--red-solid); }
+
+  /* ── COLLAPSIBLE SECTIONS — triggered by the eyebrow triangle ── */
+  .eyebrow-toggle { background: none; border: none; padding: 0; cursor: pointer; text-align: left; appearance: none; -webkit-appearance: none; }
+  .eyebrow-toggle:hover { color: var(--white); }
+  .eyebrow-toggle.on-maroon:hover { color: var(--paper-fixed); }
+  .eyebrow-toggle .dot { transition: transform 0.25s ease; }
+  .eyebrow-toggle[aria-expanded="false"] .dot { transform: rotate(-90deg); }
+  .collapsible { display: grid; grid-template-rows: 1fr; transition: grid-template-rows 0.35s ease; }
+  .collapsible.collapsed { grid-template-rows: 0fr; }
+  .collapsible-inner { overflow: hidden; min-height: 0; }
+
+  /* ── SCAFFOLD ── */
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); position: relative; z-index: 1; }
+  section { position: relative; }
+  .band-black   { background: var(--black); }
+  .band-surface { background: var(--surface); border-top: 1px solid var(--border-lo); border-bottom: 1px solid var(--border-lo); }
+  .band-maroon  { background: var(--maroon); border-top: 1px solid rgba(224,48,48,0.15); border-bottom: 1px solid rgba(224,48,48,0.15); }
+  .section-inner { padding: clamp(4rem, 9vw, 7.5rem) 0; }
+
+  .eyebrow {
+    font-family: var(--mono); font-size: 11.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-dim); display: flex; align-items: center; gap: 9px; margin-bottom: 1.5rem;
+  }
+  .eyebrow .dot { width: 9px; height: 8px; background: var(--red); flex-shrink: 0; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+  .eyebrow.on-maroon { color: rgba(236,234,228,0.55); }
+
+  h2 {
+    font-family: var(--fd); font-size: clamp(1.9rem, 3.4vw, 2.5rem);
+    font-weight: 600; letter-spacing: -0.02em; line-height: 1.12;
+    color: var(--white); margin-bottom: 1rem; max-width: 18ch;
+  }
+  .lede { font-size: 16px; color: var(--text); max-width: var(--measure); line-height: 1.75; margin-bottom: 2.75rem; }
+  p { max-width: var(--measure); }
+
+  /* ── PAGE HEADER ── */
+  .page-header { padding-top: clamp(4rem, 11vw, 7rem); padding-bottom: clamp(2.5rem, 6vw, 4rem); overflow: hidden; }
+  .header-mark { position: absolute; top: 2%; right: 2%; width: clamp(180px, 24vw, 320px); opacity: 0.07; pointer-events: none; z-index: 0; color: var(--white); }
+  .page-header .eyebrow { color: var(--red); }
+  h1 {
+    font-family: var(--fd); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05;
+    color: var(--white); max-width: 14ch; font-size: clamp(2.2rem, 5.5vw, 4rem); margin-bottom: 1.25rem;
+  }
+  .page-sub { font-size: 17px; color: var(--text); max-width: 50ch; line-height: 1.75; }
+
+  /* ── PILLARS ── */
+  .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-lo); border: 1px solid var(--border-lo); }
+  .pillar { background: var(--surface); padding: 2.25rem 1.85rem; position: relative; overflow: hidden; border-top: 3px solid; transition: background 0.2s; }
+  .pillar:hover { background: #29251F; }
+  .pillar.p-red { border-top-color: var(--red); }
+  .pillar.p-gold { border-top-color: var(--gold); }
+  .pillar.p-teal { border-top-color: var(--teal); }
+  .pillar-num { font-family: var(--fd); font-size: 3.2rem; font-weight: 700; line-height: 1; position: absolute; top: 0.75rem; right: 1rem; opacity: 0.08; }
+  .pillar.p-red .pillar-num { color: var(--red); }
+  .pillar.p-gold .pillar-num { color: var(--gold); }
+  .pillar.p-teal .pillar-num { color: var(--teal); }
+  .pillar-name { font-family: var(--fd); font-size: 18px; font-weight: 600; color: var(--white); margin-bottom: 0.75rem; letter-spacing: -0.005em; position: relative; }
+  .pillar-desc { font-size: 13.5px; color: var(--text); line-height: 1.7; margin-bottom: 1.25rem; position: relative; }
+  .pillar-tags { display: flex; flex-wrap: wrap; gap: 6px; position: relative; }
+  .tag { font-size: 11px; padding: 3px 9px; border: 1px solid var(--border); color: var(--text-dim); letter-spacing: 0.02em; border-radius: 2px; }
+  @media (max-width: 760px) { .pillars-grid { grid-template-columns: 1fr; } }
+
+  /* ── PHILOSOPHY ── */
+  .manifesto {
+    font-family: var(--fd); font-weight: 600; letter-spacing: -0.02em; line-height: 1.16;
+    color: var(--paper-fixed); font-size: clamp(1.9rem, 4.4vw, 3.1rem); max-width: 15ch; margin-bottom: 2.5rem;
+  }
+  .manifesto .muted { color: rgba(236,234,228,0.42); }
+  .principles { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 3rem; }
+  .principle { padding-top: 1.25rem; border-top: 1px solid rgba(224,48,48,0.22); }
+  .p-num { font-family: var(--mono); font-size: 12px; color: var(--red); display: block; margin-bottom: 0.5rem; }
+  .p-txt { font-size: 14px; color: rgba(236,234,228,0.75); line-height: 1.75; }
+  .p-txt strong { color: var(--paper-fixed); font-weight: 600; }
+  @media (max-width: 700px) { .principles { grid-template-columns: 1fr; } }
+
+  /* ── FULL BIO ── */
+  .about-grid { display: grid; grid-template-columns: 1.3fr 0.9fr; gap: clamp(2rem, 5vw, 4.5rem); }
+  .about-body { font-size: 15px; color: var(--text); line-height: 1.8; }
+  .about-body + .about-body { margin-top: 1rem; }
+  .creds { display: flex; flex-direction: column; margin-top: 0.5rem; }
+  .cred { display: flex; flex-direction: column; gap: 2px; padding: 0.95rem 0; border-top: 1px solid var(--border); font-size: 13.5px; }
+  .cred:last-child { border-bottom: 1px solid var(--border); }
+  .cred-role { color: var(--white); font-weight: 500; }
+  .cred-org { color: var(--text-dim); font-size: 12.5px; }
+  .avail { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; color: var(--text-dim); margin-top: 1.5rem; }
+  .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
+
+  /* ── CLOSING CTA ── */
+  .cta-row { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: var(--fd); font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+    background: var(--red-solid); color: var(--paper-fixed); padding: 13px 26px; border: none;
+    border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.87; }
+  .btn-ghost {
+    font-size: 14px; color: var(--text); text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color 0.15s, border-color 0.15s;
+  }
+  .btn-ghost:hover { color: var(--white); border-color: var(--text-dim); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 1.5rem clamp(1.25rem, 4vw, 3rem); display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.75rem; border-top: 1px solid var(--border-lo); position: relative; z-index: 1; background: var(--black);
+  }
+  .footer-brand { display: flex; align-items: center; gap: 8px; font-family: var(--fd); font-size: 12px; font-weight: 600; color: var(--text-dim); }
+  .footer-copy { font-family: var(--mono); font-size: 11.5px; color: var(--text-dim); }
+  .footer-tagline { font-family: var(--mono); font-size: 11.5px; color: var(--red); }
+
+  .fade { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="26" height="26" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="1575,201 1365,564 1780,563" fill="currentColor"/>
+      <polygon points="709,693 5,696 357,1306" fill="currentColor"/>
+      <polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/>
+      <polygon points="857,700 506,1307 1208,1309" fill="currentColor"/>
+      <polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/>
+      <polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/>
+      <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
+    </svg>
+    White Crane Labs
+  </a>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark mode">
+      <span class="toggle-icon" id="toggleIcon">☾</span>
+      <span class="toggle-track"><span class="toggle-thumb"></span></span>
+    </button>
+    <a href="index.html" class="nav-back">← Back to home</a>
+  </div>
+</nav>
+
+<!-- ═══ PAGE HEADER ═══ -->
+<section class="band-black">
+  <svg class="header-mark" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="1575,201 1365,564 1780,563" fill="currentColor"/>
+    <polygon points="709,693 5,696 357,1306" fill="currentColor"/>
+    <polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/>
+    <polygon points="857,700 506,1307 1208,1309" fill="currentColor"/>
+    <polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/>
+    <polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/>
+    <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
+  </svg>
+  <div class="wrap page-header fade">
+    <div class="eyebrow"><span class="dot"></span> About the lab</div>
+    <h1>Part designer. Part engineer. Part AI builder.</h1>
+    <p class="page-sub">The foundation, the philosophy, and the person behind White Crane Labs.</p>
+  </div>
+</section>
+
+<!-- ═══ FOUNDATION / PILLARS ═══ -->
+<section id="pillars" class="band-surface">
+  <div class="wrap section-inner fade">
+    <button class="eyebrow eyebrow-toggle" type="button" aria-expanded="true" aria-controls="pillars-body"><span class="dot"></span> Foundation</button>
+    <div class="collapsible" id="pillars-body"><div class="collapsible-inner">
+    <h2>Three pillars. One practice.</h2>
+    <p class="lede">Every project traces back to one of these — color-coded here, and carried through the work on the homepage.</p>
+    <div class="pillars-grid">
+      <div class="pillar p-red">
+        <div class="pillar-num">01</div>
+        <div class="pillar-name">AI × Design</div>
+        <p class="pillar-desc">How AI changes — and doesn't change — creative work. Generative systems, workflow architecture, and the philosophy of human-in-the-loop design.</p>
+        <div class="pillar-tags">
+          <span class="tag">Generative systems</span>
+          <span class="tag">LLM workflows</span>
+        </div>
+      </div>
+      <div class="pillar p-gold">
+        <div class="pillar-num">02</div>
+        <div class="pillar-name">Creative Infrastructure</div>
+        <p class="pillar-desc">The environments where creative teams thrive — physical labs, digital systems, and the invisible architecture behind great work.</p>
+        <div class="pillar-tags">
+          <span class="tag">Systems design</span>
+          <span class="tag">Toolstack</span>
+        </div>
+      </div>
+      <div class="pillar p-teal">
+        <div class="pillar-num">03</div>
+        <div class="pillar-name">The Hybrid Perspective</div>
+        <p class="pillar-desc">What pure designers and pure engineers each miss — the opinions that only come from operating at the intersection.</p>
+        <div class="pillar-tags">
+          <span class="tag">Designer + engineer</span>
+          <span class="tag">Direction</span>
+        </div>
+      </div>
+    </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ═══ GUIDING PRINCIPLE ═══ -->
+<section id="philosophy" class="band-maroon">
+  <div class="wrap section-inner fade">
+    <button class="eyebrow eyebrow-toggle on-maroon" type="button" aria-expanded="true" aria-controls="philosophy-body"><span class="dot"></span> Guiding principle</button>
+    <div class="collapsible" id="philosophy-body"><div class="collapsible-inner">
+    <div class="manifesto">AI is a tool. <span class="muted">Humans still direct everything that matters.</span></div>
+    <div class="principles">
+      <div class="principle">
+        <span class="p-num">01</span>
+        <p class="p-txt"><strong>Human-in-the-loop, always.</strong> AI handles the execution layer — generation, iteration, automation. The human stays in the director's chair.</p>
+      </div>
+      <div class="principle">
+        <span class="p-num">02</span>
+        <p class="p-txt"><strong>Infrastructure serves the work.</strong> No system should be more complex than the problem it solves.</p>
+      </div>
+      <div class="principle">
+        <span class="p-num">03</span>
+        <p class="p-txt"><strong>The hybrid identity is the advantage.</strong> Fluency in both worlds is not a compromise between disciplines — it is the discipline.</p>
+      </div>
+      <div class="principle">
+        <span class="p-num">04</span>
+        <p class="p-txt"><strong>Build to learn, then build to last.</strong> Experimentation is how you find out what production work should be.</p>
+      </div>
+    </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ═══ FULL BIO ═══ -->
+<section class="band-black">
+  <div class="wrap section-inner fade">
+    <button class="eyebrow eyebrow-toggle" type="button" aria-expanded="true" aria-controls="bio-body"><span class="dot"></span> Who's behind it</button>
+    <div class="collapsible" id="bio-body"><div class="collapsible-inner">
+    <h2 style="max-width:16ch;">Ken Bai — Creative Technologist.</h2>
+    <div class="about-grid">
+      <div>
+        <p class="about-body">I'm Ken Bai — a Creative Technologist based in New York. I sit somewhere between a designer, an engineer, and an AI builder. My work is about removing the friction between creative people and the tools they use.</p>
+        <p class="about-body">At Pratt Institute, I work in the Advanced Technology department, deploying and integrating AI applications across the Institute, building LLM-powered workflows, and maintaining the endpoint ecosystem that supports thousands of designers, artists, and researchers each year. I work directly with faculty to translate curriculum needs into technical solutions — with a focus on emerging AI tools and the infrastructure that makes them actually usable in a creative institution.</p>
+        <p class="about-body">Outside Pratt, I run White Crane Design — a studio and lab where I prototype AI-assisted design systems, generative pipelines, and automation workflows. White Crane Labs is the public documentation of that work. I'm completing a Masters of Professional Studies in Design Management at Pratt, expected 2027 — the work here is the practicum.</p>
+      </div>
+      <div>
+        <div class="creds">
+          <div class="cred"><span class="cred-role">Technology Analyst, Advanced Technology</span><span class="cred-org">Pratt Institute</span></div>
+          <div class="cred"><span class="cred-role">Founder &amp; Creative Director</span><span class="cred-org">White Crane Design LLC</span></div>
+          <div class="cred"><span class="cred-role">MPS Design Management</span><span class="cred-org">Pratt Institute · Expected 2027</span></div>
+          <div class="cred"><span class="cred-role">BA Interior Design</span><span class="cred-org">Pratt Institute · 2012</span></div>
+          <div class="cred"><span class="cred-role">Jamf Certified Tech &amp; Associate</span><span class="cred-org">Enterprise Apple systems · 2024</span></div>
+        </div>
+        <div class="avail"><span class="pulse-dot"></span> AVAILABLE FOR SPEAKING &amp; CONSULTING</div>
+      </div>
+    </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ═══ CLOSING CTA ═══ -->
+<section class="band-surface">
+  <div class="wrap section-inner fade" style="padding-top: clamp(2.5rem, 6vw, 4rem); padding-bottom: clamp(2.5rem, 6vw, 4rem);">
+    <div class="cta-row">
+      <a href="index.html#work" class="btn-primary">See the work</a>
+      <a href="index.html#connect" class="btn-ghost">Get in touch →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-brand">
+    <svg width="18" height="18" viewBox="0 0 2000 2000">
+      <polygon points="1575,201 1365,564 1780,563" fill="currentColor" opacity="0.6"/>
+      <polygon points="709,693 5,696 357,1306" fill="currentColor" opacity="0.6"/>
+      <polygon points="1711,693 1009,693 1357,1303" fill="currentColor" opacity="0.6"/>
+      <polygon points="857,700 506,1307 1208,1309" fill="currentColor" opacity="0.6"/>
+      <polygon points="863,1435 1074,1796 1279,1435" fill="currentColor" opacity="0.6"/>
+      <polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor" opacity="0.6"/>
+      <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
+    </svg>
+    White Crane Labs
+  </div>
+  <div class="footer-tagline">Human in the loop. Always.</div>
+  <div class="footer-copy">© 2026 · whitecranelabs.com</div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+  // ── Theme toggle (persists across pages via localStorage) ──
+  (function () {
+    const root = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+    const icon = document.getElementById('toggleIcon');
+    function apply(theme) {
+      if (theme === 'light') { root.setAttribute('data-theme', 'light'); if (icon) icon.textContent = '☀︎'; }
+      else { root.removeAttribute('data-theme'); if (icon) icon.textContent = '☾'; }
+    }
+    const saved = localStorage.getItem('wcl-theme');
+    if (saved === 'light' || saved === 'dark') apply(saved);
+    if (btn) {
+      btn.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        apply(next);
+        localStorage.setItem('wcl-theme', next);
+      });
+    }
+  })();
+
+  // ── Collapsible sections, triggered by the eyebrow triangle ──
+  document.querySelectorAll('.eyebrow-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') !== 'false';
+      const target = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!target) return;
+      btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      target.classList.toggle('collapsed', expanded);
+    });
+  });
+</script>
+</body>
+</html>
