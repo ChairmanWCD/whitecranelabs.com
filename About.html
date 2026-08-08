@@ -131,6 +131,9 @@
   /* ── PAGE HEADER ── */
   .page-header { padding-top: clamp(4rem, 11vw, 7rem); padding-bottom: clamp(2.5rem, 6vw, 4rem); overflow: hidden; }
   .header-mark { position: absolute; top: 2%; right: 2%; width: clamp(180px, 24vw, 320px); opacity: 0.07; pointer-events: none; z-index: 0; color: var(--white); }
+  .page-header-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+  .page-header-portrait { width: 100%; max-width: 300px; border-radius: 4px; border: 1px solid var(--border); display: block; justify-self: end; }
+  @media (max-width: 760px) { .page-header-grid { grid-template-columns: 1fr; } .page-header-portrait { justify-self: start; } }
   .page-header .eyebrow { color: var(--red); }
   h1 {
     font-family: var(--fd); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05;
@@ -170,7 +173,6 @@
 
   /* ── FULL BIO ── */
   .about-grid { display: grid; grid-template-columns: 1.3fr 0.9fr; gap: clamp(2rem, 5vw, 4.5rem); }
-  .portrait { width: 100%; max-width: 340px; border-radius: 4px; border: 1px solid var(--border); margin-bottom: 1.9rem; display: block; }
   .about-body { font-size: 15px; color: var(--text); line-height: 1.8; }
   .about-body + .about-body { margin-top: 1rem; }
   .creds { display: flex; flex-direction: column; margin-top: 0.5rem; }
@@ -247,9 +249,14 @@
     <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
   </svg>
   <div class="wrap page-header fade">
+    <div class="page-header-grid">
+    <div>
     <div class="eyebrow"><span class="dot"></span> About the lab</div>
     <h1>Part designer. Part engineer. Part AI builder.</h1>
     <p class="page-sub">The foundation, the philosophy, and the person behind White Crane Labs.</p>
+    </div>
+    <img class="page-header-portrait" src="Portrait.jpg" alt="Portrait of Ken Bai, Creative Technologist at White Crane Labs">
+    </div>
   </div>
 </section>
 
@@ -261,7 +268,6 @@
     <h2 style="max-width:16ch;">Ken Bai — Creative Technologist.</h2>
     <div class="about-grid">
       <div>
-        <img class="portrait" src="Portrait.jpg" alt="Portrait of Ken Bai, Creative Technologist at White Crane Labs">
         <p class="about-body">I'm Ken Bai — a Creative Technologist based in New York. I sit somewhere between a designer, an engineer, and an AI builder. My work is about removing the friction between creative people and the tools they use.</p>
         <p class="about-body">At Pratt Institute, I work in the Advanced Technology department, deploying and integrating AI applications across the Institute, building LLM-powered workflows, and maintaining the endpoint ecosystem that supports thousands of designers, artists, and researchers each year. I work directly with faculty to translate curriculum needs into technical solutions — with a focus on emerging AI tools and the infrastructure that makes them actually usable in a creative institution.</p>
         <p class="about-body">Outside Pratt, I run White Crane Design — a studio and lab where I prototype AI-assisted design systems, generative pipelines, and automation workflows. White Crane Labs is the public documentation of that work. I'm completing a Masters of Professional Studies in Design Management at Pratt, expected 2027 — the work here is the practicum.</p>
