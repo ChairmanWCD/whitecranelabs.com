@@ -132,7 +132,7 @@
   .page-header { padding-top: clamp(4rem, 11vw, 7rem); padding-bottom: clamp(2.5rem, 6vw, 4rem); overflow: hidden; }
   .header-mark { position: absolute; top: 2%; right: 2%; width: clamp(180px, 24vw, 320px); opacity: 0.07; pointer-events: none; z-index: 0; color: var(--white); }
   .page-header-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
-  .page-header-portrait { width: 100%; max-width: 300px; border-radius: 4px; border: 1px solid var(--border); display: block; justify-self: end; }
+  .page-header-portrait { width: 100%; max-width: 300px; border-radius: 4px; border: 1px solid var(--border); display: block; justify-self: start; }
   @media (max-width: 760px) { .page-header-grid { grid-template-columns: 1fr; } .page-header-portrait { justify-self: start; } }
   .page-header .eyebrow { color: var(--red); }
   h1 {
@@ -250,12 +250,12 @@
   </svg>
   <div class="wrap page-header fade">
     <div class="page-header-grid">
+    <img class="page-header-portrait" src="Portrait.jpg" alt="Portrait of Ken Bai, Creative Technologist at White Crane Labs">
     <div>
     <div class="eyebrow"><span class="dot"></span> About the lab</div>
     <h1>Part designer. Part engineer. Part AI builder.</h1>
     <p class="page-sub">The foundation, the philosophy, and the person behind White Crane Labs.</p>
     </div>
-    <img class="page-header-portrait" src="Portrait.jpg" alt="Portrait of Ken Bai, Creative Technologist at White Crane Labs">
     </div>
   </div>
 </section>
