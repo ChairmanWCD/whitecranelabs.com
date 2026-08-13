@@ -54,6 +54,10 @@ body { background: var(--paper); color: var(--ink); font-family: var(--body); fo
 .live-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--student); animation: pulse 2.5s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 .theme-toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; background: none; border: none; padding: 0; }
+#toggleIcon { display: inline-flex; align-items: center; justify-content: center; width: 13px; height: 13px; }
+#toggleIcon .icon-moon { display: none; }
+html[data-theme="dark"] #toggleIcon .icon-moon { display: block; }
+html[data-theme="dark"] #toggleIcon .icon-sun { display: none; }
 .toggle-track { width: 40px; height: 22px; border: 1px solid var(--rule-med); background: var(--paper-3); border-radius: 11px; position: relative; flex-shrink: 0; }
 .toggle-thumb { position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--ink-3); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1); }
 [data-theme="dark"] .toggle-thumb { transform: translateX(18px); background: var(--professor); }
@@ -221,7 +225,10 @@ body { background: var(--paper); color: var(--ink); font-family: var(--body); fo
       <li><a href="index.html#connect">Connect</a></li>
     </ul>
     <button class="theme-toggle" id="themeToggle">
-      <span id="toggleIcon">☼</span>
+      <span id="toggleIcon">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+      </span>
       <div class="toggle-track"><div class="toggle-thumb"></div></div>
       <span class="toggle-label" id="toggleLabel">Light</span>
     </button>
@@ -336,8 +343,8 @@ const icon = document.getElementById('toggleIcon');
 const label = document.getElementById('toggleLabel');
 if (localStorage.getItem('cc-theme') === 'dark') applyDark();
 btn.addEventListener('click', () => html.getAttribute('data-theme') === 'dark' ? applyLight() : applyDark());
-function applyDark() { html.setAttribute('data-theme','dark'); icon.textContent='â˜½'; label.textContent='Dark'; localStorage.setItem('cc-theme','dark'); }
-function applyLight() { html.removeAttribute('data-theme'); icon.textContent='☼'; label.textContent='Light'; localStorage.setItem('cc-theme','light'); }
+function applyDark() { html.setAttribute('data-theme','dark'); label.textContent='Dark'; localStorage.setItem('cc-theme','dark'); }
+function applyLight() { html.removeAttribute('data-theme'); label.textContent='Light'; localStorage.setItem('cc-theme','light'); }
 
 let uploadedImageBase64 = null;
 let uploadedImageType = null;
