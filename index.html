@@ -28,6 +28,7 @@
     --red-solid:  #C22B2B;   /* solid fills w/ white text — 4.75:1 */
     --gold:       #C49A2A;
     --teal:       #2A9D8F;
+    --green:      #3FBF6F;
     --fd: 'Space Grotesk', sans-serif;
     --fb: 'Inter', sans-serif;
     --mono: 'JetBrains Mono', 'SF Mono', monospace;
@@ -246,6 +247,7 @@
   .project.pj-red .project-num { color: var(--red); }
   .project.pj-gold .project-num { color: var(--gold); }
   .project.pj-teal .project-num { color: var(--teal); }
+  .project.pj-green .project-num { color: var(--green); }
   .project-body {
     border-left: 3px solid transparent; padding-left: 1.5rem; transition: border-color 0.2s;
     display: flex; gap: clamp(1.25rem, 3vw, 2.25rem); align-items: flex-start; justify-content: space-between;
@@ -253,9 +255,11 @@
   .project.pj-red .project-body { border-left-color: rgba(224,48,48,0.3); }
   .project.pj-gold .project-body { border-left-color: rgba(196,154,42,0.3); }
   .project.pj-teal .project-body { border-left-color: rgba(42,157,143,0.3); }
+  .project.pj-green .project-body { border-left-color: rgba(63,191,111,0.3); }
   .project:hover.pj-red .project-body { border-left-color: var(--red); }
   .project:hover.pj-gold .project-body { border-left-color: var(--gold); }
   .project:hover.pj-teal .project-body { border-left-color: var(--teal); }
+  .project:hover.pj-green .project-body { border-left-color: var(--green); }
   .project-main { flex: 1; min-width: 0; }
 
   .project-thumb {
@@ -267,6 +271,7 @@
   .project:hover.pj-red .project-thumb { border-color: rgba(224,48,48,0.5); }
   .project:hover.pj-gold .project-thumb { border-color: rgba(196,154,42,0.5); }
   .project:hover.pj-teal .project-thumb { border-color: rgba(42,157,143,0.5); }
+  .project:hover.pj-green .project-thumb { border-color: rgba(63,191,111,0.5); }
 
   .project-head { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
   .project-title { font-family: var(--fd); font-size: 1.5rem; font-weight: 600; color: var(--white); letter-spacing: -0.01em; }
@@ -274,6 +279,7 @@
   .cat-pill.c-red { background: var(--red-solid); color: var(--paper-fixed); }
   .cat-pill.c-gold { background: var(--gold); }
   .cat-pill.c-teal { background: var(--teal); }
+  .cat-pill.c-green { background: var(--green); }
   .project-desc { font-size: 14.5px; color: var(--text); line-height: 1.75; max-width: 60ch; margin-bottom: 1.1rem; }
   .project-specs { display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; margin-bottom: 1.35rem; }
   .spec { font-size: 12.5px; color: var(--text-dim); }
@@ -583,12 +589,12 @@
       </div>
     </div>
 
-    <div class="project pj-teal">
+    <div class="project pj-green">
       <div class="project-num">05</div>
       <div class="project-body">
         <div class="project-main">
         <div class="project-head">
-          <span class="cat-pill c-teal">Brand Identity</span>
+          <span class="cat-pill c-green">Brand Identity</span>
           <span class="project-title">Green Kite</span>
         </div>
         <p class="project-desc"><strong style="color:var(--white)">Logo system.</strong> A kite-as-metaphor mark and tagline system for a social enterprise backing community-led sustainability in Ireland — playful but refined, lifting without being literal.</p>
