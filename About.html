@@ -236,7 +236,7 @@
       <li><a href="index.html#connect">Connect</a></li>
     </ul>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark mode">
-      <span class="toggle-icon" id="toggleIcon">â˜¾</span>
+      <span class="toggle-icon" id="toggleIcon">☾</span>
       <span class="toggle-track"><span class="toggle-thumb"></span></span>
     </button>
     <a href="index.html#connect" class="nav-cta">Work with the lab</a>
@@ -396,8 +396,8 @@
     const btn = document.getElementById('themeToggle');
     const icon = document.getElementById('toggleIcon');
     function apply(theme) {
-      if (theme === 'light') { root.setAttribute('data-theme', 'light'); if (icon) icon.textContent = 'â˜€ï¸Ž'; }
-      else { root.removeAttribute('data-theme'); if (icon) icon.textContent = 'â˜¾'; }
+      if (theme === 'light') { root.setAttribute('data-theme', 'light'); if (icon) icon.textContent = '☼'; }
+      else { root.removeAttribute('data-theme'); if (icon) icon.textContent = '☾'; }
     }
     const saved = localStorage.getItem('wcl-theme');
     if (saved === 'light' || saved === 'dark') apply(saved);

@@ -221,7 +221,7 @@ body { background: var(--paper); color: var(--ink); font-family: var(--body); fo
       <li><a href="index.html#connect">Connect</a></li>
     </ul>
     <button class="theme-toggle" id="themeToggle">
-      <span id="toggleIcon">â˜€ï¸Ž</span>
+      <span id="toggleIcon">☼</span>
       <div class="toggle-track"><div class="toggle-thumb"></div></div>
       <span class="toggle-label" id="toggleLabel">Light</span>
     </button>
@@ -337,7 +337,7 @@ const label = document.getElementById('toggleLabel');
 if (localStorage.getItem('cc-theme') === 'dark') applyDark();
 btn.addEventListener('click', () => html.getAttribute('data-theme') === 'dark' ? applyLight() : applyDark());
 function applyDark() { html.setAttribute('data-theme','dark'); icon.textContent='â˜½'; label.textContent='Dark'; localStorage.setItem('cc-theme','dark'); }
-function applyLight() { html.removeAttribute('data-theme'); icon.textContent='â˜€ï¸Ž'; label.textContent='Light'; localStorage.setItem('cc-theme','light'); }
+function applyLight() { html.removeAttribute('data-theme'); icon.textContent='☼'; label.textContent='Light'; localStorage.setItem('cc-theme','light'); }
 
 let uploadedImageBase64 = null;
 let uploadedImageType = null;
