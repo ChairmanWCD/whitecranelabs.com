@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Critique Council — Live Demo</title>
+<title>The Critique Council â€” Live Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -218,22 +218,21 @@ body { background: var(--paper); color: var(--ink); font-family: var(--body); fo
     <ul class="nav-links">
       <li><a href="index.html#work">Work</a></li>
       <li><a href="index.html#about">About</a></li>
-      <li><a href="About.html">Pillars &amp; Philosophy</a></li>
       <li><a href="index.html#connect">Connect</a></li>
     </ul>
     <button class="theme-toggle" id="themeToggle">
-      <span id="toggleIcon">☀︎</span>
+      <span id="toggleIcon">â˜€ï¸Ž</span>
       <div class="toggle-track"><div class="toggle-thumb"></div></div>
       <span class="toggle-label" id="toggleLabel">Light</span>
     </button>
-    <div class="live-badge"><span class="live-dot"></span> Live · Claude API</div>
+    <div class="live-badge"><span class="live-dot"></span> Live Â· Claude API</div>
   </div>
 </div>
 
 <div class="welcome">
-  <div class="welcome-eyebrow">AI Pedagogy · White Crane Labs</div>
+  <div class="welcome-eyebrow">AI Pedagogy Â· White Crane Labs</div>
   <h1>Your work deserves<br><em>more than one opinion.</em></h1>
-  <p class="welcome-sub">Upload a piece. Choose who you want to hear from. Get honest, differentiated feedback from three distinct AI critics — so you walk into your next critique prepared.</p>
+  <p class="welcome-sub">Upload a piece. Choose who you want to hear from. Get honest, differentiated feedback from three distinct AI critics â€” so you walk into your next critique prepared.</p>
   <div class="critic-trio">
     <div class="trio-item"><span class="trio-dot" style="background:var(--student)"></span><span class="trio-name">Student Peer</span><span class="trio-model">claude-sonnet</span></div>
     <div class="trio-item"><span class="trio-dot" style="background:var(--professor)"></span><span class="trio-name">Studio Professor</span><span class="trio-model">claude-sonnet</span></div>
@@ -247,15 +246,15 @@ body { background: var(--paper); color: var(--ink); font-family: var(--body); fo
     <div class="studio-step">
       <div class="step-label"><div class="step-num">1</div><div class="step-title">Upload your work</div></div>
       <div class="upload-zone" id="uploadZone">
-        <span class="upload-icon">🖼</span>
-        <span class="upload-hint">Click to upload · PNG, JPG, GIF, WEBP</span>
+        <span class="upload-icon">ðŸ–¼</span>
+        <span class="upload-hint">Click to upload Â· PNG, JPG, GIF, WEBP</span>
         <input type="file" class="upload-input" id="fileInput" accept="image/*">
       </div>
     </div>
 
     <div class="studio-step">
       <div class="step-label"><div class="step-num">2</div><div class="step-title">Focus the conversation</div></div>
-      <textarea class="prompt-textarea" id="promptInput" placeholder="What would you like the critics to focus on? (Optional — leave blank to let them respond freely.)"></textarea>
+      <textarea class="prompt-textarea" id="promptInput" placeholder="What would you like the critics to focus on? (Optional â€” leave blank to let them respond freely.)"></textarea>
       <div class="prompt-hint">e.g. "Analyze the tension between structure and spontaneity"</div>
     </div>
 
@@ -266,8 +265,8 @@ body { background: var(--paper); color: var(--ink); font-family: var(--body); fo
           <div class="critic-avatar av-s">P</div>
           <div class="critic-card-body">
             <div class="critic-card-name">The Student Peer</div>
-            <div class="critic-card-role">Constructive, accessible — the voice of a classmate who gets it.</div>
-            <div class="critic-card-model cm-s">claude-sonnet · peer persona</div>
+            <div class="critic-card-role">Constructive, accessible â€” the voice of a classmate who gets it.</div>
+            <div class="critic-card-model cm-s">claude-sonnet Â· peer persona</div>
           </div>
           <div class="check-mark"></div>
         </div>
@@ -276,7 +275,7 @@ body { background: var(--paper); color: var(--ink); font-family: var(--body); fo
           <div class="critic-card-body">
             <div class="critic-card-name">The Studio Professor</div>
             <div class="critic-card-role">Balanced authority. Points toward better work.</div>
-            <div class="critic-card-model cm-p">claude-sonnet · professor persona</div>
+            <div class="critic-card-model cm-p">claude-sonnet Â· professor persona</div>
           </div>
           <div class="check-mark"></div>
         </div>
@@ -285,7 +284,7 @@ body { background: var(--paper); color: var(--ink); font-family: var(--body); fo
           <div class="critic-card-body">
             <div class="critic-card-name">The Art Critic</div>
             <div class="critic-card-role">No filter. Direct contextual analysis.</div>
-            <div class="critic-card-model cm-c">claude-sonnet · critic persona</div>
+            <div class="critic-card-model cm-c">claude-sonnet Â· critic persona</div>
           </div>
           <div class="check-mark"></div>
         </div>
@@ -295,14 +294,14 @@ body { background: var(--paper); color: var(--ink); font-family: var(--body); fo
     <div class="run-section">
       <button class="run-btn" id="runBtn" onclick="runCritique()">
         <span>Begin the critique</span>
-        <span style="font-style:normal;font-size:18px;opacity:0.6">→</span>
+        <span style="font-style:normal;font-size:18px;opacity:0.6">â†’</span>
       </button>
       <div class="progress-track" id="progressTrack"><div class="progress-fill"></div></div>
       <div class="run-btn-sub" id="runSub">Upload an image to begin</div>
     </div>
 
     <div class="studio-footer">
-      <button class="ghost-btn" onclick="resetAll()">⟳ Reset</button>
+      <button class="ghost-btn" onclick="resetAll()">âŸ³ Reset</button>
     </div>
   </div>
 
@@ -317,16 +316,16 @@ body { background: var(--paper); color: var(--ink); font-family: var(--body); fo
       <div class="sr-time" id="srTime">Awaiting submission</div>
     </div>
     <div class="empty-state" id="emptyState">
-      <div class="empty-icon">◈</div>
+      <div class="empty-icon">â—ˆ</div>
       <div class="empty-title">Upload your work to begin</div>
-      <div class="empty-sub">Three critics will review your piece and return structured feedback — strengths, areas to push, and specific action items.</div>
+      <div class="empty-sub">Three critics will review your piece and return structured feedback â€” strengths, areas to push, and specific action items.</div>
     </div>
     <div id="feedbackArea"></div>
   </div>
 </div>
 
 <div class="wcl-footer">
-  <div class="wcl-brand">White Crane Labs · whitecranelabs.com</div>
+  <div class="wcl-brand">White Crane Labs Â· whitecranelabs.com</div>
   <div class="wcl-tag">Human in the loop. Always.</div>
 </div>
 
@@ -337,8 +336,8 @@ const icon = document.getElementById('toggleIcon');
 const label = document.getElementById('toggleLabel');
 if (localStorage.getItem('cc-theme') === 'dark') applyDark();
 btn.addEventListener('click', () => html.getAttribute('data-theme') === 'dark' ? applyLight() : applyDark());
-function applyDark() { html.setAttribute('data-theme','dark'); icon.textContent='☽'; label.textContent='Dark'; localStorage.setItem('cc-theme','dark'); }
-function applyLight() { html.removeAttribute('data-theme'); icon.textContent='☀︎'; label.textContent='Light'; localStorage.setItem('cc-theme','light'); }
+function applyDark() { html.setAttribute('data-theme','dark'); icon.textContent='â˜½'; label.textContent='Dark'; localStorage.setItem('cc-theme','dark'); }
+function applyLight() { html.removeAttribute('data-theme'); icon.textContent='â˜€ï¸Ž'; label.textContent='Light'; localStorage.setItem('cc-theme','light'); }
 
 let uploadedImageBase64 = null;
 let uploadedImageType = null;
@@ -362,7 +361,7 @@ function handleFile(file) {
     uploadedImageType = file.type;
     uploadZone.innerHTML = `<img src="${dataURL}" class="upload-preview" alt="Uploaded artwork">`;
     uploadZone.classList.add('has-image');
-    document.getElementById('runSub').textContent = 'Ready — click to run all selected critics';
+    document.getElementById('runSub').textContent = 'Ready â€” click to run all selected critics';
     document.getElementById('runBtn').disabled = false;
   };
   reader.readAsDataURL(file);
@@ -388,27 +387,27 @@ async function callCritic(persona, imageBase64, imageType, focusPrompt) {
   const personas = {
     student: {
       name: "Student Peer Critic",
-      system: `You are a Student Peer Critic in an art and design critique session. You give constructive, accessible peer-level feedback. You are encouraging but specific. You identify genuine strengths and concrete areas to push. You are NOT generic — you look closely at what's actually in front of you. Your tone is warm, direct, and engaged like a thoughtful classmate who cares about the work.`,
+      system: `You are a Student Peer Critic in an art and design critique session. You give constructive, accessible peer-level feedback. You are encouraging but specific. You identify genuine strengths and concrete areas to push. You are NOT generic â€” you look closely at what's actually in front of you. Your tone is warm, direct, and engaged like a thoughtful classmate who cares about the work.`,
       color: "student",
       initial: "P",
-      role: "Constructive · accessible · from inside the room",
-      model_label: "claude-sonnet · peer persona"
+      role: "Constructive Â· accessible Â· from inside the room",
+      model_label: "claude-sonnet Â· peer persona"
     },
     professor: {
       name: "Studio Professor",
       system: `You are a Studio Professor in an art and design critique. You have decades of teaching experience. You balance concept and craft. You hold students accountable for their ideas while pointing toward better work. You don't hand-hold. You identify what's conceptually working, what's unresolved, and you give specific directional guidance. Your tone is measured, authoritative, and genuinely invested in the student's growth.`,
       color: "professor",
       initial: "Pr",
-      role: "Balanced authority · concept and craft in tension",
-      model_label: "claude-sonnet · professor persona"
+      role: "Balanced authority Â· concept and craft in tension",
+      model_label: "claude-sonnet Â· professor persona"
     },
     critic: {
       name: "Art Critic",
       system: `You are an Art Critic reviewing work in a professional context. You have no filter. You are direct, specific, and contextual. You situate work within its art historical and cultural context. You identify when work is uninformed of the conversation it's entering. You do not soften feedback for encouragement. You give the hardest, most useful feedback the student will hear. Your tone is precise, demanding, and unsentimental.`,
       color: "critic",
       initial: "C",
-      role: "No filter · contextual analysis · the hardest voice",
-      model_label: "claude-sonnet · critic persona"
+      role: "No filter Â· contextual analysis Â· the hardest voice",
+      model_label: "claude-sonnet Â· critic persona"
     }
   };
 
@@ -537,17 +536,17 @@ async function runCritique() {
   // Show skeletons
   criticOrder.forEach(key => {
     feedbackArea.innerHTML += renderSkeleton(key);
-    updateStatus(key, 'Thinking…');
+    updateStatus(key, 'Thinkingâ€¦');
   });
 
-  srTime.textContent = 'Running…';
+  srTime.textContent = 'Runningâ€¦';
   const startTime = Date.now();
 
   // Run all critics in parallel
   const promises = criticOrder.map(key =>
     callCritic(key, uploadedImageBase64, uploadedImageType, focusPrompt)
       .then(result => {
-        updateStatus(key, 'Done ✓');
+        updateStatus(key, 'Done âœ“');
         return { key, result };
       })
       .catch(err => {
@@ -571,7 +570,7 @@ async function runCritique() {
     }
   });
 
-  srTime.textContent = `${criticOrder.length} voices · ${elapsed}s`;
+  srTime.textContent = `${criticOrder.length} voices Â· ${elapsed}s`;
   progressTrack.classList.remove('active');
   runBtn.disabled = false;
   runBtn.querySelector('span').textContent = 'Run again';
@@ -581,7 +580,7 @@ function resetAll() {
   uploadedImageBase64 = null;
   uploadedImageType = null;
   const uploadZone = document.getElementById('uploadZone');
-  uploadZone.innerHTML = `<span class="upload-icon">🖼</span><span class="upload-hint">Click to upload · PNG, JPG, GIF, WEBP</span><input type="file" class="upload-input" id="fileInput" accept="image/*">`;
+  uploadZone.innerHTML = `<span class="upload-icon">ðŸ–¼</span><span class="upload-hint">Click to upload Â· PNG, JPG, GIF, WEBP</span><input type="file" class="upload-input" id="fileInput" accept="image/*">`;
   uploadZone.classList.remove('has-image');
   document.getElementById('fileInput').addEventListener('change', e => handleFile(e.target.files[0]));
   document.getElementById('promptInput').value = '';

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -15,17 +15,17 @@
 
   :root {
     --black:      #1C1B18;
-    --surface:    #212121;   /* pillars / work / about band — neutral gray */
-    --maroon:     #2A1613;   /* bold inverted band — philosophy / connect */
+    --surface:    #212121;   /* pillars / work / about band â€” neutral gray */
+    --maroon:     #2A1613;   /* bold inverted band â€” philosophy / connect */
     --border:     #3A3A3A;
     --border-lo:  #2C2C2C;
     --white:      #ECEAE4;
     --ink-fixed:  #1C1B18;   /* always-dark text, paired with light-colored chips (gold/teal) */
-    --paper-fixed:#ECEAE4;   /* always-light text, paired with saturated red fills — stable across theme */
-    --text:       #C7C4BC;   /* body — 9.9:1 on black */
-    --text-dim:   #8C8980;   /* meta/labels — 4.9:1 on black */
-    --red:        #E03030;   /* graphic accent — headlines, numerals, hairlines */
-    --red-solid:  #C22B2B;   /* solid fills w/ white text — 4.75:1 */
+    --paper-fixed:#ECEAE4;   /* always-light text, paired with saturated red fills â€” stable across theme */
+    --text:       #C7C4BC;   /* body â€” 9.9:1 on black */
+    --text-dim:   #8C8980;   /* meta/labels â€” 4.9:1 on black */
+    --red:        #E03030;   /* graphic accent â€” headlines, numerals, hairlines */
+    --red-solid:  #C22B2B;   /* solid fills w/ white text â€” 4.75:1 */
     --gold:       #C49A2A;
     --teal:       #2A9D8F;
     --fd: 'Space Grotesk', sans-serif;
@@ -34,7 +34,7 @@
     --measure: 60ch;
   }
 
-  /* ── LIGHT THEME — toggled via [data-theme="light"] on <html> ── */
+  /* â”€â”€ LIGHT THEME â€” toggled via [data-theme="light"] on <html> â”€â”€ */
   html[data-theme="light"] {
     --black:      #F5F2EC;
     --surface:    #EDE9E0;
@@ -44,7 +44,7 @@
     --text:       #3A3830;
     --text-dim:   #6B6860;
     --red:        #C23B22;
-    /* --maroon, --red-solid, --gold, --teal, --ink-fixed, --paper-fixed intentionally unchanged —
+    /* --maroon, --red-solid, --gold, --teal, --ink-fixed, --paper-fixed intentionally unchanged â€”
        the bold band and on-accent text stay constant across themes by design */
   }
 
@@ -73,7 +73,7 @@
     * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
 
-  /* ── NAV ── */
+  /* â”€â”€ NAV â”€â”€ */
   nav {
     position: sticky; top: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -99,7 +99,7 @@
   .nav-right { display: flex; align-items: center; gap: clamp(1rem, 3vw, 1.75rem); }
   @media (max-width: 760px) { .nav-links { display: none; } }
 
-  /* ── THEME TOGGLE ── */
+  /* â”€â”€ THEME TOGGLE â”€â”€ */
   .theme-toggle { display: flex; align-items: center; gap: 7px; cursor: pointer; background: none; border: none; padding: 0; color: var(--text-dim); transition: color 0.15s; }
   .theme-toggle:hover { color: var(--white); }
   .toggle-icon { font-size: 12px; line-height: 1; }
@@ -107,7 +107,7 @@
   .toggle-thumb { position: absolute; top: 2px; left: 2px; width: 13px; height: 13px; border-radius: 50%; background: var(--text-dim); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s; }
   html[data-theme="light"] .toggle-thumb { transform: translateX(15px); background: var(--red-solid); }
 
-  /* ── COLLAPSIBLE SECTIONS — triggered by the eyebrow triangle ── */
+  /* â”€â”€ COLLAPSIBLE SECTIONS â€” triggered by the eyebrow triangle â”€â”€ */
   .eyebrow-toggle { background: none; border: none; padding: 0; cursor: pointer; text-align: left; appearance: none; -webkit-appearance: none; }
   .eyebrow-toggle:hover { color: var(--white); }
   .eyebrow-toggle.on-maroon:hover { color: var(--paper-fixed); }
@@ -117,7 +117,7 @@
   .collapsible.collapsed { grid-template-rows: 0fr; }
   .collapsible-inner { overflow: hidden; min-height: 0; }
 
-  /* ── SCAFFOLD ── */
+  /* â”€â”€ SCAFFOLD â”€â”€ */
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); position: relative; z-index: 1; }
   section { position: relative; }
   .band-black   { background: var(--black); }
@@ -140,13 +140,13 @@
   .lede { font-size: 16px; color: var(--text); max-width: var(--measure); line-height: 1.75; margin-bottom: 2.75rem; }
   p { max-width: var(--measure); }
 
-  /* ── HERO ── */
+  /* â”€â”€ HERO â”€â”€ */
   .hero { padding-top: clamp(4.5rem, 13vw, 8.5rem); padding-bottom: clamp(3.5rem, 8vw, 5.5rem); overflow: hidden; }
   .hero-mark {
     position: absolute; top: 4%; right: 2%; color: var(--white);
     width: clamp(200px, 26vw, 360px); opacity: 0.08; pointer-events: none; z-index: 0;
   }
-  /* recurring corner-bleed triangle — the signature device, reused sparingly */
+  /* recurring corner-bleed triangle â€” the signature device, reused sparingly */
   .corner-bleed { position: absolute; pointer-events: none; z-index: 0; }
   .corner-bleed.tr { top: 0; right: 0; }
   .corner-bleed.bl { bottom: 0; left: 0; transform: rotate(180deg); }
@@ -183,7 +183,7 @@
   .stat-num { font-family: var(--fd); font-size: 1.9rem; font-weight: 700; color: var(--white); display: block; line-height: 1; }
   .stat-label { font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.04em; margin-top: 5px; }
 
-  /* ── PILLARS (surface band, color-coded per pillar) ── */
+  /* â”€â”€ PILLARS (surface band, color-coded per pillar) â”€â”€ */
   .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-lo); border: 1px solid var(--border-lo); }
   .pillar { background: var(--surface); padding: 2.25rem 1.85rem; position: relative; overflow: hidden; border-top: 3px solid; transition: background 0.2s; }
   .pillar:hover { background: #29251F; }
@@ -203,7 +203,7 @@
   .tag { font-size: 11px; padding: 3px 9px; border: 1px solid var(--border); color: var(--text-dim); letter-spacing: 0.02em; border-radius: 2px; }
   @media (max-width: 760px) { .pillars-grid { grid-template-columns: 1fr; } }
 
-  /* ── PHILOSOPHY (bold inverted band, pull-quote moment) ── */
+  /* â”€â”€ PHILOSOPHY (bold inverted band, pull-quote moment) â”€â”€ */
   .manifesto {
     font-family: var(--fd); font-weight: 600; letter-spacing: -0.02em; line-height: 1.16;
     color: var(--paper-fixed); font-size: clamp(1.9rem, 4.4vw, 3.1rem); max-width: 15ch; margin-bottom: 2.5rem;
@@ -216,7 +216,7 @@
   .p-txt strong { color: var(--paper-fixed); font-weight: 600; }
   @media (max-width: 700px) { .principles { grid-template-columns: 1fr; } }
 
-  /* ── PROCESS (black, timeline device) ── */
+  /* â”€â”€ PROCESS (black, timeline device) â”€â”€ */
   .process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; margin-top: 2.5rem; position: relative; }
   .process-steps::before { content:''; position:absolute; top:11px; left:2%; right:2%; height:1px; background: var(--border); z-index:0; }
   .step { position: relative; z-index: 1; }
@@ -234,7 +234,7 @@
   .playbook-title { font-family: var(--fd); font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 0.5rem; }
   .playbook-desc { font-size: 13.5px; color: var(--text); line-height: 1.7; max-width: 56ch; }
 
-  /* ── WORK (surface band, giant numerals per project, color-coded) ── */
+  /* â”€â”€ WORK (surface band, giant numerals per project, color-coded) â”€â”€ */
   .project {
     padding: 3rem 0; border-top: 1px solid var(--border-lo);
     display: grid; grid-template-columns: 90px 1fr auto; gap: clamp(1rem, 4vw, 2rem); align-items: start; position: relative;
@@ -295,12 +295,12 @@
   .project.dim { opacity: 0.72; }
   .status-note { font-family: var(--mono); font-size: 11px; color: var(--text-dim); margin-top: -0.4rem; margin-bottom: 1.1rem; }
 
-  /* ── LABS BANNER ── */
+  /* â”€â”€ LABS BANNER â”€â”€ */
   .labs-banner { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; padding: 1.75rem 0; }
   .labs-live { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11.5px; color: var(--red); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
   .labs-text { font-size: 13.5px; color: var(--text-dim); line-height: 1.65; flex: 1; min-width: 240px; }
 
-  /* ── ABOUT (surface band, asymmetric) ── */
+  /* â”€â”€ ABOUT (surface band, asymmetric) â”€â”€ */
   .about-grid { display: grid; grid-template-columns: 1.3fr 0.9fr; gap: clamp(2rem, 5vw, 4.5rem); }
   .about-body { font-size: 15px; color: var(--text); line-height: 1.8; }
   .about-body + .about-body { margin-top: 1rem; }
@@ -313,7 +313,7 @@
   .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: pulse 2.4s ease-in-out infinite; }
   @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
 
-  /* ── CONNECT (bold inverted band, biggest closing moment) ── */
+  /* â”€â”€ CONNECT (bold inverted band, biggest closing moment) â”€â”€ */
   .connect-headline {
     font-family: var(--fd); font-weight: 700; letter-spacing: -0.03em; line-height: 1.0;
     color: var(--paper-fixed); font-size: clamp(2.4rem, 6.5vw, 4.4rem); max-width: 12ch; margin-bottom: 1.25rem;
@@ -330,7 +330,7 @@
   .connect-link:hover .link-arrow { color: var(--red); }
   .link-arrow { color: var(--red); opacity: 0.6; transition: opacity 0.15s; }
 
-  /* ── FOOTER ── */
+  /* â”€â”€ FOOTER â”€â”€ */
   footer {
     padding: 1.5rem clamp(1.25rem, 4vw, 3rem); display: flex; align-items: center; justify-content: space-between;
     flex-wrap: wrap; gap: 0.75rem; border-top: 1px solid var(--border-lo); position: relative; z-index: 1; background: var(--black);
@@ -339,7 +339,7 @@
   .footer-copy { font-family: var(--mono); font-size: 11.5px; color: var(--text-dim); }
   .footer-tagline { font-family: var(--mono); font-size: 11.5px; color: var(--red); }
 
-  /* ── SCROLL REVEAL ── */
+  /* â”€â”€ SCROLL REVEAL â”€â”€ */
   .fade { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .fade.visible { opacity: 1; transform: none; }
   .fade-child { opacity: 0; transform: translateY(12px); transition: opacity 0.45s ease, transform 0.45s ease; }
@@ -348,7 +348,7 @@
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
+<!-- â•â•â• NAV â•â•â• -->
 <nav>
   <a href="#home" class="nav-logo">
     <svg width="26" height="26" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
@@ -366,18 +366,17 @@
     <ul class="nav-links">
       <li><a href="#work">Work</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="About.html">Pillars &amp; Philosophy</a></li>
       <li><a href="#connect">Connect</a></li>
     </ul>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark mode">
-      <span class="toggle-icon" id="toggleIcon">☾</span>
+      <span class="toggle-icon" id="toggleIcon">â˜¾</span>
       <span class="toggle-track"><span class="toggle-thumb"></span></span>
     </button>
     <a href="#connect" class="nav-cta">Work with the lab</a>
   </div>
 </nav>
 
-<!-- ═══ HERO ═══ -->
+<!-- â•â•â• HERO â•â•â• -->
 <section id="home" class="band-black">
   <svg class="hero-mark" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
     <polygon points="1575,201 1365,564 1780,563" fill="currentColor"/>
@@ -389,16 +388,16 @@
     <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
   </svg>
   <div class="wrap hero">
-    <div class="eyebrow"><span class="dot"></span> Creative Technology · NYC</div>
+    <div class="eyebrow"><span class="dot"></span> Creative Technology Â· NYC</div>
     <h1>
       <span class="line"><span>Designing</span></span>
       <span class="line"><span>Technology</span></span>
       <span class="line"><span>with Intent</span></span>
     </h1>
-    <p class="hero-sub">White Crane Labs builds AI workflows, generative systems, and creative infrastructure that let creative teams move faster — without handing creative judgment to the machine.</p>
+    <p class="hero-sub">White Crane Labs builds AI workflows, generative systems, and creative infrastructure that let creative teams move faster â€” without handing creative judgment to the machine.</p>
     <div class="hero-actions">
       <a href="#work" class="btn-primary">See the work</a>
-      <a href="#about" class="btn-ghost">About the lab →</a>
+      <a href="#about" class="btn-ghost">About the lab â†’</a>
     </div>
     <div class="hero-stats">
       <div><span class="stat-num">10+</span><div class="stat-label">YEARS BUILDING</div></div>
@@ -408,7 +407,7 @@
   </div>
 </section>
 
-<!-- ═══ WORK — surface band, giant color-coded numerals ═══ -->
+<!-- â•â•â• WORK â€” surface band, giant color-coded numerals â•â•â• -->
 <section id="work" class="band-surface">
   <div class="wrap section-inner fade">
     <button class="eyebrow eyebrow-toggle" type="button" aria-expanded="true" aria-controls="work-body"><span class="dot"></span> Selected work</button>
@@ -423,14 +422,14 @@
           <span class="cat-pill c-red">Multi-Agent AI</span>
           <span class="project-title">The Critique Council</span>
         </div>
-        <p class="project-desc"><strong style="color:var(--white)">Thesis.</strong> A multi-agent AI system that simulates presenting to a real design jury — three critics with distinct personas, differentiated voices, and visual feedback generation.</p>
+        <p class="project-desc"><strong style="color:var(--white)">Thesis.</strong> A multi-agent AI system that simulates presenting to a real design jury â€” three critics with distinct personas, differentiated voices, and visual feedback generation.</p>
         <div class="project-specs">
-          <span class="spec"><strong>Agents</strong> GPT-5 mini · Claude Opus 4.5 · Gemini 3 Pro</span>
-          <span class="spec"><strong>Pillar</strong> Creative Infrastructure · AI × Design</span>
+          <span class="spec"><strong>Agents</strong> GPT-5 mini Â· Claude Opus 4.5 Â· Gemini 3 Pro</span>
+          <span class="spec"><strong>Pillar</strong> Creative Infrastructure Â· AI Ã— Design</span>
         </div>
         <div class="project-links">
-          <a href="Critique_Council_Thesis.html" class="link-primary">Read the thesis →</a>
-          <a href="Critique_Council_Live.html" class="link-secondary">Try the live demo ↗</a>
+          <a href="Critique_Council_Thesis.html" class="link-primary">Read the thesis â†’</a>
+          <a href="Critique_Council_Live.html" class="link-secondary">Try the live demo â†—</a>
         </div>
         </div>
         <a href="Critique_Council_Thesis.html" class="project-thumb" aria-hidden="true" tabindex="-1">
@@ -471,13 +470,13 @@
           <span class="cat-pill c-gold">Institutional AI</span>
           <span class="project-title">Pratt's AI Infrastructure</span>
         </div>
-        <p class="project-desc"><strong style="color:var(--white)">Case study.</strong> How institutional financial crisis forced the choice to build rather than buy AI capability — and how the institution scaled to 500+ users while keeping autonomy and culture intact.</p>
+        <p class="project-desc"><strong style="color:var(--white)">Case study.</strong> How institutional financial crisis forced the choice to build rather than buy AI capability â€” and how the institution scaled to 500+ users while keeping autonomy and culture intact.</p>
         <div class="project-specs">
-          <span class="spec"><strong>Timeline</strong> 2024 planning → Jan 2025 launch → 500+ users</span>
-          <span class="spec"><strong>Pillar</strong> Creative Infrastructure · Hybrid Perspective</span>
+          <span class="spec"><strong>Timeline</strong> 2024 planning â†’ Jan 2025 launch â†’ 500+ users</span>
+          <span class="spec"><strong>Pillar</strong> Creative Infrastructure Â· Hybrid Perspective</span>
         </div>
         <div class="project-links">
-          <a href="Pratt_AI_Infrastructure_Case_Study.html" class="link-primary">Read the case study →</a>
+          <a href="Pratt_AI_Infrastructure_Case_Study.html" class="link-primary">Read the case study â†’</a>
         </div>
         </div>
         <a href="Pratt_AI_Infrastructure_Case_Study.html" class="project-thumb" aria-hidden="true" tabindex="-1">
@@ -515,14 +514,14 @@
           <span class="cat-pill c-teal">Product Strategy</span>
           <span class="project-title">LevelUpLife</span>
         </div>
-        <p class="project-desc"><strong style="color:var(--white)">Course project.</strong> Soft-skill learning turned into narrative adventure for high school students — story-first curriculum, gamified quest system, and a human-in-the-loop content pipeline.</p>
+        <p class="project-desc"><strong style="color:var(--white)">Course project.</strong> Soft-skill learning turned into narrative adventure for high school students â€” story-first curriculum, gamified quest system, and a human-in-the-loop content pipeline.</p>
         <div class="project-specs">
-          <span class="spec"><strong>System</strong> Story engine → quests → habit loop</span>
+          <span class="spec"><strong>System</strong> Story engine â†’ quests â†’ habit loop</span>
           <span class="spec"><strong>Market</strong> $93M TAM</span>
         </div>
         <div class="project-links">
-          <a href="LevelUpLife_Case_Study.html" class="link-primary">Read the case study →</a>
-          <a href="LevelUpLife_OnePager.html" class="link-secondary">One-pager ↗</a>
+          <a href="LevelUpLife_Case_Study.html" class="link-primary">Read the case study â†’</a>
+          <a href="LevelUpLife_OnePager.html" class="link-secondary">One-pager â†—</a>
         </div>
         </div>
         <a href="LevelUpLife_Case_Study.html" class="project-thumb" aria-hidden="true" tabindex="-1">
@@ -562,7 +561,7 @@
         </div>
         <div class="status-note">ACTIVE EXPERIMENT</div>
         <p class="project-desc">An experimental pipeline connecting brand guidelines, creative briefs, and generative AI into a coherent asset production system.</p>
-        <div class="project-specs"><span class="spec"><strong>Stack</strong> Replicate · Cloudflare · Anthropic API</span></div>
+        <div class="project-specs"><span class="spec"><strong>Stack</strong> Replicate Â· Cloudflare Â· Anthropic API</span></div>
         </div>
         <div class="project-thumb" aria-hidden="true">
           <svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg">
@@ -586,28 +585,28 @@
   </div>
 </section>
 
-<!-- ═══ LABS BANNER ═══ -->
+<!-- â•â•â• LABS BANNER â•â•â• -->
 <section class="band-black">
   <div class="wrap labs-banner fade">
-    <div class="labs-live"><span class="pulse-dot"></span> Labs — always running</div>
+    <div class="labs-live"><span class="pulse-dot"></span> Labs â€” always running</div>
     <p class="labs-text">Current experiments: generative brand systems, LLM-integrated design pipelines, and context-aware prompt architectures for studio environments. Nothing here is finished. That's the point.</p>
     <a href="#connect" class="btn-primary">Work with the lab</a>
   </div>
 </section>
 
-<!-- ═══ ABOUT — short teaser, links to full About page ═══ -->
+<!-- â•â•â• ABOUT â€” short teaser, links to full About page â•â•â• -->
 <section id="about" class="band-surface">
   <div class="wrap section-inner fade" style="padding-top: clamp(3rem, 7vw, 5rem); padding-bottom: clamp(3rem, 7vw, 5rem);">
     <button class="eyebrow eyebrow-toggle" type="button" aria-expanded="true" aria-controls="about-body"><span class="dot"></span> About</button>
     <div class="collapsible" id="about-body"><div class="collapsible-inner">
     <h2 style="max-width:16ch;">Part designer. Part engineer. Part AI builder.</h2>
-    <p class="lede" style="margin-bottom: 1.75rem;">I'm Ken Bai — a Creative Technologist based in New York, building AI-powered creative infrastructure at Pratt Institute and through my studio, White Crane Design.</p>
-    <a href="About.html" class="link-primary">Read the full story, pillars &amp; philosophy →</a>
+    <p class="lede" style="margin-bottom: 1.75rem;">I'm Ken Bai â€” a Creative Technologist based in New York, building AI-powered creative infrastructure at Pratt Institute and through my studio, White Crane Design.</p>
+    <a href="About.html" class="link-primary">Read the full story, pillars &amp; philosophy â†’</a>
     </div></div>
   </div>
 </section>
 
-<!-- ═══ CONNECT — bold closing band ═══ -->
+<!-- â•â•â• CONNECT â€” bold closing band â•â•â• -->
 <section id="connect" class="band-maroon">
   <svg class="corner-bleed tr" width="180" height="157" viewBox="0 0 100 87" xmlns="http://www.w3.org/2000/svg" style="opacity:0.14;">
     <polygon points="0,0 100,0 50,87" fill="#FF0000"/>
@@ -618,16 +617,16 @@
     <div class="connect-headline">Let's build.</div>
     <p class="connect-lede">Speaking, collaborations, consulting, or just an interesting conversation. Selected engagements only.</p>
     <div class="connect-links">
-      <a href="mailto:ken@whitecranelabs.com" class="connect-link">ken@whitecranelabs.com <span class="link-arrow">↗</span></a>
-      <a href="#" class="connect-link">LinkedIn — Ken Bai <span class="link-arrow">↗</span></a>
-      <a href="#" class="connect-link">GitHub — @whitecranelabs <span class="link-arrow">↗</span></a>
-      <a href="#" class="connect-link">Resume <span class="link-arrow">↗</span></a>
+      <a href="mailto:ken@whitecranelabs.com" class="connect-link">ken@whitecranelabs.com <span class="link-arrow">â†—</span></a>
+      <a href="#" class="connect-link">LinkedIn â€” Ken Bai <span class="link-arrow">â†—</span></a>
+      <a href="#" class="connect-link">GitHub â€” @whitecranelabs <span class="link-arrow">â†—</span></a>
+      <a href="#" class="connect-link">Resume <span class="link-arrow">â†—</span></a>
     </div>
     </div></div>
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
+<!-- â•â•â• FOOTER â•â•â• -->
 <footer>
   <div class="footer-brand">
     <svg width="18" height="18" viewBox="0 0 2000 2000">
@@ -642,7 +641,7 @@
     White Crane Labs
   </div>
   <div class="footer-tagline">Human in the loop. Always.</div>
-  <div class="footer-copy">© 2026 · whitecranelabs.com</div>
+  <div class="footer-copy">Â© 2026 Â· whitecranelabs.com</div>
 </footer>
 
 <script>
@@ -651,14 +650,14 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 
-  // ── Theme toggle (persists across pages via localStorage) ──
+  // â”€â”€ Theme toggle (persists across pages via localStorage) â”€â”€
   (function () {
     const root = document.documentElement;
     const btn = document.getElementById('themeToggle');
     const icon = document.getElementById('toggleIcon');
     function apply(theme) {
-      if (theme === 'light') { root.setAttribute('data-theme', 'light'); if (icon) icon.textContent = '☀︎'; }
-      else { root.removeAttribute('data-theme'); if (icon) icon.textContent = '☾'; }
+      if (theme === 'light') { root.setAttribute('data-theme', 'light'); if (icon) icon.textContent = 'â˜€ï¸Ž'; }
+      else { root.removeAttribute('data-theme'); if (icon) icon.textContent = 'â˜¾'; }
     }
     const saved = localStorage.getItem('wcl-theme');
     if (saved === 'light' || saved === 'dark') apply(saved);
@@ -671,7 +670,7 @@
     }
   })();
 
-  // ── Collapsible sections, triggered by the eyebrow triangle ──
+  // â”€â”€ Collapsible sections, triggered by the eyebrow triangle â”€â”€
   document.querySelectorAll('.eyebrow-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
       const expanded = btn.getAttribute('aria-expanded') !== 'false';
