@@ -40,9 +40,13 @@ body { background: var(--paper); color: var(--ink); font-family: var(--body); fo
   padding: 0.9rem 2rem; background: var(--topbar-bg);
   border-bottom: 1px solid var(--rule); backdrop-filter: blur(12px);
 }
-.topbar-brand { display: flex; align-items: center; gap: 10px; }
+.topbar-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-links { display: flex; gap: 1.5rem; list-style: none; }
+.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink-2); }
+@media (max-width: 800px) { .nav-links { display: none; } }
 .brand-logo { width: 28px; height: 28px; }
-.brand-name { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
+.brand-name { font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-2); }
 .topbar-center { position: absolute; left: 50%; transform: translateX(-50%); }
 .topbar-title { font-family: var(--display); font-size: 16px; font-weight: 500; color: var(--ink-2); }
 .topbar-right { display: flex; align-items: center; gap: 12px; }
@@ -197,7 +201,7 @@ body { background: var(--paper); color: var(--ink); font-family: var(--body); fo
 <body>
 
 <div class="topbar">
-  <div class="topbar-brand">
+  <a href="index.html" class="topbar-brand">
     <svg class="brand-logo" width="26" height="26" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
       <polygon points="1575,201 1365,564 1780,563" fill="currentColor"/>
       <polygon points="709,693 5,696 357,1306" fill="currentColor"/>
@@ -208,9 +212,15 @@ body { background: var(--paper); color: var(--ink); font-family: var(--body); fo
       <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
     </svg>
     <span class="brand-name">White Crane Labs</span>
-  </div>
+  </a>
   <div class="topbar-center"><div class="topbar-title">The Critique Council</div></div>
   <div class="topbar-right">
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="About.html">Pillars &amp; Philosophy</a></li>
+      <li><a href="index.html#connect">Connect</a></li>
+    </ul>
     <button class="theme-toggle" id="themeToggle">
       <span id="toggleIcon">☀︎</span>
       <div class="toggle-track"><div class="toggle-thumb"></div></div>

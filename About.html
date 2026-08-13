@@ -79,13 +79,17 @@
     font-family: var(--fd); font-size: 13px; font-weight: 600;
     letter-spacing: 0.06em; color: var(--white); text-decoration: none;
   }
-  .nav-back {
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--text-dim); text-decoration: none; border: 1px solid var(--border);
-    padding: 6px 14px; border-radius: 2px; transition: all 0.2s;
-  }
-  .nav-back:hover { color: var(--white); border-color: var(--text-dim); }
   .nav-right { display: flex; align-items: center; gap: clamp(1rem, 3vw, 1.75rem); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--text-dim); text-decoration: none; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    font-family: var(--fd); font-size: 12px; font-weight: 600; color: var(--paper-fixed);
+    background: var(--red-solid); padding: 8px 18px; text-decoration: none;
+    border-radius: 2px; transition: opacity 0.15s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+  @media (max-width: 760px) { .nav-links { display: none; } }
 
   /* ── THEME TOGGLE ── */
   .theme-toggle { display: flex; align-items: center; gap: 7px; cursor: pointer; background: none; border: none; padding: 0; color: var(--text-dim); transition: color 0.15s; }
@@ -226,11 +230,17 @@
     White Crane Labs
   </a>
   <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="About.html">Pillars &amp; Philosophy</a></li>
+      <li><a href="index.html#connect">Connect</a></li>
+    </ul>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark mode">
       <span class="toggle-icon" id="toggleIcon">☾</span>
       <span class="toggle-track"><span class="toggle-thumb"></span></span>
     </button>
-    <a href="index.html" class="nav-back">← Back to home</a>
+    <a href="index.html#connect" class="nav-cta">Work with the lab</a>
   </div>
 </nav>
 

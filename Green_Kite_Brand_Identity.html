@@ -55,17 +55,18 @@ nav {
 }
 .nav-logo {
   display: flex; align-items: center; gap: 9px;
-  font-family: var(--fd); font-size: 12px; font-weight: 700;
-  letter-spacing: .14em; text-transform: uppercase;
+  font-family: var(--fd); font-size: 13px; font-weight: 600;
+  letter-spacing: .06em;
   color: var(--ink); text-decoration: none;
 }
 .logo-mark { width: 28px; height: 28px; }
-.nav-back {
-  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--ink-3); text-decoration: none;
-  border: 1px solid var(--rule-med); padding: 6px 14px; transition: all .2s;
-}
-.nav-back:hover { color: var(--ink); border-color: var(--ink-3); }
+.nav-right { display: flex; align-items: center; gap: clamp(1rem, 3vw, 1.75rem); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: 13px; color: var(--ink-3); text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--ink); }
+.nav-cta { font-family: var(--fd); font-size: 12px; font-weight: 600; color: var(--paper); background: var(--green); padding: 8px 18px; text-decoration: none; border-radius: 2px; transition: opacity .2s; }
+.nav-cta:hover { opacity: .85; }
+@media (max-width: 760px) { .nav-links { display: none; } }
 
 /* HERO */
 .hero {
@@ -365,7 +366,7 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="https://chairmanwcd.github.io/whitecranelabs.com/" class="nav-logo">
+  <a href="index.html" class="nav-logo">
     <svg width="26" height="26" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
       <polygon points="1575,201 1365,564 1780,563" fill="currentColor"/>
       <polygon points="709,693 5,696 357,1306" fill="currentColor"/>
@@ -375,9 +376,17 @@ footer {
       <polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/>
       <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
     </svg>
-    White Crane Design
+    White Crane Labs
   </a>
-  <a href="index.html#work" class="nav-back">← Back to work</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="About.html">Pillars &amp; Philosophy</a></li>
+      <li><a href="index.html#connect">Connect</a></li>
+    </ul>
+    <a href="index.html#connect" class="nav-cta">Work with the lab</a>
+  </div>
 </nav>
 
 <!-- HERO -->

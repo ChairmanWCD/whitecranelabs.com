@@ -44,19 +44,18 @@
   .nav-logo {
     display: flex; align-items: center; gap: 10px;
     font-family: var(--font-display); font-size: 13px;
-    font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--white);
+    font-weight: 600; letter-spacing: 0.06em;
+    color: var(--white);
     text-decoration: none;
   }
   .logo-mark { width: 32px; height: 32px; flex-shrink: 0; }
-  .nav-back { 
-    font-family: var(--font-body); font-size: 12px;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--white-muted); text-decoration: none;
-    border: 1px solid var(--border);
-    padding: 6px 14px; transition: all 0.2s;
-  }
-  .nav-back:hover { color: var(--white); border-color: var(--white-muted); }
+  .nav-right { display: flex; align-items: center; gap: clamp(1rem, 3vw, 1.75rem); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-family: var(--font-body); font-size: 13px; color: var(--white-muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { font-family: var(--font-display); font-size: 12px; font-weight: 600; color: var(--black); background: var(--red); padding: 8px 18px; text-decoration: none; border-radius: 2px; transition: opacity 0.2s; }
+  .nav-cta:hover { opacity: 0.85; }
+  @media (max-width: 760px) { .nav-links { display: none; } }
 
   /* ── HERO ── */
   .hero {
@@ -312,7 +311,15 @@
     </svg>
     White Crane Labs
   </a>
-  <a href="/#work" class="nav-back">← Back to work</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="/#work">Work</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="About.html">Pillars &amp; Philosophy</a></li>
+      <li><a href="/#connect">Connect</a></li>
+    </ul>
+    <a href="/#connect" class="nav-cta">Work with the lab</a>
+  </div>
 </nav>
 
 <!-- HERO -->

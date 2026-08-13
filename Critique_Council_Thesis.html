@@ -22,9 +22,14 @@ body::before { content: ''; position: fixed; inset: 0; background-image: url("da
 
 /* NAV */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: .9rem 2.5rem; border-bottom: 1px solid var(--rule); background: rgba(14,14,12,.96); backdrop-filter: blur(14px); }
-.nav-brand { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--chalk-faint); text-decoration: none; }
-.nav-back { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--chalk-faint); text-decoration: none; border: 1px solid var(--rule-med); padding: 5px 14px; transition: all .2s; }
-.nav-back:hover { color: var(--chalk); border-color: var(--chalk-faint); }
+.nav-brand { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: .06em; color: var(--chalk); text-decoration: none; }
+.nav-right { display: flex; align-items: center; gap: clamp(1rem, 3vw, 1.75rem); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--chalk-faint); text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--chalk); }
+.nav-cta { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: #0E0E0C; background: #E03030; padding: 8px 18px; text-decoration: none; border-radius: 2px; transition: opacity .2s; }
+.nav-cta:hover { opacity: .85; }
+@media (max-width: 760px) { .nav-links { display: none; } }
 
 /* HERO */
 .hero { padding: 7rem 0 0; border-bottom: 1px solid var(--rule); position: relative; z-index: 1; }
@@ -191,7 +196,7 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="nav-brand">
+  <a href="index.html" class="nav-brand">
     <svg width="26" height="26" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
       <polygon points="1575,201 1365,564 1780,563" fill="currentColor"/>
       <polygon points="709,693 5,696 357,1306" fill="currentColor"/>
@@ -203,7 +208,15 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
     </svg>
     White Crane Labs
   </a>
-  <a href="/#work" class="nav-back">← Back to work</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="About.html">Pillars &amp; Philosophy</a></li>
+      <li><a href="index.html#connect">Connect</a></li>
+    </ul>
+    <a href="index.html#connect" class="nav-cta">Work with the lab</a>
+  </div>
 </nav>
 
 <!-- HERO -->
