@@ -10,16 +10,16 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black:   #15130E;
-    --surface: #1E1B14;
-    --surface-2:#2B2620;
-    --border:  #3D3628;
-    --white:   #F5F0E5;
-    --white-muted: rgba(245,240,229,0.66);
-    --white-dim:   rgba(245,240,229,0.34);
-    --gold:    #D4AF37;
-    --gold-2:  #C9A227;
-    --gold-accent: #E8C547;
+    --black:   #0A0A0F;
+    --surface: #12121A;
+    --surface-2:#1C1B28;
+    --border:  #2E2B45;
+    --white:   #EFEDF8;
+    --white-muted: rgba(239,237,248,0.66);
+    --white-dim:   rgba(239,237,248,0.34);
+    --violet:    #A78BFA;
+    --violet-2:  #8B5CF6;
+    --violet-accent: #C4B5FD;
     --font-display: 'Space Grotesk', sans-serif;
     --font-body:    'Inter', sans-serif;
     --mono: 'DM Mono','SF Mono','Fira Code','Courier New',monospace;
@@ -55,7 +55,7 @@
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a { font-family: var(--font-body); font-size: 13px; color: var(--white-muted); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--white); }
-  .nav-cta { font-family: var(--font-display); font-size: 12px; font-weight: 600; color: var(--black); background: var(--gold); padding: 8px 18px; text-decoration: none; border-radius: 2px; transition: opacity 0.2s; }
+  .nav-cta { font-family: var(--font-display); font-size: 12px; font-weight: 600; color: #151428; background: var(--violet); padding: 8px 18px; text-decoration: none; border-radius: 2px; transition: opacity 0.2s; }
   .nav-cta:hover { opacity: 0.85; }
   @media (max-width: 760px) { .nav-links { display: none; } }
 
@@ -68,7 +68,7 @@
   .hero::before {
     content: ''; position: absolute; top: -180px; right: -160px;
     width: 560px; height: 560px;
-    background: radial-gradient(circle, rgba(212,175,55,0.14) 0%, transparent 62%);
+    background: radial-gradient(circle, rgba(167,139,250,0.14) 0%, transparent 62%);
     pointer-events: none;
   }
   .hero-inner {
@@ -79,14 +79,14 @@
   .hero-eyebrow {
     font-family: var(--font-body); font-size: 10px;
     letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--gold); display: flex; align-items: center; gap: 8px;
+    color: var(--violet); display: flex; align-items: center; gap: 8px;
     margin-bottom: 1.5rem;
   }
   .tri {
     display: inline-block; width: 0; height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 8px solid var(--gold);
+    border-top: 8px solid var(--violet);
   }
   .hero h1 {
     font-family: var(--font-display);
@@ -95,11 +95,11 @@
     line-height: 1.0; margin-bottom: 1.75rem;
     text-transform: uppercase;
   }
-  .hero h1 .accent { color: var(--gold-accent); }
+  .hero h1 .accent { color: var(--violet-accent); }
   .hero-subtitle {
     font-size: 15px; color: var(--white-muted);
     max-width: 520px; line-height: 1.8;
-    border-left: 2px solid var(--gold);
+    border-left: 2px solid var(--violet);
     padding-left: 1.25rem;
   }
   .hero-meta {
@@ -118,7 +118,7 @@
     font-size: 13px; color: var(--white-muted); line-height: 1.6;
   }
   .meta-value strong { color: var(--white); font-weight: 500; }
-  .meta-value a { color: var(--gold-accent); text-decoration: none; }
+  .meta-value a { color: var(--violet-accent); text-decoration: none; }
   .meta-value a:hover { text-decoration: underline; }
 
   /* ── CASE STUDY BODY ── */
@@ -131,7 +131,7 @@
   .cs-eyebrow {
     font-family: var(--font-body); font-size: 10px;
     letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--gold); display: flex; align-items: center; gap: 8px;
+    color: var(--violet); display: flex; align-items: center; gap: 8px;
     margin-bottom: 1rem;
   }
   .cs-h2 {
@@ -166,8 +166,8 @@
   .cs-list li strong { color: var(--white); }
 
   .pullquote {
-    border-left: 2px solid var(--gold); padding: 1.5rem 1.75rem;
-    margin: 2.5rem 0; background: rgba(212,175,55,0.06);
+    border-left: 2px solid var(--violet); padding: 1.5rem 1.75rem;
+    margin: 2.5rem 0; background: rgba(167,139,250,0.07);
   }
   .pullquote p {
     font-family: var(--font-display); font-size: 1.25rem;
@@ -184,12 +184,12 @@
   .example-label {
     font-family: var(--font-mono); font-size: 9px;
     letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 0.75rem;
+    color: var(--violet); margin-bottom: 0.75rem;
   }
   .example-text {
     font-size: 14px; color: var(--white-muted); line-height: 1.75;
   }
-  .example-text code, .lead-code { font-family: var(--mono); font-size: 12.5px; color: var(--gold-accent); }
+  .example-text code, .lead-code { font-family: var(--mono); font-size: 12.5px; color: var(--violet-accent); }
 
   .metric-row {
     display: grid; grid-template-columns: 1fr 1fr;
@@ -206,7 +206,7 @@
   }
   .metric-value {
     font-family: var(--font-display); font-size: 1.8rem;
-    font-weight: 700; color: var(--gold-accent); line-height: 1;
+    font-weight: 700; color: var(--violet-accent); line-height: 1;
   }
   .metric-sub {
     font-size: 12px; color: var(--white-muted); margin-top: 0.5rem;
@@ -255,7 +255,7 @@
   .cta-left .cta-label {
     font-family: var(--font-body); font-size: 9px;
     letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 0.4rem;
+    color: var(--violet); margin-bottom: 0.4rem;
   }
   .cta-left p {
     font-size: 14px; color: var(--white-muted);
@@ -263,8 +263,8 @@
   .cta-btn {
     font-family: var(--font-display); font-size: 11px;
     font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; background: var(--gold);
-    color: var(--black); padding: 12px 24px; border: none;
+    text-transform: uppercase; background: var(--violet);
+    color: #151428; padding: 12px 24px; border: none;
     cursor: pointer; clip-path: polygon(0 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%);
     transition: opacity 0.2s; text-decoration: none;
     display: inline-block; white-space: nowrap;
@@ -287,7 +287,7 @@
   }
   .footer-tag {
     font-family: var(--mono); font-size: 11px;
-    color: var(--gold); letter-spacing: 0.1em;
+    color: var(--violet); letter-spacing: 0.1em;
   }
   .footer-copy {
     font-family: var(--mono); font-size: 11px;
@@ -492,7 +492,7 @@
   <div class="cs-section fade">
     <div class="cs-eyebrow"><span class="tri"></span> 06 — The interface</div>
     <h2 class="cs-h2">A studio-grade web UI</h2>
-    <p class="cs-p">A server is only useful if people can drive it. The bundled single-page UI gives a full generation workspace with a dark, gold-accented theme — and a light mode for bright studios.</p>
+    <p class="cs-p">A server is only useful if people can drive it. The bundled single-page UI gives a full generation workspace with a dark, lavender-accented theme — and a light mode for bright studios.</p>
     <ul class="cs-list">
       <li><strong>Prompt controls</strong> — textarea with example chips and <code>Cmd/Ctrl+Enter</code> to generate.</li>
       <li><strong>Size presets</strong> — six aspect ratios from Square HD to Landscape 16:9, all clamped to fit VRAM.</li>
