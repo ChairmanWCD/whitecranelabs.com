@@ -64,11 +64,20 @@ html[data-theme="dark"] #toggleIcon .icon-sun { display: none; }
 .toggle-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-4); }
 
 /* WELCOME */
-.welcome { text-align: center; padding: 3rem 2rem 2.5rem; border-bottom: 1px solid var(--rule); background: linear-gradient(to bottom, var(--paper), var(--paper-2)); }
-.welcome-eyebrow { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--professor); margin-bottom: 1rem; }
-.welcome h1 { font-family: var(--display); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 400; line-height: 1.15; color: var(--ink); margin-bottom: 0.875rem; }
-.welcome h1 em { font-style: italic; color: var(--ink-2); }
-.welcome-sub { font-size: 14px; color: var(--ink-3); max-width: 500px; margin: 0 auto 1.75rem; line-height: 1.75; }
+.welcome { position: relative; border-bottom: 1px solid var(--rule); overflow: hidden; background: var(--ink); text-align: center; }
+.welcome-hero { width: 100%; height: 340px; object-fit: cover; object-position: center; display: block; }
+@media (min-width: 640px) { .welcome-hero { height: 440px; } }
+@media (min-width: 1024px) { .welcome-hero { height: 540px; } }
+.welcome-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.55) 85%); pointer-events: none; }
+.welcome-content { position: absolute; inset-x: 0; bottom: 0; padding: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+.welcome-h1 { font-family: var(--display); font-size: clamp(1.9rem, 4vw, 3.1rem); font-weight: 400; line-height: 1.15; color: #fff; margin: 0; text-shadow: 0 2px 14px rgba(0,0,0,0.45); }
+.welcome-h1 em { font-style: italic; color: #fff; }
+.welcome-content .critic-trio { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.22); backdrop-filter: blur(6px); }
+.welcome-content .trio-name { color: #fff; }
+.welcome-content .trio-model { color: rgba(255,255,255,0.6); }
+.welcome-content .trio-item { border-color: rgba(255,255,255,0.22); }
+/* Keep welcome-sub for any use but unused in current hero */
+.welcome-sub { font-size: 14px; color: var(--ink-3); max-width: 500px; margin: 2rem auto 3rem; line-height: 1.75; display: none; }
 .critic-trio { display: inline-flex; gap: 0; border: 1px solid var(--rule-med); overflow: hidden; }
 .trio-item { display: flex; align-items: center; gap: 7px; padding: 6px 14px; border-right: 1px solid var(--rule-med); font-size: 12px; }
 .trio-item:last-child { border-right: none; }
@@ -232,18 +241,20 @@ html[data-theme="dark"] #toggleIcon .icon-sun { display: none; }
       <div class="toggle-track"><div class="toggle-thumb"></div></div>
       <span class="toggle-label" id="toggleLabel">Light</span>
     </button>
-    <div class="live-badge"><span class="live-dot"></span> Live · Claude API</div>
+    <div class="live-badge"><span class="live-dot"></span> Live · OpenAI API</div>
   </div>
 </div>
 
 <div class="welcome">
-  <div class="welcome-eyebrow">AI Pedagogy · White Crane Labs</div>
-  <h1>Your work deserves<br><em>more than one opinion.</em></h1>
-  <p class="welcome-sub">Upload a piece. Choose who you want to hear from. Get honest, differentiated feedback from three distinct AI critics — so you walk into your next critique prepared.</p>
-  <div class="critic-trio">
-    <div class="trio-item"><span class="trio-dot" style="background:var(--student)"></span><span class="trio-name">Student Peer</span><span class="trio-model">claude-sonnet</span></div>
-    <div class="trio-item"><span class="trio-dot" style="background:var(--professor)"></span><span class="trio-name">Studio Professor</span><span class="trio-model">claude-sonnet</span></div>
-    <div class="trio-item"><span class="trio-dot" style="background:var(--critic)"></span><span class="trio-name">Art Critic</span><span class="trio-model">claude-sonnet</span></div>
+  <img src="Critique Council Header.png" alt="The Critique Council" class="welcome-hero">
+  <div class="welcome-overlay"></div>
+  <div class="welcome-content">
+    <h1 class="welcome-h1">Your work deserves<br><em>more than one opinion.</em></h1>
+    <div class="critic-trio">
+      <div class="trio-item"><span class="trio-dot" style="background:var(--student)"></span><span class="trio-name">Student Peer</span><span class="trio-model">gpt-4o-mini</span></div>
+      <div class="trio-item"><span class="trio-dot" style="background:var(--professor)"></span><span class="trio-name">Studio Professor</span><span class="trio-model">gpt-4o</span></div>
+      <div class="trio-item"><span class="trio-dot" style="background:var(--critic)"></span><span class="trio-name">Art Critic</span><span class="trio-model">gpt-4o</span></div>
+    </div>
   </div>
 </div>
 
@@ -273,7 +284,7 @@ html[data-theme="dark"] #toggleIcon .icon-sun { display: none; }
           <div class="critic-card-body">
             <div class="critic-card-name">The Student Peer</div>
             <div class="critic-card-role">Constructive, accessible — the voice of a classmate who gets it.</div>
-            <div class="critic-card-model cm-s">claude-sonnet · peer persona</div>
+            <div class="critic-card-model cm-s">gpt-4o-mini · peer persona</div>
           </div>
           <div class="check-mark"></div>
         </div>
@@ -282,7 +293,7 @@ html[data-theme="dark"] #toggleIcon .icon-sun { display: none; }
           <div class="critic-card-body">
             <div class="critic-card-name">The Studio Professor</div>
             <div class="critic-card-role">Balanced authority. Points toward better work.</div>
-            <div class="critic-card-model cm-p">claude-sonnet · professor persona</div>
+            <div class="critic-card-model cm-p">gpt-4o · professor persona</div>
           </div>
           <div class="check-mark"></div>
         </div>
@@ -291,7 +302,7 @@ html[data-theme="dark"] #toggleIcon .icon-sun { display: none; }
           <div class="critic-card-body">
             <div class="critic-card-name">The Art Critic</div>
             <div class="critic-card-role">No filter. Direct contextual analysis.</div>
-            <div class="critic-card-model cm-c">claude-sonnet · critic persona</div>
+            <div class="critic-card-model cm-c">gpt-4o · critic persona</div>
           </div>
           <div class="check-mark"></div>
         </div>
@@ -346,6 +357,17 @@ btn.addEventListener('click', () => html.getAttribute('data-theme') === 'dark' ?
 function applyDark() { html.setAttribute('data-theme','dark'); label.textContent='Dark'; localStorage.setItem('cc-theme','dark'); }
 function applyLight() { html.removeAttribute('data-theme'); label.textContent='Light'; localStorage.setItem('cc-theme','light'); }
 
+// ===== OPENAI CONFIG =====
+// The key is loaded from localStorage (or a prompt on first use) so it is
+// never committed to the repo. Paste your key once; it is remembered locally.
+const OPENAI_API_KEY = (function () {
+  const stored = localStorage.getItem('cc-openai-key');
+  if (stored) return stored;
+  const key = prompt('Paste your OpenAI API key (stored locally in your browser):');
+  if (key) localStorage.setItem('cc-openai-key', key);
+  return key;
+})();
+
 let uploadedImageBase64 = null;
 let uploadedImageType = null;
 let selectedCritics = new Set(['student','professor','critic']);
@@ -394,43 +416,57 @@ async function callCritic(persona, imageBase64, imageType, focusPrompt) {
   const personas = {
     student: {
       name: "Student Peer Critic",
+      model: "gpt-4o-mini",
       system: `You are a Student Peer Critic in an art and design critique session. You give constructive, accessible peer-level feedback. You are encouraging but specific. You identify genuine strengths and concrete areas to push. You are NOT generic — you look closely at what's actually in front of you. Your tone is warm, direct, and engaged like a thoughtful classmate who cares about the work.`,
       color: "student",
       initial: "P",
       role: "Constructive · accessible · from inside the room",
-      model_label: "claude-sonnet · peer persona"
+      model_label: "gpt-4o-mini · peer persona"
     },
     professor: {
       name: "Studio Professor",
+      model: "gpt-4o",
       system: `You are a Studio Professor in an art and design critique. You have decades of teaching experience. You balance concept and craft. You hold students accountable for their ideas while pointing toward better work. You don't hand-hold. You identify what's conceptually working, what's unresolved, and you give specific directional guidance. Your tone is measured, authoritative, and genuinely invested in the student's growth.`,
       color: "professor",
       initial: "Pr",
       role: "Balanced authority · concept and craft in tension",
-      model_label: "claude-sonnet · professor persona"
+      model_label: "gpt-4o · professor persona"
     },
     critic: {
       name: "Art Critic",
+      model: "gpt-4o",
       system: `You are an Art Critic reviewing work in a professional context. You have no filter. You are direct, specific, and contextual. You situate work within its art historical and cultural context. You identify when work is uninformed of the conversation it's entering. You do not soften feedback for encouragement. You give the hardest, most useful feedback the student will hear. Your tone is precise, demanding, and unsentimental.`,
       color: "critic",
       initial: "C",
       role: "No filter · contextual analysis · the hardest voice",
-      model_label: "claude-sonnet · critic persona"
+      model_label: "gpt-4o · critic persona"
     }
   };
 
   const p = personas[persona];
   const focusLine = focusPrompt ? `\n\nThe student has asked you to focus on: "${focusPrompt}"` : '';
+  if (!OPENAI_API_KEY) throw new Error('No API key set. Reload and paste your OpenAI API key.');
+  const dataUrl = `data:${imageType};base64,${imageBase64}`;
 
-  const userMessage = {
-    role: "user",
-    content: [
-      {
-        type: "image",
-        source: { type: "base64", media_type: imageType, data: imageBase64 }
-      },
-      {
-        type: "text",
-        text: `Please critique this artwork from your perspective as ${p.name}.${focusLine}
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${OPENAI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: p.model,
+      max_tokens: 1500,
+      response_format: { type: "json_object" },
+      messages: [
+        { role: "system", content: p.system },
+        {
+          role: "user",
+          content: [
+            { type: "image_url", image_url: { url: dataUrl } },
+            {
+              type: "text",
+              text: `Please critique this artwork from your perspective as ${p.name}.${focusLine}
 
 Return ONLY a JSON object with this exact structure (no markdown, no extra text):
 {
@@ -450,24 +486,24 @@ Return ONLY a JSON object with this exact structure (no markdown, no extra text)
   ],
   "summary": "<2-3 sentence honest summary of the work and what the student should take away>"
 }`
-      }
-    ]
-  };
-
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      model: "claude-sonnet-4-6",
-      max_tokens: 1000,
-      system: p.system,
-      messages: [userMessage]
+            }
+          ]
+        }
+      ]
     })
   });
 
+  if (!response.ok) {
+    let detail = response.statusText;
+    try {
+      const e = await response.json();
+      detail = e.error?.message || detail;
+    } catch (_) {}
+    throw new Error(`API ${response.status}: ${detail}`);
+  }
+
   const data = await response.json();
-  if (data.error) throw new Error(data.error.message);
-  const raw = data.content[0].text;
+  const raw = data.choices[0].message.content;
   const clean = raw.replace(/```json|```/g, '').trim();
   const parsed = JSON.parse(clean);
   return { ...parsed, persona: p, key: persona };
