@@ -1,0 +1,582 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Z-Image Studio — Case Study · White Crane Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #15130E;
+    --surface: #1E1B14;
+    --surface-2:#2B2620;
+    --border:  #3D3628;
+    --white:   #F5F0E5;
+    --white-muted: rgba(245,240,229,0.66);
+    --white-dim:   rgba(245,240,229,0.34);
+    --gold:    #D4AF37;
+    --gold-2:  #C9A227;
+    --gold-accent: #E8C547;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body:    'Inter', sans-serif;
+    --mono: 'DM Mono','SF Mono','Fira Code','Courier New',monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(21,19,14,0.92);
+    backdrop-filter: blur(14px);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-display); font-size: 13px;
+    font-weight: 600; letter-spacing: 0.06em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-right { display: flex; align-items: center; gap: clamp(1rem, 3vw, 1.75rem); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-family: var(--font-body); font-size: 13px; color: var(--white-muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { font-family: var(--font-display); font-size: 12px; font-weight: 600; color: var(--black); background: var(--gold); padding: 8px 18px; text-decoration: none; border-radius: 2px; transition: opacity 0.2s; }
+  .nav-cta:hover { opacity: 0.85; }
+  @media (max-width: 760px) { .nav-links { display: none; } }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 7rem 0 0; border-bottom: 1px solid var(--border);
+    position: relative; z-index: 1;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -180px; right: -160px;
+    width: 560px; height: 560px;
+    background: radial-gradient(circle, rgba(212,175,55,0.14) 0%, transparent 62%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 980px; margin: 0 auto; padding: 0 2.5rem 3.5rem;
+    display: grid; grid-template-columns: 1fr 320px; gap: 3rem; align-items: end;
+    position: relative; z-index: 1;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-body); font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 8px;
+    margin-bottom: 1.5rem;
+  }
+  .tri {
+    display: inline-block; width: 0; height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid var(--gold);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 700; letter-spacing: -0.03em;
+    line-height: 1.0; margin-bottom: 1.75rem;
+    text-transform: uppercase;
+  }
+  .hero h1 .accent { color: var(--gold-accent); }
+  .hero-subtitle {
+    font-size: 15px; color: var(--white-muted);
+    max-width: 520px; line-height: 1.8;
+    border-left: 2px solid var(--gold);
+    padding-left: 1.25rem;
+  }
+  .hero-meta {
+    display: flex; flex-direction: column; gap: 1.25rem;
+  }
+  .meta-block {
+    border: 1px solid var(--border); padding: 0.875rem 1rem;
+    background: rgba(30,27,20,0.4);
+  }
+  .meta-label {
+    font-family: var(--font-body); font-size: 9px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--white-dim); margin-bottom: 0.35rem;
+  }
+  .meta-value {
+    font-size: 13px; color: var(--white-muted); line-height: 1.6;
+  }
+  .meta-value strong { color: var(--white); font-weight: 500; }
+  .meta-value a { color: var(--gold-accent); text-decoration: none; }
+  .meta-value a:hover { text-decoration: underline; }
+
+  /* ── CASE STUDY BODY ── */
+  .case-body {
+    max-width: 880px; margin: 0 auto; padding: 4rem 2.5rem 6rem;
+    position: relative; z-index: 1;
+  }
+
+  .cs-section { margin-bottom: 4rem; }
+  .cs-eyebrow {
+    font-family: var(--font-body); font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 8px;
+    margin-bottom: 1rem;
+  }
+  .cs-h2 {
+    font-family: var(--font-display); font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: -0.025em; line-height: 1.1;
+    margin-bottom: 1.5rem; color: var(--white);
+  }
+  .cs-h3 {
+    font-family: var(--font-display); font-size: 1.3rem;
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: -0.01em; margin: 1.5rem 0 0.75rem;
+    color: var(--white);
+  }
+  .cs-p {
+    font-size: 15px; color: var(--white-muted);
+    line-height: 1.85; margin-bottom: 1.1rem;
+  }
+  .cs-p strong { color: var(--white); font-weight: 500; }
+  .cs-p em { font-style: italic; color: var(--white); }
+
+  hr.cs-rule {
+    border: none; border-top: 1px solid var(--border);
+    margin: 3.5rem 0;
+  }
+
+  .cs-list { margin: 1.5rem 0; padding-left: 1.5rem; }
+  .cs-list li {
+    margin-bottom: 0.875rem; line-height: 1.75;
+    font-size: 15px; color: var(--white-muted);
+  }
+  .cs-list li strong { color: var(--white); }
+
+  .pullquote {
+    border-left: 2px solid var(--gold); padding: 1.5rem 1.75rem;
+    margin: 2.5rem 0; background: rgba(212,175,55,0.06);
+  }
+  .pullquote p {
+    font-family: var(--font-display); font-size: 1.25rem;
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: -0.015em; line-height: 1.25;
+    color: var(--white);
+  }
+  .pullquote p span { color: var(--white-muted); font-weight: 400; text-transform: none; }
+
+  .example-box {
+    border: 1px solid var(--border); padding: 1.5rem;
+    background: rgba(43,38,32,0.4); margin: 1.75rem 0;
+  }
+  .example-label {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.75rem;
+  }
+  .example-text {
+    font-size: 14px; color: var(--white-muted); line-height: 1.75;
+  }
+  .example-text code, .lead-code { font-family: var(--mono); font-size: 12.5px; color: var(--gold-accent); }
+
+  .metric-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin: 1.75rem 0;
+  }
+  .metric-box {
+    border: 1px solid var(--border); padding: 1.25rem;
+    background: rgba(43,38,32,0.4);
+  }
+  .metric-label {
+    font-family: var(--font-body); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--white-dim); margin-bottom: 0.5rem;
+  }
+  .metric-value {
+    font-family: var(--font-display); font-size: 1.8rem;
+    font-weight: 700; color: var(--gold-accent); line-height: 1;
+  }
+  .metric-sub {
+    font-size: 12px; color: var(--white-muted); margin-top: 0.5rem;
+  }
+
+  .cost-comparison {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin: 2rem 0;
+  }
+  .cost-option {
+    border: 1px solid var(--border); padding: 1.5rem;
+    background: rgba(43,38,32,0.4);
+  }
+  .cost-title {
+    font-family: var(--font-display); font-size: 1.1rem;
+    font-weight: 700; text-transform: uppercase;
+    color: var(--white); margin-bottom: 1rem;
+  }
+  .cost-point {
+    font-size: 13px; color: var(--white-muted);
+    margin-bottom: 0.75rem; line-height: 1.6;
+  }
+  .cost-point strong { color: var(--white); }
+
+  .lesson {
+    display: flex; gap: 1.5rem; padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .lesson:first-child { border-top: 1px solid var(--border); }
+  .lesson-num {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--white-dim); min-width: 28px; padding-top: 2px;
+    flex-shrink: 0;
+  }
+  .lesson p {
+    font-size: 14px; color: var(--white-muted); line-height: 1.75;
+  }
+  .lesson p strong { color: var(--white); }
+
+  .cta-block {
+    border: 1px solid var(--border); padding: 2rem;
+    background: var(--surface); display: flex;
+    align-items: center; justify-content: space-between;
+    gap: 1.5rem; flex-wrap: wrap; margin-top: 3rem;
+  }
+  .cta-left .cta-label {
+    font-family: var(--font-body); font-size: 9px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.4rem;
+  }
+  .cta-left p {
+    font-size: 14px; color: var(--white-muted);
+  }
+  .cta-btn {
+    font-family: var(--font-display); font-size: 11px;
+    font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; background: var(--gold);
+    color: var(--black); padding: 12px 24px; border: none;
+    cursor: pointer; clip-path: polygon(0 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%);
+    transition: opacity 0.2s; text-decoration: none;
+    display: inline-block; white-space: nowrap;
+  }
+  .cta-btn:hover { opacity: 0.85; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--surface);
+    position: relative; z-index: 1;
+  }
+  .footer-brand {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--font-display); font-size: 11px;
+    font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--white-dim);
+  }
+  .footer-tag {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--gold); letter-spacing: 0.1em;
+  }
+  .footer-copy {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--white-dim);
+  }
+
+  .fade { opacity: 0; transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .metric-row { grid-template-columns: 1fr; }
+    .cost-comparison { grid-template-columns: 1fr; }
+    .cta-block { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <svg width="26" height="26" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="1575,201 1365,564 1780,563" fill="currentColor"/>
+      <polygon points="709,693 5,696 357,1306" fill="currentColor"/>
+      <polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/>
+      <polygon points="857,700 506,1307 1208,1309" fill="currentColor"/>
+      <polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/>
+      <polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/>
+      <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
+    </svg>
+    White Crane Labs
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="/#work">Work</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#connect">Connect</a></li>
+    </ul>
+    <a href="https://github.com/ChairmanWCD/z-image-studio" target="_blank" rel="noopener" class="nav-cta">GitHub</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow"><span class="tri"></span> Case Study · Local Generative Infrastructure</div>
+      <h1>Z-Image<br><span class="accent">Studio</span></h1>
+      <p class="hero-subtitle">A FAL.ai-style async inference server for Z-Image-Turbo that runs natively on a consumer GPU — no Docker, no cloud, sharing ComfyUI's models.</p>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-block">
+        <div class="meta-label">Project</div>
+        <div class="meta-value"><strong>Local inferencing</strong> · RTX 5070 · 12 GB VRAM</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Built with</div>
+        <div class="meta-value"><strong>Z-Image-Turbo</strong> · FastAPI · PyTorch · CUDA</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Source</div>
+        <div class="meta-value"><a href="https://github.com/ChairmanWCD/z-image-studio" target="_blank" rel="noopener">github.com/ChairmanWCD/z-image-studio ↗</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY -->
+<div class="case-body">
+
+  <!-- 01 THE BRIEF -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 01 — The brief</div>
+    <h2 class="cs-h2">Text-to-image at studio cost</h2>
+    <p class="cs-p">Creative teams need to generate images. Cloud APIs make that easy — until you hit the wall of cost, latency, data privacy, and wait times at scale. Every generation is accounted, every prompt leaves the machine, every call competes for a shared queue.</p>
+    <p class="cs-p">The alternative is running open-weight models yourself. For a long time that meant Docker, Linux, and a bank of data-center GPUs — infrastructure a small studio simply doesn't have.</p>
+    <p class="cs-p">The question wasn't "can we use a text-to-image model?" It was: <strong>"Can a single consumer GPU become a serious, always-on image generation service?"</strong></p>
+    <p class="cs-p">This project says yes — by porting a production-grade server to native Windows and sharing the models ComfyUI already has on disk.</p>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 02 BUILD VS BUY -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 02 — Build vs. buy</div>
+    <h2 class="cs-h2">Owning the infra</h2>
+
+    <div class="cost-comparison">
+      <div class="cost-option">
+        <div class="cost-title">Option A: Cloud API</div>
+        <div class="cost-point">Per-image pricing + latency per call</div>
+        <div class="cost-point">Prompts and outputs leave your machine</div>
+        <div class="cost-point">Shared queue — wait times under load</div>
+        <div class="cost-point"><strong>Rate limits, usage quotas, dependency on a vendor's roadmap.</strong></div>
+      </div>
+      <div class="cost-option">
+        <div class="cost-title">Option B: Local server</div>
+        <div class="cost-point">One-time hardware investment</div>
+        <div class="cost-point">Full data sovereignty — runs on-device</div>
+        <div class="cost-point">Your own queue, your own timing</div>
+        <div class="cost-point"><strong>Zero per-image cost. Unmetered. Always yours.</strong></div>
+      </div>
+    </div>
+
+    <p class="cs-p">Z-Image Studio is Option B, made practical: <strong>a self-hosted inference service on a 12 GB mid-range GPU.</strong> The hard engineering is making that much model load into that little VRAM.</p>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 03 THE ARCHITECTURE -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 03 — The architecture</div>
+    <h2 class="cs-h2">A FAL.ai-style async queue</h2>
+    <p class="cs-p">Generation is slow. UI's must never wait on it. The core design mirrors FAL.ai's pattern: <strong>submit a job, poll for status, fetch the result.</strong> The interface stays instant while a background worker owns the heavy inference.</p>
+
+    <div class="pullquote">
+      <p>Submit, poll, fetch. <span>The UI never blocks on a generation.</span></p>
+    </div>
+
+    <div class="example-box">
+      <div class="example-label">Async flow</div>
+      <div class="example-text">
+        <code>POST /submit</code> → returns a <code>request_id</code> · <code>GET /status/{id}</code> → <code>IN_QUEUE</code> / <code>IN_PROGRESS</code> / <code>COMPLETED</code> · <code>GET /result/{id}</code> → the images, seed, and timings.
+      </div>
+    </div>
+
+    <h3 class="cs-h3">Two APIs, one engine</h3>
+    <ul class="cs-list">
+      <li><strong>Async queue API</strong> — <span class="lead-code">/submit</span> → <span class="lead-code">/status</span> → <span class="lead-code">/result</span>, plus <span class="lead-code">/cancel</span>. Built for polling clients and parallel workloads.</li>
+      <li><strong>Sync API</strong> — <span class="lead-code">POST /generate</span> returns the result inline, with optional <span class="lead-code">sync_mode</span> for base64 data URIs.</li>
+      <li><strong>Support endpoints</strong> — <span class="lead-code">/health</span>, <span class="lead-code">/api/history</span> (recent images), <span class="lead-code">/output/{file}</span> (static files), and Swagger docs at <span class="lead-code">/docs</span>.</li>
+    </ul>
+
+    <p class="cs-p">A warmup inference runs at startup so the first real request doesn't pay the cold-start cost. Queue depth is capped (<span class="lead-code">MAX_QUEUE_SIZE</span>), failed jobs retry, and completed results expire after a <span class="lead-code">TTL</span>.</p>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 04 THE HARD PROBLEM -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 04 — The hard problem</div>
+    <h2 class="cs-h2">Getting 20 GB of weights into 12 GB of VRAM</h2>
+    <p class="cs-p">Z-Image-Turbo's full pipeline is heavy. The three weight files total nearly <strong>20 GB</strong>, but the RTX 5070 has only 12 GB. Nothing fits all at once — so the design treats VRAM as a shared, rotating resource.</p>
+
+    <div class="metric-row">
+      <div class="metric-box">
+        <div class="metric-label">Transformer</div>
+        <div class="metric-value">12 GB</div>
+        <div class="metric-sub">z_image_turbo_bf16.safetensors</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Text encoder</div>
+        <div class="metric-value">7.5 GB</div>
+        <div class="metric-sub">Qwen3-4B</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">VAE</div>
+        <div class="metric-value">320 MB</div>
+        <div class="metric-sub">Flux-style · 16 latent channels</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Safe upper side</div>
+        <div class="metric-value">1024 px</div>
+        <div class="metric-sub">Any larger request auto-scales down</div>
+      </div>
+    </div>
+
+    <h3 class="cs-h3">How it stays under the ceiling</h3>
+    <ul class="cs-list">
+      <li><strong>CPU offload</strong> — <span class="lead-code">enable_model_cpu_offload()</span> keeps only the active module in VRAM; the rest lives in system RAM.</li>
+      <li><strong>Attention + VAE slicing</strong> — both <span class="lead-code">enable_attention_slicing()</span> and VAE <span class="lead-code">tiling/slicing</span> cut peak memory.</li>
+      <li><strong>Auto-downscale</strong> — any requested size is clamped to <span class="lead-code">MAX_IMAGE_SIDE</span> (default 1024) before generation.</li>
+    </ul>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 05 PORTING TO WINDOWS -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 05 — Porting to Windows</div>
+    <h2 class="cs-h2">From Docker to a single PowerShell prompt</h2>
+    <p class="cs-p">The original build was Linux/Docker on a data-center Grace Blackwell GPU. Bringing it to a personal RTX 5070 meant removing Docker, scripting the setup, and fixing every quirk that surfaced along the way.</p>
+
+    <ul class="cs-list">
+      <li><strong>Docker removed</strong> — <span class="lead-code">Dockerfile</span> / <span class="lead-code">docker-compose</span> archived. Replaced with <span class="lead-code">setup.ps1</span> (venv + deps) and <span class="lead-code">start.ps1</span> (uvicorn launcher).</li>
+      <li><strong>Shared model folder</strong> — <span class="lead-code">start.ps1</span> defaults <span class="lead-code">LOCAL_MODELS_DIR</span> to ComfyUI's shared folder — no duplicate ~20 GB download, both tools share one set of weights.</li>
+      <li><strong>VRAM-safe on 12 GB</strong> — the offload and slicing fixes above, driven by the fact that <span class="lead-code">ZImagePipeline</span> doesn't expose pipeline-level VAE tiling (an early build errored on exactly that).</li>
+      <li><strong>Windows-friendly paths</strong> — <span class="lead-code">config.py</span> auto-detects a <span class="lead-code">../models</span> sibling folder instead of a container path; output defaults to <span class="lead-code">.\output</span>.</li>
+      <li><strong>Environment</strong> — torch <span class="lead-code">cu130</span> (fallback <span class="lead-code">cu128</span>), <span class="lead-code">diffusers</span> from git main, <span class="lead-code">transformers</span> 5.x. Verified: torch 2.13.0+cu130, <span class="lead-code">cuda=True</span>.</li>
+    </ul>
+
+    <div class="pullquote">
+      <p>One machine. One script. <span>Your own image generation service.</span></p>
+    </div>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 06 THE INTERFACE -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 06 — The interface</div>
+    <h2 class="cs-h2">A studio-grade web UI</h2>
+    <p class="cs-p">A server is only useful if people can drive it. The bundled single-page UI gives a full generation workspace with a dark, gold-accented theme — and a light mode for bright studios.</p>
+    <ul class="cs-list">
+      <li><strong>Prompt controls</strong> — textarea with example chips and <code>Cmd/Ctrl+Enter</code> to generate.</li>
+      <li><strong>Size presets</strong> — six aspect ratios from Square HD to Landscape 16:9, all clamped to fit VRAM.</li>
+      <li><strong>Advanced settings</strong> — negative prompt, guidance scale, seed + randomize.</li>
+      <li><strong>Output control</strong> — inference steps (1–10), image count (1–4), PNG/JPEG.</li>
+      <li><strong>Live feedback</strong> — elapsed timer, skeleton loading, cancel, health status, and a <code>/api/history</code> strip to reopen recent work.</li>
+    </ul>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 07 HONEST ASSESSMENT -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 07 — What's still hard</div>
+    <h2 class="cs-h2">The tradeoffs</h2>
+    <p class="cs-p">Local inferencing isn't a free lunch. Being honest about the ceilings is part of the point.</p>
+
+    <div class="lesson">
+      <div class="lesson-num">01</div>
+      <p><strong>VRAM is a hard ceiling.</strong> Every optimization exists because 12 GB isn't much for this pipeline. Larger images are impossible without downscaling or a bigger card.</p>
+    </div>
+    <div class="lesson">
+      <div class="lesson-num">02</div>
+      <p><strong>Models must be present.</strong> The ~20 GB of weights need a <span class="lead-code">LOCAL_MODELS_DIR</span> or a HuggingFace download, and gated repos demand an <code>HF_TOKEN</code>.</p>
+    </div>
+    <div class="lesson">
+      <div class="lesson-num">03</div>
+      <p><strong>Windows friction is real.</strong> PowerShell's execution policy blocks <code>.ps1</code> scripts until you bypass or relax it — a classic first-run stumble.</p>
+    </div>
+    <div class="lesson">
+      <div class="lesson-num">04</div>
+      <p><strong>First request is slower.</strong> Kernel recompilation at larger sizes costs a few extra seconds; steady-state is fast but the warm-up is visible.</p>
+    </div>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 08 WHY THIS MATTERS -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 08 — Why this matters</div>
+    <h2 class="cs-h2">Generative infrastructure, owned</h2>
+
+    <div class="pullquote">
+      <p>Serious creative tooling shouldn't require a cloud subscription. <span>It should run on hardware a studio can actually afford.</span></p>
+    </div>
+
+    <p class="cs-p">Z-Image Studio is a proof that a consumer GPU — not a lab, not a data center — can power a real, queue-based image generation service. It's fast, it's local, and it reuses the models a studio already has through ComfyUI. No per-image fees. No prompts leaving the machine. No vendor in between.</p>
+
+    <div class="cta-block">
+      <div class="cta-left">
+        <div class="cta-label">View the repo</div>
+        <p>Setup scripts, config, server code, and the full work log are open on GitHub.</p>
+      </div>
+      <a href="https://github.com/ChairmanWCD/z-image-studio" target="_blank" rel="noopener" class="cta-btn">GitHub ↗</a>
+    </div>
+
+    <p class="cs-p" style="margin-top:1.5rem; font-size:13px; color:var(--white-dim);">Z-Image-Turbo is © Tongyi-MAI / Alibaba. Refer to the model card for licensing terms.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <svg width="18" height="18" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="1575,201 1365,564 1780,563" fill="currentColor" opacity=".6"/>
+      <polygon points="709,693 5,696 357,1306" fill="currentColor" opacity=".6"/>
+      <polygon points="1711,693 1009,693 1357,1303" fill="currentColor" opacity=".6"/>
+      <polygon points="857,700 506,1307 1208,1309" fill="currentColor" opacity=".6"/>
+      <polygon points="863,1435 1074,1796 1279,1435" fill="currentColor" opacity=".6"/>
+      <polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor" opacity=".6"/>
+      <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
+    </svg>
+    White Crane Labs
+  </div>
+  <div class="footer-tag">Human in the loop. Always.</div>
+  <div class="footer-copy">© 2026 · whitecranelabs.com</div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
