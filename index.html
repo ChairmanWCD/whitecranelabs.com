@@ -32,6 +32,7 @@
     --teal:       #2A9D8F;
     --green:      #3FBF6F;
     --violet:     #A78BFA;
+    --blue:       #2EBEDC;
     --fd: 'Space Grotesk', sans-serif;
     --fb: 'Inter', sans-serif;
     --mono: 'JetBrains Mono', 'SF Mono', monospace;
@@ -298,6 +299,7 @@
   .project.pj-teal .project-num { color: var(--teal); }
   .project.pj-green .project-num { color: var(--green); }
   .project.pj-violet .project-num { color: var(--violet); }
+  .project.pj-blue .project-num { color: var(--blue); }
   .project.pj-white .project-num { color: var(--white); }
 
   .project-head { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
@@ -309,6 +311,7 @@
   .cat-pill.c-teal { background: var(--teal); }
   .cat-pill.c-green { background: var(--green); }
   .cat-pill.c-violet { background: var(--violet); color: var(--ink-fixed); }
+  .cat-pill.c-blue { background: var(--blue); color: var(--ink-fixed); }
   .cat-pill.c-white { background: var(--white); color: var(--ink-fixed); }
   html[data-theme="light"] .cat-pill.c-white { color: var(--paper-fixed); }
   .project-role { font-family: var(--mono); font-size: 11.5px; color: var(--text-dim); margin-bottom: 0.8rem; }
@@ -337,6 +340,7 @@
   .project:hover.pj-teal .project-thumb { border-color: rgba(42,157,143,0.45); }
   .project:hover.pj-green .project-thumb { border-color: rgba(63,191,111,0.45); }
   .project:hover.pj-violet .project-thumb { border-color: rgba(167,139,250,0.45); }
+  .project:hover.pj-blue .project-thumb { border-color: rgba(46,190,220,0.45); }
   @media (max-width: 640px) { .project { grid-template-columns: 1fr; } .project-num { display: none; } }
 
   /* ================= STACK ================= */
@@ -603,21 +607,21 @@
       </div>
     </div>
 
-    <div class="project pj-red" data-stagger="1">
+    <div class="project pj-blue" data-stagger="1">
       <div class="project-num">03</div>
       <div class="project-main">
       <div class="project-head">
-        <span class="cat-pill c-red">Product Strategy</span>
-        <a href="LevelUpLife_Case_Study.html" target="_blank" rel="noopener" class="project-title">LevelUpLife</a>
+        <span class="cat-pill c-blue">Health Companion App</span>
+        <a href="HeoPet.html" target="_blank" rel="noopener" class="project-title">HeoPet</a>
       </div>
-      <p class="project-role" data-stagger="2">Course project · $93M TAM</p>
-      <p class="project-desc" data-stagger="3">Soft-skill learning turned into a narrative adventure for high school students. A story-first curriculum, a gamified quest system, and a human-in-the-loop content pipeline keep it engaging.</p>
+      <p class="project-role" data-stagger="2">Mobile digital pet · Expo / React Native</p>
+      <p class="project-desc" data-stagger="3">A mobile pet whose wellbeing is derived from your own health — auto-tracked steps and tapped water drive a mood that plays out as real-time animation. Health you can actually watch.</p>
       <div class="project-chips" data-stagger="4">
-        <span class="chip">Product Strategy</span><span class="chip">Story Engine</span><span class="chip">Gamification</span><span class="chip">Human-in-the-Loop</span>
+        <span class="chip">Expo</span><span class="chip">React Native</span><span class="chip">Pedometer</span><span class="chip">Mood Engine</span><span class="chip">Motion UI</span>
       </div>
       <div class="project-links">
-        <a href="LevelUpLife_Case_Study.html" target="_blank" rel="noopener" class="link-primary">Read the case study →</a>
-        <a href="LevelUpLife_OnePager.html" target="_blank" rel="noopener" class="link-primary">One-pager ↗</a>
+        <a href="HeoPet.html" target="_blank" rel="noopener" class="link-primary">Read the case study →</a>
+        <a href="https://github.com/ChairmanWCD/HeoPet" target="_blank" rel="noopener" class="link-primary">GitHub ↗</a>
       </div>
       </div>
     </div>

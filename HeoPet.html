@@ -1,0 +1,609 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HeoPet — Case Study · White Crane Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #071419;
+    --surface: #0B2030;
+    --surface-2:#0F2B3B;
+    --border:  #1E4660;
+    --white:   #EAFBFF;
+    --white-muted: rgba(234,251,255,0.7);
+    --white-dim:   rgba(234,251,255,0.38);
+    --aqua:    #2EBEDC;
+    --aqua-2:  #1E9BC9;
+    --aqua-accent: #8FC7DA;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body:    'Inter', sans-serif;
+    --mono: 'DM Mono','SF Mono','Fira Code','Courier New',monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(7,20,25,0.92);
+    backdrop-filter: blur(14px);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-display); font-size: 13px;
+    font-weight: 600; letter-spacing: 0.06em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-right { display: flex; align-items: center; gap: clamp(1rem, 3vw, 1.75rem); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-family: var(--font-body); font-size: 13px; color: var(--white-muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { font-family: var(--font-display); font-size: 12px; font-weight: 600; color: #06121A; background: var(--aqua); padding: 8px 18px; text-decoration: none; border-radius: 2px; transition: opacity 0.2s; }
+  .nav-cta:hover { opacity: 0.85; }
+  @media (max-width: 760px) { .nav-links { display: none; } }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 7rem 0 0; border-bottom: 1px solid var(--border);
+    position: relative; z-index: 1;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -200px; right: -140px;
+    width: 620px; height: 620px;
+    background: radial-gradient(circle, rgba(46,190,220,0.18) 0%, transparent 62%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -220px; left: -120px;
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, rgba(30,155,201,0.14) 0%, transparent 62%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1080px; margin: 0 auto; padding: 0 2.5rem 3.5rem;
+    display: grid; grid-template-columns: 1fr 400px; gap: 2.5rem; align-items: end;
+    position: relative; z-index: 1;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-body); font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--aqua); display: flex; align-items: center; gap: 8px;
+    margin-bottom: 1.5rem;
+  }
+  .tri {
+    display: inline-block; width: 0; height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid var(--aqua);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 700; letter-spacing: -0.03em;
+    line-height: 1.0; margin-bottom: 1.75rem;
+    text-transform: uppercase;
+  }
+  .hero h1 .accent { color: var(--aqua-accent); }
+  .hero-subtitle {
+    font-size: 15px; color: var(--white-muted);
+    max-width: 540px; line-height: 1.8;
+    border-left: 2px solid var(--aqua);
+    padding-left: 1.25rem;
+  }
+  .hero-visual {
+    border: 1px solid var(--border); background: var(--surface);
+    padding: 1rem; position: relative;
+  }
+  .hero-visual img {
+    width: 100%; height: auto; display: block;
+    background: var(--surface-2);
+  }
+  .hero-visual figcaption {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--white-dim); padding-top: 0.75rem;
+  }
+  .hero-meta {
+    grid-column: 1 / -1;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem;
+  }
+  .meta-block {
+    border: 1px solid var(--border); padding: 0.875rem 1rem;
+    background: rgba(11,32,48,0.5);
+  }
+  .meta-label {
+    font-family: var(--font-body); font-size: 9px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--white-dim); margin-bottom: 0.35rem;
+  }
+  .meta-value {
+    font-size: 13px; color: var(--white-muted); line-height: 1.6;
+  }
+  .meta-value strong { color: var(--white); font-weight: 500; }
+  .meta-value a { color: var(--aqua-accent); text-decoration: none; }
+  .meta-value a:hover { text-decoration: underline; }
+
+  /* ── CASE STUDY BODY ── */
+  .case-body {
+    max-width: 880px; margin: 0 auto; padding: 4rem 2.5rem 6rem;
+    position: relative; z-index: 1;
+  }
+
+  .cs-section { margin-bottom: 4rem; }
+  .cs-eyebrow {
+    font-family: var(--font-body); font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--aqua); display: flex; align-items: center; gap: 8px;
+    margin-bottom: 1rem;
+  }
+  .cs-h2 {
+    font-family: var(--font-display); font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: -0.025em; line-height: 1.1;
+    margin-bottom: 1.5rem; color: var(--white);
+  }
+  .cs-h3 {
+    font-family: var(--font-display); font-size: 1.3rem;
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: -0.01em; margin: 1.5rem 0 0.75rem;
+    color: var(--white);
+  }
+  .cs-p {
+    font-size: 15px; color: var(--white-muted);
+    line-height: 1.85; margin-bottom: 1.1rem;
+  }
+  .cs-p strong { color: var(--white); font-weight: 500; }
+  .cs-p em { font-style: italic; color: var(--white); }
+
+  hr.cs-rule {
+    border: none; border-top: 1px solid var(--border);
+    margin: 3.5rem 0;
+  }
+
+  .cs-list { margin: 1.5rem 0; padding-left: 1.5rem; }
+  .cs-list li {
+    margin-bottom: 0.875rem; line-height: 1.75;
+    font-size: 15px; color: var(--white-muted);
+  }
+  .cs-list li strong { color: var(--white); }
+
+  .pullquote {
+    border-left: 2px solid var(--aqua); padding: 1.5rem 1.75rem;
+    margin: 2.5rem 0; background: rgba(46,190,220,0.08);
+  }
+  .pullquote p {
+    font-family: var(--font-display); font-size: 1.25rem;
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: -0.015em; line-height: 1.25;
+    color: var(--white);
+  }
+  .pullquote p span { color: var(--white-muted); font-weight: 400; text-transform: none; }
+
+  .example-box {
+    border: 1px solid var(--border); padding: 1.5rem;
+    background: rgba(16,43,59,0.5); margin: 1.75rem 0;
+  }
+  .example-label {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--aqua); margin-bottom: 0.75rem;
+  }
+  .example-text {
+    font-size: 14px; color: var(--white-muted); line-height: 1.75;
+  }
+  .example-text code, .lead-code { font-family: var(--mono); font-size: 12.5px; color: var(--aqua-accent); }
+
+  .metric-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin: 1.75rem 0;
+  }
+  .metric-box {
+    border: 1px solid var(--border); padding: 1.25rem;
+    background: rgba(16,43,59,0.5);
+  }
+  .metric-label {
+    font-family: var(--font-body); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--white-dim); margin-bottom: 0.5rem;
+  }
+  .metric-value {
+    font-family: var(--font-display); font-size: 1.8rem;
+    font-weight: 700; color: var(--aqua-accent); line-height: 1;
+  }
+  .metric-sub {
+    font-size: 12px; color: var(--white-muted); margin-top: 0.5rem;
+  }
+
+  /* ── ANIMATION GRID ── */
+  .motion-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem; margin: 2rem 0;
+  }
+  .motion-card {
+    border: 1px solid var(--border); background: var(--surface);
+    overflow: hidden;
+  }
+  .motion-card img {
+    width: 100%; height: auto; display: block;
+    background: var(--surface-2);
+  }
+  .motion-body { padding: 1rem 1.25rem 1.25rem; }
+  .motion-state {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--aqua); margin-bottom: 0.4rem;
+  }
+  .motion-body p {
+    font-size: 13.5px; color: var(--white-muted); line-height: 1.6;
+  }
+  .motion-body p strong { color: var(--white); }
+
+  .cost-comparison {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin: 2rem 0;
+  }
+  .cost-option {
+    border: 1px solid var(--border); padding: 1.5rem;
+    background: rgba(16,43,59,0.5);
+  }
+  .cost-title {
+    font-family: var(--font-display); font-size: 1.1rem;
+    font-weight: 700; text-transform: uppercase;
+    color: var(--white); margin-bottom: 1rem;
+  }
+  .cost-point {
+    font-size: 13px; color: var(--white-muted);
+    margin-bottom: 0.75rem; line-height: 1.6;
+  }
+  .cost-point strong { color: var(--white); }
+
+  .lesson {
+    display: flex; gap: 1.5rem; padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .lesson:first-child { border-top: 1px solid var(--border); }
+  .lesson-num {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--white-dim); min-width: 28px; padding-top: 2px;
+    flex-shrink: 0;
+  }
+  .lesson p {
+    font-size: 14px; color: var(--white-muted); line-height: 1.75;
+  }
+  .lesson p strong { color: var(--white); }
+
+  .cta-block {
+    border: 1px solid var(--border); padding: 2rem;
+    background: var(--surface); display: flex;
+    align-items: center; justify-content: space-between;
+    gap: 1.5rem; flex-wrap: wrap; margin-top: 3rem;
+  }
+  .cta-left .cta-label {
+    font-family: var(--font-body); font-size: 9px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--aqua); margin-bottom: 0.4rem;
+  }
+  .cta-left p {
+    font-size: 14px; color: var(--white-muted);
+  }
+  .cta-btn {
+    font-family: var(--font-display); font-size: 11px;
+    font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; background: var(--aqua);
+    color: #06121A; padding: 12px 24px; border: none;
+    cursor: pointer; clip-path: polygon(0 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%);
+    transition: opacity 0.2s; text-decoration: none;
+    display: inline-block; white-space: nowrap;
+  }
+  .cta-btn:hover { opacity: 0.85; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--surface);
+    position: relative; z-index: 1;
+  }
+  .footer-brand {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--font-display); font-size: 11px;
+    font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--white-dim);
+  }
+  .footer-tag {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--aqua); letter-spacing: 0.1em;
+  }
+  .footer-copy {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--white-dim);
+  }
+
+  .fade { opacity: 0; transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 860px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-meta { grid-template-columns: 1fr; }
+    .metric-row { grid-template-columns: 1fr; }
+    .motion-grid { grid-template-columns: 1fr; }
+    .cost-comparison { grid-template-columns: 1fr; }
+    .cta-block { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <svg width="26" height="26" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="1575,201 1365,564 1780,563" fill="currentColor"/>
+      <polygon points="709,693 5,696 357,1306" fill="currentColor"/>
+      <polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/>
+      <polygon points="857,700 506,1307 1208,1309" fill="currentColor"/>
+      <polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/>
+      <polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/>
+      <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
+    </svg>
+    White Crane Labs
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="/#work">Work</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#connect">Connect</a></li>
+    </ul>
+    <a href="https://github.com/ChairmanWCD/HeoPet" target="_blank" rel="noopener" class="nav-cta">GitHub</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow"><span class="tri"></span> Case Study · Mobile Digital Pet</div>
+      <h1>Heo<span class="accent">Pet</span></h1>
+      <p class="hero-subtitle">A mobile digital-pet health companion. Every step and every glass of water drives a mood that plays out as real animation — because a pet you can see feel better is one you actually take care of.</p>
+    </div>
+    <figure class="hero-visual">
+      <img src="assets/heopet/master.png" alt="HeoPet master image">
+      <figcaption>HeoPet · ocean-blue theme</figcaption>
+    </figure>
+    <div class="hero-meta">
+      <div class="meta-block">
+        <div class="meta-label">Platform</div>
+        <div class="meta-value"><strong>Mobile app</strong> · Expo / React Native</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Core loop</div>
+        <div class="meta-value"><strong>Steps (auto)</strong> &amp; <strong>Water (manual)</strong> → mood → animation</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Source</div>
+        <div class="meta-value"><a href="https://github.com/ChairmanWCD/HeoPet" target="_blank" rel="noopener">github.com/ChairmanWCD/HeoPet ↗</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY -->
+<div class="case-body">
+
+  <!-- 01 THE CONCEPT -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 01 — The concept</div>
+    <h2 class="cs-h2">A pet that runs on real health</h2>
+    <p class="cs-p">Most habit apps reward you with numbers on a screen. HeoPet gives you something to look at: a living creature whose wellbeing is literally derived from yours.</p>
+    <p class="cs-p">Because the phone already knows your steps, exercise needs no friction — it's measured automatically. Water, which a phone can't sense, is tracked by simple taps. Both feed one model of mood, which decides how the pet looks and moves in real time.</p>
+    <div class="pullquote">
+      <p>Steps kindle it. Water sustains it. <span>The mood is the interface.</span></p>
+    </div>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 02 THE METRICS -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 02 — The metrics</div>
+    <h2 class="cs-h2">Two signals, one wellbeing state</h2>
+
+    <div class="metric-row">
+      <div class="metric-box">
+        <div class="metric-label">Steps (auto)</div>
+        <div class="metric-value">9,000 / day</div>
+        <div class="metric-sub">Read from the phone's pedometer — no input required.</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Water (manual)</div>
+        <div class="metric-value">4 × 500 ml</div>
+        <div class="metric-sub">Each tap records half a litre toward the 2 L daily target.</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Mood states</div>
+        <div class="metric-value">8</div>
+        <div class="metric-sub">idle · happy · energetic · sluggish · thirsty (mild &amp; severe) · walking · drinking.</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Rendering</div>
+        <div class="metric-value">Video</div>
+        <div class="metric-sub">Each mood is an animated clip that swaps when the state changes.</div>
+      </div>
+    </div>
+
+    <h3 class="cs-h3">How the state is chosen</h3>
+    <ul class="cs-list">
+      <li><strong>Pacing checkpoints</strong> — goal progress is scored in stages, so the pet reacts to momentum (getting there) rather than an all-or-nothing finish.</li>
+      <li><strong>Priority logic</strong> — water and activity have distinct urgency tiers; the engine resolves which mood wins when signals conflict.</li>
+      <li><strong>EXP &amp; levels</strong> — consistent care compounds into progression, giving the loop a long arc beyond any single day.</li>
+    </ul>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 03 THE ENGINE -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 03 — The mood engine</div>
+    <h2 class="cs-h2">From raw data to something alive</h2>
+    <p class="cs-p">The core challenge was making a health state feel like a personality. Raw numbers don't charm anyone — so HeoPet translates metrics into a single, legible mood, then plays it back as motion.</p>
+
+    <div class="example-box">
+      <div class="example-label">Decision flow</div>
+      <div class="example-text">
+        <code>daily progress</code> + <code>priority conflicts</code> → <code>mood index</code> → <code>video state</code> → <code>character animation</code>
+      </div>
+    </div>
+
+    <h3 class="cs-h3">Design decisions</h3>
+    <ul class="cs-list">
+      <li><strong>Video, not skeletal rigging</strong> — pre-rendered clips are far cheaper on battery than live animation, and keep the art direction pixel-perfect.</li>
+      <li><strong>Checkpoint momentum</strong> — small wins keep the pet visibly better off early, so delayed-gratification never breaks the loop.</li>
+      <li><strong>Conflict resolution</strong> — when low water and high activity disagree, the engine prioritizes the more urgent signal instead of averaging them into a bland middle.</li>
+    </ul>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 04 WATCH THE PIGS MOVE -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 04 — The animations</div>
+    <h2 class="cs-h2">The mood, in motion</h2>
+    <p class="cs-p">Every mood is its own animation. These clips loop in the app; below they're shown as lightweight GIFs cut directly from the rendered ocean-blue comps so you can see the expressions actually play.</p>
+
+    <div class="motion-grid">
+      <div class="motion-card">
+        <img src="assets/heopet/idle.gif" alt="HeoPet idle animation">
+        <div class="motion-body"><div class="motion-state">Idle</div><p>The calm resting state — the pet at ease with the day going well.</p></div>
+      </div>
+      <div class="motion-card">
+        <img src="assets/heopet/happy.gif" alt="HeoPet happy animation">
+        <div class="motion-body"><div class="motion-state">Happy</div><p>Good pacing on the metrics — a light, content bounce.</p></div>
+      </div>
+      <div class="motion-card">
+        <img src="assets/heopet/energetic.gif" alt="HeoPet energetic animation">
+        <div class="motion-body"><div class="motion-state">Energetic</div><p>High activity met — the pet visibly full of beans.</p></div>
+      </div>
+      <div class="motion-card">
+        <img src="assets/heopet/walking.gif" alt="HeoPet walking animation">
+        <div class="motion-body"><div class="motion-state">Walking</div><p>Active movement — shown as the day's steps build up.</p></div>
+      </div>
+      <div class="motion-card">
+        <img src="assets/heopet/drinking.gif" alt="HeoPet drinking animation">
+        <div class="motion-body"><div class="motion-state">Drinking</div><p>The water tap in action — rewarded instantly on every sip.</p></div>
+      </div>
+      <div class="motion-card">
+        <img src="assets/heopet/thirsty.gif" alt="HeoPet thirsty animation">
+        <div class="motion-body"><div class="motion-state">Thirsty</div><p>Hydration lagging — a gentle nudge to grab that next glass.</p></div>
+      </div>
+    </div>
+
+    <p class="cs-p" style="font-size:13px; color:var(--white-dim);">Full clip set — including thirsty-mild, thirsty-severe and sluggish — ships in the app; these six capture the core of the loop.</p>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 05 PROGRESSION -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 05 — The long arc</div>
+    <h2 class="cs-h2">Care that compounds</h2>
+    <p class="cs-p">A one-day loop fades fast. HeoPet layers a progression system on top so consistent care matters day over day.</p>
+    <div class="pullquote">
+      <p>The daily loop draws you in. <span>Progression keeps you coming back.</span></p>
+    </div>
+    <ul class="cs-list">
+      <li><strong>EXP from care</strong> — steps, water, and healthy mood states all award EXP.</li>
+      <li><strong>Levels unlock presence</strong> — the pet's states feel richer as you level, celebrating the accumulated habit, not a lucky day.</li>
+    </ul>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 06 HONEST ASSESSMENT -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 06 — What's still hard</div>
+    <h2 class="cs-h2">Tradeoffs, honestly</h2>
+
+    <div class="lesson">
+      <div class="lesson-num">01</div>
+      <p><strong>Manual water is a trust problem.</strong> A phone can count steps but not sips. The tap system is honest and simple, but it relies on the user to log — the one piece of friction in an otherwise automatic loop.</p>
+    </div>
+    <div class="lesson">
+      <div class="lesson-num">02</div>
+      <p><strong>Video states are static storytelling.</strong> Pre-rendered clips look great but don't interpolate between needs. A blend between states could feel even more alive.</p>
+    </div>
+    <div class="lesson">
+      <div class="lesson-num">03</div>
+      <p><strong>Mood can collapse to a few archetypes.</strong> Eight states cover the core well, but real wellbeing has more nuance — richer states would deepen believability.</p>
+    </div>
+  </div>
+
+  <hr class="cs-rule">
+
+  <!-- 07 WHY THIS MATTERS -->
+  <div class="cs-section fade">
+    <div class="cs-eyebrow"><span class="tri"></span> 07 — Why this matters</div>
+    <h2 class="cs-h2">Health you can watch</h2>
+
+    <div class="pullquote">
+      <p>A habit isn't a checklist. <span>It's something you care about.</span></p>
+    </div>
+
+    <p class="cs-p">HeoPet turns abstract goals into a character you can see respond. The pet's mood — played back as animation — makes a 10,000-step day or a logged glass of water feel meaningful in the moment. It's a simple idea with a strong execution: metrics on the inside, personality on the outside.</p>
+
+    <div class="cta-block">
+      <div class="cta-left">
+        <div class="cta-label">View the repo</div>
+        <p>App source, mood engine, and the full work log are open on GitHub.</p>
+      </div>
+      <a href="https://github.com/ChairmanWCD/HeoPet" target="_blank" rel="noopener" class="cta-btn">GitHub ↗</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <svg width="18" height="18" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="1575,201 1365,564 1780,563" fill="currentColor" opacity=".6"/>
+      <polygon points="709,693 5,696 357,1306" fill="currentColor" opacity=".6"/>
+      <polygon points="1711,693 1009,693 1357,1303" fill="currentColor" opacity=".6"/>
+      <polygon points="857,700 506,1307 1208,1309" fill="currentColor" opacity=".6"/>
+      <polygon points="863,1435 1074,1796 1279,1435" fill="currentColor" opacity=".6"/>
+      <polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor" opacity=".6"/>
+      <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
+    </svg>
+    White Crane Labs
+  </div>
+  <div class="footer-tag">Human in the loop. Always.</div>
+  <div class="footer-copy">© 2026 · whitecranelabs.com</div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
