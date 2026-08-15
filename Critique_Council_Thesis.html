@@ -5,199 +5,289 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Critique Council — Thesis · White Crane Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --ink: #0E0E0C; --ink-2: #1A1A17; --ink-3: #252521;
-  --rule: rgba(255,255,255,0.07); --rule-med: rgba(255,255,255,0.12);
-  --chalk: #E9E7DF; --chalk-dim: rgba(233,231,223,0.5); --chalk-faint: rgba(233,231,223,0.2);
-  --red: #E03030;
-  --student: #4ABFB0; --professor: #E03030; --critic: #D4A843;
-  --mono: 'DM Mono', monospace; --display: 'Syne', sans-serif; --body: 'DM Sans', sans-serif;
-}
-html { scroll-behavior: smooth; }
-body { background: var(--ink); color: var(--chalk); font-family: var(--body); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
-body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: .5; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: .9rem 2.5rem; border-bottom: 1px solid var(--rule); background: rgba(14,14,12,.96); backdrop-filter: blur(14px); }
-.nav-brand { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: .06em; color: var(--chalk); text-decoration: none; }
-.nav-right { display: flex; align-items: center; gap: clamp(1rem, 3vw, 1.75rem); }
-.nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--chalk-faint); text-decoration: none; transition: color .2s; }
-.nav-links a:hover { color: var(--chalk); }
-.nav-cta { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: #0E0E0C; background: #E03030; padding: 8px 18px; text-decoration: none; border-radius: 2px; transition: opacity .2s; }
-.nav-cta:hover { opacity: .85; }
-@media (max-width: 760px) { .nav-links { display: none; } }
+  :root {
+    --black:   #1C1B18;
+    --surface: #252521;
+    --surface-2:#2E2D29;
+    --border:  #3A3833;
+    --border-light: rgba(233,231,224,0.08);
+    --white:   #E9E7DF;
+    --white-muted: rgba(233,231,224,0.72);
+    --white-dim:   rgba(233,231,224,0.42);
 
-/* HERO */
-.hero { padding: 7rem 0 0; border-bottom: 1px solid var(--rule); position: relative; z-index: 1; }
-.hero-inner { max-width: 980px; margin: 0 auto; padding: 0 2.5rem 3.5rem; display: grid; grid-template-columns: 1fr 340px; gap: 4rem; align-items: end; }
-.hero-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--red); display: flex; align-items: center; gap: 8px; margin-bottom: 1.5rem; }
-.tri { display: inline-block; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 8px solid var(--red); }
-.hero h1 { font-family: var(--display); font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 800; letter-spacing: -.04em; line-height: .95; text-transform: uppercase; margin-bottom: 1.75rem; }
-.hero-subtitle { font-size: 15px; color: var(--chalk-dim); max-width: 520px; line-height: 1.85; border-left: 2px solid var(--red); padding-left: 1.25rem; }
-.hero-meta { display: flex; flex-direction: column; gap: 1.25rem; }
-.meta-block { border: 1px solid var(--rule); padding: .875rem 1rem; }
-.meta-label { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--chalk-faint); margin-bottom: .35rem; }
-.meta-value { font-size: 13px; color: var(--chalk-dim); line-height: 1.6; }
-.meta-value strong { color: var(--chalk); font-weight: 500; }
+    --student:   #4ABFB0;  --student-mid: #2A7A6E;
+    --professor: #E03030;  --professor-mid: #C23B22;
+    --critic:    #D4A843;  --critic-mid:    #9C7A1E;
 
-/* INTERFACE SCREENSHOT */
-.interface-strip { border-bottom: 1px solid var(--rule); position: relative; z-index: 1; }
-.interface-label-bar { display: flex; align-items: center; justify-content: space-between; padding: .875rem 2.5rem; background: var(--ink-2); border-bottom: 1px solid var(--rule); max-width: none; }
-.ilabel { font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--chalk-faint); display: flex; align-items: center; gap: 8px; }
-.istat { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: var(--chalk-faint); }
-.interface-frame { max-width: 980px; margin: 0 auto; padding: 2rem 2.5rem; }
-.mockup-embed { border: 1px solid var(--rule-med); overflow: hidden; background: var(--ink-2); }
-.mockup-topbar { display: flex; align-items: center; justify-content: space-between; padding: .55rem 1rem; border-bottom: 1px solid var(--rule); background: rgba(14,14,12,.95); }
-.mt-brand { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: rgba(233,231,223,.35); }
-.mt-right { display: flex; gap: 12px; align-items: center; }
-.mt-pill { display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: rgba(233,231,223,.2); }
-.mt-dot { width: 5px; height: 5px; border-radius: 50%; background: #4ABFB0; animation: blink 2.5s ease-in-out infinite; }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-.mt-ver { font-family: var(--mono); font-size: 9px; color: rgba(233,231,223,.2); border: 1px solid rgba(255,255,255,.06); padding: 2px 8px; }
-/* Mockup body preview */
-.mockup-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--rule); display: flex; align-items: flex-end; justify-content: space-between; }
-.mh-title { font-family: var(--display); font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: -.02em; }
-.mh-sub { font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: #E03030; margin-bottom: .4rem; }
-.mh-badges { display: flex; gap: 6px; }
-.mbadge { padding: 3px 10px; font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; border: 1px solid; }
-.mb-s { border-color: #4ABFB0; color: #4ABFB0; }
-.mb-p { border-color: #E03030; color: #E03030; }
-.mb-c { border-color: #D4A843; color: #D4A843; }
-.mockup-layout { display: grid; grid-template-columns: 220px 1fr; min-height: 320px; }
-.ml-left { border-right: 1px solid var(--rule); padding: 1rem; }
-.ml-section { margin-bottom: 1rem; }
-.ml-label { font-family: var(--mono); font-size: 8px; letter-spacing: .16em; text-transform: uppercase; color: rgba(233,231,223,.18); margin-bottom: .5rem; }
-.ml-upload { border: 1px dashed rgba(255,255,255,.08); height: 100px; background: #1A1A17; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; }
-.ml-prompt { background: #1A1A17; border: 1px solid rgba(255,255,255,.08); padding: .5rem; font-family: var(--mono); font-size: 9px; color: rgba(233,231,223,.3); line-height: 1.5; width: 100%; }
-.ml-critics { display: flex; flex-direction: column; gap: 5px; }
-.mlc { display: flex; align-items: center; gap: 7px; padding: 5px 7px; border: 1px solid; }
-.mlc-s { border-color: rgba(74,191,176,.25); background: rgba(74,191,176,.05); }
-.mlc-p { border-color: rgba(224,48,48,.25); background: rgba(224,48,48,.05); }
-.mlc-c { border-color: rgba(212,168,67,.25); background: rgba(212,168,67,.05); }
-.mlc-dot { width: 8px; height: 8px; border-radius: 1px; flex-shrink: 0; }
-.mlc-name { font-family: var(--mono); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; }
-.mlc-name-s { color: #4ABFB0; } .mlc-name-p { color: #E03030; } .mlc-name-c { color: #D4A843; }
-.ml-btn { width: 100%; padding: 8px; background: #E03030; font-family: var(--display); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #0E0E0C; border: none; margin-top: .75rem; clip-path: polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%); }
-.ml-right { display: flex; flex-direction: column; }
-.proc-bar { display: flex; align-items: center; gap: 10px; padding: .45rem 1rem; background: #1A1A17; border-bottom: 1px solid var(--rule); }
-.pb-label { font-family: var(--mono); font-size: 8px; letter-spacing: .14em; text-transform: uppercase; color: rgba(233,231,223,.18); }
-.pb-agents { display: flex; gap: 6px; }
-.pba { font-family: var(--mono); font-size: 8px; letter-spacing: .08em; text-transform: uppercase; padding: 1px 8px; border: 1px solid; display: flex; align-items: center; gap: 4px; }
-.pba-s { border-color: #4ABFB0; color: #4ABFB0; }
-.pba-p { border-color: #E03030; color: #E03030; }
-.pba-c { border-color: #D4A843; color: #D4A843; }
-.pdot { width: 4px; height: 4px; border-radius: 50%; }
-.pd-s { background: #4ABFB0; } .pd-p { background: #E03030; } .pd-c { background: #D4A843; }
-/* Mini critique panels in mockup */
-.mini-panel { border-bottom: 1px solid var(--rule); }
-.mcp-head { display: flex; align-items: center; justify-content: space-between; padding: .6rem 1rem; border-bottom: 1px solid var(--rule); }
-.mcp-left { display: flex; align-items: center; gap: 8px; }
-.mcp-bar { width: 2px; height: 26px; flex-shrink: 0; }
-.mcp-bar-s { background: #4ABFB0; } .mcp-bar-p { background: #E03030; } .mcp-bar-c { background: #D4A843; }
-.mcp-name { font-family: var(--display); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; }
-.mcp-name-s { color: #4ABFB0; } .mcp-name-p { color: #E03030; } .mcp-name-c { color: #D4A843; }
-.mcp-mod { font-family: var(--mono); font-size: 8px; letter-spacing: .08em; color: rgba(233,231,223,.25); margin-top: 1px; }
-.mcp-score { font-family: var(--mono); font-size: 18px; font-weight: 500; }
-.mcp-score-s { color: #4ABFB0; } .mcp-score-p { color: #E03030; } .mcp-score-c { color: #D4A843; }
-.mcp-body { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: .6rem 1rem; gap: .75rem; }
-.mcp-col-label { font-family: var(--mono); font-size: 8px; letter-spacing: .14em; text-transform: uppercase; color: rgba(233,231,223,.18); margin-bottom: .4rem; }
-.mcp-line { height: 1px; background: rgba(255,255,255,.06); margin: 4px 0; }
-.mcp-text { font-size: 10px; color: rgba(233,231,223,.35); line-height: 1.55; }
-.mcp-area { font-family: var(--mono); font-size: 8px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 2px; }
-.mcp-area-s { color: rgba(74,191,176,.6); } .mcp-area-p { color: rgba(224,48,48,.6); } .mcp-area-c { color: rgba(212,168,67,.6); }
+    --student-pale:   rgba(74,191,176,0.09);
+    --professor-pale: rgba(224,48,48,0.09);
+    --critic-pale:    rgba(212,168,67,0.09);
 
-/* MAIN BODY */
-.case-body { max-width: 760px; margin: 0 auto; padding: 4rem 2.5rem 6rem; position: relative; z-index: 1; }
+    --accent: var(--professor);
+    --accent-pale: var(--professor-pale);
 
-/* Section markers */
-.cs-section { margin-bottom: 3.5rem; }
-.cs-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--red); display: flex; align-items: center; gap: 8px; margin-bottom: .875rem; }
-.cs-h2 { font-family: var(--display); font-size: clamp(1.5rem, 2.5vw, 2.1rem); font-weight: 800; text-transform: uppercase; letter-spacing: -.025em; line-height: 1.1; margin-bottom: 1.25rem; color: var(--chalk); }
-.cs-p { font-size: 15px; color: var(--chalk-dim); line-height: 1.85; margin-bottom: 1.1rem; }
-.cs-p strong { color: var(--chalk); font-weight: 500; }
-.cs-p em { font-style: italic; color: var(--chalk); }
-hr.cs-rule { border: none; border-top: 1px solid var(--rule); margin: 3rem 0; }
+    --fd: 'Space Grotesk', sans-serif;
+    --fb: 'Inter', sans-serif;
+    --mono: 'DM Mono', monospace;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
-/* Pullquote */
-.pullquote { border-left: 2px solid var(--red); padding: 1.1rem 1.5rem; margin: 2rem 0; background: var(--ink-2); }
-.pullquote p { font-family: var(--display); font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700; text-transform: uppercase; letter-spacing: -.015em; line-height: 1.25; color: var(--chalk); }
-.pullquote p span { color: var(--chalk-dim); font-weight: 400; }
+  html[data-theme="light"] {
+    --black:   #F5F2EC;
+    --surface: #EDE9E0;
+    --surface-2:#E4E0D6;
+    --border:  rgba(30,28,24,0.2);
+    --border-light: rgba(30,28,24,0.12);
+    --white:   #1E1C18;
+    --white-muted: rgba(30,28,24,0.74);
+    --white-dim:   rgba(30,28,24,0.45);
 
-/* Agent cards */
-.agent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
-.agent-card { border: 1px solid var(--rule); padding: 1.1rem; background: var(--ink-2); position: relative; overflow: hidden; }
-.agent-card::before { content: ''; position: absolute; top: 0; right: 0; width: 0; height: 0; border-top: 20px solid; border-left: 20px solid transparent; }
-.ac-s::before { border-top-color: var(--student); }
-.ac-p::before { border-top-color: var(--professor); }
-.ac-c::before { border-top-color: var(--critic); }
-.ac-out::before { border-top-color: rgba(255,255,255,.1); }
-.model-tag { display: inline-block; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; padding: 2px 8px; border: 1px solid; margin-bottom: .5rem; }
-.mt-s { border-color: rgba(74,191,176,.4); color: var(--student); }
-.mt-p { border-color: rgba(224,48,48,.4); color: var(--professor); }
-.mt-c { border-color: rgba(212,168,67,.4); color: var(--critic); }
-.mt-out { border-color: var(--rule-med); color: var(--chalk-faint); }
-.ac-role { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--chalk-faint); margin-bottom: .3rem; }
-.ac-title { font-family: var(--display); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .02em; color: var(--chalk); margin-bottom: .5rem; }
-.ac-body { font-size: 13px; color: var(--chalk-dim); line-height: 1.7; }
+    --student:   #2A7A6E;  --student-mid: #22705F;
+    --professor: #C23B22;  --professor-mid: #A82F19;
+    --critic:    #8B6914;  --critic-mid:    #6C5210;
 
-/* Architecture diagram */
-.arch-diagram { border: 1px solid var(--rule); background: var(--ink-2); margin: 1.5rem 0; overflow: hidden; }
-.arch-header { padding: .7rem 1.25rem; border-bottom: 1px solid var(--rule); font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--chalk-faint); }
-.arch-inner { display: grid; grid-template-columns: 1fr 28px 1fr 28px 1fr; gap: 0; padding: 1.25rem; align-items: start; }
-.arch-col-label { font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--chalk-faint); margin-bottom: .6rem; }
-.arch-col { display: flex; flex-direction: column; gap: 6px; }
-.arch-node { border: 1px solid var(--rule); padding: 7px 10px; font-family: var(--mono); font-size: 11px; color: var(--chalk-dim); background: var(--ink); }
-.arch-node.hi { border-color: rgba(224,48,48,.4); }
-.arch-node strong { display: block; font-family: var(--display); font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--chalk); margin-bottom: 1px; letter-spacing: .02em; }
-.arch-arrow { display: flex; align-items: center; justify-content: center; color: var(--chalk-faint); font-size: 13px; padding-top: 10px; }
-.arch-footer { padding: .6rem 1.25rem; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 9px; color: var(--chalk-faint); letter-spacing: .06em; }
+    --student-pale:   rgba(42,122,110,0.08);
+    --professor-pale: rgba(194,59,34,0.07);
+    --critic-pale:    rgba(139,105,20,0.08);
+  }
 
-/* Stack tags */
-.stack-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 1rem 0; }
-.stag { font-family: var(--mono); font-size: 10px; padding: 4px 12px; border: 1px solid var(--rule); color: var(--chalk-faint); letter-spacing: .06em; text-transform: uppercase; }
-.stag.hi { border-color: rgba(224,48,48,.4); color: var(--red); }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--fb);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-/* Lessons */
-.lesson-list { margin: 1.25rem 0; }
-.lesson { display: flex; gap: 1.1rem; padding: .9rem 0; border-bottom: 1px solid var(--rule); }
-.lesson:first-child { border-top: 1px solid var(--rule); }
-.lesson-num { font-family: var(--mono); font-size: 11px; color: var(--chalk-faint); min-width: 24px; padding-top: 2px; flex-shrink: 0; }
-.lesson p { font-size: 14px; color: var(--chalk-dim); line-height: 1.75; }
-.lesson p strong { color: var(--chalk); font-weight: 500; }
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.15rem clamp(1.25rem, 4vw, 3rem);
+    border-bottom: 1px solid transparent;
+    background: transparent;
+    transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+  }
+  nav.scrolled {
+    background: rgba(28,27,24,0.72);
+    backdrop-filter: blur(14px) saturate(1.2);
+    border-bottom-color: var(--border-light);
+  }
+  html[data-theme="light"] nav.scrolled { background: rgba(245,242,236,0.82); }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--fd); font-size: 13px;
+    font-weight: 600; letter-spacing: 0.06em;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo .crane { transition: transform 0.5s var(--ease-out); }
+  .nav-logo:hover .crane { transform: rotate(-8deg) scale(1.05); }
+  .nav-right { display: flex; align-items: center; gap: clamp(1rem, 3vw, 1.75rem); }
+  .nav-links { display: flex; gap: 2.25rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--fb); font-size: 13px; color: var(--white-muted);
+    text-decoration: none; position: relative; padding-bottom: 4px;
+    transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 0%;
+    background: var(--accent); transition: width 0.35s var(--ease-out);
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    font-family: var(--fd); font-size: 12px; font-weight: 600;
+    color: var(--black); background: var(--accent); padding: 9px 20px;
+    text-decoration: none; border-radius: 2px;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+  @media (max-width: 760px) { .nav-links { display: none; } }
 
-/* Milestone row */
-.milestone-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 1.5rem 0; }
-.ms { padding: 5px 14px; border: 1px solid var(--rule); font-size: 12px; color: var(--chalk-dim); font-family: var(--mono); letter-spacing: .04em; }
-.ms strong { color: var(--chalk); }
+  .theme-toggle { display: flex; align-items: center; gap: 7px; cursor: pointer; background: none; border: none; padding: 0; color: var(--white-dim); transition: color 0.15s; }
+  .theme-toggle:hover { color: var(--white); }
+  .toggle-icon { display: inline-flex; align-items: center; justify-content: center; width: 13px; height: 13px; line-height: 1; }
+  .toggle-icon .icon-sun { display: none; }
+  html[data-theme="light"] .toggle-icon .icon-sun { display: block; }
+  html[data-theme="light"] .toggle-icon .icon-moon { display: none; }
+  .toggle-track { width: 34px; height: 19px; border: 1px solid var(--border); background: var(--surface); border-radius: 10px; position: relative; flex-shrink: 0; transition: background 0.2s, border-color 0.2s; }
+  .toggle-thumb { position: absolute; top: 2px; left: 2px; width: 13px; height: 13px; border-radius: 50%; background: var(--white-dim); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s; }
+  html[data-theme="light"] .toggle-thumb { transform: translateX(15px); background: var(--accent); }
 
-/* CTA block */
-.cta-block { border: 1px solid var(--rule); padding: 2rem; background: var(--ink-2); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-top: 3rem; }
-.cta-left .cta-label { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--red); margin-bottom: .4rem; }
-.cta-left p { font-size: 14px; color: var(--chalk-dim); }
-.cta-btn { font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: var(--red); color: var(--ink); padding: 12px 24px; border: none; cursor: pointer; clip-path: polygon(0 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%); transition: opacity .2s; text-decoration: none; display: inline-block; white-space: nowrap; }
-.cta-btn:hover { opacity: .85; }
+  /* ── HERO ── */
+  .hero {
+    padding: 7rem 0 0; border-bottom: 1px solid var(--border-light);
+    position: relative; z-index: 1; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -220px; right: -140px;
+    width: 620px; height: 620px;
+    background: radial-gradient(circle, rgba(224,48,48,0.16) 0%, transparent 62%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -240px; left: -120px;
+    width: 540px; height: 540px;
+    background: radial-gradient(circle, rgba(212,168,67,0.12) 0%, transparent 62%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1080px; margin: 0 auto; padding: 0 2.5rem 3.5rem;
+    display: grid; grid-template-columns: 1fr 400px; gap: 2.5rem;
+    align-items: end; position: relative; z-index: 1;
+  }
+  .hero-eyebrow {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); display: flex; align-items: center; gap: 8px;
+    margin-bottom: 1.5rem;
+  }
+  .tri { display: inline-block; width: 0; height: 0;
+    border-left: 5px solid transparent; border-right: 5px solid transparent;
+    border-top: 8px solid var(--accent); }
+  .hero h1 {
+    font-family: var(--fd); font-size: clamp(2.6rem, 4.5vw, 4.4rem);
+    font-weight: 700; letter-spacing: -0.03em;
+    line-height: 1.0; margin-bottom: 1.75rem; text-transform: uppercase;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero-subtitle {
+    font-size: 15px; color: var(--white-muted);
+    max-width: 540px; line-height: 1.8;
+    border-left: 2px solid var(--accent); padding-left: 1.25rem;
+  }
+  .hero-visual {
+    border: 1px solid var(--border); background: var(--surface);
+    padding: 1rem; position: relative;
+  }
+  .hero-visual img { width: 100%; height: auto; display: block; background: var(--surface-2); }
+  .hero-visual figcaption {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--white-dim); padding-top: 0.75rem;
+  }
+  .hero-meta {
+    grid-column: 1 / -1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+  }
+  .meta-block { border: 1px solid var(--border); padding: 0.875rem 1rem; background: rgba(37,37,33,0.5); }
+  html[data-theme="light"] .meta-block { background: rgba(237,233,224,0.6); }
+  .meta-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white-dim); margin-bottom: 0.35rem; }
+  .meta-value { font-size: 13px; color: var(--white-muted); line-height: 1.6; }
+  .meta-value strong { color: var(--white); font-weight: 500; }
+  .meta-value a { color: var(--accent); text-decoration: none; }
+  .meta-value a:hover { text-decoration: underline; }
 
-/* FOOTER */
-footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; background: var(--ink-2); position: relative; z-index: 1; }
-.footer-brand { display: flex; align-items: center; gap: 8px; font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--chalk-faint); }
-.footer-tag { font-family: var(--mono); font-size: 11px; color: var(--red); letter-spacing: .1em; }
-.footer-copy { font-family: var(--mono); font-size: 11px; color: var(--chalk-faint); }
+  /* ── CASE STUDY BODY ── */
+  .case-body { max-width: 880px; margin: 0 auto; padding: 4rem 2.5rem 6rem; position: relative; z-index: 1; }
+  .cs-section { margin-bottom: 4rem; }
+  .cs-eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; }
+  .cs-h2 { font-family: var(--fd); font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 700; text-transform: uppercase; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 1.5rem; color: var(--white); }
+  .cs-h3 { font-family: var(--fd); font-size: 1.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; margin: 1.5rem 0 0.75rem; color: var(--white); }
+  .cs-p { font-size: 15px; color: var(--white-muted); line-height: 1.85; margin-bottom: 1.1rem; }
+  .cs-p strong { color: var(--white); font-weight: 500; }
+  .cs-p em { font-style: italic; color: var(--white); }
+  .cs-p code { font-family: var(--mono); font-size: 13px; color: var(--professor); }
+  hr.cs-rule { border: none; border-top: 1px solid var(--border-light); margin: 3.5rem 0; }
 
-/* Fade in */
-.fade { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
-.fade.visible { opacity: 1; transform: none; }
+  .pullquote { border-left: 2px solid var(--accent); padding: 1.5rem 1.75rem; margin: 2.5rem 0; background: var(--accent-pale); }
+  .pullquote p { font-family: var(--fd); font-size: 1.25rem; font-weight: 700; text-transform: uppercase; letter-spacing: -0.015em; line-height: 1.25; color: var(--white); }
+  .pullquote p span { color: var(--white-muted); font-weight: 400; text-transform: none; }
+
+  /* ── UI SHOWCASE ── */
+  .interface-frame { margin: 0 0 4rem; }
+  .ui-figure { border: 1px solid var(--border); padding: 1rem; background: var(--surface); margin-bottom: 1.5rem; }
+  .ui-figure img { width: 100%; height: auto; display: block; background: var(--white); border: 1px solid var(--border-light); }
+  .ui-figure figcaption { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); padding-top: 0.75rem; }
+
+  /* ── AGENT CARDS (trio-accent) ── */
+  .agent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  .agent-card { border: 1px solid var(--border); padding: 1.1rem; background: var(--surface); position: relative; overflow: hidden; }
+  .agent-card::before { content: ''; position: absolute; top: 0; right: 0; width: 0; height: 0; border-top: 20px solid; border-left: 20px solid transparent; }
+  .ac-s::before { border-top-color: var(--student); }
+  .ac-p::before { border-top-color: var(--professor); }
+  .ac-c::before { border-top-color: var(--critic); }
+  .ac-out::before { border-top-color: var(--border); }
+  .model-tag { display: inline-block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border: 1px solid; margin-bottom: 0.5rem; }
+  .mt-s { border-color: var(--student); color: var(--student); }
+  .mt-p { border-color: var(--professor); color: var(--professor); }
+  .mt-c { border-color: var(--critic); color: var(--critic); }
+  .mt-out { border-color: var(--border); color: var(--white-dim); }
+  .ac-role { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white-dim); margin-bottom: 0.3rem; }
+  .ac-title { font-family: var(--fd); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; color: var(--white); margin-bottom: 0.5rem; }
+  .ac-body { font-size: 13px; color: var(--white-muted); line-height: 1.7; }
+
+  /* ── ARCHITECTURE ── */
+  .arch-diagram { border: 1px solid var(--border); background: var(--surface); margin: 1.5rem 0; overflow: hidden; }
+  .arch-header { padding: 0.7rem 1.25rem; border-bottom: 1px solid var(--border-light); font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--white-dim); }
+  .arch-inner { display: grid; grid-template-columns: 1fr 28px 1fr 28px 1fr; gap: 0; padding: 1.25rem; align-items: start; }
+  .arch-col-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--white-dim); margin-bottom: 0.6rem; }
+  .arch-col { display: flex; flex-direction: column; gap: 6px; }
+  .arch-node { border: 1px solid var(--border); padding: 7px 10px; font-family: var(--mono); font-size: 11px; color: var(--white-muted); background: var(--black); }
+  .arch-node.sd { border-color: var(--student); }
+  .arch-node.pf { border-color: var(--professor); }
+  .arch-node.cr { border-color: var(--critic); }
+  .arch-node strong { display: block; font-family: var(--fd); font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--white); margin-bottom: 1px; letter-spacing: 0.02em; }
+  .arch-arrow { display: flex; align-items: center; justify-content: center; color: var(--white-dim); font-size: 13px; padding-top: 10px; }
+  .arch-footer { padding: 0.6rem 1.25rem; border-top: 1px solid var(--border-light); font-family: var(--mono); font-size: 9px; color: var(--white-dim); letter-spacing: 0.06em; }
+
+  /* ── STACK ── */
+  .stack-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 1rem 0; }
+  .stag { font-family: var(--mono); font-size: 10px; padding: 4px 12px; border: 1px solid var(--border); color: var(--white-dim); letter-spacing: 0.06em; text-transform: uppercase; }
+  .stag.s { border-color: var(--student); color: var(--student); }
+  .stag.p { border-color: var(--professor); color: var(--professor); }
+  .stag.c { border-color: var(--critic); color: var(--critic); }
+
+  /* ── LESSONS ── */
+  .lesson-list { margin: 1.25rem 0; }
+  .lesson { display: flex; gap: 1.5rem; padding: 1.25rem 0; border-bottom: 1px solid var(--border-light); }
+  .lesson:first-child { border-top: 1px solid var(--border-light); }
+  .lesson-num { font-family: var(--mono); font-size: 11px; color: var(--white-dim); min-width: 28px; padding-top: 2px; flex-shrink: 0; }
+  .lesson p { font-size: 14px; color: var(--white-muted); line-height: 1.75; }
+  .lesson p strong { color: var(--white); }
+
+  /* ── MILESTONES ── */
+  .milestone-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 1.5rem 0; }
+  .ms { padding: 5px 14px; border: 1px solid var(--border); font-size: 12px; color: var(--white-muted); font-family: var(--mono); letter-spacing: 0.04em; }
+  .ms strong { color: var(--white); }
+
+  /* ── CTA ── */
+  .cta-block { border: 1px solid var(--border); padding: 2rem; background: var(--surface); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-top: 3rem; }
+  .cta-left .cta-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+  .cta-left p { font-size: 14px; color: var(--white-muted); }
+  .cta-btn { font-family: var(--fd); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--accent); color: var(--black); padding: 12px 24px; border: none; cursor: pointer; clip-path: polygon(0 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%); transition: opacity 0.2s; text-decoration: none; display: inline-block; white-space: nowrap; }
+  .cta-btn:hover { opacity: 0.85; }
+
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--border-light); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; background: var(--surface); position: relative; z-index: 1; }
+  .footer-brand { display: flex; align-items: center; gap: 8px; font-family: var(--fd); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white-dim); }
+  .footer-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; }
+  .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--white-dim); }
+
+  .fade { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-meta { grid-template-columns: 1fr; }
+    .agent-grid { grid-template-columns: 1fr; }
+    .arch-inner { grid-template-columns: 1fr; gap: 0.75rem; }
+    .arch-arrow { transform: rotate(90deg); padding: 0; }
+    .cta-block { flex-direction: column; align-items: flex-start; }
+  }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
-  <a href="index.html" class="nav-brand">
-    <svg width="26" height="26" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <svg class="crane" width="26" height="26" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
       <polygon points="1575,201 1365,564 1780,563" fill="currentColor"/>
       <polygon points="709,693 5,696 357,1306" fill="currentColor"/>
       <polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/>
@@ -214,7 +304,14 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#connect">Connect</a></li>
     </ul>
-    <a href="index.html#connect" class="nav-cta">Work with the lab</a>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark mode">
+      <span class="toggle-icon" id="toggleIcon">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </span>
+      <span class="toggle-track"><span class="toggle-thumb"></span></span>
+    </button>
+    <a href="Critique_Council_Live.html" target="_blank" rel="noopener" class="nav-cta">Try it live</a>
   </div>
 </nav>
 
@@ -223,9 +320,13 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
   <div class="hero-inner">
     <div>
       <div class="hero-eyebrow"><span class="tri"></span> Thesis · Multi-Agent AI · Educational Systems</div>
-      <h1>The Critique<br>Council</h1>
+      <h1>The Critique<br><span class="accent">Council</span></h1>
       <p class="hero-subtitle">A multi-agent AI system designed to address a fundamental gap in creative education: students rarely get enough practice presenting to a jury of people who disagree on what matters.</p>
     </div>
+    <figure class="hero-visual">
+      <img src="assets/critique/header.png" alt="The Critique Council header artwork">
+      <figcaption>The Critique Council · 2026 studio redesign</figcaption>
+    </figure>
     <div class="hero-meta">
       <div class="meta-block">
         <div class="meta-label">Research</div>
@@ -247,26 +348,17 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
   </div>
 </section>
 
-<!-- INTERFACE SCREENSHOT -->
-<div class="interface-strip fade">
-  <div class="interface-label-bar">
-    <div class="ilabel"><span class="tri"></span> Interface — 2026 redesign · Warm studio aesthetic</div>
-    <div class="istat">Left panel: upload & select critics | Right panel: live feedback from 3 agents</div>
-  </div>
-  <div class="interface-frame">
-    <div style="background: #F5F2EC; padding: 1.5rem; border: 1px solid rgba(30,28,24,0.1); border-radius: 6px; margin-bottom: 1.5rem; text-align: center; color: #6B6860;">
-      <div style="font-size: 13px; line-height: 1.8; margin-bottom: 1rem;">
-        <strong style="color: #1E1C18;">The Critique Council interface</strong><br>
-        Upload artwork, optionally add context, select which critics you want. Get structured feedback from three distinct perspectives running concurrently.
-      </div>
-      <a href="/interface-preview" target="_blank" style="display: inline-block; background: #C23B22; color: #F5F2EC; padding: 10px 20px; text-decoration: none; font-family: 'Playfair Display', Georgia, serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; clip-path: polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%); cursor: pointer; transition: opacity 0.2s;">View interactive prototype ↗</a>
-      <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: #9B9890; margin-top: 0.75rem; letter-spacing: 0.08em;">Light mode with dark/light toggle · Responsive design</div>
-    </div>
-  </div>
-</div>
-
 <!-- CASE STUDY BODY -->
 <div class="case-body">
+
+  <!-- UI SHOWCASE -->
+  <div class="interface-frame fade">
+    <div class="cs-eyebrow"><span class="tri"></span> The interface</div>
+    <figure class="ui-figure">
+      <img src="assets/critique/ui.png" alt="The Critique Council interface — upload, select critics, concurrent feedback">
+      <figcaption>Upload artwork · focus the conversation · select your critics → structured feedback from three voices running concurrently</figcaption>
+    </figure>
+  </div>
 
   <!-- 01 THE PROBLEM -->
   <div class="cs-section fade">
@@ -288,7 +380,7 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
     <div class="cs-eyebrow"><span class="tri"></span> 02 — System architecture</div>
     <h2 class="cs-h2">Five integrated AI layers.<br>One coherent educational experience.</h2>
     <p class="cs-p">The system accepts a student's artwork as a multimodal image input alongside an optional focus question. Both feed into a shared rubric — a dynamic JSON schema that instructs each agent to identify critique categories specific to what it actually observes in the artwork, rather than defaulting to generic buckets like "composition" or "color" on every run. An abstract work and a portrait will generate different rubric categories. That specificity is intentional: it teaches students that feedback is always contextual, not universal.</p>
-    <p class="cs-p">From there, three distinct critic agents process the same input concurrently via <strong>asyncio.gather()</strong> — keeping total response time tolerable for classroom use regardless of model latency. Each agent returns a structured JSON object: strengths, areas for improvement, prioritized action items, a numeric rating, and a summary. A regex fallback handles cases where the API returns malformed output rather than clean JSON — a failure mode that surfaces in front of students at the worst moments if you don't plan for it.</p>
+    <p class="cs-p">From there, three distinct critic agents process the same input concurrently via <code>asyncio.gather()</code> — keeping total response time tolerable for classroom use regardless of model latency. Each agent returns a structured JSON object: strengths, areas for improvement, prioritized action items, a numeric rating, and a summary. A regex fallback handles cases where the API returns malformed output rather than clean JSON — a failure mode that surfaces in front of students at the worst moments if you don't plan for it.</p>
     <p class="cs-p">The output layer then passes each critique through ElevenLabs TTS with a distinct voice profile per critic, extracts the top action items and sends them to Nano Banana 2 for visual before/after example generation, and packages everything into a timestamped exportable report. A response cache layer deduplicates on image hash and prompt to prevent redundant API calls when students iterate.</p>
 
     <div class="arch-diagram">
@@ -299,23 +391,23 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
           <div class="arch-col">
             <div class="arch-node"><strong>Artwork</strong>Multimodal vision input</div>
             <div class="arch-node"><strong>Prompt</strong>Optional focus question</div>
-            <div class="arch-node hi"><strong>Shared rubric</strong>Dynamic JSON schema</div>
+            <div class="arch-node pf"><strong>Shared rubric</strong>Dynamic JSON schema</div>
           </div>
         </div>
         <div class="arch-arrow">→</div>
         <div>
           <div class="arch-col-label">Agents — concurrent</div>
           <div class="arch-col">
-            <div class="arch-node"><strong>Student</strong>GPT-5 mini · peer voice</div>
-            <div class="arch-node hi"><strong>Professor</strong>Claude Opus 4.5 · authority</div>
-            <div class="arch-node"><strong>Critic</strong>Gemini 3 Pro · no filter</div>
+            <div class="arch-node sd"><strong>Student</strong>GPT-5 mini · peer voice</div>
+            <div class="arch-node pf"><strong>Professor</strong>Claude Opus 4.5 · authority</div>
+            <div class="arch-node cr"><strong>Critic</strong>Gemini 3 Pro · no filter</div>
           </div>
         </div>
         <div class="arch-arrow">→</div>
         <div>
           <div class="arch-col-label">Output</div>
           <div class="arch-col">
-            <div class="arch-node hi"><strong>Structured critique</strong>Strengths · gaps · actions</div>
+            <div class="arch-node pf"><strong>Structured critique</strong>Strengths · gaps · actions</div>
             <div class="arch-node"><strong>ElevenLabs TTS</strong>Unique voice per critic</div>
             <div class="arch-node"><strong>Nano Banana 2</strong>Visual feedback from actions</div>
             <div class="arch-node"><strong>Export</strong>Timestamped report</div>
@@ -370,11 +462,11 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
     <div class="cs-eyebrow"><span class="tri"></span> 04 — Technical stack</div>
     <h2 class="cs-h2">What's running under the hood.</h2>
     <div class="stack-row">
-      <span class="stag hi">GPT-5 mini</span>
-      <span class="stag hi">Claude Opus 4.5</span>
-      <span class="stag hi">Gemini 3 Pro</span>
-      <span class="stag hi">Nano Banana 2</span>
-      <span class="stag hi">ElevenLabs TTS</span>
+      <span class="stag s">GPT-5 mini</span>
+      <span class="stag p">Claude Opus 4.5</span>
+      <span class="stag c">Gemini 3 Pro</span>
+      <span class="stag c">Nano Banana 2</span>
+      <span class="stag p">ElevenLabs TTS</span>
       <span class="stag">Python · asyncio</span>
       <span class="stag">Gradio UI</span>
       <span class="stag">PIL · aiohttp</span>
@@ -382,7 +474,7 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
       <span class="stag">Response cache layer</span>
       <span class="stag">Regex fallback parser</span>
     </div>
-    <p class="cs-p">The concurrency layer is the technical decision that makes the system usable in a classroom setting. Three frontier models running sequentially would produce wait times that break the experience. <strong><code>asyncio.gather()</code> fires all three agents simultaneously</strong>, capping total response time at the slowest individual agent rather than the sum of all three. In practice this means a complete three-voice critique in roughly four to five seconds — tolerable for a student standing at a podium.</p>
+    <p class="cs-p">The concurrency layer is the technical decision that makes the system usable in a classroom setting. Three frontier models running sequentially would produce wait times that break the experience. <code>asyncio.gather()</code> fires all three agents simultaneously, capping total response time at the slowest individual agent rather than the sum of all three. In practice this means a complete three-voice critique in roughly four to five seconds — tolerable for a student standing at a podium.</p>
     <p class="cs-p">The shared rubric is the design decision that makes the feedback educationally coherent across three different models and personas. Rather than each agent developing its own categories independently, all three receive the same JSON schema instruction: identify areas specific to what you actually observe. The rubric doesn't dictate what the feedback will say — it dictates how it will be structured. That structure is what makes the output comparable and exportable.</p>
   </div>
 
@@ -424,21 +516,16 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
   <div class="cs-section fade">
     <div class="cs-eyebrow"><span class="tri"></span> 06 — Status & validation</div>
     <h2 class="cs-h2">What's been tested. What remains open.</h2>
-    
     <p class="cs-p"><strong>Validated in practice:</strong> Three agents delivering differentiated feedback creates productive dissonance. Students report feeling more prepared for formal critiques after using the system. Voice differentiation (ElevenLabs) matters — when each critic sounds like a different person, the persona architecture feels real rather than mechanical. Multi-agent concurrency works: asyncio.gather() keeps response times reasonable even with three models running simultaneously.</p>
-    
     <p class="cs-p"><strong>From educators & professors:</strong> Pratt faculty see potential for curriculum integration — particularly in courses where students give public presentations. The system could extend studio critique practice beyond the 1–2 formal critiques that most students experience per semester. This is institutional validation that the pedagogical gap is real.</p>
-    
     <p class="cs-p"><strong>Professional application (exploratory):</strong> Solo practitioners and small creative teams have independently expressed interest in using a variant for pre-client stress-testing and feedback before final presentation. This gap (feedback beyond clients who have an agenda) is real but not the primary focus of this thesis. A separate brief documents how the core system could be adapted for professional contexts — that exploration is ongoing.</p>
-    
     <p class="cs-p"><strong>Still open:</strong> Longitudinal impact on student confidence and presentation skill development. Institutional integration patterns at different school types. Generalization beyond visual design critique to other creative disciplines (writing, music, performance).</p>
-    
     <p class="cs-p"><strong>Next direction:</strong> Deeper integration at Pratt — pilot in specific courses with structured tracking of student outcomes. Professional variant exploration — how the architecture scales for team feedback in agency/studio settings.</p>
   </div>
 
   <hr class="cs-rule">
 
-  <!-- 07 STACK UPDATE (renumbered from 06) -->
+  <!-- 07 STACK UPDATE -->
   <div class="cs-section fade">
     <div class="cs-eyebrow"><span class="tri"></span> 07 — What I'd build differently today</div>
     <h2 class="cs-h2">The architecture is the same.<br>The ceiling is higher.</h2>
@@ -463,7 +550,7 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
 
   <hr class="cs-rule">
 
-  <!-- 08 IMPLICATIONS (renumbered from 07) -->
+  <!-- 08 IMPLICATIONS -->
   <div class="cs-section fade">
     <div class="cs-eyebrow"><span class="tri"></span> 08 — Wider implications</div>
     <h2 class="cs-h2">What this system is really about.</h2>
@@ -476,9 +563,16 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
   <div class="cta-block fade">
     <div class="cta-left">
       <div class="cta-label">Interested in this approach?</div>
-      <p>Exploring AI infrastructure for creative learning. Open to conversations about workshops, collaborations, research partnerships, or consulting on educational technology systems.</p>
+      <p>Exploring AI infrastructure for creative learning. Open to conversations about workshops, collaborations, research partnerships, or consulting on educational technology systems. Try the live demo or read the source.</p>
     </div>
-    <a href="index.html#connect" class="cta-btn">Get in touch ↗</a>
+    <a href="Critique_Council_Live.html" target="_blank" rel="noopener" class="cta-btn">Live demo ↗</a>
+  </div>
+  <div class="cta-block fade" style="margin-top:1rem;">
+    <div class="cta-left">
+      <div class="cta-label">Open source</div>
+      <p>Docs, the working prototype, and the Python reference implementation are on GitHub.</p>
+    </div>
+    <a href="https://github.com/ChairmanWCD/critique-council" target="_blank" rel="noopener" class="cta-btn">GitHub ↗</a>
   </div>
 
 </div>
@@ -486,7 +580,15 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">
-    <svg width="18" height="18" viewBox="0 0 2000 2000"><polygon points="1575,201 1365,564 1780,563" fill="currentColor" opacity=".6"/><polygon points="709,693 5,696 357,1306" fill="currentColor" opacity=".6"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor" opacity=".6"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor" opacity=".6"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor" opacity=".6"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor" opacity=".6"/><polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/></svg>
+    <svg width="18" height="18" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="1575,201 1365,564 1780,563" fill="currentColor" opacity=".6"/>
+      <polygon points="709,693 5,696 357,1306" fill="currentColor" opacity=".6"/>
+      <polygon points="1711,693 1009,693 1357,1303" fill="currentColor" opacity=".6"/>
+      <polygon points="857,700 506,1307 1208,1309" fill="currentColor" opacity=".6"/>
+      <polygon points="863,1435 1074,1796 1279,1435" fill="currentColor" opacity=".6"/>
+      <polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor" opacity=".6"/>
+      <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
+    </svg>
     White Crane Labs
   </div>
   <div class="footer-tag">Human in the loop. Always.</div>
@@ -494,9 +596,27 @@ footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: fle
 </footer>
 
 <script>
+  (function() {
+    try { var rr = document.documentElement; if (localStorage.getItem('wcl-theme') === 'light') rr.setAttribute('data-theme','light'); } catch(e) {}
+  })();
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const toLight = root.getAttribute('data-theme') !== 'light';
+      root.setAttribute('data-theme', toLight ? 'light' : '');
+      try { localStorage.setItem('wcl-theme', toLight ? 'light' : 'dark'); } catch(e) {}
+    });
+  }
+
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.06 });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 </script>
 </body>
