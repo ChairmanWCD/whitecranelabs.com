@@ -158,6 +158,11 @@
     color: var(--white); margin-bottom: 1rem; max-width: 20ch;
   }
   .lede { font-size: 16px; color: var(--text); max-width: var(--measure); line-height: 1.75; margin-bottom: 2.75rem; }
+  .lede-strong {
+    font-family: var(--fd); font-weight: 700; color: var(--white);
+    letter-spacing: -0.02em; line-height: 1.16; text-wrap: balance;
+  }
+  .lede-strong .accent { color: var(--red); font-style: normal; }
   p { max-width: var(--measure); }
 
   /* ================= HERO ================= */
@@ -544,7 +549,7 @@
 <section id="overview" class="band-black" style="padding-bottom: clamp(2rem, 5vw, 3.5rem);">
   <div class="wrap section-inner fade" style="padding-top: clamp(2rem, 5vw, 3.5rem);">
     <div class="eyebrow" data-stagger="1"><span class="dot"></span> Overview</div>
-    <p class="lede" style="font-size: clamp(1.2rem, 2.4vw, 1.6rem); max-width: 30ch; margin-bottom: 0;" data-stagger="2">Great creative environments are designed with intent, from the tools to the spaces to the work they enable.</p>
+    <p class="lede lede-strong" style="max-width: 26ch; margin-bottom: 0;" data-stagger="2">Great creative environments are <em class="accent">designed with intent</em>, from the tools to the spaces to the work they enable.</p>
     <p class="lede" style="font-size: 16px; max-width: var(--measure); margin-top: 1.5rem;" data-stagger="3">For 12+ years I've worked at the intersection of design, technology, and AI systems, building the infrastructure that lets creative people do their best work. Today I'm part of the creative technology operations team at Pratt Institute, one of the world's top design schools, and run White Crane, a creative technology lab. AI as amplifier, not replacement. Human in the loop, always.</p>
   </div>
 </section>
