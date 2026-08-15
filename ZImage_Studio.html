@@ -73,7 +73,7 @@
   }
   .hero-inner {
     max-width: 980px; margin: 0 auto; padding: 0 2.5rem 3.5rem;
-    display: grid; grid-template-columns: 1fr 320px; gap: 3rem; align-items: end;
+    display: grid; grid-template-columns: 1fr 400px; gap: 3rem; align-items: end;
     position: relative; z-index: 1;
   }
   .hero-eyebrow {
@@ -102,8 +102,22 @@
     border-left: 2px solid var(--violet);
     padding-left: 1.25rem;
   }
+  .hero-visual {
+    border: 1px solid var(--border); background: var(--surface);
+    padding: 1rem; position: relative;
+  }
+  .hero-visual img {
+    width: 100%; height: auto; display: block;
+    background: var(--surface-2);
+  }
+  .hero-visual figcaption {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--white-dim); padding-top: 0.75rem;
+  }
   .hero-meta {
-    display: flex; flex-direction: column; gap: 1.25rem;
+    grid-column: 1 / -1;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem;
   }
   .meta-block {
     border: 1px solid var(--border); padding: 0.875rem 1rem;
@@ -300,6 +314,7 @@
 
   @media (max-width: 768px) {
     .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-meta { grid-template-columns: 1fr; }
     .metric-row { grid-template-columns: 1fr; }
     .cost-comparison { grid-template-columns: 1fr; }
     .cta-block { flex-direction: column; align-items: flex-start; }
@@ -340,6 +355,10 @@
       <h1>Z-Image<br><span class="accent">Studio</span></h1>
       <p class="hero-subtitle">A FAL.ai-style async inference server for Z-Image-Turbo that runs natively on a consumer GPU — no Docker, no cloud, sharing ComfyUI's models.</p>
     </div>
+    <figure class="hero-visual">
+      <img src="assets/zimage/hero.png" alt="Z-Image Studio hero image">
+      <figcaption>Z-Image Studio · lavender-black theme</figcaption>
+    </figure>
     <div class="hero-meta">
       <div class="meta-block">
         <div class="meta-label">Project</div>
@@ -499,6 +518,26 @@
       <li><strong>Advanced settings</strong> — negative prompt, guidance scale, seed + randomize.</li>
       <li><strong>Output control</strong> — inference steps (1–10), image count (1–4), PNG/JPEG.</li>
       <li><strong>Live feedback</strong> — elapsed timer, skeleton loading, cancel, health status, and a <code>/api/history</code> strip to reopen recent work.</li>
+    </ul>
+
+    <figure class="hero-visual" style="margin: 1.75rem 0;">
+      <img src="assets/zimage/ui.png" alt="Z-Image Studio web UI">
+      <figcaption>Z-Image Studio · generation UI (lavender-black theme)</figcaption>
+    </figure>
+
+    <h3 class="cs-h3">The API</h3>
+    <p class="cs-p">Everything the UI does is also available over HTTP — a FAL.ai-style queue for async jobs, plus a synchronous endpoint for quick calls.</p>
+    <div class="example-box">
+      <div class="example-label">Async flow</div>
+      <div class="example-text">
+        <code>POST /submit</code> → <code>request_id</code> · <code>GET /status/{id}</code> → <code>IN_QUEUE</code> / <code>IN_PROGRESS</code> / <code>COMPLETED</code> / <code>FAILED</code> · <code>GET /result/{id}</code> → images, seed, timings.
+      </div>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Sync generation</strong> — <span class="lead-code">POST /generate</span> returns the result inline, with <span class="lead-code">sync_mode</span> for base64 data URIs.</li>
+      <li><strong>Job control</strong> — <span class="lead-code">POST /cancel/{id}</span> cancels a queued job; completed jobs stay queryable until the result TTL expires.</li>
+      <li><strong>Operational</strong> — <span class="lead-code">GET /health</span> checks readiness; <span class="lead-code">GET /api/history</span> lists recent images; <span class="lead-code">GET /docs</span> opens interactive Swagger docs.</li>
+      <li><strong>Parameters</strong> — <code>prompt</code> (required), <code>image_size</code> (preset or custom), <code>num_inference_steps</code> (1–10), <code>guidance_scale</code> (0–20), <code>negative_prompt</code>, <code>seed</code>, <code>num_images</code> (1–4), <code>output_format</code> (PNG/JPEG).</li>
     </ul>
   </div>
 
