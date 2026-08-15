@@ -129,10 +129,15 @@
 
   h2 {
     font-family: var(--fd); font-size: clamp(1.9rem, 3.4vw, 2.5rem);
-    font-weight: 600; letter-spacing: -0.02em; line-height: 1.12;
+    font-weight: 700; letter-spacing: -0.02em; line-height: 1.12;
     color: var(--white); margin-bottom: 1rem; max-width: 18ch;
   }
   .lede { font-size: 16px; color: var(--text); max-width: var(--measure); line-height: 1.75; margin-bottom: 2.75rem; }
+  .lede-strong {
+    font-family: var(--fd); font-weight: 700; color: var(--white);
+    letter-spacing: -0.02em; line-height: 1.16; text-wrap: balance;
+  }
+  .lede-strong .accent { color: var(--red); font-style: normal; }
   p { max-width: var(--measure); }
 
   /* â”€â”€ PAGE HEADER â”€â”€ */
@@ -300,7 +305,7 @@
     <button class="eyebrow eyebrow-toggle" type="button" aria-expanded="true" aria-controls="pillars-body"><span class="dot"></span> Foundation</button>
     <div class="collapsible" id="pillars-body"><div class="collapsible-inner">
     <h2>Three pillars. One practice.</h2>
-    <p class="lede">Every project traces back to one of these â€” color-coded here, and carried through the work on the homepage.</p>
+    <p class="lede lede-strong">Every project traces back to one of these <em class="accent">â€” color-coded here, and carried through the work on the homepage.</em></p>
     <div class="pillars-grid">
       <div class="pillar p-red">
         <div class="pillar-num">01</div>
