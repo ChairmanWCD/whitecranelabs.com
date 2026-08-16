@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -67,26 +67,31 @@
 
   /* ── NAV — matches inner-page convention used by case studies ── */
   nav {
-    position: sticky; top: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.15rem clamp(1.25rem, 4vw, 3rem);
-    border-bottom: 1px solid var(--border-lo);
-    background: rgba(28,27,24,0.88);
-    backdrop-filter: blur(12px);
+    position: fixed; top: 14px; left: 0; right: 0; z-index: 100;
+    padding: 0 1.5rem;
+  }
+    .nav-pill { max-width: 1080px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    background: color-mix(in srgb, var(--black) 82%, transparent);
+    border: 1px solid var(--border);
+    border-radius: 1000px;
+    padding: .7rem 1rem .7rem 1.3rem;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.3);
   }
   .nav-logo {
     display: flex; align-items: center; gap: 10px;
-    font-family: var(--fd); font-size: 13px; font-weight: 600;
-    letter-spacing: 0.06em; color: var(--white); text-decoration: none;
+    font-family: var(--fd); font-size: 14px; font-weight: 600;
+    letter-spacing: .02em; color: var(--white); text-decoration: none;
   }
-  .nav-right { display: flex; align-items: center; gap: clamp(1rem, 3vw, 1.75rem); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-right { display: flex; align-items: center; gap: 1.2rem; }
+  .nav-links { display: flex; gap: 1.9rem; list-style: none; }
   .nav-links a { font-size: 13px; color: var(--text-dim); text-decoration: none; transition: color 0.15s; }
   .nav-links a:hover { color: var(--white); }
   .nav-cta {
-    font-family: var(--fd); font-size: 12px; font-weight: 600; color: var(--paper-fixed);
-    background: var(--red-solid); padding: 8px 18px; text-decoration: none;
-    border-radius: 2px; transition: opacity 0.15s;
+    font-family: var(--fd); font-size: 13px; font-weight: 600; color: var(--paper-fixed);
+    background: var(--red-solid); padding: 10px 22px; text-decoration: none;
+    border-radius: 1000px; transition: opacity 0.15s;
   }
   .nav-cta:hover { opacity: 0.85; }
   @media (max-width: 760px) { .nav-links { display: none; } }
@@ -225,6 +230,7 @@
 
 <!-- ═══ NAV ═══ -->
 <nav>
+  <div class="nav-pill">
   <a href="index.html" class="nav-logo">
     <svg width="26" height="26" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
       <polygon points="1575,201 1365,564 1780,563" fill="currentColor"/>
@@ -251,6 +257,7 @@
       <span class="toggle-track"><span class="toggle-thumb"></span></span>
     </button>
     <a href="index.html#connect" class="nav-cta">Work with the lab</a>
+  </div>
   </div>
 </nav>
 
