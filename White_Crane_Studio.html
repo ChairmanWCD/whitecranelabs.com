@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Z-Image Studio — Case Study · White Crane Labs</title>
+<title>White Crane Studio — Case Study · White Crane Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
@@ -407,7 +407,7 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
       </span>
       <span class="toggle-track"><span class="toggle-thumb"></span></span>
     </button>
-    <a href="https://github.com/ChairmanWCD/z-image-studio" target="_blank" rel="noopener" class="nav-cta">GitHub</a>
+    <a href="https://github.com/ChairmanWCD/White_Crane_Studio" target="_blank" rel="noopener" class="nav-cta">GitHub</a>
   </div>
   </div>
 </nav>
@@ -416,26 +416,26 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow"><span class="tri"></span> Case Study · Local Generative Infrastructure</div>
-      <h1>Z-Image<br><span class="accent">Studio</span></h1>
-      <p class="hero-subtitle">A FAL.ai-style async inference server for Z-Image-Turbo that runs natively on a consumer GPU — no Docker, no cloud, sharing ComfyUI's models.</p>
+      <div class="hero-eyebrow"><span class="tri"></span> Case Study · Local Generative Infrastructure · Apple Silicon</div>
+      <h1>White Crane<br><span class="accent">Studio</span></h1>
+      <p class="hero-subtitle">A dual-engine FAL.ai-style inference server — <strong>Z-Image-Turbo</strong> for text-to-image and <strong>FLUX.2 Klein 9B</strong> for image-to-image — running natively on Apple Silicon MPS with ComfyUI-like pipeline swapping.</p>
     </div>
     <figure class="hero-visual">
-      <img src="assets/zimage/hero.png" alt="Z-Image Studio hero image">
-      <figcaption>Z-Image Studio · lavender-black theme</figcaption>
+      <img src="assets/white_crane_studio/hero.png" alt="White Crane Studio hero image">
+      <figcaption>White Crane Studio · lavender-black theme · dual-engine MPS</figcaption>
     </figure>
     <div class="hero-meta">
       <div class="meta-block">
         <div class="meta-label">Project</div>
-        <div class="meta-value"><strong>Local inferencing</strong> · RTX 5070 · 12 GB VRAM</div>
+        <div class="meta-value"><strong>Dual-engine inferencing</strong> · Apple Silicon M4 · 32 GB Unified</div>
       </div>
       <div class="meta-block">
         <div class="meta-label">Built with</div>
-        <div class="meta-value"><strong>Z-Image-Turbo</strong> · FastAPI · PyTorch · CUDA</div>
+        <div class="meta-value"><strong>Z-Image-Turbo + FLUX.2 Klein 9B</strong> · FastAPI · PyTorch · MPS · bfloat16</div>
       </div>
       <div class="meta-block">
         <div class="meta-label">Source</div>
-        <div class="meta-value"><a href="https://github.com/ChairmanWCD/z-image-studio" target="_blank" rel="noopener">github.com/ChairmanWCD/z-image-studio ↗</a></div>
+        <div class="meta-value"><a href="https://github.com/ChairmanWCD/White_Crane_Studio" target="_blank" rel="noopener">github.com/ChairmanWCD/White_Crane_Studio ↗</a></div>
       </div>
     </div>
   </div>
@@ -447,11 +447,11 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
   <!-- 01 THE BRIEF -->
   <div class="cs-section fade">
     <div class="cs-eyebrow"><span class="tri"></span> 01 — The brief</div>
-    <h2 class="cs-h2">Text-to-image at studio cost</h2>
-    <p class="cs-p">Creative teams need to generate images. Cloud APIs make that easy — until you hit the wall of cost, latency, data privacy, and wait times at scale. Every generation is accounted, every prompt leaves the machine, every call competes for a shared queue.</p>
-    <p class="cs-p">The alternative is running open-weight models yourself. For a long time that meant Docker, Linux, and a bank of data-center GPUs — infrastructure a small studio simply doesn't have.</p>
-    <p class="cs-p">The question wasn't "can we use a text-to-image model?" It was: <strong>"Can a single consumer GPU become a serious, always-on image generation service?"</strong></p>
-    <p class="cs-p">This project says yes — by porting a production-grade server to native Windows and sharing the models ComfyUI already has on disk.</p>
+    <h2 class="cs-h2">Two models, one Mac</h2>
+    <p class="cs-p">Creative teams need to generate <em>and</em> edit images. Cloud APIs make that easy — until you hit cost, latency, data privacy, and shared-queue waits at scale. Every generation is metered, every prompt leaves the machine.</p>
+    <p class="cs-p">Running open-weight models locally solves that — but now you need <em>two</em> engines: text-to-image for creation and image-to-image for edits. On Apple Silicon that means fitting ~60 GB of weights and two pipelines into 32 GB of unified memory.</p>
+    <p class="cs-p">The question wasn't "can we run a diffusion model?" It was: <strong>"Can a single Mac — the machine a studio already owns — become a serious, always-on studio for both generation and editing?"</strong></p>
+    <p class="cs-p">White Crane Studio says yes — a FAL.ai-style server with <strong>Z-Image-Turbo</strong> for T2I and <strong>FLUX.2 Klein 9B</strong> for I2I, with ComfyUI-like swapping so only one engine is resident at a time.</p>
   </div>
 
   <hr class="cs-rule">
@@ -478,7 +478,7 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
       </div>
     </div>
 
-    <p class="cs-p">Z-Image Studio is Option B, made practical: <strong>a self-hosted inference service on a 12 GB mid-range GPU.</strong> The hard engineering is making that much model load into that little VRAM.</p>
+    <p class="cs-p">White Crane Studio is Option B, made practical on Apple Silicon: <strong>a self-hosted dual-engine service on a single M4 Mac.</strong> The hard engineering is keeping two large pipelines and ~60 GB of weights usable within 32 GB unified memory.</p>
   </div>
 
   <hr class="cs-rule">
@@ -500,14 +500,15 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
       </div>
     </div>
 
-    <h3 class="cs-h3">Two APIs, one engine</h3>
+    <h3 class="cs-h3">Two APIs, two engines — one facade</h3>
     <ul class="cs-list">
       <li><strong>Async queue API</strong> — <span class="lead-code">/submit</span> → <span class="lead-code">/status</span> → <span class="lead-code">/result</span>, plus <span class="lead-code">/cancel</span>. Built for polling clients and parallel workloads.</li>
-      <li><strong>Sync API</strong> — <span class="lead-code">POST /generate</span> returns the result inline, with optional <span class="lead-code">sync_mode</span> for base64 data URIs.</li>
-      <li><strong>Support endpoints</strong> — <span class="lead-code">/health</span>, <span class="lead-code">/api/history</span> (recent images), <span class="lead-code">/output/{file}</span> (static files), and Swagger docs at <span class="lead-code">/docs</span>.</li>
+      <li><strong>Sync API</strong> — <span class="lead-code">POST /generate</span> returns the result inline, with <span class="lead-code">sync_mode</span> for base64 data URIs.</li>
+      <li><strong>Support endpoints</strong> — <span class="lead-code">/health</span> (checks both engines), <span class="lead-code">/api/history</span> (recent images), <span class="lead-code">/output/{file}</span> (static files), Swagger at <span class="lead-code">/docs</span>.</li>
+      <li><strong>ZStudio facade</strong> — <span class="lead-code">app.py:377</span> routes by input: no <span class="lead-code">image</span> → Z-Image-Turbo T2I; with <span class="lead-code">image</span> (base64 data URI) → FLUX.2 Klein 9B I2I. <span class="lead-code">_ensure()</span> swaps the inactive pipeline to <span class="lead-code">cpu</span> + <span class="lead-code">torch.mps.empty_cache()</span> so only one is resident.</li>
     </ul>
 
-    <p class="cs-p">A warmup inference runs at startup so the first real request doesn't pay the cold-start cost. Queue depth is capped (<span class="lead-code">MAX_QUEUE_SIZE</span>), failed jobs retry, and completed results expire after a <span class="lead-code">TTL</span>.</p>
+    <p class="cs-p">An eager warmup at startup — Z-Image warm, then Klein probe (512×512, 2 steps) — pays the cold-start cost once so the first real request is fast. Queue depth is capped (<span class="lead-code">MAX_QUEUE_SIZE</span>), failed jobs retry, and completed results expire after a <span class="lead-code">TTL</span>.</p>
   </div>
 
   <hr class="cs-rule">
@@ -515,58 +516,58 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
   <!-- 04 THE HARD PROBLEM -->
   <div class="cs-section fade">
     <div class="cs-eyebrow"><span class="tri"></span> 04 — The hard problem</div>
-    <h2 class="cs-h2">Getting 20 GB of weights into 12 GB of VRAM</h2>
-    <p class="cs-p">Z-Image-Turbo's full pipeline is heavy. The three weight files total nearly <strong>20 GB</strong>, but the RTX 5070 has only 12 GB. Nothing fits all at once — so the design treats VRAM as a shared, rotating resource.</p>
+    <h2 class="cs-h2">Fitting ~60 GB and two pipelines into 32 GB unified memory</h2>
+    <p class="cs-p">White Crane Studio is heavy by design: Z-Image-Turbo is ~20.7 GB local, FLUX.2 Klein 9B is ~40 GB auto-downloaded, and together they need two full pipelines. On a 32 GB M4 nothing can stay resident at once — so the design treats memory as a rotating resource and dtype as a correctness choice.</p>
 
     <div class="metric-row">
       <div class="metric-box">
-        <div class="metric-label">Transformer</div>
-        <div class="metric-value">12 GB</div>
+        <div class="metric-label">Z-Image Transformer</div>
+        <div class="metric-value">12.3 GB</div>
         <div class="metric-sub">z_image_turbo_bf16.safetensors</div>
       </div>
       <div class="metric-box">
-        <div class="metric-label">Text encoder</div>
-        <div class="metric-value">7.5 GB</div>
-        <div class="metric-sub">Qwen3-4B</div>
+        <div class="metric-label">Qwen3-4B Text Encoder</div>
+        <div class="metric-value">8 GB</div>
+        <div class="metric-sub">qwen_3_4b.safetensors</div>
       </div>
       <div class="metric-box">
-        <div class="metric-label">VAE</div>
-        <div class="metric-value">320 MB</div>
-        <div class="metric-sub">Flux-style · 16 latent channels</div>
+        <div class="metric-label">VAE + Klein 9B</div>
+        <div class="metric-value">~40 GB</div>
+        <div class="metric-sub">ae.safetensors 335 MB + FLUX.2 Klein 9B cache (gated)</div>
       </div>
       <div class="metric-box">
-        <div class="metric-label">Safe upper side</div>
-        <div class="metric-value">1024 px</div>
-        <div class="metric-sub">Any larger request auto-scales down</div>
+        <div class="metric-label">Resident at once</div>
+        <div class="metric-value">One</div>
+        <div class="metric-sub">ComfyUI-like swap — inactive pipeline offloaded to cpu</div>
       </div>
     </div>
 
     <h3 class="cs-h3">How it stays under the ceiling</h3>
     <ul class="cs-list">
-      <li><strong>CPU offload</strong> — <span class="lead-code">enable_model_cpu_offload()</span> keeps only the active module in VRAM; the rest lives in system RAM.</li>
-      <li><strong>Attention + VAE slicing</strong> — both <span class="lead-code">enable_attention_slicing()</span> and VAE <span class="lead-code">tiling/slicing</span> cut peak memory.</li>
-      <li><strong>Auto-downscale</strong> — any requested size is clamped to <span class="lead-code">MAX_IMAGE_SIDE</span> (default 1024) before generation.</li>
+      <li><strong>ComfyUI-like swap</strong> — <span class="lead-code">ZStudio._ensure()</span> offloads the inactive pipeline to <span class="lead-code">cpu</span> and calls <span class="lead-code">torch.mps.empty_cache()</span>; target loads to <span class="lead-code">mps</span> on demand.</li>
+      <li><strong>bfloat16 on MPS</strong> — weights run in <span class="lead-code">bfloat16</span> (~19.8 GB) — numerically stable on MPS with torch ≥2.13. <span class="lead-code">float16</span> diverges to NaN/black at ≥1024.</li>
+      <li><strong>Size snapping for Klein</strong> — reference image dims snapped to 32 px via <span class="lead-code">_snap_size()</span> between 256–2048; T2I presets are 768–1344 px. No large-request downscale hack — just honest swap.</li>
     </ul>
   </div>
 
   <hr class="cs-rule">
 
-  <!-- 05 PORTING TO WINDOWS -->
+  <!-- 05 NATIVE MPS -->
   <div class="cs-section fade">
-    <div class="cs-eyebrow"><span class="tri"></span> 05 — Porting to Windows</div>
-    <h2 class="cs-h2">From Docker to a single PowerShell prompt</h2>
-    <p class="cs-p">The original build was Linux/Docker on a data-center Grace Blackwell GPU. Bringing it to a personal RTX 5070 meant removing Docker, scripting the setup, and fixing every quirk that surfaced along the way.</p>
+    <div class="cs-eyebrow"><span class="tri"></span> 05 — Native on Apple Silicon</div>
+    <h2 class="cs-h2">From data-center Linux to <code>python run.py</code> on a Mac</h2>
+    <p class="cs-p">The goal was no Docker, no CUDA, no duplicate installs — a plain Python process that runs on the Mac a studio already owns, sharing no assumptions with a data-center box.</p>
 
     <ul class="cs-list">
-      <li><strong>Docker removed</strong> — <span class="lead-code">Dockerfile</span> / <span class="lead-code">docker-compose</span> archived. Replaced with <span class="lead-code">setup.ps1</span> (venv + deps) and <span class="lead-code">start.ps1</span> (uvicorn launcher).</li>
-      <li><strong>Shared model folder</strong> — <span class="lead-code">start.ps1</span> defaults <span class="lead-code">LOCAL_MODELS_DIR</span> to ComfyUI's shared folder — no duplicate ~20 GB download, both tools share one set of weights.</li>
-      <li><strong>VRAM-safe on 12 GB</strong> — the offload and slicing fixes above, driven by the fact that <span class="lead-code">ZImagePipeline</span> doesn't expose pipeline-level VAE tiling (an early build errored on exactly that).</li>
-      <li><strong>Windows-friendly paths</strong> — <span class="lead-code">config.py</span> auto-detects a <span class="lead-code">../models</span> sibling folder instead of a container path; output defaults to <span class="lead-code">.\output</span>.</li>
-      <li><strong>Environment</strong> — torch <span class="lead-code">cu130</span> (fallback <span class="lead-code">cu128</span>), <span class="lead-code">diffusers</span> from git main, <span class="lead-code">transformers</span> 5.x. Verified: torch 2.13.0+cu130, <span class="lead-code">cuda=True</span>.</li>
+      <li><strong>No Docker</strong> — single process via <span class="lead-code">python run.py</span> (FastAPI + uvicorn on <span class="lead-code">0.0.0.0:8100</span>), <span class="lead-code">Ctrl+C</span> to stop.</li>
+      <li><strong>Local Z-Image weights</strong> — <span class="lead-code">LOCAL_MODELS_DIR</span> defaults to a sibling <span class="lead-code">../models</span>; <span class="lead-code">download_models.py</span> fetches the 3 <span class="lead-code">.safetensors</span> files (resumable, ~20.7 GB).</li>
+      <li><strong>Gated Klein 9B</strong> — auto-downloaded on first start via <span class="lead-code">snapshot_download</span> to <span class="lead-code">~/.cache/huggingface</span> (~40 GB, resumable). Requires accepting the Flux license and <span class="lead-code">HF_TOKEN</span> in a local <span class="lead-code">.env</span> (gitignored).</li>
+      <li><strong>MPS-native paths</strong> — <span class="lead-code">config.py</span> detects <span class="lead-code">mps</span> vs <span class="lead-code">cpu</span> (<span class="lead-code">TORCH_DTYPE=bfloat16</span> default), binds <span class="lead-code">HOST 0.0.0.0</span>, and auto-detects LAN IP for result URLs.</li>
+      <li><strong>Environment</strong> — PyTorch Apple Silicon build from PyPI (MPS), <span class="lead-code">diffusers</span> from git main, <span class="lead-code">transformers</span> ≥5.0, <span class="lead-code">accelerate</span>, <span class="lead-code">vae subfolder</span> fix for 16 latent channels.</li>
     </ul>
 
     <div class="pullquote">
-      <p>One machine. One script. <span>Your own image generation service.</span></p>
+      <p>One Mac. One command. <span>Your own dual-engine studio.</span></p>
     </div>
   </div>
 
@@ -578,16 +579,16 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
     <h2 class="cs-h2">A studio-grade web UI</h2>
     <p class="cs-p">A server is only useful if people can drive it. The bundled single-page UI gives a full generation workspace with a dark, lavender-accented theme — and a light mode for bright studios.</p>
     <ul class="cs-list">
-      <li><strong>Prompt controls</strong> — textarea with example chips and <code>Cmd/Ctrl+Enter</code> to generate.</li>
-      <li><strong>Size presets</strong> — six aspect ratios from Square HD to Landscape 16:9, all clamped to fit VRAM.</li>
-      <li><strong>Advanced settings</strong> — negative prompt, guidance scale, seed + randomize.</li>
-      <li><strong>Output control</strong> — inference steps (1–10), image count (1–4), PNG/JPEG.</li>
-      <li><strong>Live feedback</strong> — elapsed timer, skeleton loading, cancel, health status, and a <code>/api/history</code> strip to reopen recent work.</li>
+      <li><strong>Mode switch</strong> — <span class="lead-code">Text to Image</span> (Z-Image-Turbo) vs <span class="lead-code">Image to Image</span> (FLUX.2 Klein 9B badge) — output size follows preset for T2I, reference dims (snapped 32px) for I2I.</li>
+      <li><strong>Prompt & reference</strong> — textarea with example chips, <code>Cmd/Ctrl+Enter</code> to generate; I2I dropzone with preview/remove for the reference image.</li>
+      <li><strong>Size presets (T2I)</strong> — six aspect ratios from Square HD to Landscape 16:9.</li>
+      <li><strong>Advanced settings</strong> — negative prompt, guidance scale (T2I; Klein fixed at 1.0), seed + randomize, inference steps (1–10; default 9 T2I, 4 Klein).</li>
+      <li><strong>Live feedback</strong> — elapsed timer, skeleton loading, cancel, health status (<span class="lead-code">z_image_turbo / flux2_klein</span>), dark/light toggle (lavender), and a <code>/api/history</code> strip.</li>
     </ul>
 
     <figure class="hero-visual" style="margin: 1.75rem 0;">
-      <img src="assets/zimage/ui.png" alt="Z-Image Studio web UI">
-      <figcaption>Z-Image Studio · generation UI (lavender-black theme)</figcaption>
+      <img src="assets/white_crane_studio/ui.png" alt="White Crane Studio web UI">
+      <figcaption>White Crane Studio · generation UI (lavender-black, mode switch + Klein badge)</figcaption>
     </figure>
 
     <h3 class="cs-h3">The API</h3>
@@ -612,23 +613,23 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
   <div class="cs-section fade">
     <div class="cs-eyebrow"><span class="tri"></span> 07 — What's still hard</div>
     <h2 class="cs-h2">The tradeoffs</h2>
-    <p class="cs-p">Local inferencing isn't a free lunch. Being honest about the ceilings is part of the point.</p>
+    <p class="cs-p">Local inferencing isn't a free lunch on Apple Silicon either. Being honest about the ceilings is part of the point.</p>
 
     <div class="lesson">
       <div class="lesson-num">01</div>
-      <p><strong>VRAM is a hard ceiling.</strong> Every optimization exists because 12 GB isn't much for this pipeline. Larger images are impossible without downscaling or a bigger card.</p>
+      <p><strong>Unified memory is a hard ceiling.</strong> Swap keeps you in 32 GB comfortably; drop to 24 GB and you lean harder on offload. Two engines resident at once would OOM — that's why swap exists.</p>
     </div>
     <div class="lesson">
       <div class="lesson-num">02</div>
-      <p><strong>Models must be present.</strong> The ~20 GB of weights need a <span class="lead-code">LOCAL_MODELS_DIR</span> or a HuggingFace download, and gated repos demand an <code>HF_TOKEN</code>.</p>
+      <p><strong>Gated model friction.</strong> Klein 9B is gated on HuggingFace — you must accept the Flux license and set <span class="lead-code">HF_TOKEN</span> in <span class="lead-code">.env</span>, or that engine stays disabled (Z-Image still works).</p>
     </div>
     <div class="lesson">
       <div class="lesson-num">03</div>
-      <p><strong>Windows friction is real.</strong> PowerShell's execution policy blocks <code>.ps1</code> scripts until you bypass or relax it — a classic first-run stumble.</p>
+      <p><strong>bfloat16 vs float16.</strong> <span class="lead-code">float16</span> on MPS diverges to NaN/black at ≥1024 — use the default <span class="lead-code">bfloat16</span>. If you override, keep sizes small.</p>
     </div>
     <div class="lesson">
       <div class="lesson-num">04</div>
-      <p><strong>First request is slower.</strong> Kernel recompilation at larger sizes costs a few extra seconds; steady-state is fast but the warm-up is visible.</p>
+      <p><strong>MPS is slower than discrete CUDA.</strong> Expect 2–3× longer generation vs an NVIDIA card; warmup hides the first-hit cost but per-step throughput is lower.</p>
     </div>
   </div>
 
@@ -643,17 +644,17 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
       <p>Serious creative tooling shouldn't require a cloud subscription. <span>It should run on hardware a studio can actually afford.</span></p>
     </div>
 
-    <p class="cs-p">Z-Image Studio is a proof that a consumer GPU — not a lab, not a data center — can power a real, queue-based image generation service. It's fast, it's local, and it reuses the models a studio already has through ComfyUI. No per-image fees. No prompts leaving the machine. No vendor in between.</p>
+    <p class="cs-p">White Crane Studio is proof that a Mac — not a lab, not a data center — can power a real, queue-based studio for both generation and editing. One command starts it, swap keeps it in memory, and prompts never leave the machine. No per-image fees. No vendor in between.</p>
 
     <div class="cta-block">
       <div class="cta-left">
         <div class="cta-label">View the repo</div>
-        <p>Setup scripts, config, server code, and the full work log are open on GitHub.</p>
+        <p>Setup scripts, config, server code, and the dual-engine swap are open on GitHub.</p>
       </div>
-      <a href="https://github.com/ChairmanWCD/z-image-studio" target="_blank" rel="noopener" class="cta-btn">GitHub ↗</a>
+      <a href="https://github.com/ChairmanWCD/White_Crane_Studio" target="_blank" rel="noopener" class="cta-btn">GitHub ↗</a>
     </div>
 
-    <p class="cs-p" style="margin-top:1.5rem; font-size:13px; color:var(--white-dim);">Z-Image-Turbo is © Tongyi-MAI / Alibaba. Refer to the model card for licensing terms.</p>
+    <p class="cs-p" style="margin-top:1.5rem; font-size:13px; color:var(--white-dim);">Z-Image-Turbo is © Tongyi-MAI / Alibaba; FLUX.2 Klein 9B is © Black Forest Labs. Refer to each model card for licensing terms.</p>
   </div>
 
 </div>
