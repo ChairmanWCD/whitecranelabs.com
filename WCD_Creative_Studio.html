@@ -325,6 +325,9 @@
     display: inline-block; white-space: nowrap;
   }
   .cta-btn:hover { opacity: 0.85; }
+  .cta-actions { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
+  .cta-btn--ghost { background: transparent; color: var(--violet-accent); border: 1px solid var(--border); }
+  @media print { .cta-block a[href]::after { content: " (" attr(href) ")"; font-size: 11px; } }
 
   /* ── FOOTER ── */
   footer {
@@ -643,12 +646,21 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
     <p class="cs-p">My proof is small on purpose: a <strong>shiba-cafe-deck</strong> — a full set of on-brand images generated locally, art-directed and iterated like client work. Same prompt discipline, same preset logic, same queue. If it holds for a deck, it holds for a campaign.</p>
     <p class="cs-p">That's the studio+engine loop I wanted: I direct the concept, my RTX renders it, and the prompts never leave my machine. No per-image fees. No vendor in between.</p>
 
+    <div class="example-box">
+      <div class="example-label">Proof · Live deck — 7 slides</div>
+      <div class="example-text"><strong style="color:var(--white)">Shiba Cafe Deck</strong> — 7 on-brand slides generated locally on RTX 5070 (Z-Image-Turbo). Opens as a standalone page; nothing inlined, nothing base64. <a href="../dist/shiba-cafe-deck/index.html" target="_blank" rel="noopener" aria-label="Open the live Shiba Cafe Deck, 7 slides, in a new tab" style="color:var(--violet-accent)">Open the live deck ↗</a></div>
+    </div>
+
     <div class="cta-block">
       <div class="cta-left">
-        <div class="cta-label">View the repo</div>
-        <p>Setup scripts, config, server code, and the single-engine queue are open on GitHub.</p>
+        <div class="cta-label">See the proof</div>
+        <p>7-slide Shiba Cafe deck — generated locally, art-directed like client work. Open the live deck, or browse the source.</p>
+        <p style="font-size:12px; color:var(--white-dim); margin-top:.5rem;">No dist on this deploy? <a href="https://github.com/ChairmanWCD/WCD-Creative-Studio/tree/main/studio/dist/shiba-cafe-deck" target="_blank" rel="noopener" aria-label="Open the Shiba Cafe Deck source folder on GitHub in a new tab" style="color:var(--violet-accent)">Browse the deck source on GitHub ↗</a></p>
       </div>
-      <a href="https://github.com/ChairmanWCD/WCD-Creative-Studio" target="_blank" rel="noopener" class="cta-btn">GitHub <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px"><path d="M7 7h10v10M7 17 17 7"/></svg></a>
+      <div class="cta-actions">
+        <a href="../dist/shiba-cafe-deck/index.html" target="_blank" rel="noopener" class="cta-btn" aria-label="View the live Shiba Cafe Deck, 7 slides, in a new tab">View Shiba Cafe Deck <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px"><path d="M7 7h10v10M7 17 17 7"/></svg></a>
+        <a href="https://github.com/ChairmanWCD/WCD-Creative-Studio" target="_blank" rel="noopener" class="cta-btn cta-btn--ghost" aria-label="Open the WCD Creative Studio repository on GitHub in a new tab">GitHub <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px"><path d="M7 7h10v10M7 17 17 7"/></svg></a>
+      </div>
     </div>
 
     <p class="cs-p" style="margin-top:1.5rem; font-size:13px; color:var(--white-dim);">Z-Image-Turbo is © Tongyi-MAI / Alibaba. Refer to the model card for licensing terms. Hero and UI screenshots are legacy assets carried over pending reshoot.</p>
