@@ -45,18 +45,16 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;z-
 #stage{position:relative;height:100dvh;width:100%;display:flex;align-items:center;justify-content:center;padding:20px;}
 .slide{
   position:relative;display:none;width:min(1280px,100%);aspect-ratio:16/9;max-height:calc(100dvh - 40px);
-  background:var(--paper);border-radius:28px;overflow-x:hidden;overflow-y:auto;
+  background:var(--paper);border-radius:28px;overflow:hidden;
   box-shadow:0 30px 80px rgba(0,0,0,.45), 0 2px 0 rgba(255,255,255,.4) inset;
   border:1px solid rgba(255,255,255,.35);
-  scrollbar-width:thin;
-  scrollbar-color:var(--wood) transparent;
 }
-.slide::-webkit-scrollbar{width:10px}
-.slide::-webkit-scrollbar-track{background:transparent;margin:14px 0}
-.slide::-webkit-scrollbar-thumb{background:var(--wood);border-radius:999px;border:2px solid var(--paper)}
-.slide::-webkit-scrollbar-thumb:hover{background:var(--accent-deep)}
 .slide.active{display:grid;}
-.slide-inner{padding:clamp(24px,4.5vw,64px);display:flex;flex-direction:column;height:100%;min-height:0;position:relative;z-index:2}
+.slide-inner{padding:clamp(24px,4.5vw,64px);padding-right:calc(clamp(24px,4.5vw,64px) - 6px);display:flex;flex-direction:column;height:100%;max-height:calc(100dvh - 40px);min-height:0;position:relative;z-index:2;overflow-x:hidden;overflow-y:auto;border-radius:inherit;scrollbar-width:thin;scrollbar-color:var(--wood) transparent;scrollbar-gutter:stable}
+.slide-inner::-webkit-scrollbar{width:10px}
+.slide-inner::-webkit-scrollbar-track{background:transparent;margin:28px 4px 28px 0}
+.slide-inner::-webkit-scrollbar-thumb{background:var(--wood);border-radius:999px;border:2px solid var(--paper)}
+.slide-inner::-webkit-scrollbar-thumb:hover{background:var(--accent-deep)}
 /* top bar */
 .topbar{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 .brandmark{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:17px;letter-spacing:.2px}
@@ -72,7 +70,11 @@ h2 .accent,h1 .accent{color:var(--accent-deep)}
 .eyebrow-num{position:absolute;right:34px;top:26px;font-family:var(--font-display);font-weight:800;font-size:15px;color:var(--muted);letter-spacing:1px}
 /* cover */
 #s1{grid-template-columns:1.05fr 1fr;}
-#s1 .cover-copy{padding:clamp(28px,4.5vw,64px);display:flex;flex-direction:column;justify-content:center;gap:16px}
+#s1 .cover-copy{padding:clamp(28px,4.5vw,64px);padding-right:calc(clamp(28px,4.5vw,64px) - 6px);display:flex;flex-direction:column;justify-content:center;gap:16px;min-height:0;max-height:calc(100dvh - 40px);overflow-x:hidden;overflow-y:auto;border-radius:28px 0 0 28px;scrollbar-width:thin;scrollbar-color:var(--wood) transparent;scrollbar-gutter:stable}
+#s1 .cover-copy::-webkit-scrollbar{width:10px}
+#s1 .cover-copy::-webkit-scrollbar-track{background:transparent;margin:28px 4px 28px 0}
+#s1 .cover-copy::-webkit-scrollbar-thumb{background:var(--wood);border-radius:999px;border:2px solid var(--paper)}
+#s1 .cover-copy::-webkit-scrollbar-thumb:hover{background:var(--accent-deep)}
 #s1 .cover-art{position:relative;background:var(--wood);min-height:100%}
 #s1 .cover-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #s1 .cover-art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--paper) 0%,transparent 18%,transparent 75%,rgba(35,26,17,.35) 100%)}
@@ -176,8 +178,9 @@ h2 .accent,h1 .accent{color:var(--accent-deep)}
 /* short landscape windows: tighten spacing so less scrolling is needed */
 @media (max-height:800px){
   #stage{padding:12px;align-items:flex-start}
-  .slide{aspect-ratio:auto;min-height:calc(100dvh - 24px)}
-  .slide-inner{padding:20px 24px}
+  .slide{aspect-ratio:auto;min-height:calc(100dvh - 24px);max-height:calc(100dvh - 24px);overflow:hidden}
+  .slide-inner{padding:20px 18px 20px 24px;max-height:calc(100dvh - 24px)}
+  #s1 .cover-copy{max-height:calc(100dvh - 24px)}
   h1{font-size:clamp(32px,4.5vw,56px)}
   h2{font-size:clamp(26px,3vw,40px)}
   .grid3,.dogs,.care-grid,.flow{gap:12px;margin-top:12px}
