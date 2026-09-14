@@ -3,906 +3,523 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>
-  // Set theme before first paint to avoid a flash of the wrong mode
-  try { if (localStorage.getItem('wcl-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
-</script>
+<script>try{var t=localStorage.getItem("wcl-theme");if(t==="light"){document.documentElement.setAttribute("data-theme","light")}else{document.documentElement.removeAttribute("data-theme")}}catch(e){}</script>
 <title>Ken Bai — Creative Technologist | AI × Design</title>
 <meta name="description" content="Ken Bai, Creative Technologist building AI-powered creative infrastructure at Pratt Institute and through his studio, White Crane Labs. 10+ years at the intersection of technology, design, and strategy.">
+<meta property="og:title" content="Ken Bai — Creative Technologist | AI × Design">
+<meta property="og:description" content="I build AI-powered creative infrastructure at Pratt Institute and through White Crane Labs. Human in the loop. Always.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chairmanwcd.github.io/whitecranelabs.com/">
+<meta property="og:image" content="assets/repo-cover.png">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#1C1B18">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --black:      #1C1B18;
-    --surface:    #212121;
-    --maroon:     #2A1613;
-    --border:     #3A3A3A;
-    --border-lo:  #2C2C2C;
-    --white:      #ECEAE4;
-    --ink-fixed:  #1C1B18;
-    --paper-fixed:#ECEAE4;
-    --text:       #C7C4BC;
-    --text-dim:   #8C8980;
-    --red:        #E03030;
-    --red-solid:  #C22B2B;
-    --gold:       #C49A2A;
-    --teal:       #2A9D8F;
-    --green:      #3FBF6F;
-    --violet:     #A78BFA;
-    --blue:       #2EBEDC;
-    --fd: 'Space Grotesk', sans-serif;
-    --fb: 'Inter', sans-serif;
-    --mono: 'JetBrains Mono', 'SF Mono', monospace;
-    --measure: 60ch;
-    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-    --mx: 50vw;
-    --my: 40vh;
-  }
-
-  html[data-theme="light"] {
-    --black:      #F5F2EC;
-    --surface:    #EDE9E0;
-    --border:     rgba(30,28,24,0.14);
-    --border-lo:  rgba(30,28,24,0.09);
-    --white:      #1E1C18;
-    --text:       #3A3830;
-    --text-dim:   #6B6860;
-    --red:        #C23B22;
-  }
-
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--black);
-    color: var(--text);
-    font-family: var(--fb);
-    font-size: 16px;
-    line-height: 1.7;
-    overflow-x: hidden;
-    position: relative;
-    cursor: default;
-  }
-  a { color: inherit; }
-  img, svg { display: block; max-width: 100%; }
-  ::selection { background: var(--red); color: var(--paper-fixed); }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
-
-  body::before {
-    content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.035;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto; }
-  }
-
-  /* ---- NAV (glass pill) ---- */
-  nav {
-    position: fixed; top: 14px; left: 0; right: 0; z-index: 100;
-    padding: 0 1.5rem;
-  }
-    .nav-pill { max-width: 1080px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-    background: color-mix(in srgb, var(--black) 82%, transparent);
-    border: 1px solid var(--border);
-    border-radius: 1000px;
-    padding: .7rem 1rem .7rem 1.3rem;
-    backdrop-filter: blur(18px);
-    box-shadow: 0 14px 40px rgba(0,0,0,0.3);
-  }
-  nav.scrolled,
-  html[data-theme="light"] nav.scrolled { background: transparent; border-bottom-color: transparent; }
-  .nav-logo {
-    display: flex; align-items: center; gap: 10px;
-    font-family: var(--fd); font-size: 14px; font-weight: 600;
-    letter-spacing: .02em; color: var(--white); text-decoration: none;
-  }
-  .nav-logo .crane { transition: transform 0.5s var(--ease-out); }
-  .nav-logo:hover .crane { transform: rotate(-8deg) scale(1.05); }
-  .nav-links { display: flex; gap: 1.9rem; list-style: none; }
-  .nav-links a {
-    font-size: 13px; color: var(--text-dim); text-decoration: none; position: relative;
-    padding-bottom: 4px; transition: color 0.2s;
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 0%;
-    background: var(--red); transition: width 0.35s var(--ease-out);
-  }
-  .nav-links a:hover { color: var(--white); }
-  .nav-links a:hover::after { width: 100%; }
-  .nav-cta {
-    font-family: var(--fd); font-size: 13px; font-weight: 600; color: var(--paper-fixed);
-    background: var(--red-solid); padding: 10px 22px; text-decoration: none;
-    border-radius: 1000px; transition: opacity 0.2s, transform 0.2s;
-  }
-  .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
-  .nav-right { display: flex; align-items: center; gap: 1.2rem; }
-  @media (max-width: 760px) { .nav-links { display: none; } }
-
-  .theme-toggle { display: flex; align-items: center; gap: 7px; cursor: pointer; background: none; border: none; padding: 0; color: var(--text-dim); transition: color 0.15s; }
-  .theme-toggle:hover { color: var(--white); }
-  .toggle-icon { display: inline-flex; align-items: center; justify-content: center; width: 13px; height: 13px; line-height: 1; }
-  .toggle-icon .icon-sun { display: none; }
-  html[data-theme="light"] .toggle-icon .icon-sun { display: block; }
-  html[data-theme="light"] .toggle-icon .icon-moon { display: none; }
-  .toggle-track { width: 34px; height: 19px; border: 1px solid var(--border); background: var(--surface); border-radius: 10px; position: relative; flex-shrink: 0; transition: background 0.2s, border-color 0.2s; }
-  .toggle-thumb { position: absolute; top: 2px; left: 2px; width: 13px; height: 13px; border-radius: 50%; background: var(--text-dim); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s; }
-  html[data-theme="light"] .toggle-thumb { transform: translateX(15px); background: var(--red-solid); }
-
-  /* ---- SCAFFOLD ---- */
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); position: relative; z-index: 1; }
-  section { position: relative; }
-  .band-black   { background: var(--black); }
-  .band-surface { background: var(--surface); border-top: 1px solid var(--border-lo); border-bottom: 1px solid var(--border-lo); }
-  .band-maroon  { background: var(--maroon); border-top: 1px solid rgba(224,48,48,0.15); border-bottom: 1px solid rgba(224,48,48,0.15); }
-  .section-inner { padding: clamp(4rem, 9vw, 7rem) 0; }
-
-  .eyebrow {
-    font-family: var(--mono); font-size: 11.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--text-dim); display: inline-flex; align-items: center; gap: 9px; margin-bottom: 1.5rem;
-  }
-  .eyebrow .dot { width: 9px; height: 8px; background: var(--red); flex-shrink: 0; clip-path: polygon(0 0, 100% 0, 50% 100%); }
-  .eyebrow.on-maroon { color: rgba(236,234,228,0.55); }
-
-  /* group label inside work band (distinguishes systems vs design) */
-  .work-group {
-    font-family: var(--mono); font-size: 11.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--text-dim); display: flex; align-items: center; gap: 9px; margin: 3rem 0 0.25rem;
-  }
-  .work-group:first-of-type { margin-top: 2.5rem; }
-  .work-group .dot { width: 9px; height: 9px; background: var(--red); flex-shrink: 0; transform: rotate(45deg); opacity: 0.8; }
-  .work-group::after { content: ''; height: 1px; background: var(--border-lo); flex: 1; margin-left: 1rem; }
-
-  h2 {
-    font-family: var(--fd); font-size: clamp(1.9rem, 3.4vw, 2.5rem);
-    font-weight: 700; letter-spacing: -0.02em; line-height: 1.1;
-    color: var(--white); margin-bottom: 1rem; max-width: 20ch;
-  }
-  .lede { font-size: 16px; color: var(--text); max-width: var(--measure); line-height: 1.75; margin-bottom: 2.75rem; }
-  .lede-strong {
-    font-family: var(--fd); font-weight: 700; color: var(--white);
-    font-size: clamp(1.9rem, 3.4vw, 2.5rem); letter-spacing: -0.02em; line-height: 1.16; text-wrap: balance;
-  }
-  .lede-strong .accent { color: var(--red); font-style: normal; }
-  p { max-width: var(--measure); }
-
-  /* ================= HERO ================= */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: clamp(6rem, 12vh, 9rem) 0 clamp(4rem, 8vh, 6rem);
-    overflow: hidden; position: relative;
-  }
-  /* cursor-following spotlight glow */
-  .hero::after {
-    content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-    background: radial-gradient(620px circle at var(--mx) var(--my), rgba(224,48,48,0.10), transparent 62%);
-    transition: background 0.4s ease;
-  }
-  .hero-mark {
-    position: absolute; top: 50%; left: 50%; width: clamp(360px, 46vw, 700px);
-    transform: translate(-50%, -50%); color: var(--white); opacity: 0.05; pointer-events: none; z-index: 0;
-    animation: float 9s ease-in-out infinite;
-  }
-  html[data-theme="light"] .hero-mark { opacity: 0.04; }
-  @keyframes float { 0%,100%{ transform: translate(-50%,-52%) rotate(0deg);} 50%{ transform: translate(-50%,-46%) rotate(2deg);} }
-
-  .hero-inner { position: relative; z-index: 2; }
-  .hero-status {
-    font-family: var(--mono); font-size: 12px; color: var(--red); letter-spacing: 0.16em; text-transform: uppercase;
-    display: flex; align-items: center; gap: 10px; margin-bottom: 2rem;
-  }
-  .hero-status .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); animation: pulse 2.2s ease-in-out infinite; }
-  @keyframes pulse { 0%,100%{opacity:1; transform: scale(1);} 50%{opacity:0.35; transform: scale(0.8);} }
-
-  h1 {
-    font-family: var(--fd); font-weight: 700; letter-spacing: -0.035em; line-height: 0.96;
-    color: var(--white);
-  }
-  h1 .line { display: block; font-size: clamp(3rem, 9.5vw, 7.5rem); margin-bottom: 0.02em; }
-  .w-word {
-    display: inline-block; opacity: 0; filter: blur(12px);
-    animation: wordIn 0.8s var(--ease-out) forwards;
-  }
-  @keyframes wordIn { to { opacity: 1; filter: blur(0); transform: translateY(0); } }
-  h1 .line:nth-child(1) .w-word:nth-child(1){ animation-delay: 0.10s; }
-  h1 .line:nth-child(1) .w-word:nth-child(2){ animation-delay: 0.20s; }
-  h1 .line:nth-child(2) .w-word:nth-child(1){ animation-delay: 0.30s; color: var(--red); }
-  h1 .line:nth-child(3) .w-word:nth-child(1){ animation-delay: 0.42s; }
-  h1 .line:nth-child(3) .w-word:nth-child(2){ animation-delay: 0.52s; }
-
-  .hero-role {
-    font-family: var(--fd); font-size: clamp(1.15rem, 2.4vw, 1.7rem); color: var(--text);
-    display: flex; align-items: center; gap: 0.4rem; margin-top: 1.4rem; height: 2em; flex-wrap: wrap;
-  }
-  .type-slot { display: inline-flex; color: var(--white); white-space: pre; }
-  .type-caret { display: inline-block; width: 0.08em; height: 1.05em; background: var(--red); margin-left: 3px; animation: blink 1s steps(1) infinite; }
-  @keyframes blink { 50% { opacity: 0; } }
-
-  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 2.4rem; }
-  .btn-primary {
-    font-family: var(--fd); font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
-    background: var(--red-solid); color: var(--paper-fixed); padding: 14px 28px; border: none;
-    border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; position: relative; overflow: hidden;
-    transition: opacity 0.2s, box-shadow 0.3s, transform 0.15s;
-    box-shadow: 0 0 0 rgba(224,48,48,0);
-  }
-  .btn-primary:hover {
-    opacity: 1;
-    box-shadow: 0 12px 34px -10px rgba(224,48,48,0.55);
-    transform: translateY(-2px);
-  }
-  .btn-primary::after {
-    content: ''; position: absolute; top: 0; left: -120%; width: 60%; height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
-    transform: skewX(-20deg); transition: left 0.7s var(--ease-out);
-  }
-  .btn-primary:hover::after { left: 130%; }
-  .btn-ghost {
-    font-size: 14px; color: var(--text); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-    border-bottom: 1px solid var(--border); padding-bottom: 3px; transition: color 0.2s, border-color 0.2s, gap 0.2s;
-  }
-  .btn-ghost:hover { color: var(--white); border-color: var(--text-dim); gap: 12px; }
-
-  .hero-contact {
-    display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem;
-    margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-lo);
-    font-family: var(--mono); font-size: 12px; color: var(--text-dim);
-  }
-  .hero-contact a { text-decoration: none; color: var(--text-dim); transition: color 0.2s; }
-  .hero-contact a:hover { color: var(--white); }
-  .hero-contact .sep { opacity: 0.4; }
-
-  .hero-stats { display: flex; gap: clamp(1.75rem, 5vw, 3.5rem); padding-top: 1.75rem; margin-top: 0.5rem; flex-wrap: wrap; }
-  .stat-num { font-family: var(--fd); font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 700; color: var(--white); display: block; line-height: 1; }
-  .stat-label { font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.04em; margin-top: 6px; }
-
-  /* scroll indicator */
-  .scroll-cue {
-    position: absolute; left: 50%; bottom: 2rem; transform: translateX(-50%); z-index: 2;
-    display: flex; flex-direction: column; align-items: center; gap: 10px;
-    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim);
-  }
-  .scroll-cue .mouse {
-    width: 20px; height: 32px; border: 1px solid var(--border); border-radius: 12px; position: relative;
-  }
-  .scroll-cue .mouse::after {
-    content: ''; position: absolute; top: 6px; left: 50%; width: 3px; height: 7px; margin-left: -1.5px;
-    border-radius: 2px; background: var(--red); animation: wheel 1.8s var(--ease-out) infinite;
-  }
-  @keyframes wheel { 0%{ transform: translateY(0); opacity: 1;} 70%{ transform: translateY(9px); opacity: 0;} 100%{ opacity: 0;} }
-
-  /* ================= TECH MARQUEE ================= */
-  .marquee { overflow: hidden; border-top: 1px solid var(--border-lo); border-bottom: 1px solid var(--border-lo); background: var(--black); position: relative; z-index: 1; }
-  .marquee-track { display: flex; width: max-content; animation: scrollX 32s linear infinite; }
-  .marquee:hover .marquee-track { animation-play-state: paused; }
-  @keyframes scrollX { to { transform: translateX(-50%); } }
-  .marquee-item {
-    display: flex; align-items: center; gap: 2.5rem; padding: 1.1rem 1.25rem;
-    font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
-  }
-  .marquee-item .dia { width: 7px; height: 7px; background: var(--red); transform: rotate(45deg); opacity: 0.5; flex-shrink: 0; }
-
-  /* ================= PROJECTS ================= */
-  .project {
-    padding: 2.6rem 0; border-top: 1px solid var(--border-lo);
-    display: grid; grid-template-columns: 96px 1fr; gap: clamp(1rem, 3vw, 2.25rem); align-items: start;
-  }
-  .project:last-child { border-bottom: 1px solid var(--border-lo); }
-  .project-main { min-width: 0; }
-  .project-num {
-    font-family: var(--fd); font-size: clamp(2.6rem, 5vw, 3.8rem); font-weight: 700; line-height: 1; opacity: 0.14;
-  }
-  .project.pj-red .project-num { color: var(--red); }
-  .project.pj-gold .project-num { color: var(--gold); }
-  .project.pj-teal .project-num { color: var(--teal); }
-  .project.pj-green .project-num { color: var(--green); }
-  .project.pj-violet .project-num { color: var(--violet); }
-  .project.pj-blue .project-num { color: var(--blue); }
-  .project.pj-white .project-num { color: var(--white); }
-
-  .project-head { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
-  .project-title { font-family: var(--fd); font-size: clamp(1.4rem, 2.6vw, 1.75rem); font-weight: 600; color: var(--white); letter-spacing: -0.01em; transition: color 0.2s; }
-  a.project-title:hover { color: var(--red); }
-  .cat-pill { font-family: var(--mono); font-size: 10px; font-weight: 500; padding: 3px 9px; border-radius: 2px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-fixed); flex-shrink: 0; }
-  .cat-pill.c-red { background: var(--red-solid); color: var(--paper-fixed); }
-  .cat-pill.c-gold { background: var(--gold); }
-  .cat-pill.c-teal { background: var(--teal); }
-  .cat-pill.c-green { background: var(--green); }
-  .cat-pill.c-violet { background: var(--violet); color: var(--ink-fixed); }
-  .cat-pill.c-blue { background: var(--blue); color: var(--ink-fixed); }
-  .cat-pill.c-white { background: var(--white); color: var(--ink-fixed); }
-  html[data-theme="light"] .cat-pill.c-white { color: var(--paper-fixed); }
-  .project-role { font-family: var(--mono); font-size: 11.5px; color: var(--text-dim); margin-bottom: 0.8rem; }
-  .project-desc { font-size: 14.5px; color: var(--text); line-height: 1.75; max-width: 62ch; margin-bottom: 1rem; }
-  .project-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.35rem; }
-  .chip {
-    font-family: var(--mono); font-size: 11px; padding: 4px 10px; border: 1px solid var(--border);
-    color: var(--text-dim); letter-spacing: 0.02em; border-radius: 2px; transition: border-color 0.2s, color 0.2s;
-  }
-  .chip:hover { border-color: var(--red); color: var(--white); }
-  .project-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .link-primary {
-    font-size: 13.5px; font-weight: 500; text-decoration: none; color: var(--white); display: inline-flex; align-items: center; gap: 6px;
-    border-bottom: 1px solid var(--red); padding-bottom: 1px; transition: opacity 0.2s, gap 0.2s;
-  }
-  .link-primary:hover { opacity: 0.85; gap: 10px; }
-
-  .project-thumb {
-    flex-shrink: 0; width: 188px; border-radius: 4px; overflow: hidden; position: relative;
-    border: 1px solid var(--border); transition: transform 0.45s var(--ease-out), border-color 0.3s;
-  }
-  .project-thumb svg { display: block; width: 100%; height: auto; }
-  .project:hover .project-thumb { transform: translateY(-4px) rotate(0.5deg); }
-  .project:hover.pj-red .project-thumb { border-color: rgba(224,48,48,0.45); }
-  .project:hover.pj-gold .project-thumb { border-color: rgba(196,154,42,0.45); }
-  .project:hover.pj-teal .project-thumb { border-color: rgba(42,157,143,0.45); }
-  .project:hover.pj-green .project-thumb { border-color: rgba(63,191,111,0.45); }
-  .project:hover.pj-violet .project-thumb { border-color: rgba(167,139,250,0.45); }
-  .project:hover.pj-blue .project-thumb { border-color: rgba(46,190,220,0.45); }
-  @media (max-width: 640px) { .project { grid-template-columns: 1fr; } .project-num { display: none; } }
-
-  /* ================= STACK ================= */
-  .stack-box {
-    margin-top: 3rem; padding: clamp(1.5rem, 3vw, 2.4rem);
-    border: 1px solid var(--border); border-radius: 6px; position: relative; overflow: hidden;
-    background: linear-gradient(180deg, rgba(224,48,48,0.05), rgba(0,0,0,0) 55%), var(--black);
-  }
-  html[data-theme="light"] .stack-box { background: linear-gradient(180deg, rgba(194,59,34,0.05), rgba(0,0,0,0) 55%), var(--black); }
-  .stack-box::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--red), rgba(224,48,48,0.1));
-  }
-  .stack-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-  .stack-label {
-    font-family: var(--fd); font-size: 15px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;
-    color: var(--white); display: flex; align-items: center; gap: 10px;
-  }
-  .stack-label .dot { width: 9px; height: 9px; background: var(--red); clip-path: polygon(0 0, 100% 0, 50% 100%); }
-  .stack-count { font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; }
-  .stack-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
-  .stack-group h3 {
-    font-family: var(--mono); font-size: 11px; color: var(--red); font-weight: 600; margin-bottom: 0.7rem;
-    text-transform: uppercase; letter-spacing: 0.1em; display: flex; align-items: center; gap: 8px;
-  }
-  .stack-group h3::before { content: ''; width: 6px; height: 6px; transform: rotate(45deg); background: var(--red); opacity: 0.7; }
-  .stack-group .chips { display: flex; flex-wrap: wrap; gap: 7px; }
-  .chip.featured {
-    color: var(--paper-fixed); background: var(--red-solid); border-color: var(--red-solid); font-weight: 500;
-  }
-  .chip.featured:hover { border-color: var(--red); background: var(--red); }
-  .chip.accent { border-color: rgba(224,48,48,0.45); color: var(--white); background: rgba(224,48,48,0.08); }
-  .chip.accent:hover { border-color: var(--red); background: rgba(224,48,48,0.16); }
-  @media (max-width: 700px) { .stack-groups { grid-template-columns: 1fr; } }
-  .stack-group .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  @media (max-width: 700px) { .stack-groups { grid-template-columns: 1fr; } }
-
-  /* ================= EXPERIENCE ================= */
-  .exp { display: grid; grid-template-columns: 96px 1fr; gap: clamp(1rem, 4vw, 2rem); padding: 2.4rem 0; border-top: 1px solid var(--border-lo); position: relative; }
-  .exp:last-child { border-bottom: 1px solid var(--border-lo); }
-  .exp-num { font-family: var(--fd); font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 700; line-height: 1; opacity: 0.14; color: var(--red); }
-  .exp-head { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.3rem; }
-  .exp-role { font-family: var(--fd); font-size: clamp(1.25rem, 2.4vw, 1.5rem); font-weight: 600; color: var(--white); }
-  .exp-meta { font-family: var(--mono); font-size: 11.5px; color: var(--text-dim); margin-bottom: 1rem; }
-  .exp-sub { margin: 1.1rem 0 1.25rem; padding-left: 0; }
-  .exp-sub .sub { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; font-size: 13px; color: var(--text-dim); padding: 0.35rem 0; }
-  .exp-sub .sub::before { content: ''; flex-shrink: 0; width: 6px; height: 6px; transform: rotate(45deg); background: var(--red); opacity: 0.5; align-self: center; }
-  .exp-sub .sub-role { color: var(--text); font-weight: 500; }
-  .exp ul { list-style: none; }
-  .exp li { position: relative; padding-left: 1.1rem; font-size: 14.5px; color: var(--text); line-height: 1.75; margin-bottom: 0.5rem; max-width: 72ch; }
-  .exp li::before { content: ''; position: absolute; left: 0; top: 0.78em; width: 5px; height: 5px; background: var(--red); border-radius: 50%; }
-  @media (max-width: 640px) { .exp { grid-template-columns: 1fr; } .exp-num { display: none; } }
-
-  /* ================= EDUCATION ================= */
-  .edu { display: flex; flex-direction: column; }
-  .edu-item { padding: 1.2rem 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; transition: padding-left 0.3s var(--ease-out); }
-  .edu-item:last-child { border-bottom: 1px solid var(--border); }
-  .edu-item:hover { padding-left: 0.75rem; }
-  .edu-item p:first-child { font-size: 15px; color: var(--white); }
-  .edu-meta { font-size: 12.5px; color: var(--text-dim); font-family: var(--mono); }
-
-  /* ================= CONNECT ================= */
-  .connect-headline {
-    font-family: var(--fd); font-weight: 700; letter-spacing: -0.03em; line-height: 1.0;
-    color: var(--paper-fixed); font-size: clamp(2.6rem, 7vw, 4.8rem); max-width: 12ch; margin-bottom: 1.25rem;
-  }
-  .connect-lede { font-size: 16px; color: rgba(236,234,228,0.65); max-width: 46ch; line-height: 1.7; margin-bottom: 1.5rem; }
-  .connect-links { display: flex; flex-direction: column; }
-  .connect-link {
-    display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 0.25rem;
-    border-top: 1px solid rgba(224,48,48,0.22); text-decoration: none; color: rgba(236,234,228,0.85); font-size: clamp(1.05rem, 2.4vw, 1.35rem);
-    transition: color 0.2s, padding-left 0.3s var(--ease-out), padding-right 0.3s var(--ease-out);
-  }
-  .connect-link:last-child { border-bottom: 1px solid rgba(224,48,48,0.22); }
-  .connect-link:hover { color: var(--paper-fixed); padding-left: 1rem; padding-right: 0.5rem; }
-  .connect-link:hover .link-arrow { color: var(--red); transform: translate(3px,-3px); }
-  .link-arrow { color: var(--red); opacity: 0.6; transition: transform 0.25s var(--ease-out), color 0.2s; }
-
-  /* ================= FOOTER ================= */
-  footer {
-    padding: 1.6rem clamp(1.25rem, 4vw, 3rem); display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 0.75rem; border-top: 1px solid var(--border-lo); position: relative; z-index: 1; background: var(--black);
-  }
-  .footer-brand { display: flex; align-items: center; gap: 8px; font-family: var(--fd); font-size: 12px; font-weight: 600; color: var(--text-dim); }
-  .footer-copy { font-family: var(--mono); font-size: 11.5px; color: var(--text-dim); }
-  .footer-tagline { font-family: var(--mono); font-size: 11.5px; color: var(--red); }
-
-  /* ================= REVEAL ================= */
-  .fade { opacity: 0; transform: translateY(22px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
-  .fade.visible { opacity: 1; transform: none; }
-  .fade [data-stagger] { opacity: 0; transform: translateY(16px); transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out); }
-  .fade.visible [data-stagger] { opacity: 1; transform: none; }
-  .fade.visible [data-stagger="1"] { transition-delay: 0.08s; }
-  .fade.visible [data-stagger="2"] { transition-delay: 0.16s; }
-  .fade.visible [data-stagger="3"] { transition-delay: 0.24s; }
-  .fade.visible [data-stagger="4"] { transition-delay: 0.32s; }
-
-  /* ================= PRINT ================= */
-  @media print {
-    body { background: #fff; color: #000; }
-    nav, .hero-actions, .scroll-cue, .marquee, .theme-toggle, .fade, .hero-status, .hero-role { display: none; }
-    .fade.visible { opacity: 1; transform: none; }
-    .hero { min-height: 0; padding: 1.5rem 0; }
-    .section-inner { padding: 1.5rem 0; }
-    .wrap { max-width: 100%; padding: 0 0.5in; }
-    .project, .exp, .edu-item { break-inside: avoid; }
-    * { animation: none !important; transition: none !important; }
-    .band-surface, .band-maroon, .band-black { background: #fff; color: #000; }
-    h2, .project-title, .exp-role, h1, .stat-num, .edu-item p:first-child, .connect-headline { color: #000; }
-    .project-desc, .exp li, .lede { color: #222; }
-    .project, .exp, .edu-item { border-color: #ccc; }
-    .chip { border-color: #999; color: #111; }
-    .cat-pill { background: #eee; color: #000; }
-    .cat-pill.c-red, .btn-primary, .nav-cta { background: #000; color: #fff; }
-    .eyebrow, .exp-meta, .hero-contact, .stat-label, .stack-label { color: #444; }
-    .work-group { color: #444; margin-top: 1.25rem; }
-    .project-thumb { display: none; }
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#1C1B18;--surface:#212121;--maroon:#2A1613;--border:#3A3A3A;--border-lo:#2C2C2C;--white:#ECEAE4;--ink-fixed:#1C1B18;--paper-fixed:#ECEAE4;--text:#C7C4BC;--text-dim:#A3A096;--red:#E03030;--red-solid:#C22B2B;--gold:#C49A2A;--teal:#2A9D8F;--green:#3FBF6F;--violet:#A78BFA;--blue:#2EBEDC;--fd:'Space Grotesk',sans-serif;--fb:'Inter',sans-serif;--mono:'JetBrains Mono','SF Mono',monospace;--measure:60ch;--ease-out:cubic-bezier(0.16,1,0.3,1);--mx:50vw;--my:40vh}
+html[data-theme="light"]{--black:#F5F2EC;--surface:#EDE9E0;--border:rgba(30,28,24,0.14);--border-lo:rgba(30,28,24,0.09);--white:#1E1C18;--text:#3A3830;--text-dim:#6B6860;--red:#C23B22}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:var(--fb);font-size:16px;line-height:1.7;overflow-x:hidden;position:relative}
+a{color:inherit}
+svg{display:block;max-width:100%}
+::selection{background:var(--red);color:var(--paper-fixed)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+.skip-link{position:absolute;left:1rem;top:-4rem;z-index:200;background:var(--white);color:var(--ink-fixed);font-family:var(--mono);font-size:13px;padding:.6rem 1rem;border-radius:4px;text-decoration:none;transition:top .2s var(--ease-out)}
+.skip-link:focus{top:1rem}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto}}
+nav{position:fixed;top:14px;left:0;right:0;z-index:100;padding:0 1.5rem}
+.nav-pill{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:color-mix(in srgb,var(--black) 82%,transparent);border:1px solid var(--border);border-radius:1000px;padding:.7rem 1rem .7rem 1.3rem;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 14px 40px rgba(0,0,0,.3);position:relative}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--fd);font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--white);text-decoration:none}
+.nav-logo .crane{transition:transform .5s var(--ease-out)}
+.nav-logo:hover .crane{transform:rotate(-8deg) scale(1.05)}
+.nav-links{display:flex;gap:1.9rem;list-style:none}
+.nav-links a{font-size:13px;color:var(--text-dim);text-decoration:none;position:relative;padding-bottom:4px;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:0%;background:var(--red);transition:width .35s var(--ease-out)}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{font-family:var(--fd);font-size:13px;font-weight:600;color:var(--paper-fixed);background:var(--red-solid);padding:10px 22px;text-decoration:none;border-radius:1000px;transition:opacity .2s,transform .2s;white-space:nowrap}
+.nav-cta:hover{opacity:.88;transform:translateY(-1px)}
+.nav-right{display:flex;align-items:center;gap:1.1rem}
+.theme-toggle{display:flex;align-items:center;gap:7px;cursor:pointer;background:none;border:none;padding:.25rem;color:var(--text-dim);transition:color .15s}
+.theme-toggle:hover{color:var(--white)}
+.toggle-track{width:34px;height:19px;border:1px solid var(--border);background:var(--surface);border-radius:10px;position:relative;flex-shrink:0}
+.toggle-thumb{position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:var(--text-dim);transition:transform .25s cubic-bezier(0.34,1.56,0.64,1),background .2s}
+html[data-theme="light"] .toggle-thumb{transform:translateX(15px);background:var(--red-solid)}
+.icon-slot{display:inline-flex;align-items:center;justify-content:center;color:currentColor}
+.menu-btn{display:none;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid var(--border);border-radius:50%;background:none;color:var(--white);cursor:pointer}
+.menu-btn .icon-close{display:none}
+.menu-btn[aria-expanded="true"] .icon-open{display:none}
+.menu-btn[aria-expanded="true"] .icon-close{display:inline-flex}
+@media (max-width:760px){.menu-btn{display:inline-flex}.nav-links{display:none;position:absolute;top:calc(100% + 10px);right:0;left:0;flex-direction:column;gap:0;background:color-mix(in srgb,var(--black) 94%,transparent);border:1px solid var(--border);border-radius:18px;padding:.6rem;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 18px 50px rgba(0,0,0,.4)}.nav-links[data-open="true"]{display:flex}.nav-links a{display:block;padding:.8rem 1rem;font-size:14px}.nav-cta{padding:10px 18px}}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem);position:relative;z-index:1}
+section{position:relative}
+.band-black{background:var(--black)}
+.band-surface{background:var(--surface);border-top:1px solid var(--border-lo);border-bottom:1px solid var(--border-lo)}
+.band-maroon{background:var(--maroon);border-top:1px solid rgba(224,48,48,.15);border-bottom:1px solid rgba(224,48,48,.15)}
+.section-inner{padding:clamp(4rem,9vw,7rem) 0}
+#work .section-inner{padding-top:clamp(2rem,5vw,3.5rem)}
+.eyebrow{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);display:inline-flex;align-items:center;gap:9px;margin-bottom:1.5rem}
+.eyebrow .dot{width:9px;height:8px;background:var(--red);flex-shrink:0;clip-path:polygon(0 0,100% 0,50% 100%)}
+.eyebrow.on-maroon{color:rgba(236,234,228,.55)}
+h2{font-family:var(--fd);font-size:clamp(1.9rem,3.4vw,2.5rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:1rem;max-width:20ch}
+.lede{font-size:16px;color:var(--text);max-width:var(--measure);line-height:1.75;margin-bottom:2.75rem}
+.lede-strong{font-family:var(--fd);font-weight:700;color:var(--white);font-size:clamp(1.9rem,3.4vw,2.5rem);letter-spacing:-.02em;line-height:1.16;text-wrap:balance}
+.lede-strong .accent{color:var(--red);font-style:normal}
+p{max-width:var(--measure)}
+.lede a,.project-desc a,.exp li a,.connect-link,.hero-contact a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--red)}
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(6rem,12vh,9rem) 0 clamp(4rem,8vh,6rem);overflow:hidden;position:relative}
+.hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx) var(--my),rgba(224,48,48,.10),transparent 62%)}
+.hero-mark{position:absolute;top:50%;left:50%;width:clamp(360px,46vw,700px);transform:translate(-50%,-50%);color:var(--white);opacity:.05;pointer-events:none;z-index:0;animation:float 9s ease-in-out infinite}
+html[data-theme="light"] .hero-mark{opacity:.04}
+@keyframes float{0%,100%{transform:translate(-50%,-52%) rotate(0deg)}50%{transform:translate(-50%,-46%) rotate(2deg)}}
+.hero-inner{position:relative;z-index:2}
+.hero-status{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:2rem}
+.hero-status .pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+h1{font-family:var(--fd);font-weight:700;letter-spacing:-.035em;line-height:.96;color:var(--white);overflow-wrap:break-word}
+h1 .line{display:block;font-size:clamp(3rem,9.5vw,7.5rem);margin-bottom:.02em}
+.w-word{display:inline-block;opacity:0;filter:blur(12px);animation:wordIn .8s var(--ease-out) forwards}
+@keyframes wordIn{to{opacity:1;filter:blur(0)}}
+h1 .line:nth-child(1) .w-word:nth-child(1){animation-delay:.10s}
+h1 .line:nth-child(1) .w-word:nth-child(2){animation-delay:.20s}
+h1 .line:nth-child(2) .w-word:nth-child(1){animation-delay:.30s;color:var(--red)}
+h1 .line:nth-child(3) .w-word:nth-child(1){animation-delay:.42s}
+h1 .line:nth-child(3) .w-word:nth-child(2){animation-delay:.52s}
+.hero-role{font-family:var(--fd);font-size:clamp(1.15rem,2.4vw,1.7rem);color:var(--text);display:flex;align-items:center;gap:.4rem;margin-top:1.4rem;min-height:2em;flex-wrap:wrap}
+.type-slot{display:inline-flex;color:var(--white);white-space:pre}
+.type-caret{display:inline-block;width:.08em;height:1.05em;background:var(--red);margin-left:3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-top:2.4rem}
+.btn-primary{font-family:var(--fd);font-size:13px;font-weight:600;letter-spacing:.02em;background:var(--red-solid);color:var(--paper-fixed);padding:14px 28px;border:none;border-radius:2px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden;transition:box-shadow .3s,transform .15s;box-shadow:0 0 0 rgba(224,48,48,0)}
+.btn-primary:hover{box-shadow:0 12px 34px -10px rgba(224,48,48,.55);transform:translateY(-2px)}
+.btn-primary::after{content:'';position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.25),transparent);transform:skewX(-20deg);transition:left .7s var(--ease-out)}
+.btn-primary:hover::after{left:130%}
+.btn-ghost{font-size:14px;color:var(--text);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--border);display:inline-flex;align-items:center;gap:8px;padding-bottom:3px;transition:color .2s,text-decoration-color .2s}
+.btn-ghost:hover{color:var(--white);text-decoration-color:var(--text-dim)}
+.hero-contact{display:flex;flex-wrap:wrap;gap:.25rem 1.5rem;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border-lo);font-family:var(--mono);font-size:12px;color:var(--text-dim)}
+.hero-contact a{text-decoration:none;color:var(--text-dim);transition:color .2s;display:inline-flex;align-items:center;gap:6px}
+.hero-contact a:hover{color:var(--white);text-decoration:underline;text-underline-offset:3px}
+.hero-contact .sep{opacity:.4}
+.hero-stats{display:flex;gap:clamp(1.75rem,5vw,3.5rem);padding-top:1.75rem;margin-top:.5rem;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column;gap:6px}
+.stat-top{display:flex;align-items:center;gap:8px;color:var(--red)}
+.stat-num{font-family:var(--fd);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:700;color:var(--white);display:block;line-height:1}
+.stat-label{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:.04em}
+.scroll-cue{position:absolute;left:50%;bottom:2rem;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim)}
+.scroll-cue .mouse{width:20px;height:32px;border:1px solid var(--border);border-radius:12px;position:relative}
+.scroll-cue .mouse::after{content:'';position:absolute;top:6px;left:50%;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--red);animation:wheel 1.8s var(--ease-out) infinite}
+@keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(9px);opacity:0}100%{opacity:0}}
+.marquee{overflow:hidden;border-top:1px solid var(--border-lo);border-bottom:1px solid var(--border-lo);background:var(--black);position:relative;z-index:1}
+.marquee-track{display:flex;width:max-content;animation:scrollX 32s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+.marquee-item{display:flex;align-items:center;gap:2.5rem;padding:1.1rem 1.25rem;font-family:var(--mono);font-size:12.5px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.marquee-item .dia{width:7px;height:7px;background:var(--red);transform:rotate(45deg);opacity:.5;flex-shrink:0}
+/* WORK — uniform equal-weight rows (work-scoped) */
+.work-scan{display:flex;flex-wrap:wrap;gap:.45rem 1.1rem;align-items:baseline;font-family:var(--mono);font-size:11.5px;color:var(--text-dim);margin:-1rem 0 2.5rem;letter-spacing:.02em}
+.work-scan a{color:var(--text-dim);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:1px;transition:color .2s,border-color .2s}
+.work-scan a:hover{color:var(--white);border-color:var(--red)}
+.work-scan .scan-label{color:var(--red);letter-spacing:.12em;text-transform:uppercase;font-size:10.5px}
+.work-index{list-style:none;margin:0;padding:0}
+.project{padding:2.2rem 0;border-top:1px solid var(--border-lo);display:grid;grid-template-columns:84px 1fr;gap:clamp(1rem,3vw,2.25rem);align-items:start}
+.work-index .project:last-child{border-bottom:1px solid var(--border-lo)}
+.project-main{min-width:0}
+.project-num{font-family:var(--fd);font-size:clamp(2.6rem,5vw,3.8rem);font-weight:700;line-height:1;opacity:.14}
+.project.pj-red .project-num{color:var(--red)}.project.pj-gold .project-num{color:var(--gold)}.project.pj-green .project-num{color:var(--green)}.project.pj-violet .project-num{color:var(--violet)}.project.pj-blue .project-num{color:var(--blue)}.project.pj-white .project-num{color:var(--white)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.work-group{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:9px;margin:3rem 0 .25rem}
+.work-group:first-of-type{margin-top:2.5rem}
+.work-group .dot{width:9px;height:9px;background:var(--red);flex-shrink:0;transform:rotate(45deg);opacity:.8}
+.work-group::after{content:'';height:1px;background:var(--border-lo);flex:1;margin-left:1rem}
+.project-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.7rem}
+.project-title{font-family:var(--fd);font-size:clamp(1.4rem,2.6vw,1.75rem);font-weight:600;color:var(--white);letter-spacing:-.01em;transition:color .2s}
+a.project-title:hover{color:var(--red)}
+.project-role{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);margin-bottom:.8rem}
+.project-top{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-bottom:.7rem}
+.project-num-sm{font-family:var(--mono);font-size:11px;color:var(--text-dim)}
+.work-title{font-family:var(--fd);font-size:clamp(1.4rem,2.6vw,1.75rem);font-weight:600;letter-spacing:-.01em;line-height:1.15;margin-bottom:.5rem}
+.work-title a{color:var(--white);text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;transition:color .2s}
+.work-title a:hover{color:var(--red)}
+.work-title .icon-slot{color:var(--red);opacity:.7;transition:transform .25s var(--ease-out),opacity .2s;flex-shrink:0}
+.work-title a:hover .icon-slot{transform:translate(2px,-2px);opacity:1}
+.work-meta{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);margin-bottom:.7rem;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
+.work-meta strong{color:var(--white);font-weight:500}
+.work-meta .outcome{color:var(--text)}
+.cat-pill{font-family:var(--mono);font-size:10px;font-weight:500;padding:3px 9px;border-radius:2px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-fixed);flex-shrink:0}
+.cat-pill.c-red{background:var(--red-solid);color:var(--paper-fixed)}.cat-pill.c-gold{background:var(--gold)}.cat-pill.c-green{background:var(--green)}.cat-pill.c-violet{background:var(--violet);color:var(--ink-fixed)}.cat-pill.c-blue{background:var(--blue);color:var(--ink-fixed)}.cat-pill.c-white{background:var(--white);color:var(--ink-fixed)}
+html[data-theme="light"] .cat-pill.c-white{color:var(--paper-fixed)}
+.project-desc{font-size:14.5px;color:var(--text);line-height:1.75;max-width:62ch;margin-bottom:1rem}
+.project-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.35rem;list-style:none}
+.chip{font-family:var(--mono);font-size:11px;padding:4px 10px;border:1px solid var(--border);color:var(--text-dim);letter-spacing:.02em;border-radius:2px}
+.project-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.link-primary{font-size:13.5px;font-weight:500;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--red);color:var(--white);display:inline-flex;align-items:center;gap:6px;padding-bottom:1px}
+.link-primary:hover{gap:10px}
+.stack-box{margin-top:3rem;padding:clamp(1.5rem,3vw,2.4rem);border:1px solid var(--border);border-radius:6px;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(224,48,48,.05),rgba(0,0,0,0) 55%),var(--black)}
+html[data-theme="light"] .stack-box{background:linear-gradient(180deg,rgba(194,59,34,.05),rgba(0,0,0,0) 55%),var(--black)}
+.stack-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),rgba(224,48,48,.1))}
+.stack-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.stack-label{font-family:var(--fd);font-size:15px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:var(--white);display:flex;align-items:center;gap:10px}
+.stack-label .dot{width:9px;height:9px;background:var(--red);clip-path:polygon(0 0,100% 0,50% 100%)}
+.stack-count{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:.06em;text-transform:uppercase}
+.stack-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
+.stack-group h3{font-family:var(--mono);font-size:11px;color:var(--red);font-weight:600;margin-bottom:.7rem;text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:8px}
+.stack-group h3::before{content:'';width:6px;height:6px;transform:rotate(45deg);background:var(--red);opacity:.7}
+.stack-group .chips{display:flex;flex-wrap:wrap;gap:7px;list-style:none}
+.chip.featured{color:var(--paper-fixed);background:var(--red-solid);border-color:var(--red-solid);font-weight:500}
+.chip.accent{border-color:rgba(224,48,48,.45);color:var(--white);background:rgba(224,48,48,.08)}
+/* WORK CODA — rail + row language, red focal + group-tinted chips */
+.work-coda{padding:2.2rem 0;border-top:1px solid var(--border-lo);border-bottom:1px solid var(--border-lo);display:grid;grid-template-columns:84px 1fr;gap:clamp(1rem,3vw,2.25rem);align-items:start;position:relative;overflow:hidden}
+.work-coda::before{content:'';position:absolute;top:-1px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red) 0%,rgba(196,154,42,.65) 32%,rgba(224,48,48,.12) 68%,transparent 100%)}
+.coda-num{font-family:var(--fd);font-size:clamp(2.6rem,5vw,3.8rem);font-weight:700;line-height:1;opacity:1;color:var(--red)}
+.coda-hi{color:var(--red);font-style:normal}
+.work-coda .work-title{text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--red) 55%,transparent);text-underline-offset:6px;text-decoration-thickness:2px}
+.work-coda .project-chips{margin-bottom:.9rem}
+.work-coda .chip{background:none;color:var(--white)}
+.work-coda .chip.g-sw{border-color:color-mix(in srgb,var(--blue) 60%,transparent);background:color-mix(in srgb,var(--blue) 10%,transparent)}
+.work-coda .chip.g-ai{border-color:color-mix(in srgb,var(--violet) 60%,transparent);background:color-mix(in srgb,var(--violet) 12%,transparent)}
+.work-coda .chip.g-gold{border-color:color-mix(in srgb,var(--gold) 60%,transparent);background:color-mix(in srgb,var(--gold) 10%,transparent)}
+.work-coda .chip.g-green{border-color:color-mix(in srgb,var(--green) 55%,transparent);background:color-mix(in srgb,var(--green) 10%,transparent)}
+.coda-detail{margin-top:.2rem;border-top:1px solid var(--border-lo)}
+.coda-detail summary{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);letter-spacing:.04em;cursor:pointer;padding:.8rem 0;list-style:none;display:flex;align-items:center;gap:.6rem;transition:color .2s}
+.coda-detail summary::-webkit-details-marker{display:none}
+.coda-detail summary::before{content:'';width:6px;height:6px;transform:rotate(45deg);border:1px solid var(--text-dim);flex-shrink:0;transition:transform .25s var(--ease-out),border-color .2s}
+.coda-detail[open] summary::before{transform:rotate(135deg);border-color:var(--red)}
+.coda-detail summary:hover{color:var(--red)}
+.coda-detail summary:hover::before{border-color:var(--red)}
+.coda-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;padding:1rem 0 .3rem;border-top:1px solid var(--border-lo)}
+.coda-cols h4{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
+.coda-cols h4::before{content:'';width:6px;height:6px;transform:rotate(45deg);flex-shrink:0}
+.coda-cols>div:nth-child(1) h4::before{background:var(--blue)}
+.coda-cols>div:nth-child(2) h4::before{background:var(--violet)}
+.coda-cols>div:nth-child(3) h4::before{background:var(--gold)}
+.coda-cols p{font-family:var(--mono);font-size:12px;color:var(--text);line-height:1.8;max-width:none}
+/* EDU CODA — reuses work-coda rail language; degrees gold-tinted, certs violet/blue */
+.edu-coda .edu-degrees{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:0 0 1rem;list-style:none;padding:0}
+.edu-degree{border:1px solid var(--border);border-left:2px solid var(--gold);border-radius:4px;padding:.85rem 1rem;background:color-mix(in srgb,var(--gold) 8%,transparent)}
+.edu-degree .deg-year{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.3rem}
+.edu-degree .deg-name{font-family:var(--fd);font-size:14.5px;font-weight:600;color:var(--white);line-height:1.4;display:block}
+.edu-degree .deg-school{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);display:block;margin-top:.25rem}
+@media print{.edu-degree{border-color:#ccc!important;background:none!important;break-inside:avoid}.edu-degree .deg-name,.edu-degree .deg-year,.edu-degree .deg-school{color:#000!important}}
+.edu-coda .coda-cols.cols-2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:700px){.edu-coda .edu-degrees{grid-template-columns:1fr}.edu-coda .coda-cols.cols-2{grid-template-columns:1fr}}
+@media (max-width:700px){.stack-groups{grid-template-columns:1fr}.coda-cols{grid-template-columns:1fr;gap:.9rem}}
+.exp{display:grid;grid-template-columns:84px 1fr;gap:clamp(1rem,4vw,2rem);padding:2.4rem 0;border-top:1px solid var(--border-lo)}
+.exp:last-child{border-bottom:1px solid var(--border-lo)}
+.exp-num{font-family:var(--fd);font-size:clamp(2.2rem,4vw,3rem);font-weight:700;line-height:1;opacity:.14;color:var(--red)}
+.exp-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.3rem}
+.exp-role{font-family:var(--fd);font-size:clamp(1.25rem,2.4vw,1.5rem);font-weight:600;color:var(--white)}
+.exp-meta{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);margin-bottom:1rem}
+.exp-sub{margin:1.1rem 0 1.25rem}
+.exp-sub .sub{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap;font-size:13px;color:var(--text-dim);padding:.35rem 0}
+.exp-sub .sub::before{content:'';flex-shrink:0;width:6px;height:6px;transform:rotate(45deg);background:var(--red);opacity:.5;align-self:center}
+.exp-sub .sub-role{color:var(--text);font-weight:500}
+.exp ul{list-style:none}
+.exp li{position:relative;padding-left:1.1rem;font-size:14.5px;color:var(--text);line-height:1.75;margin-bottom:.5rem;max-width:72ch}
+.exp li::before{content:'';position:absolute;left:0;top:.78em;width:5px;height:5px;background:var(--red);border-radius:50%}
+@media (max-width:640px){.project,.exp,.work-coda{grid-template-columns:1fr}.project-num,.exp-num,.coda-num{display:none}.coda-cols{grid-template-columns:1fr}}
+.edu{display:flex;flex-direction:column}
+.edu-item{padding:1.2rem 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;transition:padding-left .3s var(--ease-out)}
+.edu-item:last-child{border-bottom:1px solid var(--border)}
+.edu-item:hover{padding-left:.75rem}
+.edu-item p:first-child{font-size:15px;color:var(--white)}
+.edu-meta{font-size:12.5px;color:var(--text-dim);font-family:var(--mono)}
+.connect-headline{font-family:var(--fd);font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--paper-fixed);font-size:clamp(2.6rem,7vw,4.8rem);max-width:12ch;margin-bottom:1.25rem}
+.connect-lede{font-size:16px;color:rgba(236,234,228,.65);max-width:46ch;line-height:1.7;margin-bottom:1.5rem}
+.connect-links{display:flex;flex-direction:column}
+.connect-link{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.2rem .25rem;border-top:1px solid rgba(224,48,48,.22);text-decoration:none;color:rgba(236,234,228,.85);font-size:clamp(1.05rem,2.4vw,1.35rem);transition:padding-left .3s var(--ease-out),padding-right .3s var(--ease-out)}
+.connect-link:last-child{border-bottom:1px solid rgba(224,48,48,.22)}
+.connect-link:hover{color:var(--paper-fixed);padding-left:1rem;padding-right:.5rem}
+.connect-link .link-left{display:inline-flex;align-items:center;gap:12px;min-width:0}
+.connect-link .link-arrow{color:var(--red);opacity:.6;transition:transform .25s var(--ease-out);flex-shrink:0}
+.connect-link:hover .link-arrow{transform:translate(3px,-3px)}
+footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;border-top:1px solid var(--border-lo);position:relative;z-index:1;background:var(--black)}
+.footer-brand{display:flex;align-items:center;gap:8px;font-family:var(--fd);font-size:12px;font-weight:600;color:var(--text-dim)}
+.footer-copy{font-family:var(--mono);font-size:11.5px;color:var(--text-dim)}
+.footer-tagline{font-family:var(--mono);font-size:11.5px;color:var(--red)}
+.fade{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.fade.visible{opacity:1;transform:none}
+.fade [data-stagger]{opacity:0;transform:translateY(16px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out)}
+.fade.visible [data-stagger]{opacity:1;transform:none}
+.fade.visible [data-stagger="1"]{transition-delay:.08s}.fade.visible [data-stagger="2"]{transition-delay:.16s}.fade.visible [data-stagger="3"]{transition-delay:.24s}.fade.visible [data-stagger="4"]{transition-delay:.32s}
+@media print{body{background:#fff;color:#000}nav,.hero-actions,.scroll-cue,.marquee,.theme-toggle,.menu-btn,.hero-status,.hero-role{display:none}.hero{min-height:0;padding:1.5rem 0}.section-inner{padding:1.5rem 0}.wrap{max-width:100%;padding:0 .5in}.project,.exp,.work-coda,.edu-item{break-inside:avoid}*{animation:none!important;transition:none!important}.band-surface,.band-maroon,.band-black{background:#fff;color:#000}h2,.work-title a,.work-title,.exp-role,h1,.stat-num,.coda-num,.edu-item p:first-child,.connect-headline{color:#000}.project-desc,.exp li,.lede,.coda-cols p{color:#222}.project,.exp,.work-coda,.edu-item{border-color:#ccc}.chip{border-color:#999;color:#111}.cat-pill{background:#eee!important;color:#000;border-color:#999}.btn-primary,.nav-cta{background:#000;color:#fff}.eyebrow,.exp-meta,.hero-contact,.stat-label,.stack-label{color:#444}.work-coda details:not([open])>:not(summary){display:block}.coda-detail summary{color:#444}.coda-detail,.coda-cols{border-color:#ccc}.work-coda::before{display:none}.coda-num,.coda-hi{color:#000}.work-coda .work-title{text-decoration-color:#000}.work-coda .chip{background:none!important;color:#111!important;border-color:#999!important}.coda-cols h4::before{background:#000!important}}
+@media (prefers-reduced-motion:reduce){.marquee-track,.hero-mark,.hero::after,.scroll-cue .mouse::after,.hero-status .pulse-dot,.type-caret,.w-word{animation:none!important}.hero::after{background:none!important}.w-word{opacity:1;filter:none}.fade,.fade [data-stagger]{opacity:1;transform:none;transition:none}}
+@media (max-width:360px){h1 .line{font-size:clamp(2.6rem,15vw,3rem)}.nav-pill{padding:.6rem .8rem .6rem 1rem}.nav-cta{padding:10px 16px}}
 </style>
 </head>
 <body>
-
-<!-- ================= NAV ================= -->
-<nav id="nav">
-  <div class="nav-pill">
-  <a href="#home" class="nav-logo">
-    <svg class="crane" width="26" height="26" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="1575,201 1365,564 1780,563" fill="currentColor"/>
-      <polygon points="709,693 5,696 357,1306" fill="currentColor"/>
-      <polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/>
-      <polygon points="857,700 506,1307 1208,1309" fill="currentColor"/>
-      <polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/>
-      <polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/>
-      <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
-    </svg>
-    White Crane Labs
-  </a>
-  <div class="nav-right">
-    <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#connect">Connect</a></li>
-    </ul>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark mode">
-      <span class="toggle-icon" id="toggleIcon">
-        <svg class="icon-moon" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-      </span>
-      <span class="toggle-track"><span class="toggle-thumb"></span></span>
-    </button>
-    <a href="Ken_Bai_Resume.pdf" class="nav-cta" download>Download resume</a>
-  </div>
-  </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav id="nav" aria-label="Primary">
+<div class="nav-pill">
+<a href="#home" class="nav-logo"><svg class="crane" width="26" height="26" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor"/><polygon points="709,693 5,696 357,1306" fill="currentColor"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/><polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/></svg>White Crane Labs</a>
+<div class="nav-right">
+<ul class="nav-links" id="primaryNav">
+<li><a href="#work">Work</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#connect">Connect</a></li>
+</ul>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark mode" aria-pressed="false"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg></span><span class="toggle-track"><span class="toggle-thumb"></span></span></button>
+<a href="Ken_Bai_Resume.pdf" class="nav-cta" download>Download resume</a>
+<button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu"><span class="icon-slot icon-open" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h16M4 19h16"/></svg></span><span class="icon-slot icon-close" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span></button>
+</div>
+</div>
 </nav>
-
-<!-- ================= HERO ================= -->
-<section id="home" class="band-black hero">
-  <svg class="hero-mark" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="1575,201 1365,564 1780,563" fill="currentColor"/>
-    <polygon points="709,693 5,696 357,1306" fill="currentColor"/>
-    <polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/>
-    <polygon points="857,700 506,1307 1208,1309" fill="currentColor"/>
-    <polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/>
-    <polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/>
-    <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
-  </svg>
-
-  <div class="wrap hero-inner">
-    <div class="hero-status"><span class="pulse-dot"></span> Creative Technology · NYC</div>
-
-    <h1>
-      <span class="line"><span class="w-word">Ken</span> <span class="w-word">Bai</span></span>
-      <span class="line"><span class="w-word">Creative</span></span>
-      <span class="line"><span class="w-word">Technologist</span></span>
-    </h1>
-
-    <div class="hero-role"><span>Building</span> <span class="type-slot" id="typeSlot"></span><span class="type-caret" aria-hidden="true"></span></div>
-
-    <div class="hero-actions">
-      <a href="#work" class="btn-primary">View the work</a>
-      <a href="Ken_Bai_Resume.pdf" class="btn-ghost" download>Download resume →</a>
-    </div>
-
-    <div class="hero-contact">
-      <a href="mailto:Kenbai1027@gmail.com">Kenbai1027@gmail.com</a>
-      <span class="sep">·</span>
-      <a href="tel:+19174287990">917-428-7990</a>
-      <span class="sep">·</span>
-      <span>Queens, NY</span>
-      <span class="sep">·</span>
-      <a href="https://www.linkedin.com/in/ken-bai-916228158" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <span class="sep">·</span>
-      <a href="https://github.com/whitecranelabs" target="_blank" rel="noopener">GitHub ↗</a>
-    </div>
-
-    <div class="hero-stats">
-      <div><span class="stat-num">12+</span><div class="stat-label">YEARS BUILDING</div></div>
-      <div><span class="stat-num">20+</span><div class="stat-label">TEAM LED</div></div>
-      <div><span class="stat-num">500+</span><div class="stat-label">AI USERS</div></div>
-      <div><span class="stat-num">NYC</span><div class="stat-label">BASED</div></div>
-    </div>
-  </div>
-
-  <div class="scroll-cue" aria-hidden="true">
-    <div class="mouse"></div>
-    <span>Scroll</span>
-  </div>
+<main id="main">
+<section id="home" class="band-black hero" aria-labelledby="pageTitle">
+<svg class="hero-mark" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor"/><polygon points="709,693 5,696 357,1306" fill="currentColor"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/><polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/></svg>
+<div class="wrap hero-inner">
+<div class="hero-status"><span class="pulse-dot" aria-hidden="true"></span>Creative Technology · NYC</div>
+<h1 id="pageTitle"><span class="line"><span class="w-word">Ken</span> <span class="w-word">Bai</span></span><span class="line"><span class="w-word">Creative</span></span><span class="line"><span class="w-word">Technologist</span></span></h1>
+<p class="hero-role"><span>Building</span> <span class="type-slot" id="typeSlot" aria-live="polite"></span><span class="type-caret" aria-hidden="true"></span></p>
+<div class="hero-actions">
+<a href="#work" class="btn-primary">View the work</a>
+<a href="Ken_Bai_Resume.pdf" class="btn-ghost" download>Download resume <span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m9 12v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg></span></a>
+</div>
+<div class="hero-contact">
+<a href="mailto:Kenbai1027@gmail.com">Kenbai1027@gmail.com</a><span class="sep" aria-hidden="true">·</span>
+<a href="tel:+19174287990">917-428-7990</a><span class="sep" aria-hidden="true">·</span>
+<span>Queens, NY</span><span class="sep" aria-hidden="true">·</span>
+<a href="https://www.linkedin.com/in/ken-bai-916228158" target="_blank" rel="noopener">LinkedIn <span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a><span class="sep" aria-hidden="true">·</span>
+<a href="https://github.com/whitecranelabs" target="_blank" rel="noopener">GitHub <span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
+</div>
+<div class="hero-stats">
+<div class="stat"><span class="stat-top" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594zM20 2v4m2-2h-4"/><circle cx="4" cy="20" r="2"/></svg></span><span class="stat-num">12+</span><span class="stat-label">YEARS BUILDING</span></div>
+<div class="stat"><span class="stat-top" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg></span><span class="stat-num">20+</span><span class="stat-label">TEAM LED</span></div>
+<div class="stat"><span class="stat-top" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v2m0-20v2m5 16v2m0-20v2M2 12h2m-2 5h2M2 7h2m16 5h2m-2 5h2M20 7h2M7 20v2M7 2v2"/><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="8" height="8" x="8" y="8" rx="1"/></svg></span><span class="stat-num">500+</span><span class="stat-label">AI USERS</span></div>
+<div class="stat"><span class="stat-num">NYC</span><span class="stat-label">BASED · QUEENS</span></div>
+</div>
+</div>
+<div class="scroll-cue" aria-hidden="true"><div class="mouse"></div><span>Scroll</span></div>
 </section>
+<div class="marquee" aria-hidden="true"><div class="marquee-track" id="marqueeTrack"></div></div>
+<section id="overview" class="band-black" aria-labelledby="overviewTitle">
+<div class="wrap section-inner fade" style="padding-top:clamp(2rem,5vw,3.5rem)">
+<div class="eyebrow" data-stagger="1"><span class="dot" aria-hidden="true"></span>Overview</div>
+<p class="lede lede-strong" id="overviewTitle" style="max-width:26ch;margin-bottom:0" data-stagger="2">Great creative environments are <em class="accent">designed with intent.</em></p>
+<p class="lede" style="margin-top:1.5rem" data-stagger="3">I work at the intersection of design, technology, and AI systems for 12+ years. I build the infrastructure that lets creative people do their best work. I run creative technology operations at Pratt Institute and lead White Crane Design LLC. AI amplifies judgment. Human in the loop, always.</p>
+</div>
+</section>
+<section id="background" class="band-surface" aria-labelledby="eduTitle">
+<div class="wrap section-inner fade">
+<article class="work-coda edu-coda" data-stagger="1"><div class="coda-num" aria-hidden="true">*</div><div class="project-main">
+<div class="project-top"><span class="project-num-sm">Coda</span><span class="project-num-sm" aria-hidden="true">·</span><span class="project-num-sm">Education</span></div>
+<h3 class="work-title" id="eduTitle"><span class="coda-hi">Education</span></h3>
+<p class="work-meta"><span>Formal training + certs</span><span aria-hidden="true">—</span><span class="outcome">degree first, detail on demand</span></p>
+<ul class="edu-degrees">
+<li class="edu-degree"><span class="deg-year">2027 · Expected</span><span class="deg-name">Master of Professional Studies, Design Management</span><span class="deg-school">Pratt Institute</span></li>
+<li class="edu-degree"><span class="deg-year">2012</span><span class="deg-name">Bachelor of Fine Arts, Interior Design</span><span class="deg-school">Pratt Institute</span></li>
+</ul>
+<ul class="project-chips" aria-label="Certifications"><li class="chip g-ai">Google AI Essentials</li><li class="chip g-ai">Anthropic Academy · AI</li><li class="chip g-ai">Crash Course on Python</li><li class="chip g-sw">Jamf Certified Tech</li><li class="chip g-sw">Jamf Certified Associate</li><li class="chip g-sw">Apple Certified Support Professional</li></ul>
+<details class="coda-detail"><summary>Detail by group</summary><div class="coda-cols cols-2">
+<div><h4>Degrees</h4><p>MPS Design Management (exp. 2027) · BFA Interior Design (2012) — both Pratt Institute. Trained as a designer, operating as a builder.</p></div>
+<div><h4>Credentials</h4><p>AI: Google AI Essentials · Anthropic Academy · Python. Platform: Jamf Tech + Associate · Apple CSP macOS 11.</p></div>
+</div></details>
+</div></article>
+<article class="work-coda" data-stagger="1"><div class="coda-num" aria-hidden="true">*</div><div class="project-main">
+<div class="project-top"><span class="project-num-sm">Coda</span><span class="project-num-sm" aria-hidden="true">·</span><span class="project-num-sm">Skills</span></div>
+<h3 class="work-title" id="work-stack-t"><span class="coda-hi">Skills</span></h3>
+<p class="work-meta"><span>Tools I reach for first</span><span aria-hidden="true">—</span><span class="outcome">detail by group on demand</span></p>
+<ul class="project-chips" aria-label="Skills"><li class="chip g-sw">Figma</li><li class="chip g-sw">Adobe Suite</li><li class="chip g-ai">Claude</li><li class="chip g-ai">GPT</li><li class="chip g-ai">Gemini</li><li class="chip g-ai">ComfyUI</li><li class="chip g-ai">Flux</li><li class="chip g-green">Python</li><li class="chip g-sw">Jamf Pro</li><li class="chip g-sw">MDM</li><li class="chip g-gold">Asana</li><li class="chip g-ai">MCP</li></ul>
+<details class="coda-detail"><summary>Detail by group</summary><div class="coda-cols">
+<div><h4>Design</h4><p>Figma · Adobe Suite — product, brand, and production art. Systems first, pixels with intent.</p></div>
+<div><h4>AI Systems</h4><p>Claude · GPT · Gemini · ComfyUI · Flux · MCP — multi-model critique, prompt craft, and local inference pipelines.</p></div>
+<div><h4>Ops &amp; Infra</h4><p>Python · Jamf Pro · MDM · Asana — fleet, automation, and delivery rhythm that keep studios running.</p></div>
+</div></details>
+</div></article>
+</div>
+</section>
+<section id="work" class="band-surface" aria-labelledby="workTitle">
+<div class="wrap section-inner fade">
+<div class="eyebrow" data-stagger="1"><span class="dot"></span> Skills applied in work</div>
+<h2 id="workTitle" class="sr-only" data-stagger="1">Selected work</h2>
 
-<!-- ================= TECH MARQUEE ================= -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track" id="marqueeTrack">
-    <!-- content injected by JS, duplicated for seamless loop -->
-  </div>
+<div class="work-group" data-stagger="3"><span class="dot"></span> AI Systems &amp; Creative Infrastructure</div>
+<div class="project pj-blue" data-stagger="1">
+<div class="project-num">01</div>
+<div class="project-main">
+<div class="project-head">
+<span class="cat-pill c-blue">Health Companion App</span>
+<a href="HeoPet.html" target="_blank" rel="noopener" class="project-title">HeoPet</a>
+</div>
+<p class="project-role" data-stagger="2">Mobile digital pet · Expo / React Native</p>
+<p class="project-desc" data-stagger="3">A mobile pet whose wellbeing is derived from your own health — auto-tracked steps and tapped water drive a mood that plays out as real-time animation. Health you can actually watch.</p>
+<div class="project-chips" data-stagger="4">
+<span class="chip">Expo</span><span class="chip">React Native</span><span class="chip">Pedometer</span><span class="chip">Mood Engine</span><span class="chip">Motion UI</span>
+</div>
+<div class="project-links">
+<a href="HeoPet.html" target="_blank" rel="noopener" class="link-primary">Read the case study →</a>
+<a href="https://github.com/ChairmanWCD/HeoPet" target="_blank" rel="noopener" class="link-primary">GitHub ↗</a>
+</div>
+</div>
 </div>
 
-<!-- ================= OVERVIEW ================= -->
-<section id="overview" class="band-black" style="padding-bottom: clamp(2rem, 5vw, 3.5rem);">
-  <div class="wrap section-inner fade" style="padding-top: clamp(2rem, 5vw, 3.5rem);">
-    <div class="eyebrow" data-stagger="1"><span class="dot"></span> Overview</div>
-    <p class="lede lede-strong" style="max-width: 26ch; margin-bottom: 0;" data-stagger="2">Great creative environments are <em class="accent">designed with intent</em>, from the tools to the spaces to the work they enable.</p>
-    <p class="lede" style="font-size: 16px; max-width: var(--measure); margin-top: 1.5rem;" data-stagger="3">For 12+ years I've worked at the intersection of design, technology, and AI systems, building the infrastructure that lets creative people do their best work. Today I'm part of the creative technology operations team at Pratt Institute, one of the world's top design schools, and run White Crane, a creative technology lab. AI as amplifier, not replacement. Human in the loop, always.</p>
-  </div>
+<div class="project pj-violet" data-stagger="1">
+<div class="project-num">02</div>
+<div class="project-main">
+<div class="project-head">
+<span class="cat-pill c-violet">Generative Systems</span>
+<a href="White_Crane_Studio.html" class="project-title">White Crane Studio</a>
+</div>
+<p class="project-role" data-stagger="2">Dual-engine inference · Apple Silicon MPS · M4 32GB</p>
+<p class="project-desc" data-stagger="3">A FAL.ai-style async server with Z-Image-Turbo (T2I) + FLUX.2 Klein 9B (I2I) — native MPS, ComfyUI-like swap, lavender Web UI with mode switch.</p>
+<div class="project-chips" data-stagger="4">
+<span class="chip">Z-Image-Turbo</span><span class="chip">FLUX.2 Klein 9B</span><span class="chip">MPS</span><span class="chip">FastAPI</span><span class="chip">Apple Silicon</span>
+</div>
+<div class="project-links">
+<a href="White_Crane_Studio.html" class="link-primary">Read the case study →</a>
+<a href="https://github.com/ChairmanWCD/White_Crane_Studio" target="_blank" rel="noopener" class="link-primary">GitHub ↗</a>
+</div>
+</div>
+</div>
+
+<div class="project pj-red" data-stagger="1">
+<div class="project-num">03</div>
+<div class="project-main">
+<div class="project-head">
+<span class="cat-pill c-red">Multi-Agent AI</span>
+<a href="Critique_Council_Thesis.html" target="_blank" rel="noopener" class="project-title">The Critique Council</a>
+</div>
+<p class="project-role" data-stagger="2">Scalable infrastructure · AI × Design</p>
+<p class="project-desc" data-stagger="3">A multi-agent AI system that simulates presenting to a real design jury. Three critics with distinct personas, each with a different voice, generate visual feedback as they critique.</p>
+<div class="project-chips" data-stagger="4">
+<span class="chip">Multi-Agent AI</span><span class="chip">Claude</span><span class="chip">GPT</span><span class="chip">Gemini</span><span class="chip">Prompt Engineering</span>
+</div>
+<div class="project-links">
+<a href="Critique_Council_Thesis.html" target="_blank" rel="noopener" class="link-primary">Read the thesis →</a>
+<a href="Critique_Council_Live.html" target="_blank" rel="noopener" class="link-primary">Live demo ↗</a>
+<a href="https://github.com/ChairmanWCD/critique-council" target="_blank" rel="noopener" class="link-primary">GitHub ↗</a>
+</div>
+</div>
+</div>
+
+<div class="project pj-gold" data-stagger="1">
+<div class="project-num">04</div>
+<div class="project-main">
+<div class="project-head">
+<span class="cat-pill c-gold">Institutional AI</span>
+<a href="Pratt_AI_Infrastructure_Case_Study.html" target="_blank" rel="noopener" class="project-title">Pratt's AI Infrastructure</a>
+</div>
+<p class="project-role" data-stagger="2">IT Manager &amp; Mac Administrator · Pratt Institute</p>
+<p class="project-desc" data-stagger="3">How institutional financial crisis forced the choice to build rather than buy AI capability, and how the institution scaled to 500+ users while keeping its autonomy and culture intact.</p>
+<div class="project-chips" data-stagger="4">
+<span class="chip">Python</span><span class="chip">LLM Pipelines</span><span class="chip">Enterprise Infra</span><span class="chip">500+ users</span><span class="chip">Team of 20+</span>
+</div>
+<div class="project-links">
+<a href="Pratt_AI_Infrastructure_Case_Study.html" target="_blank" rel="noopener" class="link-primary">Read the case study →</a>
+</div>
+</div>
+</div>
+
+<div class="work-group" data-stagger="3"><span class="dot"></span> Design &amp; Art Direction</div>
+
+<div class="project pj-green" data-stagger="1">
+<div class="project-num">01</div>
+<div class="project-main">
+<div class="project-head">
+<span class="cat-pill c-green">Brand Identity</span>
+<a href="Green_Kite_Brand_Identity.html" target="_blank" rel="noopener" class="project-title">Green Kite</a>
+</div>
+<p class="project-role" data-stagger="2">Social enterprise · Ireland</p>
+<p class="project-desc" data-stagger="3">A kite-as-metaphor mark and tagline system for a social enterprise backing community-led sustainability. Playful but refined, it lifts without being literal.</p>
+<div class="project-chips" data-stagger="4">
+<span class="chip">Brand Strategy</span><span class="chip">Visual Identity</span><span class="chip">Logo Systems</span><span class="chip">SVG / PNG / JPG</span>
+</div>
+<div class="project-links">
+<a href="Green_Kite_Brand_Identity.html" target="_blank" rel="noopener" class="link-primary">View the brand identity →</a>
+<a href="https://greenkite.ie" target="_blank" rel="noopener" class="link-primary">greenkite.ie ↗</a>
+</div>
+</div>
+</div>
+
+<div class="project pj-white" data-stagger="1">
+<div class="project-num">02</div>
+<div class="project-main">
+<div class="project-head">
+<span class="cat-pill c-white">Commerce / Apparel</span>
+<a href="https://white-crane-design.square.site" target="_blank" rel="noopener" class="project-title">White Crane Design Shop</a>
+</div>
+<p class="project-role" data-stagger="2">Live storefront</p>
+<p class="project-desc" data-stagger="3">The commerce arm of White Crane Design. Anime-inspired apparel where generative tools assist, but humans do the designing. Concept to shirt, ready to buy.</p>
+<div class="project-chips" data-stagger="4">
+<span class="chip">Generative Apparel</span><span class="chip">Human-in-the-Loop</span><span class="chip">E-commerce</span><span class="chip">Brand Direction</span>
+</div>
+<div class="project-links">
+<a href="https://white-crane-design.square.site" target="_blank" rel="noopener" class="link-primary">Visit the store ↗</a>
+</div>
+</div>
+</div>
+
+</div>
 </section>
-
-<!-- ================= SKILLS + PROJECTS ================= -->
-<section id="work" class="band-surface">
-  <div class="wrap section-inner fade">
-    <div class="eyebrow" data-stagger="1"><span class="dot"></span> Skills applied in work</div>
-
-    <div class="work-group" data-stagger="3"><span class="dot"></span> AI Systems &amp; Creative Infrastructure</div>
-
-    <div class="project pj-blue" data-stagger="1">
-      <div class="project-num">01</div>
-      <div class="project-main">
-      <div class="project-head">
-        <span class="cat-pill c-blue">Health Companion App</span>
-        <a href="HeoPet.html" target="_blank" rel="noopener" class="project-title">HeoPet</a>
-      </div>
-      <p class="project-role" data-stagger="2">Mobile digital pet · Expo / React Native</p>
-      <p class="project-desc" data-stagger="3">A mobile pet whose wellbeing is derived from your own health — auto-tracked steps and tapped water drive a mood that plays out as real-time animation. Health you can actually watch.</p>
-      <div class="project-chips" data-stagger="4">
-        <span class="chip">Expo</span><span class="chip">React Native</span><span class="chip">Pedometer</span><span class="chip">Mood Engine</span><span class="chip">Motion UI</span>
-      </div>
-      <div class="project-links">
-        <a href="HeoPet.html" target="_blank" rel="noopener" class="link-primary">Read the case study →</a>
-        <a href="https://github.com/ChairmanWCD/HeoPet" target="_blank" rel="noopener" class="link-primary">GitHub ↗</a>
-      </div>
-      </div>
-    </div>
-
-    <div class="project pj-violet" data-stagger="1">
-      <div class="project-num">02</div>
-      <div class="project-main">
-      <div class="project-head">
-        <span class="cat-pill c-violet">Generative Systems</span>
-        <a href="White_Crane_Studio.html" class="project-title">White Crane Studio</a>
-      </div>
-      <p class="project-role" data-stagger="2">Dual-engine inference · Apple Silicon MPS · M4 32GB</p>
-      <p class="project-desc" data-stagger="3">A FAL.ai-style async server with Z-Image-Turbo (T2I) + FLUX.2 Klein 9B (I2I) — native MPS, ComfyUI-like swap, lavender Web UI with mode switch.</p>
-      <div class="project-chips" data-stagger="4">
-        <span class="chip">Z-Image-Turbo</span><span class="chip">FLUX.2 Klein 9B</span><span class="chip">MPS</span><span class="chip">FastAPI</span><span class="chip">Apple Silicon</span>
-      </div>
-      <div class="project-links">
-        <a href="White_Crane_Studio.html" class="link-primary">Read the case study →</a>
-        <a href="https://github.com/ChairmanWCD/White_Crane_Studio" target="_blank" rel="noopener" class="link-primary">GitHub ↗</a>
-      </div>
-      </div>
-    </div>
-
-    <div class="project pj-red" data-stagger="1">
-      <div class="project-num">03</div>
-      <div class="project-main">
-      <div class="project-head">
-        <span class="cat-pill c-red">Multi-Agent AI</span>
-        <a href="Critique_Council_Thesis.html" target="_blank" rel="noopener" class="project-title">The Critique Council</a>
-      </div>
-      <p class="project-role" data-stagger="2">Scalable infrastructure · AI × Design</p>
-      <p class="project-desc" data-stagger="3">A multi-agent AI system that simulates presenting to a real design jury. Three critics with distinct personas, each with a different voice, generate visual feedback as they critique.</p>
-      <div class="project-chips" data-stagger="4">
-        <span class="chip">Multi-Agent AI</span><span class="chip">Claude</span><span class="chip">GPT</span><span class="chip">Gemini</span><span class="chip">Prompt Engineering</span>
-      </div>
-      <div class="project-links">
-        <a href="Critique_Council_Thesis.html" target="_blank" rel="noopener" class="link-primary">Read the thesis →</a>
-        <a href="Critique_Council_Live.html" target="_blank" rel="noopener" class="link-primary">Live demo ↗</a>
-        <a href="https://github.com/ChairmanWCD/critique-council" target="_blank" rel="noopener" class="link-primary">GitHub ↗</a>
-      </div>
-      </div>
-    </div>
-
-    <div class="project pj-gold" data-stagger="1">
-      <div class="project-num">04</div>
-      <div class="project-main">
-      <div class="project-head">
-        <span class="cat-pill c-gold">Institutional AI</span>
-        <a href="Pratt_AI_Infrastructure_Case_Study.html" target="_blank" rel="noopener" class="project-title">Pratt's AI Infrastructure</a>
-      </div>
-      <p class="project-role" data-stagger="2">IT Manager &amp; Mac Administrator · Pratt Institute</p>
-      <p class="project-desc" data-stagger="3">How institutional financial crisis forced the choice to build rather than buy AI capability, and how the institution scaled to 500+ users while keeping its autonomy and culture intact.</p>
-      <div class="project-chips" data-stagger="4">
-        <span class="chip">Python</span><span class="chip">LLM Pipelines</span><span class="chip">Enterprise Infra</span><span class="chip">500+ users</span><span class="chip">Team of 20+</span>
-      </div>
-      <div class="project-links">
-        <a href="Pratt_AI_Infrastructure_Case_Study.html" target="_blank" rel="noopener" class="link-primary">Read the case study →</a>
-      </div>
-      </div>
-    </div>
-
-    <div class="work-group" data-stagger="3"><span class="dot"></span> Design &amp; Art Direction</div>
-
-    <div class="project pj-green" data-stagger="1">
-      <div class="project-num">01</div>
-      <div class="project-main">
-      <div class="project-head">
-        <span class="cat-pill c-green">Brand Identity</span>
-        <a href="Green_Kite_Brand_Identity.html" target="_blank" rel="noopener" class="project-title">Green Kite</a>
-      </div>
-      <p class="project-role" data-stagger="2">Social enterprise · Ireland</p>
-      <p class="project-desc" data-stagger="3">A kite-as-metaphor mark and tagline system for a social enterprise backing community-led sustainability. Playful but refined, it lifts without being literal.</p>
-      <div class="project-chips" data-stagger="4">
-        <span class="chip">Brand Strategy</span><span class="chip">Visual Identity</span><span class="chip">Logo Systems</span><span class="chip">SVG / PNG / JPG</span>
-      </div>
-      <div class="project-links">
-        <a href="Green_Kite_Brand_Identity.html" target="_blank" rel="noopener" class="link-primary">View the brand identity →</a>
-        <a href="https://greenkite.ie" target="_blank" rel="noopener" class="link-primary">greenkite.ie ↗</a>
-      </div>
-      </div>
-    </div>
-
-    <div class="project pj-white" data-stagger="1">
-      <div class="project-num">02</div>
-      <div class="project-main">
-      <div class="project-head">
-        <span class="cat-pill c-white">Commerce / Apparel</span>
-        <a href="https://white-crane-design.square.site" target="_blank" rel="noopener" class="project-title">White Crane Design Shop</a>
-      </div>
-      <p class="project-role" data-stagger="2">Live storefront</p>
-      <p class="project-desc" data-stagger="3">The commerce arm of White Crane Design. Anime-inspired apparel where generative tools assist, but humans do the designing. Concept to shirt, ready to buy.</p>
-      <div class="project-chips" data-stagger="4">
-        <span class="chip">Generative Apparel</span><span class="chip">Human-in-the-Loop</span><span class="chip">E-commerce</span><span class="chip">Brand Direction</span>
-      </div>
-      <div class="project-links">
-        <a href="https://white-crane-design.square.site" target="_blank" rel="noopener" class="link-primary">Visit the store ↗</a>
-      </div>
-      </div>
-    </div>
-
-    <div class="stack-box" data-stagger="1">
-      <div class="stack-head">
-        <span class="stack-label"><span class="dot"></span>Technical stack</span>
-        <span class="stack-count">Software · AI · Infrastructure</span>
-      </div>
-      <div class="stack-groups">
-        <div class="stack-group">
-          <h3>Software</h3>
-          <div class="chips">
-            <span class="chip accent">Figma</span><span class="chip accent">Photoshop</span><span class="chip">Adobe Suite</span><span class="chip">Canva</span><span class="chip">Affinity</span><span class="chip">Capcut</span><span class="chip">Excel</span><span class="chip">Access</span>
-          </div>
-        </div>
-        <div class="stack-group">
-          <h3>AI &amp; Generative</h3>
-          <div class="chips">
-            <span class="chip featured">Claude</span><span class="chip featured">GPT</span><span class="chip featured">Gemini</span><span class="chip">ComfyUI</span><span class="chip">Open Code</span><span class="chip">Flux</span><span class="chip">GPT Image</span><span class="chip accent">Vibe Coding</span>
-          </div>
-        </div>
-        <div class="stack-group">
-          <h3>Management &amp; Infra</h3>
-          <div class="chips">
-            <span class="chip accent">Jamf Pro</span><span class="chip">Apple School Manager</span><span class="chip">MDM</span><span class="chip">macOS / iOS Admin</span><span class="chip">Networking</span><span class="chip">Asana</span><span class="chip">LESS · Scrum</span><span class="chip">Model Context Protocol</span><span class="chip accent">Python</span><span class="chip">CLI</span><span class="chip">Accessibility</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<section id="about" class="band-black" aria-labelledby="aboutTitle">
+<div class="wrap section-inner fade">
+<div class="eyebrow" data-stagger="1"><span class="dot" aria-hidden="true"></span>Experience</div>
+<h2 id="aboutTitle" data-stagger="2">I keep creative infrastructure invisible.</h2>
+<div class="exp" data-stagger="1"><div class="exp-num" aria-hidden="true">01</div><div>
+<div class="exp-head"><span class="exp-role">Founder &amp; Creative Director</span></div>
+<div class="exp-meta" data-stagger="2">White Crane Design LLC · New York, NY · Jan 2023 to Present</div>
+<ul data-stagger="3">
+<li>I direct creative strategy, identity, and design systems, turning business goals into coherent brand experiences.</li>
+<li>I prototype generative AI workflows and LLM-integrated pipelines that expand what small creative teams can ship.</li>
+<li>I launched the White Crane apparel brand, from concept through production, with AI-assisted but human-driven design.</li>
+<li>I keep a human-in-the-loop philosophy throughout. AI amplifies judgment. It never replaces it.</li>
+</ul>
+</div></div>
+<div class="exp" data-stagger="1"><div class="exp-num" aria-hidden="true">02</div><div>
+<div class="exp-head"><span class="exp-role">Creative Technology Operations &amp; Mac Systems</span></div>
+<div class="exp-meta" data-stagger="2">Pratt Institute · Brooklyn, NY · Apr 2022 to Present</div>
+<ul data-stagger="3">
+<li>I support creative technology infrastructure for a top design school, within a cross-functional team of 20+ staff.</li>
+<li>I architect and manage a 120+ Apple endpoint ecosystem via Jamf Pro and Apple School Manager.</li>
+<li>I integrate generative AI tools and Python automation into lab systems to remove friction for makers.</li>
+<li>I partner with faculty to align infrastructure with curriculum, accessibility, and institutional policy.</li>
+</ul>
+</div></div>
+<div class="exp" data-stagger="1"><div class="exp-num" aria-hidden="true">03</div><div>
+<div class="exp-head"><span class="exp-role">Technology &amp; AV Operations</span></div>
+<div class="exp-meta" data-stagger="2">Pratt Institute · Brooklyn, NY · Jun 2014 to Apr 2022</div>
+<p class="project-desc" data-stagger="3" style="margin-bottom:.9rem;max-width:62ch">Earlier roles in IT infrastructure, AV systems, and technical operations. Where I learned creative environments at scale.</p>
+<div class="exp-sub" data-stagger="4">
+<div class="sub"><span class="sub-role">Audio Visual Specialist</span><span>Pratt Institute</span></div>
+<div class="sub"><span class="sub-role">Information Technology Specialist</span><span>Pratt Institute</span></div>
+</div>
+</div></div>
+</div>
 </section>
-
-<!-- ================= EXPERIENCE ================= -->
-<section id="about" class="band-black">
-  <div class="wrap section-inner fade">
-    <div class="eyebrow" data-stagger="1"><span class="dot"></span> Experience</div>
-
-    <div class="exp" data-stagger="1">
-      <div class="exp-num">01</div>
-      <div>
-        <div class="exp-head"><span class="exp-role">Founder &amp; Creative Director</span></div>
-        <div class="exp-meta" data-stagger="2">White Crane Design LLC · New York, NY · Jan 2023 to Present</div>
-        <ul data-stagger="3">
-          <li>Direct all creative strategy, visual identity, and design systems work for client engagements, translating business goals into cohesive brand experiences across digital and physical channels.</li>
-          <li>Prototype and build generative AI workflows, LLM-integrated design pipelines, and automation tools that expand the capacity of small creative teams.</li>
-          <li>Develop AI-assisted art and design systems, including prompt engineering frameworks, generative apparel design experiments, and creative automation scripts.</li>
-          <li>Launched the White Crane Design apparel brand, covering brand creation, apparel concepting, handmade product, and AI-assisted but human-driven design.</li>
-          <li>Apply a human-in-the-loop design philosophy throughout, using AI to amplify creative judgment rather than replace it.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp" data-stagger="1">
-      <div class="exp-num">02</div>
-      <div>
-        <div class="exp-head"><span class="exp-role">Creative Technology Operations &amp; Mac Systems</span></div>
-        <div class="exp-meta" data-stagger="2">Pratt Institute · Brooklyn, NY · Apr 2022 to Present</div>
-        <ul data-stagger="3">
-          <li>Contribute to creative technology infrastructure for one of the world's top design schools as part of a cross-functional team of 20+ staff across campus-wide lab environments.</li>
-          <li>Architect and manage a 120+ Apple endpoint ecosystem, including device enrollment, app deployment, configuration profiles, and Smart Group architecture via Jamf Pro &amp; Apple School Manager.</li>
-          <li>Introduce and integrate generative AI tools and Python-based automation into lab systems, reducing friction and expanding what creative teams can do with technology.</li>
-          <li>Apply design principles to the physical and digital lab environment, treating the space itself as a designed experience and optimizing for user flow, accessibility, and creative output.</li>
-          <li>Partner with faculty and academic leadership to keep infrastructure aligned with goals, accessibility standards, and institutional policy.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp" data-stagger="1">
-      <div class="exp-num">03</div>
-      <div>
-        <div class="exp-head"><span class="exp-role">Technology &amp; AV Operations</span></div>
-        <div class="exp-meta" data-stagger="2">Pratt Institute · Brooklyn, NY · Jun 2014 to Apr 2022</div>
-        <p class="project-desc" data-stagger="3" style="margin-bottom: 0.9rem; max-width: 62ch;">Earlier roles at the same institution in IT infrastructure, AV systems, and technical operations. This is where I built my understanding of creative environments at scale.</p>
-        <div class="exp-sub" data-stagger="4">
-          <div class="sub"><span class="sub-role">Audio Visual Specialist</span><span>Pratt Institute</span></div>
-          <div class="sub"><span class="sub-role">Information Technology Specialist</span><span>Pratt Institute</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<section id="connect" class="band-maroon" aria-labelledby="connectTitle">
+<div class="wrap section-inner fade">
+<div class="eyebrow on-maroon" data-stagger="1"><span class="dot" aria-hidden="true"></span>Connect</div>
+<div class="connect-headline" id="connectTitle" data-stagger="2">Let's build.</div>
+<p class="connect-lede" data-stagger="3">I take on select collaborations in AI workflows, creative infrastructure, and brand systems. Tell me what you are making.</p>
+<div class="connect-links" data-stagger="4">
+<a href="mailto:Kenbai1027@gmail.com" class="connect-link"><span class="link-left"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect width="20" height="16" x="2" y="4" rx="2"/></svg></span>Kenbai1027@gmail.com</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
+<a href="https://www.linkedin.com/in/ken-bai-916228158" target="_blank" rel="noopener" class="connect-link"><span class="link-left"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6M2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></span>LinkedIn · Ken Bai</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
+<a href="https://github.com/whitecranelabs" target="_blank" rel="noopener" class="connect-link"><span class="link-left"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span>GitHub · @whitecranelabs</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
+<a href="Ken_Bai_Resume.pdf" download class="connect-link"><span class="link-left"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m9 12v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg></span>Download resume</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
+</div>
+</div>
 </section>
-
-<!-- ================= EDUCATION ================= -->
-<section class="band-surface">
-  <div class="wrap section-inner fade">
-    <div class="eyebrow" data-stagger="1"><span class="dot"></span> Education &amp; credentials</div>
-    <div class="edu" data-stagger="3">
-      <div class="edu-item">
-        <p>Master of Professional Studies, Design Management</p>
-        <div class="edu-meta">Pratt Institute · 2027 (expected)</div>
-      </div>
-      <div class="edu-item">
-        <p>Bachelor of Fine Arts, Interior Design</p>
-        <div class="edu-meta">Pratt Institute · 2012</div>
-      </div>
-    </div>
-    <div class="stack-box" data-stagger="4">
-      <div class="stack-head">
-        <span class="stack-label"><span class="dot"></span>Certifications &amp; coursework</span>
-        <span class="stack-count">6 credentials</span>
-      </div>
-      <div class="chips">
-        <span class="chip featured">Google AI Essentials</span>
-        <span class="chip featured">Jamf Certified Tech</span>
-        <span class="chip accent">Crash Course on Python</span>
-        <span class="chip">Jamf Certified Associate</span>
-        <span class="chip accent">Anthropic Academy · AI</span>
-        <span class="chip">Apple Certified Support Professional · macOS 11</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CONNECT ================= -->
-<section id="connect" class="band-maroon">
-  <div class="wrap section-inner fade">
-    <div class="eyebrow on-maroon" data-stagger="1"><span class="dot"></span> Connect</div>
-    <div class="connect-headline" data-stagger="2">Let's build.</div>
-    <div class="connect-links" data-stagger="4">
-      <a href="mailto:Kenbai1027@gmail.com" class="connect-link">Kenbai1027@gmail.com <span class="link-arrow">↗</span></a>
-      <a href="https://www.linkedin.com/in/ken-bai-916228158" target="_blank" rel="noopener" class="connect-link">LinkedIn · Ken Bai <span class="link-arrow">↗</span></a>
-      <a href="https://github.com/whitecranelabs" target="_blank" rel="noopener" class="connect-link">GitHub · @whitecranelabs <span class="link-arrow">↗</span></a>
-      <a href="Ken_Bai_Resume.pdf" download class="connect-link">Download resume <span class="link-arrow">↗</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
+</main>
 <footer>
-  <div class="footer-brand">
-    <svg width="18" height="18" viewBox="0 0 2000 2000">
-      <polygon points="1575,201 1365,564 1780,563" fill="currentColor" opacity="0.6"/>
-      <polygon points="709,693 5,696 357,1306" fill="currentColor" opacity="0.6"/>
-      <polygon points="1711,693 1009,693 1357,1303" fill="currentColor" opacity="0.6"/>
-      <polygon points="857,700 506,1307 1208,1309" fill="currentColor" opacity="0.6"/>
-      <polygon points="863,1435 1074,1796 1279,1435" fill="currentColor" opacity="0.6"/>
-      <polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor" opacity="0.6"/>
-      <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
-    </svg>
-    Ken Bai · White Crane Labs
-  </div>
-  <div class="footer-tagline">Human in the loop. Always.</div>
-  <div class="footer-copy">© 2026 · Ken Bai</div>
+<div class="footer-brand"><svg width="18" height="18" viewBox="0 0 2000 2000" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor" opacity="0.6"/><polygon points="709,693 5,696 357,1306" fill="currentColor" opacity="0.6"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor" opacity="0.6"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor" opacity="0.6"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor" opacity="0.6"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor" opacity="0.6"/><polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/></svg>Ken Bai · White Crane Labs</div>
+<div class="footer-tagline">Human in the loop. Always.</div>
+<div class="footer-copy">© 2026 Ken Bai</div>
 </footer>
-
 <script>
-  /* ----- nav scrolled state ----- */
-  const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  /* ----- reveal on scroll (staggered) ----- */
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
-
-  /* ----- hero cursor spotlight ----- */
-  const hero = document.getElementById('home');
-  hero.addEventListener('mousemove', e => {
-    const r = hero.getBoundingClientRect();
-    hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-    hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
-  });
-
-  /* ----- typing role ----- */
-  (function () {
-    const roles = ['AI workflows', 'generative systems', 'creative infrastructure', 'human-in-the-loop tools'];
-    const slot = document.getElementById('typeSlot');
-    if (!slot) return;
-    let r = 0, ci = 0, deleting = false;
-    const cur = roles[r];
-    (function tick() {
-      const text = roles[r];
-      slot.textContent = text.slice(0, ci);
-      let delay = deleting ? 28 : 55;
-      if (!deleting && ci === text.length) { delay = 1500; deleting = true; }
-      else if (deleting && ci === 0) { deleting = false; r = (r + 1) % roles.length; delay = 350; }
-      ci += deleting ? -1 : 1;
-      setTimeout(tick, delay);
-    })();
-  })();
-
-  /* ----- tech marquee (seamless loop) ----- */
-  (function () {
-    const items = ['AI Workflows', 'LLM Pipelines', 'Prompt Engineering', 'Generative Systems',
-      'Creative Infrastructure', 'Human-in-the-Loop', 'Python', 'Claude', 'GPT', 'Gemini',
-      'ComfyUI', 'Jamf Pro', 'Model Context Protocol', 'Figma', 'Brand Strategy', 'Design Systems'];
-    const track = document.getElementById('marqueeTrack');
-    if (!track) return;
-    function chunk() {
-      return items.map(t =>
-        '<div class="marquee-item"><span>' + t + '</span><span class="dia"></span></div>'
-      ).join('');
-    }
-    track.innerHTML = chunk() + chunk();
-  })();
-
-  /* ----- theme toggle ----- */
-  (function () {
-    const root = document.documentElement;
-    const btn = document.getElementById('themeToggle');
-    function apply(theme) {
-      if (theme === 'light') { root.setAttribute('data-theme', 'light'); }
-      else { root.removeAttribute('data-theme'); }
-    }
-    const saved = localStorage.getItem('wcl-theme');
-    if (saved === 'light' || saved === 'dark') apply(saved);
-    if (btn) {
-      btn.addEventListener('click', () => {
-        const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        apply(next);
-        localStorage.setItem('wcl-theme', next);
-      });
-    }
-  })();
+(function(){var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var root=document.documentElement,btn=document.getElementById("themeToggle");
+function apply(t){if(t==="light"){root.setAttribute("data-theme","light");if(btn)btn.setAttribute("aria-pressed","true")}else{root.removeAttribute("data-theme");if(btn)btn.setAttribute("aria-pressed","false")}}
+try{var s=localStorage.getItem("wcl-theme");if(s==="light"||s==="dark")apply(s)}catch(e){}
+if(btn)btn.addEventListener("click",function(){var n=root.getAttribute("data-theme")==="light"?"dark":"light";apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){}});
+var menu=document.getElementById("menuBtn"),links=document.getElementById("primaryNav");
+if(menu&&links)menu.addEventListener("click",function(){var open=links.getAttribute("data-open")==="true";links.setAttribute("data-open",open?"false":"true");menu.setAttribute("aria-expanded",open?"false":"true");menu.setAttribute("aria-label",open?"Open menu":"Close menu")});
+links&&links.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){if(window.innerWidth<=760){links.setAttribute("data-open","false");menu.setAttribute("aria-expanded","false");menu.setAttribute("aria-label","Open menu")}})});})();
+(function(){var els=document.querySelectorAll(".fade");if(!("IntersectionObserver" in window)){els.forEach(function(e){e.classList.add("visible")});return}var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("visible");o.unobserve(e.target)}})},{threshold:.1});els.forEach(function(e){o.observe(e)})})();
+(function(){var hero=document.getElementById("home");if(!hero)return;if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;hero.addEventListener("mousemove",function(e){var r=hero.getBoundingClientRect();hero.style.setProperty("--mx",(e.clientX-r.left)+"px");hero.style.setProperty("--my",(e.clientY-r.top)+"px")},{passive:true})})();
+(function(){var slot=document.getElementById("typeSlot");if(!slot)return;var roles=["AI workflows","generative systems","creative infrastructure","human-in-the-loop tools"];if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){slot.textContent=roles[0];return}var r=0,ci=0,del=false;function tick(){var t=roles[r];slot.textContent=t.slice(0,ci);var d=del?28:55;if(!del&&ci===t.length){d=1500;del=true}else if(del&&ci===0){del=false;r=(r+1)%roles.length;d=350}ci+=del?-1:1;setTimeout(tick,d)}tick()})();
+(function(){var items=["AI Workflows","LLM Pipelines","Prompt Engineering","Generative Systems","Creative Infrastructure","Human-in-the-Loop","Python","Claude","GPT","Gemini","ComfyUI","Jamf Pro","Model Context Protocol","Figma","Brand Strategy","Design Systems"];var track=document.getElementById("marqueeTrack");if(!track)return;function chunk(){return items.map(function(t){return '<div class="marquee-item"><span>'+t+'</span><span class="dia"></span></div>'}).join("")}track.innerHTML=chunk()+chunk()})();
 </script>
 </body>
 </html>
