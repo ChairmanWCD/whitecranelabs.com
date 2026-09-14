@@ -70,7 +70,9 @@ h2 .accent,h1 .accent{color:var(--accent-deep)}
 .eyebrow-num{position:absolute;right:34px;top:26px;font-family:var(--font-display);font-weight:800;font-size:15px;color:var(--muted);letter-spacing:1px}
 /* cover */
 #s1{grid-template-columns:1.05fr 1fr;}
-#s1 .cover-copy{padding:clamp(28px,4.5vw,64px);padding-right:calc(clamp(28px,4.5vw,64px) - 6px);display:flex;flex-direction:column;justify-content:center;gap:16px;min-height:0;max-height:calc(100dvh - 40px);overflow-x:hidden;overflow-y:auto;border-radius:28px 0 0 28px;scrollbar-width:thin;scrollbar-color:var(--wood) transparent;scrollbar-gutter:stable}
+#s1 .cover-copy{padding:clamp(28px,4.5vw,64px);padding-right:calc(clamp(28px,4.5vw,64px) - 6px);display:flex;flex-direction:column;justify-content:flex-start;gap:16px;min-height:0;max-height:calc(100dvh - 40px);overflow-x:hidden;overflow-y:auto;border-radius:28px 0 0 28px;scrollbar-width:thin;scrollbar-color:var(--wood) transparent;scrollbar-gutter:stable}
+#s1 .cover-copy>:first-child{margin-top:auto}
+#s1 .cover-copy>:last-child{margin-bottom:auto}
 #s1 .cover-copy::-webkit-scrollbar{width:10px}
 #s1 .cover-copy::-webkit-scrollbar-track{background:transparent;margin:28px 4px 28px 0}
 #s1 .cover-copy::-webkit-scrollbar-thumb{background:var(--wood);border-radius:999px;border:2px solid var(--paper)}
