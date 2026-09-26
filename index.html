@@ -61,7 +61,7 @@ section{position:relative}
 .band-maroon{background:var(--maroon);border-top:1px solid rgba(224,48,48,.15);border-bottom:1px solid rgba(224,48,48,.15)}
 .section-inner{padding:clamp(4rem,9vw,7rem) 0}
 #work .section-inner{padding-top:clamp(2rem,5vw,3.5rem)}
-.eyebrow{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);display:inline-flex;align-items:center;gap:9px;margin-bottom:1.5rem}
+.eyebrow{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);display:inline-flex;align-items:center;gap:9px;margin-bottom:1.5rem}
 .eyebrow .dot{width:9px;height:8px;background:var(--red);flex-shrink:0;clip-path:polygon(0 0,100% 0,50% 100%)}
 .eyebrow.on-maroon{color:rgba(236,234,228,.55)}
 h2{font-family:var(--fd);font-size:clamp(1.9rem,3.4vw,2.5rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:1rem;max-width:20ch}
@@ -76,7 +76,7 @@ p{max-width:var(--measure)}
 html[data-theme="light"] .hero-mark{opacity:.04}
 @keyframes float{0%,100%{transform:translate(-50%,-52%) rotate(0deg)}50%{transform:translate(-50%,-46%) rotate(2deg)}}
 .hero-inner{position:relative;z-index:2}
-.hero-status{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:2rem}
+.hero-status{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:2rem}
 .hero-status .pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 2.2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
 h1{font-family:var(--fd);font-weight:700;letter-spacing:-.035em;line-height:.96;color:var(--white);overflow-wrap:break-word}
@@ -130,7 +130,7 @@ h1 .line:nth-child(3) .w-word:nth-child(2){animation-delay:.52s}
 .project-num{font-family:var(--fd);font-size:clamp(2.6rem,5vw,3.8rem);font-weight:700;line-height:1;opacity:.14}
 .project.pj-red .project-num{color:var(--red)}.project.pj-gold .project-num{color:var(--gold)}.project.pj-green .project-num{color:var(--green)}.project.pj-violet .project-num{color:var(--violet)}.project.pj-blue .project-num{color:var(--blue)}.project.pj-white .project-num{color:var(--white)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.work-group{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:9px;margin:3rem 0 .25rem}
+.work-group{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:9px;margin:3rem 0 .25rem}
 .work-group:first-of-type{margin-top:2.5rem}
 .work-group .dot{width:9px;height:9px;background:var(--red);flex-shrink:0;transform:rotate(45deg);opacity:.8}
 .work-group::after{content:'';height:1px;background:var(--border-lo);flex:1;margin-left:1rem}
@@ -198,7 +198,7 @@ html[data-theme="light"] .stack-box{background:linear-gradient(180deg,rgba(194,5
 .coda-cols p{font-family:var(--mono);font-size:12px;color:var(--text);line-height:1.8;max-width:none}
 /* EDU CODA — reuses work-coda rail language; degrees gold-tinted, certs violet/blue */
 .edu-coda .edu-degrees{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:0 0 1rem;list-style:none;padding:0}
-.edu-degree{border:1px solid var(--border);border-left:2px solid var(--gold);border-radius:4px;padding:.85rem 1rem;background:color-mix(in srgb,var(--gold) 8%,transparent)}
+.edu-degree{border:1px solid var(--border);border-left:2px solid var(--gold);border-radius:2px;padding:.85rem 1rem;background:color-mix(in srgb,var(--gold) 8%,transparent)}
 .edu-degree .deg-year{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.3rem}
 .edu-degree .deg-name{font-family:var(--fd);font-size:14.5px;font-weight:600;color:var(--white);line-height:1.4;display:block}
 .edu-degree .deg-school{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);display:block;margin-top:.25rem}
@@ -296,7 +296,6 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marqueeTrack"></div></div>
 <section id="overview" class="band-black" aria-labelledby="overviewTitle">
 <div class="wrap section-inner fade" style="padding-top:clamp(2rem,5vw,3.5rem)">
-<div class="eyebrow" data-stagger="1"><span class="dot" aria-hidden="true"></span>Overview</div>
 <p class="lede lede-strong" id="overviewTitle" style="max-width:26ch;margin-bottom:0" data-stagger="2">Great creative environments are <em class="accent">designed with intent.</em></p>
 <p class="lede" style="margin-top:1.5rem" data-stagger="3">I work at the intersection of design, technology, and AI systems for 12+ years. I build the infrastructure that lets creative people do their best work. I run creative technology operations at Pratt Institute and lead White Crane Design LLC. AI amplifies judgment. Human in the loop, always.</p>
 </div>
@@ -490,7 +489,6 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 </section>
 <section id="connect" class="band-maroon" aria-labelledby="connectTitle">
 <div class="wrap section-inner fade">
-<div class="eyebrow on-maroon" data-stagger="1"><span class="dot" aria-hidden="true"></span>Connect</div>
 <div class="connect-headline" id="connectTitle" data-stagger="2">Let's build.</div>
 <p class="connect-lede" data-stagger="3">I take on select collaborations in AI workflows, creative infrastructure, and brand systems. Tell me what you are making.</p>
 <div class="connect-links" data-stagger="4">
