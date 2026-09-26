@@ -4,21 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>try{var t=localStorage.getItem("wcl-theme");if(t==="light"){document.documentElement.setAttribute("data-theme","light")}else{document.documentElement.removeAttribute("data-theme")}}catch(e){}</script>
-<title>Ken Bai — Creative Technologist | AI × Design</title>
-<meta name="description" content="Ken Bai, Creative Technologist building AI-powered creative infrastructure at Pratt Institute and through his studio, White Crane Labs. 10+ years at the intersection of technology, design, and strategy.">
-<meta property="og:title" content="Ken Bai — Creative Technologist | AI × Design">
-<meta property="og:description" content="I build AI-powered creative infrastructure at Pratt Institute and through White Crane Labs. Human in the loop. Always.">
+<title>Ken Bai - Creative Technologist | AI × Design</title>
+<meta name="description" content="Ken Bai, Creative Technologist building AI-powered creative infrastructure at Pratt Institute and through his studio, White Crane Labs. 12+ years at the intersection of technology, design, and strategy.">
+<meta property="og:title" content="Ken Bai - Creative Technologist | AI × Design">
+<meta property="og:description" content="Building AI-powered creative infrastructure at Pratt Institute and through White Crane Labs. Human in the loop. Always.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://chairmanwcd.github.io/whitecranelabs.com/">
-<meta property="og:image" content="assets/repo-cover.png">
+<meta property="og:image" content="https://chairmanwcd.github.io/whitecranelabs.com/assets/repo-cover.png">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#1C1B18">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#1C1B18;--surface:#212121;--maroon:#2A1613;--border:#3A3A3A;--border-lo:#2C2C2C;--white:#ECEAE4;--ink-fixed:#1C1B18;--paper-fixed:#ECEAE4;--text:#C7C4BC;--text-dim:#A3A096;--red:#E03030;--red-solid:#C22B2B;--gold:#C49A2A;--teal:#2A9D8F;--green:#3FBF6F;--violet:#A78BFA;--blue:#2EBEDC;--fd:'Space Grotesk',sans-serif;--fb:'Inter',sans-serif;--mono:'JetBrains Mono','SF Mono',monospace;--measure:60ch;--ease-out:cubic-bezier(0.16,1,0.3,1);--mx:50vw;--my:40vh}
+:root{--black:#1C1B18;--surface:#212121;--maroon:#2A1613;--border:#3A3A3A;--border-lo:#2C2C2C;--white:#ECEAE4;--ink-fixed:#1C1B18;--paper-fixed:#ECEAE4;--text:#C7C4BC;--text-dim:#A3A096;--red:#E03030;--red-solid:#C22B2B;--gold:#C49A2A;--teal:#2A9D8F;--green:#3FBF6F;--violet:#A78BFA;--blue:#2EBEDC;--fd:'Space Grotesk',sans-serif;--fb:'Inter',sans-serif;--mono:'JetBrains Mono','SF Mono',monospace;--fh:'Caveat','Segoe Script',cursive;--measure:60ch;--ease-out:cubic-bezier(0.16,1,0.3,1);--mx:50vw;--my:40vh}
 html[data-theme="light"]{--black:#F5F2EC;--surface:#EDE9E0;--border:rgba(30,28,24,0.14);--border-lo:rgba(30,28,24,0.09);--white:#1E1C18;--text:#3A3830;--text-dim:#6B6860;--red:#C23B22}
 html{scroll-behavior:smooth}
 body{background:var(--black);color:var(--text);font-family:var(--fb);font-size:16px;line-height:1.7;overflow-x:hidden;position:relative}
@@ -63,11 +63,21 @@ section{position:relative}
 #work .section-inner{padding-top:clamp(2rem,5vw,3.5rem)}
 .eyebrow{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);display:inline-flex;align-items:center;gap:9px;margin-bottom:1.5rem}
 .eyebrow .dot{width:9px;height:8px;background:var(--red);flex-shrink:0;clip-path:polygon(0 0,100% 0,50% 100%)}
-.eyebrow.on-maroon{color:rgba(236,234,228,.55)}
 h2{font-family:var(--fd);font-size:clamp(1.9rem,3.4vw,2.5rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:1rem;max-width:20ch}
+/* About header — same handwritten, centered voice as the intro */
+#about .eyebrow{display:flex;justify-content:center}
+.about-title{font-family:var(--fh);font-weight:600;font-size:clamp(2.1rem,4vw,3rem);line-height:1.25;letter-spacing:0;text-align:center;max-width:26ch;margin:0 auto 1rem}
 .lede{font-size:16px;color:var(--text);max-width:var(--measure);line-height:1.75;margin-bottom:2.75rem}
 .lede-strong{font-family:var(--fd);font-weight:700;color:var(--white);font-size:clamp(1.9rem,3.4vw,2.5rem);letter-spacing:-.02em;line-height:1.16;text-wrap:balance}
 .lede-strong .accent{color:var(--red);font-style:normal}
+/* Overview intro - centered, handwritten statement */
+.ov-quote{position:relative;text-align:center;max-width:38ch;margin:0 auto 1.75rem}
+.ov-mark{display:block;font-family:var(--fd);font-weight:700;font-size:clamp(2.5rem,5vw,3.5rem);line-height:1;color:var(--red);opacity:.85;margin-bottom:.25rem;pointer-events:none}
+.ov-statement{border-left:none;padding-left:0;max-width:none;margin-bottom:0;font-family:var(--fh);font-weight:600;font-size:clamp(2.1rem,4vw,3rem);line-height:1.25;letter-spacing:0}
+.ov-body{text-align:center;margin-left:auto;margin-right:auto;margin-bottom:0}
+.ov-sign{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;justify-content:center;gap:10px;margin-top:1.75rem;margin-bottom:0;max-width:none}
+.ov-sign .ov-dia{width:7px;height:7px;background:var(--red);transform:rotate(45deg);flex-shrink:0}
+@media print{.ov-mark{display:none}.ov-sign{color:#444}}
 p{max-width:var(--measure)}
 .lede a,.project-desc a,.exp li a,.connect-link,.hero-contact a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--red)}
 .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(6rem,12vh,9rem) 0 clamp(4rem,8vh,6rem);overflow:hidden;position:relative}
@@ -118,7 +128,7 @@ h1 .line:nth-child(3) .w-word:nth-child(2){animation-delay:.52s}
 @keyframes scrollX{to{transform:translateX(-50%)}}
 .marquee-item{display:flex;align-items:center;gap:2.5rem;padding:1.1rem 1.25rem;font-family:var(--mono);font-size:12.5px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
 .marquee-item .dia{width:7px;height:7px;background:var(--red);transform:rotate(45deg);opacity:.5;flex-shrink:0}
-/* WORK — uniform equal-weight rows (work-scoped) */
+/* WORK - uniform equal-weight rows (work-scoped) */
 .work-scan{display:flex;flex-wrap:wrap;gap:.45rem 1.1rem;align-items:baseline;font-family:var(--mono);font-size:11.5px;color:var(--text-dim);margin:-1rem 0 2.5rem;letter-spacing:.02em}
 .work-scan a{color:var(--text-dim);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:1px;transition:color .2s,border-color .2s}
 .work-scan a:hover{color:var(--white);border-color:var(--red)}
@@ -129,6 +139,10 @@ h1 .line:nth-child(3) .w-word:nth-child(2){animation-delay:.52s}
 .project-main{min-width:0}
 .project-num{font-family:var(--fd);font-size:clamp(2.6rem,5vw,3.8rem);font-weight:700;line-height:1;opacity:.14}
 .project.pj-red .project-num{color:var(--red)}.project.pj-gold .project-num{color:var(--gold)}.project.pj-green .project-num{color:var(--green)}.project.pj-violet .project-num{color:var(--violet)}.project.pj-blue .project-num{color:var(--blue)}.project.pj-white .project-num{color:var(--white)}
+/* Ghost-glyph rails (MCP Lucide, 2px-stroke outline) - same scale + transparency as numerals */
+.project-glyph{font-size:clamp(2.6rem,5vw,3.8rem);line-height:1;opacity:.14;display:flex;align-items:flex-start}
+.project-glyph svg{width:1em;height:1em;display:block}
+.glyph-gold{color:var(--gold)}.glyph-blue{color:var(--blue)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .work-group{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:9px;margin:3rem 0 .25rem}
 .work-group:first-of-type{margin-top:2.5rem}
@@ -138,16 +152,6 @@ h1 .line:nth-child(3) .w-word:nth-child(2){animation-delay:.52s}
 .project-title{font-family:var(--fd);font-size:clamp(1.4rem,2.6vw,1.75rem);font-weight:600;color:var(--white);letter-spacing:-.01em;transition:color .2s}
 a.project-title:hover{color:var(--red)}
 .project-role{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);margin-bottom:.8rem}
-.project-top{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-bottom:.7rem}
-.project-num-sm{font-family:var(--mono);font-size:11px;color:var(--text-dim)}
-.work-title{font-family:var(--fd);font-size:clamp(1.4rem,2.6vw,1.75rem);font-weight:600;letter-spacing:-.01em;line-height:1.15;margin-bottom:.5rem}
-.work-title a{color:var(--white);text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;transition:color .2s}
-.work-title a:hover{color:var(--red)}
-.work-title .icon-slot{color:var(--red);opacity:.7;transition:transform .25s var(--ease-out),opacity .2s;flex-shrink:0}
-.work-title a:hover .icon-slot{transform:translate(2px,-2px);opacity:1}
-.work-meta{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);margin-bottom:.7rem;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
-.work-meta strong{color:var(--white);font-weight:500}
-.work-meta .outcome{color:var(--text)}
 .cat-pill{font-family:var(--mono);font-size:10px;font-weight:500;padding:3px 9px;border-radius:2px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-fixed);flex-shrink:0}
 .cat-pill.c-red{background:var(--red-solid);color:var(--paper-fixed)}.cat-pill.c-gold{background:var(--gold)}.cat-pill.c-green{background:var(--green)}.cat-pill.c-violet{background:var(--violet);color:var(--ink-fixed)}.cat-pill.c-blue{background:var(--blue);color:var(--ink-fixed)}.cat-pill.c-white{background:var(--white);color:var(--ink-fixed)}
 html[data-theme="light"] .cat-pill.c-white{color:var(--paper-fixed)}
@@ -157,31 +161,6 @@ html[data-theme="light"] .cat-pill.c-white{color:var(--paper-fixed)}
 .project-links{display:flex;gap:1.5rem;flex-wrap:wrap}
 .link-primary{font-size:13.5px;font-weight:500;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--red);color:var(--white);display:inline-flex;align-items:center;gap:6px;padding-bottom:1px}
 .link-primary:hover{gap:10px}
-.stack-box{margin-top:3rem;padding:clamp(1.5rem,3vw,2.4rem);border:1px solid var(--border);border-radius:6px;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(224,48,48,.05),rgba(0,0,0,0) 55%),var(--black)}
-html[data-theme="light"] .stack-box{background:linear-gradient(180deg,rgba(194,59,34,.05),rgba(0,0,0,0) 55%),var(--black)}
-.stack-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),rgba(224,48,48,.1))}
-.stack-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
-.stack-label{font-family:var(--fd);font-size:15px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:var(--white);display:flex;align-items:center;gap:10px}
-.stack-label .dot{width:9px;height:9px;background:var(--red);clip-path:polygon(0 0,100% 0,50% 100%)}
-.stack-count{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:.06em;text-transform:uppercase}
-.stack-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
-.stack-group h3{font-family:var(--mono);font-size:11px;color:var(--red);font-weight:600;margin-bottom:.7rem;text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:8px}
-.stack-group h3::before{content:'';width:6px;height:6px;transform:rotate(45deg);background:var(--red);opacity:.7}
-.stack-group .chips{display:flex;flex-wrap:wrap;gap:7px;list-style:none}
-.chip.featured{color:var(--paper-fixed);background:var(--red-solid);border-color:var(--red-solid);font-weight:500}
-.chip.accent{border-color:rgba(224,48,48,.45);color:var(--white);background:rgba(224,48,48,.08)}
-/* WORK CODA — rail + row language, red focal + group-tinted chips */
-.work-coda{padding:2.2rem 0;border-top:1px solid var(--border-lo);border-bottom:1px solid var(--border-lo);display:grid;grid-template-columns:84px 1fr;gap:clamp(1rem,3vw,2.25rem);align-items:start;position:relative;overflow:hidden}
-.work-coda::before{content:'';position:absolute;top:-1px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red) 0%,rgba(196,154,42,.65) 32%,rgba(224,48,48,.12) 68%,transparent 100%)}
-.coda-num{font-family:var(--fd);font-size:clamp(2.6rem,5vw,3.8rem);font-weight:700;line-height:1;opacity:1;color:var(--red)}
-.coda-hi{color:var(--red);font-style:normal}
-.work-coda .work-title{text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--red) 55%,transparent);text-underline-offset:6px;text-decoration-thickness:2px}
-.work-coda .project-chips{margin-bottom:.9rem}
-.work-coda .chip{background:none;color:var(--white)}
-.work-coda .chip.g-sw{border-color:color-mix(in srgb,var(--blue) 60%,transparent);background:color-mix(in srgb,var(--blue) 10%,transparent)}
-.work-coda .chip.g-ai{border-color:color-mix(in srgb,var(--violet) 60%,transparent);background:color-mix(in srgb,var(--violet) 12%,transparent)}
-.work-coda .chip.g-gold{border-color:color-mix(in srgb,var(--gold) 60%,transparent);background:color-mix(in srgb,var(--gold) 10%,transparent)}
-.work-coda .chip.g-green{border-color:color-mix(in srgb,var(--green) 55%,transparent);background:color-mix(in srgb,var(--green) 10%,transparent)}
 .coda-detail{margin-top:.2rem;border-top:1px solid var(--border-lo)}
 .coda-detail summary{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);letter-spacing:.04em;cursor:pointer;padding:.8rem 0;list-style:none;display:flex;align-items:center;gap:.6rem;transition:color .2s}
 .coda-detail summary::-webkit-details-marker{display:none}
@@ -196,7 +175,7 @@ html[data-theme="light"] .stack-box{background:linear-gradient(180deg,rgba(194,5
 .coda-cols>div:nth-child(2) h4::before{background:var(--violet)}
 .coda-cols>div:nth-child(3) h4::before{background:var(--gold)}
 .coda-cols p{font-family:var(--mono);font-size:12px;color:var(--text);line-height:1.8;max-width:none}
-/* EDU CODA — reuses work-coda rail language; degrees gold-tinted, certs violet/blue */
+/* Background rows: degrees gold-tinted, detail groups tinted */
 .edu-coda .edu-degrees{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:0 0 1rem;list-style:none;padding:0}
 .edu-degree{border:1px solid var(--border);border-left:2px solid var(--gold);border-radius:2px;padding:.85rem 1rem;background:color-mix(in srgb,var(--gold) 8%,transparent)}
 .edu-degree .deg-year{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.3rem}
@@ -205,13 +184,13 @@ html[data-theme="light"] .stack-box{background:linear-gradient(180deg,rgba(194,5
 @media print{.edu-degree{border-color:#ccc!important;background:none!important;break-inside:avoid}.edu-degree .deg-name,.edu-degree .deg-year,.edu-degree .deg-school{color:#000!important}}
 .edu-coda .coda-cols.cols-2{grid-template-columns:repeat(2,1fr)}
 @media (max-width:700px){.edu-coda .edu-degrees{grid-template-columns:1fr}.edu-coda .coda-cols.cols-2{grid-template-columns:1fr}}
-@media (max-width:700px){.stack-groups{grid-template-columns:1fr}.coda-cols{grid-template-columns:1fr;gap:.9rem}}
+@media (max-width:700px){.coda-cols{grid-template-columns:1fr;gap:.9rem}}
 .exp{display:grid;grid-template-columns:84px 1fr;gap:clamp(1rem,4vw,2rem);padding:2.4rem 0;border-top:1px solid var(--border-lo)}
 .exp:last-child{border-bottom:1px solid var(--border-lo)}
 .exp-num{font-family:var(--fd);font-size:clamp(2.2rem,4vw,3rem);font-weight:700;line-height:1;opacity:.14;color:var(--red)}
 .exp-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.3rem}
 .exp-role{font-family:var(--fd);font-size:clamp(1.25rem,2.4vw,1.5rem);font-weight:600;color:var(--white)}
-.exp-meta{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);margin-bottom:1rem}
+.exp-meta{font-family:var(--mono);font-size:11.5px;color:var(--red);margin-bottom:1rem}
 .exp-sub{margin:1.1rem 0 1.25rem}
 .exp-sub .sub{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap;font-size:13px;color:var(--text-dim);padding:.35rem 0}
 .exp-sub .sub::before{content:'';flex-shrink:0;width:6px;height:6px;transform:rotate(45deg);background:var(--red);opacity:.5;align-self:center}
@@ -219,13 +198,7 @@ html[data-theme="light"] .stack-box{background:linear-gradient(180deg,rgba(194,5
 .exp ul{list-style:none}
 .exp li{position:relative;padding-left:1.1rem;font-size:14.5px;color:var(--text);line-height:1.75;margin-bottom:.5rem;max-width:72ch}
 .exp li::before{content:'';position:absolute;left:0;top:.78em;width:5px;height:5px;background:var(--red);border-radius:50%}
-@media (max-width:640px){.project,.exp,.work-coda{grid-template-columns:1fr}.project-num,.exp-num,.coda-num{display:none}.coda-cols{grid-template-columns:1fr}}
-.edu{display:flex;flex-direction:column}
-.edu-item{padding:1.2rem 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;transition:padding-left .3s var(--ease-out)}
-.edu-item:last-child{border-bottom:1px solid var(--border)}
-.edu-item:hover{padding-left:.75rem}
-.edu-item p:first-child{font-size:15px;color:var(--white)}
-.edu-meta{font-size:12.5px;color:var(--text-dim);font-family:var(--mono)}
+@media (max-width:640px){.project,.exp{grid-template-columns:1fr}.project-num,.exp-num,.project-glyph{display:none}.coda-cols{grid-template-columns:1fr}}
 .connect-headline{font-family:var(--fd);font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--paper-fixed);font-size:clamp(2.6rem,7vw,4.8rem);max-width:12ch;margin-bottom:1.25rem}
 .connect-lede{font-size:16px;color:rgba(236,234,228,.65);max-width:46ch;line-height:1.7;margin-bottom:1.5rem}
 .connect-links{display:flex;flex-direction:column}
@@ -244,10 +217,11 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 .fade [data-stagger]{opacity:0;transform:translateY(16px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out)}
 .fade.visible [data-stagger]{opacity:1;transform:none}
 .fade.visible [data-stagger="1"]{transition-delay:.08s}.fade.visible [data-stagger="2"]{transition-delay:.16s}.fade.visible [data-stagger="3"]{transition-delay:.24s}.fade.visible [data-stagger="4"]{transition-delay:.32s}
-@media print{body{background:#fff;color:#000}nav,.hero-actions,.scroll-cue,.marquee,.theme-toggle,.menu-btn,.hero-status,.hero-role{display:none}.hero{min-height:0;padding:1.5rem 0}.section-inner{padding:1.5rem 0}.wrap{max-width:100%;padding:0 .5in}.project,.exp,.work-coda,.edu-item{break-inside:avoid}*{animation:none!important;transition:none!important}.band-surface,.band-maroon,.band-black{background:#fff;color:#000}h2,.work-title a,.work-title,.exp-role,h1,.stat-num,.coda-num,.edu-item p:first-child,.connect-headline{color:#000}.project-desc,.exp li,.lede,.coda-cols p{color:#222}.project,.exp,.work-coda,.edu-item{border-color:#ccc}.chip{border-color:#999;color:#111}.cat-pill{background:#eee!important;color:#000;border-color:#999}.btn-primary,.nav-cta{background:#000;color:#fff}.eyebrow,.exp-meta,.hero-contact,.stat-label,.stack-label{color:#444}.work-coda details:not([open])>:not(summary){display:block}.coda-detail summary{color:#444}.coda-detail,.coda-cols{border-color:#ccc}.work-coda::before{display:none}.coda-num,.coda-hi{color:#000}.work-coda .work-title{text-decoration-color:#000}.work-coda .chip{background:none!important;color:#111!important;border-color:#999!important}.coda-cols h4::before{background:#000!important}}
+@media print{.fade,.fade [data-stagger]{opacity:1!important;transform:none!important}.hero-mark{display:none}footer{background:#fff;color:#000}body{background:#fff;color:#000}nav,.hero-actions,.scroll-cue,.marquee,.theme-toggle,.menu-btn,.hero-status,.hero-role{display:none}.hero{min-height:0;padding:1.5rem 0}.section-inner{padding:1.5rem 0}.wrap{max-width:100%;padding:0 .5in}.project,.exp{break-inside:avoid}*{animation:none!important;transition:none!important}.band-surface,.band-maroon,.band-black{background:#fff;color:#000}h2,.exp-role,h1,.stat-num,.connect-headline{color:#000}.project-desc,.exp li,.lede,.coda-cols p{color:#222}.project,.exp{border-color:#ccc}.chip{border-color:#999;color:#111}.cat-pill{background:#eee!important;color:#000;border-color:#999}.btn-primary,.nav-cta{background:#000;color:#fff}.eyebrow,.exp-meta,.hero-contact,.stat-label{color:#444}.coda-detail:not([open])>:not(summary){display:block}.coda-detail summary{color:#444}.coda-detail,.coda-cols{border-color:#ccc}.coda-cols h4::before{background:#000!important}}
 @media (prefers-reduced-motion:reduce){.marquee-track,.hero-mark,.hero::after,.scroll-cue .mouse::after,.hero-status .pulse-dot,.type-caret,.w-word{animation:none!important}.hero::after{background:none!important}.w-word{opacity:1;filter:none}.fade,.fade [data-stagger]{opacity:1;transform:none;transition:none}}
 @media (max-width:360px){h1 .line{font-size:clamp(2.6rem,15vw,3rem)}.nav-pill{padding:.6rem .8rem .6rem 1rem}.nav-cta{padding:10px 16px}}
 </style>
+<noscript><style>.fade,.fade [data-stagger]{opacity:1!important;transform:none!important;transition:none!important}.w-word{opacity:1!important;filter:none!important}.marquee-track{animation:none!important}</style></noscript>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -272,7 +246,7 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 <div class="wrap hero-inner">
 <div class="hero-status"><span class="pulse-dot" aria-hidden="true"></span>Creative Technology · NYC</div>
 <h1 id="pageTitle"><span class="line"><span class="w-word">Ken</span> <span class="w-word">Bai</span></span><span class="line"><span class="w-word">Creative</span></span><span class="line"><span class="w-word">Technologist</span></span></h1>
-<p class="hero-role"><span>Building</span> <span class="type-slot" id="typeSlot" aria-live="polite"></span><span class="type-caret" aria-hidden="true"></span></p>
+<p class="hero-role"><span>Building</span> <span class="type-slot" id="typeSlot" aria-hidden="true"></span><span class="sr-only">AI workflows, generative systems, creative infrastructure, human-in-the-loop tools.</span><span class="type-caret" aria-hidden="true"></span></p>
 <div class="hero-actions">
 <a href="#work" class="btn-primary">View the work</a>
 <a href="Ken_Bai_Resume.pdf" class="btn-ghost" download>Download resume <span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m9 12v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg></span></a>
@@ -295,38 +269,13 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 </section>
 <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marqueeTrack"></div></div>
 <section id="overview" class="band-black" aria-labelledby="overviewTitle">
-<div class="wrap section-inner fade" style="padding-top:clamp(2rem,5vw,3.5rem)">
-<p class="lede lede-strong" id="overviewTitle" style="max-width:26ch;margin-bottom:0" data-stagger="2">Great creative environments are <em class="accent">designed with intent.</em></p>
-<p class="lede" style="margin-top:1.5rem" data-stagger="3">I work at the intersection of design, technology, and AI systems for 12+ years. I build the infrastructure that lets creative people do their best work. I run creative technology operations at Pratt Institute and lead White Crane Design LLC. AI amplifies judgment. Human in the loop, always.</p>
-</div>
-</section>
-<section id="background" class="band-surface" aria-labelledby="eduTitle">
 <div class="wrap section-inner fade">
-<article class="work-coda edu-coda" data-stagger="1"><div class="coda-num" aria-hidden="true">*</div><div class="project-main">
-<div class="project-top"><span class="project-num-sm">Coda</span><span class="project-num-sm" aria-hidden="true">·</span><span class="project-num-sm">Education</span></div>
-<h3 class="work-title" id="eduTitle"><span class="coda-hi">Education</span></h3>
-<p class="work-meta"><span>Formal training + certs</span><span aria-hidden="true">—</span><span class="outcome">degree first, detail on demand</span></p>
-<ul class="edu-degrees">
-<li class="edu-degree"><span class="deg-year">2027 · Expected</span><span class="deg-name">Master of Professional Studies, Design Management</span><span class="deg-school">Pratt Institute</span></li>
-<li class="edu-degree"><span class="deg-year">2012</span><span class="deg-name">Bachelor of Fine Arts, Interior Design</span><span class="deg-school">Pratt Institute</span></li>
-</ul>
-<ul class="project-chips" aria-label="Certifications"><li class="chip g-ai">Google AI Essentials</li><li class="chip g-ai">Anthropic Academy · AI</li><li class="chip g-ai">Crash Course on Python</li><li class="chip g-sw">Jamf Certified Tech</li><li class="chip g-sw">Jamf Certified Associate</li><li class="chip g-sw">Apple Certified Support Professional</li></ul>
-<details class="coda-detail"><summary>Detail by group</summary><div class="coda-cols cols-2">
-<div><h4>Degrees</h4><p>MPS Design Management (exp. 2027) · BFA Interior Design (2012) — both Pratt Institute. Trained as a designer, operating as a builder.</p></div>
-<div><h4>Credentials</h4><p>AI: Google AI Essentials · Anthropic Academy · Python. Platform: Jamf Tech + Associate · Apple CSP macOS 11.</p></div>
-</div></details>
-</div></article>
-<article class="work-coda" data-stagger="1"><div class="coda-num" aria-hidden="true">*</div><div class="project-main">
-<div class="project-top"><span class="project-num-sm">Coda</span><span class="project-num-sm" aria-hidden="true">·</span><span class="project-num-sm">Skills</span></div>
-<h3 class="work-title" id="work-stack-t"><span class="coda-hi">Skills</span></h3>
-<p class="work-meta"><span>Tools I reach for first</span><span aria-hidden="true">—</span><span class="outcome">detail by group on demand</span></p>
-<ul class="project-chips" aria-label="Skills"><li class="chip g-sw">Figma</li><li class="chip g-sw">Adobe Suite</li><li class="chip g-ai">Claude</li><li class="chip g-ai">GPT</li><li class="chip g-ai">Gemini</li><li class="chip g-ai">ComfyUI</li><li class="chip g-ai">Flux</li><li class="chip g-green">Python</li><li class="chip g-sw">Jamf Pro</li><li class="chip g-sw">MDM</li><li class="chip g-gold">Asana</li><li class="chip g-ai">MCP</li></ul>
-<details class="coda-detail"><summary>Detail by group</summary><div class="coda-cols">
-<div><h4>Design</h4><p>Figma · Adobe Suite — product, brand, and production art. Systems first, pixels with intent.</p></div>
-<div><h4>AI Systems</h4><p>Claude · GPT · Gemini · ComfyUI · Flux · MCP — multi-model critique, prompt craft, and local inference pipelines.</p></div>
-<div><h4>Ops &amp; Infra</h4><p>Python · Jamf Pro · MDM · Asana — fleet, automation, and delivery rhythm that keep studios running.</p></div>
-</div></details>
-</div></article>
+<div class="ov-quote" data-stagger="2">
+<span class="ov-mark" aria-hidden="true">”</span>
+<h2 class="lede lede-strong ov-statement" id="overviewTitle">Great creative environments are <em class="accent">designed with intent.</em></h2>
+</div>
+<p class="lede ov-body" data-stagger="3">12+ years at the intersection of design, technology, and AI systems, building the infrastructure that lets creative people do their best work. Working within creative technology operations as an analyst at Pratt Institute and leading White Crane Design LLC. AI amplifies judgment.</p>
+<p class="ov-sign" data-stagger="4"><span class="ov-dia" aria-hidden="true"></span>Human in the loop, always.</p>
 </div>
 </section>
 <section id="work" class="band-surface" aria-labelledby="workTitle">
@@ -343,7 +292,7 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 <a href="HeoPet.html" target="_blank" rel="noopener" class="project-title">HeoPet</a>
 </div>
 <p class="project-role" data-stagger="2">Mobile digital pet · Expo / React Native</p>
-<p class="project-desc" data-stagger="3">A mobile pet whose wellbeing is derived from your own health — auto-tracked steps and tapped water drive a mood that plays out as real-time animation. Health you can actually watch.</p>
+<p class="project-desc" data-stagger="3">A mobile pet whose wellbeing is derived from your own health, with auto-tracked steps and tapped water drive a mood that plays out as real-time animation. Health you can actually watch.</p>
 <div class="project-chips" data-stagger="4">
 <span class="chip">Expo</span><span class="chip">React Native</span><span class="chip">Pedometer</span><span class="chip">Mood Engine</span><span class="chip">Motion UI</span>
 </div>
@@ -362,7 +311,7 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 <a href="WCD_Creative_Studio.html" class="project-title">WCD Creative Studio</a>
 </div>
 <p class="project-role" data-stagger="2">Art-direction studio · Local Z-Image engine · RTX 5070</p>
-<p class="project-desc" data-stagger="3">My art-direction studio with its own local Z-Image-Turbo engine — FastAPI async queue on an RTX 5070.</p>
+<p class="project-desc" data-stagger="3">My art-direction studio with its own local Z-Image-Turbo engine, a FastAPI async queue on an RTX 5070.</p>
 <div class="project-chips" data-stagger="4">
 <span class="chip">Z-Image-Turbo</span><span class="chip">FastAPI</span><span class="chip">Async queue</span><span class="chip">RTX 5070</span><span class="chip">Art-direction</span>
 </div>
@@ -400,10 +349,10 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 <span class="cat-pill c-gold">Institutional AI</span>
 <a href="Pratt_AI_Infrastructure_Case_Study.html" target="_blank" rel="noopener" class="project-title">Pratt's AI Infrastructure</a>
 </div>
-<p class="project-role" data-stagger="2">IT Manager &amp; Mac Administrator · Pratt Institute</p>
-<p class="project-desc" data-stagger="3">How institutional financial crisis forced the choice to build rather than buy AI capability, and how the institution scaled to 500+ users while keeping its autonomy and culture intact.</p>
+<p class="project-role" data-stagger="2">Creative Technology Analyst, Mac Systems · Pratt Institute</p>
+<p class="project-desc" data-stagger="3">How institutional financial crisis forced the choice to build rather than buy AI capability, and how the institution scaled its AI capability while keeping its autonomy and culture intact.</p>
 <div class="project-chips" data-stagger="4">
-<span class="chip">Python</span><span class="chip">LLM Pipelines</span><span class="chip">Enterprise Infra</span><span class="chip">500+ users</span><span class="chip">Team of 20+</span>
+<span class="chip">Python</span><span class="chip">LLM Pipelines</span><span class="chip">Enterprise Infra</span>
 </div>
 <div class="project-links">
 <a href="Pratt_AI_Infrastructure_Case_Study.html" target="_blank" rel="noopener" class="link-primary">Read the case study →</a>
@@ -414,7 +363,7 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 <div class="work-group" data-stagger="3"><span class="dot"></span> Design &amp; Art Direction</div>
 
 <div class="project pj-green" data-stagger="1">
-<div class="project-num">01</div>
+<div class="project-num">05</div>
 <div class="project-main">
 <div class="project-head">
 <span class="cat-pill c-green">Brand Identity</span>
@@ -433,7 +382,7 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 </div>
 
 <div class="project pj-white" data-stagger="1">
-<div class="project-num">02</div>
+<div class="project-num">06</div>
 <div class="project-main">
 <div class="project-head">
 <span class="cat-pill c-white">Commerce / Apparel</span>
@@ -455,31 +404,31 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 <section id="about" class="band-black" aria-labelledby="aboutTitle">
 <div class="wrap section-inner fade">
 <div class="eyebrow" data-stagger="1"><span class="dot" aria-hidden="true"></span>Experience</div>
-<h2 id="aboutTitle" data-stagger="2">I keep creative infrastructure invisible.</h2>
+<h2 id="aboutTitle" class="about-title" data-stagger="2">Bridging creativity and technology. Tools that empower humans, not replace them.</h2>
 <div class="exp" data-stagger="1"><div class="exp-num" aria-hidden="true">01</div><div>
 <div class="exp-head"><span class="exp-role">Founder &amp; Creative Director</span></div>
 <div class="exp-meta" data-stagger="2">White Crane Design LLC · New York, NY · Jan 2023 to Present</div>
 <ul data-stagger="3">
-<li>I direct creative strategy, identity, and design systems, turning business goals into coherent brand experiences.</li>
-<li>I prototype generative AI workflows and LLM-integrated pipelines that expand what small creative teams can ship.</li>
-<li>I launched the White Crane apparel brand, from concept through production, with AI-assisted but human-driven design.</li>
-<li>I keep a human-in-the-loop philosophy throughout. AI amplifies judgment. It never replaces it.</li>
+<li>Directing creative strategy, identity, and design systems, turning business goals into coherent brand experiences.</li>
+<li>Prototyping generative AI workflows and LLM-integrated pipelines that expand what small creative teams can ship.</li>
+<li>Launched the White Crane apparel brand, from concept through production, with AI-assisted but human-driven design.</li>
+<li>A human-in-the-loop philosophy throughout.</li>
 </ul>
 </div></div>
 <div class="exp" data-stagger="1"><div class="exp-num" aria-hidden="true">02</div><div>
-<div class="exp-head"><span class="exp-role">Creative Technology Operations &amp; Mac Systems</span></div>
+<div class="exp-head"><span class="exp-role">Creative Technology Analyst and Mac Systems</span></div>
 <div class="exp-meta" data-stagger="2">Pratt Institute · Brooklyn, NY · Apr 2022 to Present</div>
 <ul data-stagger="3">
-<li>I support creative technology infrastructure for a top design school, within a cross-functional team of 20+ staff.</li>
-<li>I architect and manage a 120+ Apple endpoint ecosystem via Jamf Pro and Apple School Manager.</li>
-<li>I integrate generative AI tools and Python automation into lab systems to remove friction for makers.</li>
-<li>I partner with faculty to align infrastructure with curriculum, accessibility, and institutional policy.</li>
+<li>Supporting creative technology infrastructure for a top design school, leading a cross-functional team of 20+ staff.</li>
+<li>Architecting and managing a 120+ Apple endpoint ecosystem via Jamf Pro and Apple School Manager.</li>
+<li>Integrating generative AI tools and Python automation into lab systems to remove friction for makers.</li>
+<li>Partnering with faculty to align infrastructure with curriculum, accessibility, and institutional policy.</li>
 </ul>
 </div></div>
 <div class="exp" data-stagger="1"><div class="exp-num" aria-hidden="true">03</div><div>
 <div class="exp-head"><span class="exp-role">Technology &amp; AV Operations</span></div>
 <div class="exp-meta" data-stagger="2">Pratt Institute · Brooklyn, NY · Jun 2014 to Apr 2022</div>
-<p class="project-desc" data-stagger="3" style="margin-bottom:.9rem;max-width:62ch">Earlier roles in IT infrastructure, AV systems, and technical operations. Where I learned creative environments at scale.</p>
+<p class="project-desc" data-stagger="3" style="margin-bottom:.9rem;max-width:62ch">Earlier roles in IT infrastructure, AV systems, and technical operations. Learning creative environments at scale.</p>
 <div class="exp-sub" data-stagger="4">
 <div class="sub"><span class="sub-role">Audio Visual Specialist</span><span>Pratt Institute</span></div>
 <div class="sub"><span class="sub-role">Information Technology Specialist</span><span>Pratt Institute</span></div>
@@ -487,10 +436,49 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 </div></div>
 </div>
 </section>
+<section id="background" class="band-surface" aria-labelledby="eduTitle">
+<div class="wrap section-inner fade">
+<div class="work-index">
+<div class="project pj-gold edu-coda" data-stagger="1">
+<div class="project-glyph glyph-gold" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0zM22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></div>
+<div class="project-main">
+<div class="project-head">
+<span class="cat-pill c-gold">Education</span>
+<h3 class="project-title" id="eduTitle">Education</h3>
+</div>
+<p class="project-role">Formal training + certs · degree first, detail on demand</p>
+<ul class="edu-degrees">
+<li class="edu-degree"><span class="deg-year">2027 · Expected</span><span class="deg-name">Master of Professional Studies, Design Management</span><span class="deg-school">Pratt Institute</span></li>
+<li class="edu-degree"><span class="deg-year">2012</span><span class="deg-name">Bachelor of Fine Arts, Interior Design</span><span class="deg-school">Pratt Institute</span></li>
+</ul>
+<ul class="project-chips" aria-label="Certifications"><li class="chip g-ai">Google AI Essentials</li><li class="chip g-ai">Anthropic Academy · AI</li><li class="chip g-ai">Crash Course on Python</li><li class="chip g-sw">Jamf Certified Tech</li><li class="chip g-sw">Jamf Certified Associate</li><li class="chip g-sw">Apple Certified Support Professional</li></ul>
+<details class="coda-detail"><summary>Detail by group</summary><div class="coda-cols cols-2">
+<div><h4>Degrees</h4><p>MPS Design Management (exp. 2027) · BFA Interior Design (2012), both Pratt Institute. Trained as a designer, operating as a builder.</p></div>
+<div><h4>Credentials</h4><p>AI: Google AI Essentials · Anthropic Academy · Python. Platform: Jamf Tech + Associate · Apple CSP macOS 11.</p></div>
+</div></details>
+</div></div>
+<div class="project pj-blue" data-stagger="1">
+<div class="project-glyph glyph-blue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg></div>
+<div class="project-main">
+<div class="project-head">
+<span class="cat-pill c-blue">Skills</span>
+<h3 class="project-title" id="work-stack-t">Skills</h3>
+</div>
+<p class="project-role">Go-to tools · detail by group on demand</p>
+<ul class="project-chips" aria-label="Skills"><li class="chip g-sw">Figma</li><li class="chip g-sw">Adobe Suite</li><li class="chip g-ai">Claude</li><li class="chip g-ai">GPT</li><li class="chip g-ai">Gemini</li><li class="chip g-ai">ComfyUI</li><li class="chip g-ai">Flux</li><li class="chip g-green">Python</li><li class="chip g-sw">Jamf Pro</li><li class="chip g-sw">MDM</li><li class="chip g-gold">Asana</li><li class="chip g-ai">MCP</li></ul>
+<details class="coda-detail"><summary>Detail by group</summary><div class="coda-cols">
+<div><h4>Design</h4><p>Figma · Adobe Suite: product, brand, and production art. Systems first, pixels with intent.</p></div>
+<div><h4>AI Systems</h4><p>Claude · GPT · Gemini · ComfyUI · Flux · MCP: multi-model critique, prompt craft, and local inference pipelines.</p></div>
+<div><h4>Ops &amp; Infra</h4><p>Python · Jamf Pro · MDM · Asana: fleet, automation, and delivery rhythm that keep studios running.</p></div>
+</div></details>
+</div></div>
+</div>
+</div>
+</section>
 <section id="connect" class="band-maroon" aria-labelledby="connectTitle">
 <div class="wrap section-inner fade">
-<div class="connect-headline" id="connectTitle" data-stagger="2">Let's build.</div>
-<p class="connect-lede" data-stagger="3">I take on select collaborations in AI workflows, creative infrastructure, and brand systems. Tell me what you are making.</p>
+<h2 class="connect-headline" id="connectTitle" data-stagger="2">Let's build.</h2>
+<p class="connect-lede" data-stagger="3">Select collaborations in AI workflows, creative infrastructure, and brand systems. Tell me what you are making.</p>
 <div class="connect-links" data-stagger="4">
 <a href="mailto:Kenbai1027@gmail.com" class="connect-link"><span class="link-left"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect width="20" height="16" x="2" y="4" rx="2"/></svg></span>Kenbai1027@gmail.com</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
 <a href="https://www.linkedin.com/in/ken-bai-916228158" target="_blank" rel="noopener" class="connect-link"><span class="link-left"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6M2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></span>LinkedIn · Ken Bai</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
@@ -503,7 +491,7 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 <footer>
 <div class="footer-brand"><svg width="18" height="18" viewBox="0 0 2000 2000" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor" opacity="0.6"/><polygon points="709,693 5,696 357,1306" fill="currentColor" opacity="0.6"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor" opacity="0.6"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor" opacity="0.6"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor" opacity="0.6"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor" opacity="0.6"/><polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/></svg>Ken Bai · White Crane Labs</div>
 <div class="footer-tagline">Human in the loop. Always.</div>
-<div class="footer-copy">© 2026 Ken Bai</div>
+<div class="footer-copy">© 2026 White Crane Design LLC</div>
 </footer>
 <script>
 (function(){var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
