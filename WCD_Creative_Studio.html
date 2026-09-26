@@ -421,20 +421,20 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
     <div>
       <div class="hero-eyebrow"><span class="tri"></span> Case Study · Art-direction Studio + Local Image Engine</div>
       <h1>WCD Creative<br><span class="accent">Studio</span></h1>
-      <p class="hero-subtitle">My art-direction studio, run by agents and backed by a local image engine it calls over HTTP — <strong>Z-Image-Turbo plus FLUX.2 Klein</strong>, served over FastAPI. I art-direct the concept, my agents drive the queue — no cloud in between.</p>
+      <p class="hero-subtitle">My art-direction studio, run by agents and backed by a local image engine it calls over HTTP: <strong>Z-Image-Turbo plus FLUX.2 Klein</strong>, served over FastAPI. I art-direct the concept, my agents drive the queue - no cloud in between.</p>
     </div>
     <figure class="hero-visual">
-      <img src="assets/white_crane_studio/hero.png" alt="WCD Creative Studio hero image — legacy UI carried over pending reshoot">
+      <img src="assets/white_crane_studio/hero.png" alt="WCD Creative Studio hero image - legacy UI carried over pending reshoot">
       <figcaption>WCD Creative Studio · legacy UI carried over pending reshoot</figcaption>
     </figure>
     <div class="hero-meta">
       <div class="meta-block">
         <div class="meta-label">Project</div>
-        <div class="meta-value"><strong>Art-direction studio</strong> · Local Z-Image engine · RTX 5070</div>
+        <div class="meta-value"><strong>Art-direction studio</strong> · Local image engine · Mac mini M4</div>
       </div>
       <div class="meta-block">
         <div class="meta-label">Built with</div>
-        <div class="meta-value"><strong>Z-Image-Turbo</strong> · FastAPI · Async queue · RTX 5070 12GB</div>
+        <div class="meta-value"><strong>Z-Image-Turbo</strong> · <strong>FLUX.2 Klein</strong> · FastAPI · Async queue · Mac mini M4 32 GB</div>
       </div>
       <div class="meta-block">
         <div class="meta-label">Source · caller + callee</div>
@@ -451,9 +451,9 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
   <div class="cs-section fade">
     <div class="cs-eyebrow"><span class="tri"></span> 01 — The brief</div>
     <h2 class="cs-h2">One repo, two jobs</h2>
-    <p class="cs-p">I split my old art-director setup into two roles that actually fit how I work: <strong>studio-designer</strong> owns visual direction and generation, <strong>studio-engineer</strong> owns build and verify. One repo holds both — the studio and its engine.</p>
+    <p class="cs-p">I split my old art-director setup into two roles that actually fit how I work: <strong>studio-designer</strong> owns visual direction and generation, <strong>studio-engineer</strong> owns build and verify. One repo holds both: the studio and its engine.</p>
     <p class="cs-p">The question I kept hitting: <strong>"Can my own RTX card become a serious, always-on studio — not a cloud tab I rent by the image?"</strong></p>
-    <p class="cs-p">WCD Creative Studio is my answer — an art-direction practice backed by a <strong>single-engine Z-Image-Turbo</strong> server I run myself. I direct, I generate, I ship.</p>
+    <p class="cs-p">WCD Creative Studio is my answer: an art-direction practice backed by a <strong>single-engine Z-Image-Turbo</strong> server I run myself. I direct, I generate, I ship.</p>
   </div>
 
   <hr class="cs-rule">
@@ -468,19 +468,19 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
         <div class="cost-title">Option A: Cloud API</div>
         <div class="cost-point">Per-image pricing + latency per call</div>
         <div class="cost-point">Prompts and outputs leave your machine</div>
-        <div class="cost-point">Shared queue — wait times under load</div>
+        <div class="cost-point">Shared queue; wait times under load</div>
         <div class="cost-point"><strong>Rate limits, usage quotas, dependency on a vendor's roadmap.</strong></div>
       </div>
       <div class="cost-option">
         <div class="cost-title">Option B: Local engine</div>
         <div class="cost-point">One-time GPU you already own</div>
-        <div class="cost-point">Full data sovereignty — runs on-device</div>
+        <div class="cost-point">Full data sovereignty; runs on-device</div>
         <div class="cost-point">Your own queue, your own timing</div>
         <div class="cost-point"><strong>Zero per-image cost. Unmetered. Always mine.</strong></div>
       </div>
     </div>
 
-    <p class="cs-p">I chose Option B and made it practical on a <strong>12GB RTX 5070</strong>: a self-hosted single-engine service. The hard part isn't the model — it's staying VRAM-safe while I art-direct at full speed.</p>
+    <p class="cs-p">I chose Option B and made it practical on a <strong>Mac mini M4, 32 GB</strong>: a self-hosted single-engine service running on Apple Silicon MPS. The hard part isn't the model; it's staying memory-safe while I art-direct at full speed.</p>
   </div>
 
   <hr class="cs-rule">
@@ -488,8 +488,8 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
   <!-- 03 THE ARCHITECTURE -->
   <div class="cs-section fade">
     <div class="cs-eyebrow"><span class="tri"></span> 03 — The architecture</div>
-    <h2 class="cs-h2">Submit, poll, fetch — with presets</h2>
-    <p class="cs-p">Generation is slow. My UI never waits on it. I mirror the FAL.ai pattern: <strong>submit a job, poll for status, fetch the result.</strong> My interface stays instant while a background worker owns the heavy inference. This is the contract my studio calls — same endpoints whether generation runs on my RTX box or a Mac across the LAN.</p>
+    <h2 class="cs-h2">Submit, poll, fetch, with presets</h2>
+    <p class="cs-p">Generation is slow. My UI never waits on it. I mirror the FAL.ai pattern: <strong>submit a job, poll for status, fetch the result.</strong> My interface stays instant while a background worker on my Mac mini owns the heavy inference. This is the contract my studio calls; the generation server runs on Apple Silicon MPS via <code>white-crane-generation</code>.</p>
 
     <div class="pullquote">
       <p>Queue presets, not guesswork. <span>My UI never blocks on a generation.</span></p>
@@ -507,7 +507,7 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
       <li><strong>Async queue API</strong>: <span class="lead-code">/submit</span> → <span class="lead-code">/status</span> → <span class="lead-code">/result</span>. Built for polling clients and parallel batches.</li>
       <li><strong>Sync API</strong>: <span class="lead-code">POST /generate</span> returns the result inline, with size presets (<span class="lead-code">square_hd</span>, <span class="lead-code">portrait_4_3</span>, <span class="lead-code">portrait_16_9</span>, <span class="lead-code">landscape_4_3</span>, <span class="lead-code">landscape_16_9</span>) or custom width/height.</li>
       <li><strong>Support endpoints</strong>: <span class="lead-code">/health</span> (model readiness), <span class="lead-code">/api/history</span> (recent images), <span class="lead-code">/output/{file}</span> (static files), Swagger at <span class="lead-code">/docs</span>.</li>
-      <li><strong>Single Z-Image engine</strong>: one pipeline, one job at a time. No swap logic to babysit — I keep presets VRAM-aware instead.</li>
+      <li><strong>Two engines, one resident</strong>: Z-Image-Turbo (T2I) + FLUX.2 Klein 9B (I2I). ComfyUI-style swap keeps one pipeline resident — no dual-model juggling, no surprise OOM. Presets stay memory-aware.</li>
     </ul>
 
     <p class="cs-p">I cap queue depth, retry failed jobs, and expire completed results after a <span class="lead-code">TTL</span>. Presets do the sizing discipline so I don't OOM mid-batch.</p>
@@ -519,7 +519,7 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
   <div class="cs-section fade">
     <div class="cs-eyebrow"><span class="tri"></span> 04 — How the studio works</div>
     <h2 class="cs-h2">Agents direct, skills constrain, MCPs supply</h2>
-    <p class="cs-p">The engine is only half of my studio. The other half is how I run it: an <strong>art-director</strong> orchestrator routes every brief to two specialists — <strong>studio-designer</strong> owns visual direction and generation, <strong>studio-engineer</strong> owns build and verify. Taste and checks come from vendored skill libraries, icons arrive over MCP, and nothing ships without green verify logs.</p>
+    <p class="cs-p">The engine is only half of my studio. The other half is how I run it: an <strong>art-director</strong> orchestrator routes every brief to two specialists: <strong>studio-designer</strong> owns visual direction and generation, <strong>studio-engineer</strong> owns build and verify. Taste and checks come from vendored skill libraries, icons arrive over MCP, and nothing ships without green verify logs.</p>
 
     <h3 class="cs-h3">The three agents</h3>
     <ul class="cs-list">
@@ -536,7 +536,7 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
     </ul>
 
     <h3 class="cs-h3">Two repos, one call</h3>
-    <p class="cs-p">My studio doesn't host inference — it <strong>calls</strong> it. <strong>WCD-Creative-Studio</strong> briefs, prompts, verifies, and ships; <strong>white-crane-generation</strong> queues, infers, and serves files. Both speak the same FAL-style contract, so I can point my studio at any box running the generation server — RTX or Mac, local or LAN.</p>
+    <p class="cs-p">My studio doesn't host inference; it <strong>calls</strong> it. <strong>WCD-Creative-Studio</strong> briefs, prompts, verifies, and ships; <strong>white-crane-generation</strong> queues, infers, and serves files. Both speak the same FAL-style contract, so I can point my studio at any box running the generation server: RTX or Mac, local or LAN.</p>
     <div class="example-box">
       <div class="example-label">Studio → generation call</div>
       <div class="example-text">
@@ -554,27 +554,27 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
   <!-- 05 THE HARD PROBLEM -->
   <div class="cs-section fade">
     <div class="cs-eyebrow"><span class="tri"></span> 05 — The hard problem</div>
-    <h2 class="cs-h2">12GB-safe on an RTX 5070</h2>
-    <p class="cs-p">Z-Image-Turbo is ~19.8 GB on disk — bigger than my 12 GB VRAM. So I treat VRAM as a rotating resource: <strong>CPU offload</strong> holds what doesn't fit, and <strong>MAX_IMAGE_SIDE 1024</strong> caps the peak that actually matters.</p>
+    <h2 class="cs-h2">Mac mini M4, 32 GB — unified memory strategy</h2>
+    <p class="cs-p">Z-Image-Turbo is ~19.8 GB on disk; FLUX.2 Klein 9B is ~40 GB in HF cache. On Apple Silicon, unified memory means I treat the 32 GB pool as one resource: <strong>MPS offload</strong> streams weights between system RAM and GPU, and <strong>MAX_IMAGE_SIDE 1024</strong> caps the peak activation memory.</p>
 
     <div class="metric-row">
       <div class="metric-box">
-        <div class="metric-label">Diffusion weights</div>
-        <div class="metric-value">12 GB</div>
-        <div class="metric-sub">z_image_turbo — offloaded, streamed per step</div>
+        <div class="metric-label">Z-Image-Turbo weights</div>
+        <div class="metric-value">~19.8 GB</div>
+        <div class="metric-sub">diffusion + text encoder + VAE, bfloat16</div>
       </div>
       <div class="metric-box">
-        <div class="metric-label">Qwen text encoder</div>
-        <div class="metric-value">7.5 GB</div>
-        <div class="metric-sub">language side — resident only while encoding</div>
+        <div class="metric-label">FLUX.2 Klein 9B (I2I)</div>
+        <div class="metric-value">~40 GB cached</div>
+        <div class="metric-sub">auto-downloaded, gated; swap keeps one engine resident</div>
       </div>
       <div class="metric-box">
-        <div class="metric-label">VAE</div>
-        <div class="metric-value">320 MB</div>
-        <div class="metric-sub">decode-only cost at the end</div>
+        <div class="metric-label">Unified memory pool</div>
+        <div class="metric-value">32 GB</div>
+        <div class="metric-sub">shared CPU/GPU - unified memory pool</div>
       </div>
       <div class="metric-box">
-        <div class="metric-label">VRAM-safe ceiling</div>
+        <div class="metric-label">Activation ceiling</div>
         <div class="metric-value">1024</div>
         <div class="metric-sub">MAX_IMAGE_SIDE — presets snap inside it</div>
       </div>
@@ -582,9 +582,10 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
 
     <h3 class="cs-h3">How I stay under the ceiling</h3>
     <ul class="cs-list">
-      <li><strong>CPU offload</strong>: weights spill to system RAM; only the active blocks sit in VRAM during each step.</li>
-      <li><strong>MAX_IMAGE_SIDE 1024</strong>: my longest edge never exceeds 1024 px. Presets (1024×1024 down to 768×1344) are chosen to respect it.</li>
-      <li><strong>One engine resident</strong>: single Z-Image-Turbo pipeline. No dual-model juggling, no surprise OOM.</li>
+      <li><strong>MPS offload + bfloat16</strong>: weights stream from system RAM to GPU per step; native dtype is stable on MPS.</li>
+      <li><strong>MAX_IMAGE_SIDE 1024</strong>: longest edge never exceeds 1024 px. Presets (1024×1024 down to 768×1344) chosen to respect it.</li>
+      <li><strong>ComfyUI-style engine swap</strong>: only one pipeline resident at a time (Z-Image or FLUX Klein). Keeps memory pressure predictable on 32 GB.</li>
+      <li><strong>PYTORCH_ENABLE_MPS_FALLBACK=1</strong>: falls back to CPU for unimplemented Metal ops instead of crashing.</li>
     </ul>
   </div>
 
@@ -614,10 +615,10 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
   <div class="cs-section fade">
     <div class="cs-eyebrow"><span class="tri"></span> 07 — The interface</div>
     <h2 class="cs-h2">A static UI with docs built in</h2>
-    <p class="cs-p">A server is only useful if I can drive it fast. My bundled static UI is a single working surface — prompt, preset, generate — and every click maps 1:1 to the HTTP API.</p>
+    <p class="cs-p">A server is only useful if I can drive it fast. My bundled static UI is a single working surface: prompt, preset, generate; every click maps 1:1 to the HTTP API.</p>
     <ul class="cs-list">
       <li><strong>Prompt first</strong>: textarea with example chips, <code>Cmd/Ctrl+Enter</code> to generate; seed + randomize when I need a keeper.</li>
-      <li><strong>Size presets</strong>: five VRAM-aware presets (Square HD → Landscape 16:9) plus custom width/height, all snapped inside MAX_IMAGE_SIDE 1024.</li>
+      <li><strong>Size presets</strong>: five memory-aware presets (Square HD → Landscape 16:9) plus custom width/height, all snapped inside MAX_IMAGE_SIDE 1024.</li>
       <li><strong>Advanced when I need it</strong>: negative prompt, guidance scale, inference steps (1–10), <code>num_images</code> (1–4), PNG/JPEG output.</li>
       <li><strong>Live feedback</strong>: elapsed timer, skeleton loading, cancel, health status, and a <code>/api/history</code> strip of recent outputs.</li>
     </ul>
@@ -647,12 +648,12 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
   <!-- 08 HONEST ASSESSMENT -->
   <div class="cs-section fade">
     <div class="cs-eyebrow"><span class="tri"></span> 08 — What's still hard</div>
-    <h2 class="cs-h2">OOM knobs I actually turn</h2>
-    <p class="cs-p">Local inferencing on 12 GB isn't a free lunch. When a generation gets heavy, I reach for the same knobs in the same order.</p>
+    <h2 class="cs-h2">Mac memory knobs I actually turn</h2>
+    <p class="cs-p">Local inferencing on 32 GB unified memory isn't a free lunch. When a generation gets heavy, I reach for the same knobs in the same order.</p>
 
     <div class="lesson">
       <div class="lesson-num">01</div>
-      <p><strong>Longest edge first.</strong> If I smell OOM, I drop <span class="lead-code">MAX_IMAGE_SIDE</span> below 1024 or pick a smaller preset. Pixels are the dominant VRAM cost.</p>
+      <p><strong>Longest edge first.</strong> If I smell memory pressure, I drop <span class="lead-code">MAX_IMAGE_SIDE</span> below 1024 or pick a smaller preset. Pixels are the dominant activation cost.</p>
     </div>
     <div class="lesson">
       <div class="lesson-num">02</div>
@@ -660,11 +661,15 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
     </div>
     <div class="lesson">
       <div class="lesson-num">03</div>
-      <p><strong>Fewer steps.</strong> Turbo is built for low steps — I stay at the low end of 1–10 and only push higher when the composition earns it.</p>
+      <p><strong>Fewer steps.</strong> Turbo is built for low steps; I stay at the low end of 1–10 and only push higher when the composition earns it.</p>
     </div>
     <div class="lesson">
       <div class="lesson-num">04</div>
-      <p><strong>Offload stays on.</strong> CPU offload is non-negotiable on 12 GB. Turning it off for speed is how I OOM — I leave it on.</p>
+      <p><strong>Offload stays on.</strong> MPS offload is non-negotiable on 32 GB. Turning it off for speed is how I OOM; I leave it on.</p>
+    </div>
+    <div class="lesson">
+      <div class="lesson-num">05</div>
+      <p><strong>Swap engines, don't stack them.</strong> Z-Image and FLUX Klein each need ~20 GB resident. I never run both — swap via <code>app.py</code> instead.</p>
     </div>
   </div>
 
@@ -680,17 +685,17 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
     </div>
 
     <p class="cs-p">My proof is small on purpose: a <strong>shiba-cafe-deck</strong>: a full set of on-brand images generated locally, art-directed and iterated like client work. Same prompt discipline, same preset logic, same queue. If it holds for a deck, it holds for a campaign.</p>
-    <p class="cs-p">That's the studio+engine loop I wanted: I direct the concept, my RTX renders it, and the prompts never leave my machine. No per-image fees. No vendor in between.</p>
+    <p class="cs-p">That's the studio+engine loop I wanted: I direct the concept, my Mac mini renders it, and the prompts never leave my machine. No per-image fees. No vendor in between.</p>
 
     <div class="example-box">
-      <div class="example-label">Proof · Live deck — 7 slides</div>
-      <div class="example-text"><strong style="color:var(--white)">Shiba Cafe Deck</strong>: 7 on-brand slides generated locally on RTX 5070 (Z-Image-Turbo). Opens as a standalone page; nothing inlined, nothing base64. <a href="../dist/shiba-cafe-deck/index.html" target="_blank" rel="noopener" aria-label="Open the live Shiba Cafe Deck, 7 slides, in a new tab" style="color:var(--violet-accent)">Open the live deck ↗</a></div>
+      <div class="example-label">Proof · Live deck; 7 slides</div>
+      <div class="example-text"><strong style="color:var(--white)">Shiba Cafe Deck</strong>: 7 on-brand slides generated locally on Mac mini M4 (Z-Image-Turbo + FLUX.2 Klein). Opens as a standalone page; nothing inlined, nothing base64. <a href="../dist/shiba-cafe-deck/index.html" target="_blank" rel="noopener" aria-label="Open the live Shiba Cafe Deck, 7 slides, in a new tab" style="color:var(--violet-accent)">Open the live deck ↗</a></div>
     </div>
 
     <div class="cta-block">
       <div class="cta-left">
         <div class="cta-label">See the proof</div>
-        <p>7-slide Shiba Cafe deck — generated locally, art-directed like client work. Open the live deck, or browse the source.</p>
+        <p>7-slide Shiba Cafe deck; generated locally, art-directed like client work. Open the live deck, or browse the source.</p>
         <p style="font-size:12px; color:var(--white-dim); margin-top:.5rem;">No dist on this deploy? <a href="https://github.com/ChairmanWCD/WCD-Creative-Studio/tree/main/studio/dist/shiba-cafe-deck" target="_blank" rel="noopener" aria-label="Open the Shiba Cafe Deck source folder on GitHub in a new tab" style="color:var(--violet-accent)">Browse the deck source on GitHub ↗</a></p>
       </div>
       <div class="cta-actions">
