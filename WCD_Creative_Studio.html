@@ -275,6 +275,12 @@
     border: 1px solid var(--border); padding: 1.5rem;
     background: rgba(43,38,32,0.4);
   }
+  .cost-option--chosen {
+    border-color: var(--violet-accent);
+    box-shadow: 0 0 0 1px var(--violet-accent), 0 12px 40px -10px rgba(167,139,250,0.15);
+    transform: scale(1.03);
+    z-index: 1;
+  }
   .cost-title {
     font-family: var(--font-display); font-size: 1.1rem;
     font-weight: 700; text-transform: uppercase;
@@ -285,6 +291,14 @@
     margin-bottom: 0.75rem; line-height: 1.6;
   }
   .cost-point strong { color: var(--white); }
+  .chosen-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: var(--mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--violet-accent); background: rgba(167,139,250,0.12);
+    padding: 2px 8px; border-radius: 2px; margin-left: 8px;
+    border: 1px solid var(--violet-accent);
+  }
 
   .lesson {
     display: flex; gap: 1.5rem; padding: 1.25rem 0;
@@ -471,8 +485,8 @@ nav, nav.scrolled { background: transparent !important; border-bottom-color: tra
         <div class="cost-point">Shared queue; wait times under load</div>
         <div class="cost-point"><strong>Rate limits, usage quotas, dependency on a vendor's roadmap.</strong></div>
       </div>
-      <div class="cost-option">
-        <div class="cost-title">Option B: Local engine</div>
+      <div class="cost-option cost-option--chosen">
+        <div class="cost-title">Option B: Local engine <span class="chosen-badge">✓ Chosen</span></div>
         <div class="cost-point">One-time GPU you already own</div>
         <div class="cost-point">Full data sovereignty; runs on-device</div>
         <div class="cost-point">Your own queue, your own timing</div>
