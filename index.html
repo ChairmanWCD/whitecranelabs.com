@@ -13,6 +13,7 @@
 <meta property="og:image" content="https://chairmanwcd.github.io/whitecranelabs.com/assets/repo-cover.png">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#1C1B18">
+<link rel="preload" as="video" href="assets/White%20Crane%20Lab%20Hero/Transition-reverse.mp4" type="video/mp4" media="(min-aspect-ratio: 1/1)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
@@ -85,7 +86,29 @@ p{max-width:var(--measure)}
 .hero-mark{position:absolute;top:50%;left:50%;width:clamp(360px,46vw,700px);transform:translate(-50%,-50%);color:var(--white);opacity:.05;pointer-events:none;z-index:0;animation:float 9s ease-in-out infinite}
 html[data-theme="light"] .hero-mark{opacity:.04}
 @keyframes float{0%,100%{transform:translate(-50%,-52%) rotate(0deg)}50%{transform:translate(-50%,-46%) rotate(2deg)}}
-.hero-inner{position:relative;z-index:2}
+.hero .wrap{max-width:1080px;width:100%;align-self:stretch;margin:0 auto;padding-left:1.3rem;padding-right:clamp(1.25rem,4vw,3rem)}
+.hero-inner{position:relative;z-index:2;max-width:760px;margin-right:auto}
+/* White Crane Lab Hero — full-bleed art, text aligned to nav-pill logo (1080px + 1.3rem) */
+.hero-media{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.hero-media picture{position:absolute;inset:0}
+.hero-still,.hero-transition{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% center;transition:opacity .6s var(--ease-out)}
+.hero-still.is-dark{opacity:1}
+.hero-still.is-light{opacity:0}
+html[data-theme="light"] .hero-still.is-dark{opacity:0}
+html[data-theme="light"] .hero-still.is-light{opacity:1}
+.hero-transition{opacity:0;visibility:hidden;background:#000}
+.hero-media.is-switching .hero-transition{opacity:1;visibility:visible}
+/* One moving layer at a time — stills black out while the video carries the transition */
+.hero-media.is-switching img.hero-still{opacity:0}
+.hero-scrim{position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--black) 90%,transparent) 0%,color-mix(in srgb,var(--black) 60%,transparent) 32%,transparent 58%),linear-gradient(0deg,var(--black) 6%,transparent 28%)}
+html[data-theme="light"] .hero-scrim{background:linear-gradient(90deg,color-mix(in srgb,var(--black) 84%,transparent) 0%,color-mix(in srgb,var(--black) 50%,transparent) 34%,transparent 58%),linear-gradient(0deg,var(--black) 6%,transparent 28%)}
+.hero-mark{opacity:.03}
+@media (max-width:1128px){.hero .wrap{padding-left:calc(1.5rem + 1.3rem);padding-right:1.5rem}}
+@media (max-width:760px){.hero-transition{object-position:68% center}}
+/* Dynamic art direction — portrait/narrow gets dimmed stage + mobile scrim, short landscape re-aims up */
+@media (max-width:760px),(max-aspect-ratio:1/1){.hero-still.is-dark{object-position:50% center}.hero-still.is-light{object-position:50% center}.hero-still{opacity:.35}.hero-still.is-light{opacity:0}html[data-theme="light"] .hero-still.is-light{opacity:.35}html[data-theme="light"] .hero-still.is-dark{opacity:0}.hero-media.is-switching .hero-transition{opacity:1;visibility:visible}.hero-scrim{background:linear-gradient(90deg,color-mix(in srgb,var(--black) 88%,transparent) 0%,color-mix(in srgb,var(--black) 55%,transparent) 45%,transparent 75%)}}
+@media (max-height:500px) and (min-aspect-ratio:1/1){.hero-still,.hero-transition{object-position:78% 18%}}
+@media (min-aspect-ratio:21/9){.hero-still,.hero-transition{object-position:78% 22%}}
 .hero-status{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:2rem}
 .hero-status .pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 2.2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
@@ -218,7 +241,7 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 .fade.visible [data-stagger]{opacity:1;transform:none}
 .fade.visible [data-stagger="1"]{transition-delay:.08s}.fade.visible [data-stagger="2"]{transition-delay:.16s}.fade.visible [data-stagger="3"]{transition-delay:.24s}.fade.visible [data-stagger="4"]{transition-delay:.32s}
 @media print{.fade,.fade [data-stagger]{opacity:1!important;transform:none!important}.hero-mark{display:none}footer{background:#fff;color:#000}body{background:#fff;color:#000}nav,.hero-actions,.scroll-cue,.marquee,.theme-toggle,.menu-btn,.hero-status,.hero-role{display:none}.hero{min-height:0;padding:1.5rem 0}.section-inner{padding:1.5rem 0}.wrap{max-width:100%;padding:0 .5in}.project,.exp{break-inside:avoid}*{animation:none!important;transition:none!important}.band-surface,.band-maroon,.band-black{background:#fff;color:#000}h2,.exp-role,h1,.stat-num,.connect-headline{color:#000}.project-desc,.exp li,.lede,.coda-cols p{color:#222}.project,.exp{border-color:#ccc}.chip{border-color:#999;color:#111}.cat-pill{background:#eee!important;color:#000;border-color:#999}.btn-primary,.nav-cta{background:#000;color:#fff}.eyebrow,.exp-meta,.hero-contact,.stat-label{color:#444}.coda-detail:not([open])>:not(summary){display:block}.coda-detail summary{color:#444}.coda-detail,.coda-cols{border-color:#ccc}.coda-cols h4::before{background:#000!important}}
-@media (prefers-reduced-motion:reduce){.marquee-track,.hero-mark,.hero::after,.scroll-cue .mouse::after,.hero-status .pulse-dot,.type-caret,.w-word{animation:none!important}.hero::after{background:none!important}.w-word{opacity:1;filter:none}.fade,.fade [data-stagger]{opacity:1;transform:none;transition:none}}
+@media (prefers-reduced-motion:reduce){.marquee-track,.hero-mark,.hero::after,.scroll-cue .mouse::after,.hero-status .pulse-dot,.type-caret,.w-word{animation:none!important}.hero::after{background:none!important}.w-word{opacity:1;filter:none}.fade,.fade [data-stagger]{opacity:1;transform:none;transition:none}.hero-still{transition:none}.hero-transition{display:none!important}}
 @media (max-width:360px){h1 .line{font-size:clamp(2.6rem,15vw,3rem)}.nav-pill{padding:.6rem .8rem .6rem 1rem}.nav-cta{padding:10px 16px}}
 </style>
 <noscript><style>.fade,.fade [data-stagger]{opacity:1!important;transform:none!important;transition:none!important}.w-word{opacity:1!important;filter:none!important}.marquee-track{animation:none!important}</style></noscript>
@@ -243,6 +266,12 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 <main id="main">
 <section id="home" class="band-black hero" aria-labelledby="pageTitle">
 <svg class="hero-mark" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor"/><polygon points="709,693 5,696 357,1306" fill="currentColor"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/><polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/></svg>
+<div class="hero-media" id="heroMedia" aria-hidden="true">
+<picture><source media="(max-aspect-ratio: 1/1)" type="image/webp" srcset="assets/White%20Crane%20Lab%20Hero/dark-portrait-1536.webp"><source media="(max-aspect-ratio: 1/1)" srcset="assets/White%20Crane%20Lab%20Hero/dark-portrait.png"><source type="image/webp" srcset="assets/White%20Crane%20Lab%20Hero/dark-mode-2048.webp"><img class="hero-still is-dark" src="assets/White%20Crane%20Lab%20Hero/Dark%20Mode.png" alt="" fetchpriority="high" decoding="async"></picture>
+<picture><source media="(max-aspect-ratio: 1/1)" type="image/webp" srcset="assets/White%20Crane%20Lab%20Hero/light-portrait-1536.webp"><source media="(max-aspect-ratio: 1/1)" srcset="assets/White%20Crane%20Lab%20Hero/light-portrait.png"><source type="image/webp" srcset="assets/White%20Crane%20Lab%20Hero/light-mode-2048.webp"><img class="hero-still is-light" src="assets/White%20Crane%20Lab%20Hero/Light%20Mode.png" alt="" loading="eager" decoding="async"></picture>
+<video class="hero-transition" id="heroTransition" muted playsinline preload="auto" poster="assets/White%20Crane%20Lab%20Hero/Draft%20image.png"><source src="assets/White%20Crane%20Lab%20Hero/Transition.mp4" type="video/mp4"></video>
+<div class="hero-scrim"></div>
+</div>
 <div class="wrap hero-inner">
 <div class="hero-status"><span class="pulse-dot" aria-hidden="true"></span>Creative Technology · NYC</div>
 <h1 id="pageTitle"><span class="line"><span class="w-word">Ken</span> <span class="w-word">Bai</span></span><span class="line"><span class="w-word">Creative</span></span><span class="line"><span class="w-word">Technologist</span></span></h1>
@@ -501,7 +530,14 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 var root=document.documentElement,btn=document.getElementById("themeToggle");
 function apply(t){if(t==="light"){root.setAttribute("data-theme","light");if(btn)btn.setAttribute("aria-pressed","true")}else{root.removeAttribute("data-theme");if(btn)btn.setAttribute("aria-pressed","false")}}
 try{var s=localStorage.getItem("wcl-theme");if(s==="light"||s==="dark")apply(s)}catch(e){}
-if(btn)btn.addEventListener("click",function(){var n=root.getAttribute("data-theme")==="light"?"dark":"light";apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){}});
+/* Direction-aware hero transition, landscape only — portrait swaps stills instantly */
+var heroMedia=document.getElementById("heroMedia"),heroVideo=document.getElementById("heroTransition"),switching=false;
+var SRC_FWD="assets/White%20Crane%20Lab%20Hero/Transition.mp4",SRC_REV="assets/White%20Crane%20Lab%20Hero/Transition-reverse.mp4";
+var POSTER_DARK="assets/White%20Crane%20Lab%20Hero/dark-mode-2048.webp",POSTER_LIGHT="assets/White%20Crane%20Lab%20Hero/light-mode-2048.webp";
+function finishSwitch(){switching=false;if(heroMedia)heroMedia.classList.remove("is-switching");if(heroVideo){try{heroVideo.pause()}catch(e){}}}
+if(heroVideo){heroVideo.addEventListener("ended",finishSwitch);heroVideo.addEventListener("error",function(){if(switching){var cur=root.getAttribute("data-theme")==="light"?"dark":"light";apply(cur);try{localStorage.setItem("wcl-theme",cur)}catch(e){}}finishSwitch()})}
+function playTransition(n,src){try{var file=src.split("/").pop();if(heroVideo.currentSrc.indexOf(file)<0){heroVideo.src=src}try{heroVideo.poster=(n==="dark"?POSTER_LIGHT:POSTER_DARK)}catch(pe){}heroVideo.muted=true;heroVideo.currentTime=0;var p=heroVideo.play();if(p&&p.catch)p.catch(function(){apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){};finishSwitch()})}catch(e){apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){};finishSwitch();return}setTimeout(function(){if(switching){apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){}}},550);setTimeout(finishSwitch,3400)}
+if(btn)btn.addEventListener("click",function(){var n=root.getAttribute("data-theme")==="light"?"dark":"light";var reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;var portrait=window.matchMedia("(max-aspect-ratio: 1/1)").matches;if(reduceMotion||portrait||!heroVideo||!heroMedia||switching){apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){};return}switching=true;heroMedia.classList.add("is-switching");playTransition(n,n==="dark"?SRC_FWD:SRC_REV)});
 var menu=document.getElementById("menuBtn"),links=document.getElementById("primaryNav");
 if(menu&&links)menu.addEventListener("click",function(){var open=links.getAttribute("data-open")==="true";links.setAttribute("data-open",open?"false":"true");menu.setAttribute("aria-expanded",open?"false":"true");menu.setAttribute("aria-label",open?"Open menu":"Close menu")});
 links&&links.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){if(window.innerWidth<=760){links.setAttribute("data-open","false");menu.setAttribute("aria-expanded","false");menu.setAttribute("aria-label","Open menu")}})});})();
