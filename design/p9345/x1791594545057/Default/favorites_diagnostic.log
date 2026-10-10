@@ -1,0 +1,43 @@
+2026-10-10 01:09:05.275: [INFO] CurrentProfilePath: C:\Users\Ken Bai\White Crane LLC\White Crane Studio\studio\Website\design\p9345\x1791594545057\Default
+2026-10-10 01:09:05.275: [INFO] Profiles total count: 1
+2026-10-10 01:09:05.275: [INFO] Profile: name=Profile 1 path=C:\Users\Ken Bai\White Crane LLC\White Crane Studio\studio\Website\design\p9345\x1791594545057\Default lastActive=null
+2026-10-10 01:09:05.275: [INFO] LastUsedProfileDir: C:\Users\Ken Bai\White Crane LLC\White Crane Studio\studio\Website\design\p9345\x1791594545057\Default
+2026-10-10 01:09:05.275: [INFO] VisibilityChanged: 0
+2026-10-10 01:09:05.285: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-10 01:09:05.285: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-10 01:09:05.286: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-10 01:09:05.286: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-10 01:09:05.286: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-10 01:09:05.287: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-10 01:09:05.287: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-10 01:09:05.287: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-10 01:09:05.287: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-10 01:09:05.288: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-10 01:09:05.292: [INFO] OnDoneLoading sync enabled: 0
+2026-10-10 01:09:05.292: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-10 01:09:05.292: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-10 01:09:05.292: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-10 01:09:05.329: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-10 01:09:06.087: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-10 01:09:06.089: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-10 01:09:06.090: [INFO] Primary account changed.
+2026-10-10 01:09:06.090: [INFO] OnPrimaryAccountChanged PrimaryAccountChangeEvent::Type::kSet
+2026-10-10 01:09:06.094: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-10 01:09:06.101: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-10 01:09:08.621: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.622: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.622: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.622: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.622: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.622: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.622: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.623: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.623: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.623: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.623: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.623: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.623: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.623: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.623: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:08.623: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-10 01:09:11.753: [INFO] Sync initialization duration: 5614ms

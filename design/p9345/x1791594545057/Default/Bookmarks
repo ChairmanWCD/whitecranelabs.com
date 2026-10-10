@@ -1,0 +1,235 @@
+{
+   "checksum": "e9a10759f4cc9176840a54416568f09b",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13375634561149963",
+            "date_last_used": "13435610756489318",
+            "guid": "bfa79a02-760f-44c6-aedb-95369c9dca2f",
+            "id": "7",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Inbox (180) - kenbai1027@gmail.com - Gmail",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://mail.google.com/mail/u/0/?hl=en#inbox",
+            "visit_count": 186
+         }, {
+            "date_added": "13384231827637203",
+            "date_last_used": "13431135842476278",
+            "guid": "087a16cd-5ae2-48ef-8416-9cbce01c76df",
+            "id": "8",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "@White Crane Design LLC | TikTok | Linktree",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://linktr.ee/WhiteCraneDesignLLC",
+            "visit_count": 20
+         }, {
+            "date_added": "13416791355243767",
+            "date_last_used": "13430678018557165",
+            "guid": "ebba3d39-b5b4-49a1-84af-e4eecb5b3f8e",
+            "id": "9",
+            "name": "Linktree Admin",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://linktr.ee/admin",
+            "visit_count": 2
+         }, {
+            "date_added": "13414212513715565",
+            "date_last_used": "13416791322817802",
+            "guid": "ca0acb85-c92c-4429-b376-2a417e893557",
+            "id": "10",
+            "name": "Summary",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://app.metricool.com/evolution/brandSummary?blogId=5796607&userId=4488323",
+            "visit_count": 3
+         }, {
+            "date_added": "13375762594776600",
+            "date_last_used": "13422287443520324",
+            "guid": "35b28178-bbb7-48e2-8d94-45f07ec733b5",
+            "id": "11",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Square Dashboard",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://app.squareup.com/dashboard/items/library/online-site",
+            "visit_count": 6
+         }, {
+            "date_added": "13389408797099157",
+            "date_last_used": "13416805590984766",
+            "guid": "87869a3b-aa3f-4334-96a2-ccf392906721",
+            "id": "12",
+            "name": "Printify Drop Shipping Print on Demand for Ecommerce",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://printify.com/app/dashboard",
+            "visit_count": 6
+         }, {
+            "date_added": "13423201197551620",
+            "date_last_used": "13433207521964212",
+            "guid": "9ceb1545-1e6f-497a-b31e-9fbd3957d2cf",
+            "id": "13",
+            "name": "Reddit - The heart of the internet",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://www.reddit.com/r/animepiracy/about/",
+            "visit_count": 8
+         }, {
+            "date_added": "13428465709828132",
+            "date_last_used": "13433819229734905",
+            "guid": "d47492a6-e40c-4bf4-846f-0281a8856a15",
+            "id": "14",
+            "name": "GitHub",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://github.com/",
+            "visit_count": 12
+         }, {
+            "date_added": "13428465983598733",
+            "date_last_used": "13436034590668421",
+            "guid": "597b65a3-aaa8-4221-a646-568213210ae4",
+            "id": "15",
+            "name": "White Crane Labs",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://chairmanwcd.github.io/whitecranelabs.com/",
+            "visit_count": 59
+         }, {
+            "date_added": "13431455189215596",
+            "date_last_used": "13435936999386325",
+            "guid": "fcb2f1ab-1a6e-4161-8a5c-f249b8d0387d",
+            "id": "16",
+            "name": "Z-Image Studio",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "http://192.168.1.202:8100/",
+            "visit_count": 19
+         }, {
+            "children": [ {
+               "date_added": "13436034347205077",
+               "date_last_used": "0",
+               "guid": "a321355a-020f-4b0f-88ef-f38f08b2daed",
+               "id": "18",
+               "name": "New tab",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "edge://newtab/",
+               "visit_count": 1
+            }, {
+               "date_added": "13436034375856228",
+               "date_last_used": "0",
+               "guid": "9478c78c-fae0-4986-8d23-fb7e6172c9cb",
+               "id": "19",
+               "name": "Refero — UI/UX Design Inspiration for Your Next Project",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://refero.design/",
+               "visit_count": 1
+            }, {
+               "date_added": "13436034384729252",
+               "date_last_used": "0",
+               "guid": "9e28e79e-470d-424a-91f7-29a447f9b818",
+               "id": "20",
+               "name": "SceneAI: The Best UI Prompt Library on the Internet",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://sceneai.art/",
+               "visit_count": 1
+            }, {
+               "date_added": "13436034470142485",
+               "date_last_used": "0",
+               "guid": "264cd670-87ed-4734-9e53-05fcbfca4b9a",
+               "id": "21",
+               "name": "dqnamo",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://www.dqnamo.com/",
+               "visit_count": 1
+            }, {
+               "date_added": "13436034701816891",
+               "date_last_used": "0",
+               "guid": "8af76f1a-98b6-45f5-854c-e07d2c80d54a",
+               "id": "22",
+               "name": "Website Styles & DESIGN.md Library | Refero Styles",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://styles.refero.design/",
+               "visit_count": 1
+            } ],
+            "date_added": "13436034366221119",
+            "date_last_used": "0",
+            "date_modified": "13436034701816891",
+            "guid": "0b7a3d61-981d-4459-89ab-db9767b83b12",
+            "id": "17",
+            "name": "Ai slop",
+            "source": "unknown",
+            "type": "folder"
+         } ],
+         "date_added": "13436068145189226",
+         "date_last_used": "0",
+         "date_modified": "13431455189215596",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "Favorites bar",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13436068145189226",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "Other favorites",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13436068145189226",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "Mobile favorites",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "workspaces_v2": {
+         "children": [  ],
+         "date_added": "13436068145189226",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "75aa6670-344f-549d-b742-660f029506ab",
+         "id": "5",
+         "name": "Workspaces",
+         "source": "unknown",
+         "type": "folder"
+      }
+   },
+   "sync_metadata": "CjEKDgiIgQISCIAvVyOhAQAAEgAqGE9FcHdtNkFaZExkM1NPbHFPR3FhbGc9PUgDoAYHEq0BCBYSqAEKHE5tWmQzS0ZNTE1GUzNIaUd5b0ZCZENTWkRnND0SJDhhZjc2ZjFhLTk4YjYtNDVmNS04NTRjLWUwN2QyYzgwZDU0YRgAIAAoADCQ+vOKkjQ4ofvzipI0QKH784qSNEocVDNkVm8zajlueWZWeW9ZaFpUM0llTWRCVVE4PVofIh32ejIvNnV4R0xvMzFJMU1UY05BWWo2S091SElrPWWawXBpwj4CYAUSrQEIFBKoAQocSnZtUzQxUkZJT0R4UXJsdFdOY1h2RTJNRSswPRIkOWUyOGU3OWUtNDcwZC00MjRhLTkxZjctMjlhNDQ3ZjliODE4GAAgACgAMO/M4IqSNDj1zuCKkjRA9c7gipI0ShxjbWY4RVlzUFkwcnZOVmZudVBxZHRDNnRvTnM9Wh8iHdh1RG9LbEExa0lXdC9Oa004ZVAvV3BsTnY3QnM9ZdiURMLCPgJgBRKvAQgREqoBChxGMEZaUGFmOFJLQmJxazRMakpVbUp2RGl2U0U9EiQwYjdhM2Q2MS05ODFkLTQ0NTktODlhYi1kYjk3NjdiODNiMTIYACAAKAAw8LvfipI0OMi834qSNEDIvN+KkjRKHHR5d0VXVnczZzZXSmpPNEJRUkExM293a0RzUT1aISIf///ZTFQrMmZ1U0huL0FIcXg4OGV3emF6cDdNKzk0PWUAAAAAwj4CYAASrgEIDhKpAQocTGxjSDdka3M0eGFmQ2ptdHdPNGE5bjhZNG9VPRIkZDQ3NDkyYTYtZTQwYy00YmY0LTg0NmYtMDI4MWE4ODU2YTE1GAAgACgAMJKsvuqJNDjLm97x9TNAy5ve8fUzShx5ZWg0bnA0MTd2ZXhlMGtYMnhVQUFIQnNhalU9WiAiHv//RFBvR3ljUWh6ZzVPT1MyM0RoUEw2L2IyRnM0PWWFZ+0Pwj4CYAUSrgEIDxKpAQocZnJrbkQ1bmdpU2NVOG5BdzlCR1NkRDRMYVdrPRIkNTk3YjY1YTMtYWFhOC00MjIxLWE2NDYtNTY4MjEzMjEwYWU0GAAgACgAMLGW7YqSNDiH9u7x9TNAh/bu8fUzShwwM3lxZjhtZE1DNXpRS2hBY1ErYW42TGI0N1U9WiAiHv//R01QaUV5YTUxTTErQ29TamczOXdmcHZvVWNjPWUAAAAAwj4CYAUSrAEIEhKnAQocV2V4OGpaVVFYZmMwbjlzeWs3TEY3YjVMbXBBPRIkYTMyMTM1NWEtMDIwZi00YjBmLTg4ZWYtZjM4ZjA4YjJkYWVkGAAgACgAMPG734qSNDjRp96KkjRA0afeipI0ShxkRVp3QzkxeE5GNUhkSGNGcnd0UU05ZlRMUjg9Wh4iHGNpTGVQOEpab1dMVkpuYS9zTWVkb2tLNWNXaz1l2K+wAsI+AmAFEq0BCAwSqAEKHG03QUgrc2hJT0JOZDgwdURlL29PMCtFV0Vpcz0SJDg3ODY5YTNiLWFhM2YtNDMzNC05NmEyLWNjZjM5MjkwNjcyMRgAIAAoADCTgOC5yjM41cn4seQyQNXJ+LHkMkocNzhPbDhpTDZQc2UrNFdENmFZa0pTTDhOOElZPVofIh3mNGQwUGFkNmg3UHpXcjJ2VU9oTTcweG1UcWxvPWWg5XEvwj4CYAUSrQEIFRKoAQocWGVqSXNhMjlWa09FK2l2anhkQ1BXbGtjTDdvPRIkMjY0Y2Q2NzAtODdlZC00NzM0LTllNTMtMDVmY2JmY2E0YjlhGAAgACgAMNHo5YqSNDj/7+WKkjRA/+/lipI0ShxKVmJqNXUyTFUxaENkenEwaUhIZFVSRStkTGc9Wh8iHextenVRZUk2NERWeTZGT3BEZzRjTXBUY0pDQlE9ZWf2LdXCPgJgBRKuAQgNEqkBChxoa3lJbkpEMEJ0WlNSRTJBaDV2aGRGNjVta2s9EiQ5Y2ViMTU0NS0xZTZmLTQ5N2EtYjMxZS05ZmJkMzk1N2QyY2YYACAAKAAwv83mxoc0OPmitaPiM0D5orWj4jNKHDlNN1VtNUxQMDg1OWo1OUNKbit1OUpiMGQwQT1aICIe//44SytrekxOa05DN1VNUTR1eGRGMlMrN2x0WUk9ZVCAcB3CPgJgBRKtAQgKEqgBChxlQUdVaDNjTDVQcmRtMWpBWGJsMTRUVklaRmc9EiRjYTBhY2I4NS1jOTJjLTQ0MjktYjM3Ni0yYTQxN2U4OTM1NTcYACAAKAAwxJ75ssozOPKuo+XAM0DyrqPlwDNKHDFIbVhDQndaUTdYUUFWMEUxamQrWHlEMzAzOD1aHyIdXHJ4WW9WQXprUzJrcG9halpWTTVLTG1QZEtuRT1lZU3EC8I+AmAFEq0BCAkSqAEKHEdNZlVibDZ1MDJjN2I5cnhRNEh2SlFXbk5Ydz0SJGViYmEzZDM5LWI1YjQtNDlhMS04NGFmLWU0ZWVjYjViM2Y4ZRgAIAAoADDW9dGQ/jM466D7ssozQOug+7LKM0occjA3VjVTR3I5aGRYTTExS1ozbmNZNFFFclF3PVofIh1ZeldnalVqTFYzdXNDZ2Z5d0lMaEhTaGUzYjVjPWUeJg9awj4CYAUSjAEIARKHAQoceXhKLzZmdmtlY3I3a3A1RVF6QjR0V0xwZGJFPRIkYmU4NTRjYmEtMTNiMy01OWE2LWE5N2EtNDcxYTc1MjI3NDI3GAAgACgAMJzagOGCMTj8lNfrwDBA/JTX68AwShxhUkNXTGdoRjliNUlucUtJRHZ1Si9qdlFrRmM9ZQAAAADCPgJgABKMAQgFEocBChx3UkJyWkwrNlBBOWF2S2dqTlA3SlhETGNmdnM9EiQzZGE4YmQ0MS03YTdiLTU5NTAtYTk1NS1lZTkwNmJiODljZjQYACAAKAAwt5mUlaQzOPKZlJWkM0DymZSVpDNKHG5teDY1c1FEdnhJOFRnRWV2K0ErbnR0b1NuND1lAAAAAMI+AmAAEq0BCBMSqAEKHGFydUZ2dlNQYThDUGk2ZWZOUDZiSGJBcnd0QT0SJDk0NzhjNzhjLWZhZTAtNDk4Ni04ZDIzLWZiN2U2MTcyYzljYhgAIAAoADCkh+CKkjQ4gojgipI0QIKI4IqSNEocL0daWG9rTXJzd2UzSzVXaU41MnpyWGdPTE5ZPVofIh2xM05EZ0xKMUJ6WFNmSktvZHN5cE1jSFJVanFJPWWawXBpwj4CYAUSrQEICBKoAQocOHFrM1VkTHM0dkpqVHlRbE5GYTlEcndxelRRPRIkMDg3YTE2Y2QtNWFlMi00OGVmLTg0MTYtOWNiY2UwMWM3NmRmGAAgACgAMJfG+er/Mzj1uK+N0TJA9bivjdEyShxnVXhPd1BYWEdmMFZMY3phc3NIN3doOEY4OW89Wh8iHVYvdWNXR0ZFTXZ3MlFVbXlBUUZUTTA3WGk1RXc9ZQ3nhD7CPgJgBRKtAQgLEqgBChx4K2dYTGJacmt1MUI3R1kwVG45eVNVR0xoWGc9EiQzNWIyODE3OC1iYmI3LTQ4ZTItOGQ5NC00NWYwN2VjNzMzYjUYACAAKAAwsKza794zOKe99saxMkCnvfbGsTJKHEEyZlBROFhLRGNLV3pPQlhhUFRhbGJYTnFxND1aHyId3nJ6YmtJTUNYWmMzMXdMZXg0a3pZTWgwOEREMD1lNafou8I+AmAFEowBCAMShwEKHG5qZ0R1ODhlQ3J2WHA4NnBEN2ZIR2NxRnA4OD0SJGVjZjA3ZDgzLTZhNmUtNWRjNi04YjMyLWY2NTc1NGZiOTNkNRgAIAAoADCc2oDhgjE4hZfX68AwQIWX1+vAMEoceXpOQjAxY241NEE3Y1JVMHVUKy9QZ21UdFVvPWUAAAAAwj4CYAASrgEIEBKpAQocT0JWNUNTcTRaQ1ZhaEc3d3dwdnFPc2hnSXFnPRIkZmNiMmYxYWItMWE2ZS00MTYxLThhNWMtZjI0OWI4ZDAzODdkGAAgACgAMIvVqNyRNDiS0pyDgTRAktKcg4E0ShxCRm1RSVhZVkNyMmFwOGtUL0FhNmEwc3Q3RDg9WiAiHv//Z0tTaTliUGE1dUh6M05CVkZlL2lTK0hwWXJJPWV5v506wj4CYAUSrAEIBxKnAQocaU10Q0ViQWswd2d3czFHZHF2UklTSUQ0OTNJPRIkYmZhNzlhMDItNzYwZi00NGM2LWFlZGItOTUzNjljOWRjYTJmGAAgACgAMPbM4cCQNDj48++JsTJA+PPvibEyShxmR20xaE0vcDd5NmJWUk5vOU5waE43T1lMVkk9Wh4iHElUUTNPZGpYV2puVm50NTlSdkE2d0U1MEt5Yz1l4ExPZMI+AmAFEowBCAIShwEKHFljU1RvbnZFU1B3cUNzNEwyY3JWaHY2OEw5OD0SJDgyNWY2NTg1LTQ5ZTgtNWI4OC1iZjRhLTIxNTcwYTM4ZWQyNBgAIAAoADCc2oDhgjE4m5XX68AwQJuV1+vAMEocb1BWa2h3QlJiVjY1S0NXUjIrSU9OSFdvT3U4PWUAAAAAwj4CYAAwADgA",
+   "version": 1
+}
