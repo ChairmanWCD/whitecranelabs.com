@@ -1,0 +1,87 @@
+/* ============================================================================
+   WC TOKENS — White Crane Labs shared brand tokens
+   File: wc-tokens.css · Extracted 2026-10-06 from index.html (canonical set).
+   Wire: <link rel="stylesheet" href="wc-tokens.css"> BEFORE each page's
+   inline <style>, so a page may layer intentional local brand worlds
+   (case-study pages do) on top of this canonical base.
+   NOT wired: Green_Kite_Brand_Identity.html (client brand world),
+   White_Crane_Studio.html / ZImage_Studio.html (location.replace stubs).
+
+   ACCESSIBILITY MEASUREMENTS (WCAG 2.1 relative-luminance formula, measured
+   2026-10-06; reconcile with DESIGN.md when the designer's value lands):
+     --red  #E03030 on #1C1B18 = 3.80:1  FAIL AA small text (kept for rules,
+             glyph marks, dots, .cat-pill backgrounds, large display text only)
+     --red-text #F2563F on #1C1B18 = 5.07:1  PASS   on #212121 = 4.74:1  PASS
+     light --red-text #B93A20 on #F5F2EC = 5.09:1  PASS   on #EDE9E0 = 4.70:1  PASS
+     NOTE: light --red #C23B22 on #F5F2EC = 4.77:1 passes, but on the light
+     --surface #EDE9E0 it is 4.40:1 — it FAILS for small text on band-surface
+     (.work-scan .scan-label sits there), hence a separate light --red-text.
+
+   --crane-accent: replaces hardcoded fill="#FF0000" on the crane mark's
+   wingtip (nav logo, hero mark, footer brand, all pages). Bound via
+   .crane-accent class — var() is not reliable inside SVG presentation
+   attributes, so the fill lives in CSS.
+   ========================================================================== */
+:root{--black:#1C1B18;--surface:#212121;--maroon:#2A1613;--border:#3A3A3A;--border-lo:#2C2C2C;--white:#ECEAE4;--ink-fixed:#1C1B18;--paper-fixed:#ECEAE4;--text:#C7C4BC;--text-dim:#A3A096;--red:#E03030;--red-solid:#C22B2B;--red-text:#F2563F;--crane-accent:#E03030;--gold:#C49A2A;--teal:#2A9D8F;--green:#3FBF6F;--violet:#A78BFA;--blue:#2EBEDC;--fd:'Space Grotesk',sans-serif;--fb:'Inter',sans-serif;--mono:'JetBrains Mono','SF Mono',monospace;--fh:'Caveat','Segoe Script',cursive;--measure:60ch;--ease-out:cubic-bezier(0.16,1,0.3,1);--mx:50vw;--my:40vh}
+/* DECISION (explicit, not accidental): --maroon is intentionally NOT
+   overridden in light mode. The #connect band stays deep maroon #2A1613 as
+   the site's dark closer; its text colors are fixed at --paper-fixed (cream)
+   and require the dark ground — a lightened maroon would break that
+   contrast. Light theme = cream through #background, then maroon closes. */
+html[data-theme="light"]{--black:#F5F2EC;--surface:#EDE9E0;--border:rgba(30,28,24,0.14);--border-lo:rgba(30,28,24,0.09);--white:#1E1C18;--text:#3A3830;--text-dim:#6B6860;--red:#C23B22;--red-text:#B93A20;--crane-accent:#C23B22}
+
+/* Crane mark wingtip — bind all instances here, never inline fill="#FF0000". */
+.crane-accent{fill:var(--crane-accent)}
+
+/* ── ICON SCALE (optical-sizing pass 2026-10-08) ──────────────────────────────
+   Icons no longer carry a global px size. Every inline SVG keeps its width/
+   height ATTRIBUTES (no-CSS fallback + intrinsic size, CLS-safe: the style
+   sheets in <head> are render-blocking, so the override lands pre-first-paint),
+   but its RENDERED size comes from these em steps — the svg inherits the
+   font-size of the text it sits beside, so one step resolves against local
+   type on every page:
+     --icon-sm   inline meta/mono lines (11–13px): hero-contact, meta links,
+                 cta-btn labels
+     --icon-md   primary inline links & buttons (13–15px) + connect leading
+                 icons + the footer lockup mark
+     --icon-lg   thin-ink companion glyphs at display size (the connect
+                 .link-arrow diagonals — ~50% ink, so they take the top of
+                 the 1.00–1.15 band to sit even with the words)
+     --icon-cap  marks aligned to DISPLAY NUMERALS (.stat-top beside
+                 .stat-num): cap-height parity, not 1em. Space Grotesk 700
+                 cap ≈ .70em of font-size; Lucide ink ≈ .90 of its box →
+                 a .78em box lands the icon's ink on the numeral's caps.
+   All four measured 2026-10-08 (headless Chromium, 1280/900/640/375, both
+   themes): rendered box / adjacent type = 1.00–1.15 (ghost glyphs excepted,
+   they are 1em of their own 30–61px display type by design).
+   NOTE (client zoom pass 2026-10-08): index.html moved to its own explicit
+   scheme — .icon-slot svg at 1.05em of the adjacent type plus per-spot px
+   overrides — and no longer consumes these steps. The tokens remain the
+   canonical lockup scale for .footer-brand below and the inner pages
+   (About.html, WCD_Creative_Studio.html). Values unchanged. */
+:root{--icon-sm:1em;--icon-md:1.08em;--icon-lg:1.15em;--icon-cap:.78em}
+
+/* Canonical footer brand — index.html/About.html typography wins the drift
+   reconciliation (was 11px/700 uppercase on inner pages). Flip here once.
+   Mark size follows --icon-md: 12px type → 12.96px box; with the crane's
+   2/24 optical padding ring (viewBox -195/-194) its ink measures ≈10.8px ≈ the
+   type's own size — same relationship a Lucide glyph has to its words. */
+.footer-brand{display:flex;align-items:center;gap:8px;font-family:var(--fd);font-size:12px;font-weight:600;color:var(--text-dim)}
+.footer-brand svg{width:var(--icon-md);height:var(--icon-md)}
+/* Lockup marks never flex-shrink: at 375px the nav pill overflows (measured
+   2026-10-08, PRE-EXISTING: scrollWidth 357 > clientWidth 310) and a shrinkable
+   svg gets squeezed to 0×26 — the mark vanished. Same guard stops the footer
+   mark squashing to a sliver in the wrapped footer at phone widths. The 375px
+   nav overflow itself is a separate flagged issue — fix is out of scope here. */
+.footer-brand svg,.nav-logo svg,.nav-logo .crane,.theme-toggle,.theme-toggle .icon-slot{flex-shrink:0}
+
+/* ── CRANE MARK OPTICAL PADDING (2026-10-08) ─────────────────────────────────
+    The 2000-box crane drew edge-to-edge (99.45% ink of box) while every Lucide
+    glyph carries a ~2-unit padding ring on its 24 grid (shape extent 20/24 =
+    83.3%) — same px, larger apparent mark. Fixed IN THE VIEWBOX on every
+    instance (nav, .hero-mark, footer, all case-study pages); client-retuned
+    2026-10-08 to the current ring:
+        viewBox="0 0 2000 2000"  →  viewBox="-195 -194 2389 2389"
+    which rings the 1989-unit ink with ~200 units/side ≈ 2.0 on a 24 grid.
+    Polygon coordinates are load-bearing (8 pages + favicon.svg) and were NOT
+    touched; favicon/apple-touch stay full-bleed (correct for favicons). */
