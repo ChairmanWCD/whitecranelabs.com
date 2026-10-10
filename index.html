@@ -11,21 +11,22 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://chairmanwcd.github.io/whitecranelabs.com/">
 <meta property="og:image" content="https://chairmanwcd.github.io/whitecranelabs.com/assets/repo-cover.png">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1C1B18">
-<link rel="preload" as="video" href="assets/White%20Crane%20Lab%20Hero/Transition-reverse.mp4" type="video/mp4" media="(min-aspect-ratio: 1/1)">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wc-tokens.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#1C1B18;--surface:#212121;--maroon:#2A1613;--border:#3A3A3A;--border-lo:#2C2C2C;--white:#ECEAE4;--ink-fixed:#1C1B18;--paper-fixed:#ECEAE4;--text:#C7C4BC;--text-dim:#A3A096;--red:#E03030;--red-solid:#C22B2B;--gold:#C49A2A;--teal:#2A9D8F;--green:#3FBF6F;--violet:#A78BFA;--blue:#2EBEDC;--fd:'Space Grotesk',sans-serif;--fb:'Inter',sans-serif;--mono:'JetBrains Mono','SF Mono',monospace;--fh:'Caveat','Segoe Script',cursive;--measure:60ch;--ease-out:cubic-bezier(0.16,1,0.3,1);--mx:50vw;--my:40vh}
-html[data-theme="light"]{--black:#F5F2EC;--surface:#EDE9E0;--border:rgba(30,28,24,0.14);--border-lo:rgba(30,28,24,0.09);--white:#1E1C18;--text:#3A3830;--text-dim:#6B6860;--red:#C23B22}
+/* Tokens (--black … --crane-accent, light-theme overrides, .crane-accent, .footer-brand) live in wc-tokens.css */
 html{scroll-behavior:smooth}
 body{background:var(--black);color:var(--text);font-family:var(--fb);font-size:16px;line-height:1.7;overflow-x:hidden;position:relative}
 a{color:inherit}
 svg{display:block;max-width:100%}
-::selection{background:var(--red);color:var(--paper-fixed)}
+::selection{background:var(--red-solid);color:var(--paper-fixed)}
 a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
 .skip-link{position:absolute;left:1rem;top:-4rem;z-index:200;background:var(--white);color:var(--ink-fixed);font-family:var(--mono);font-size:13px;padding:.6rem 1rem;border-radius:4px;text-decoration:none;transition:top .2s var(--ease-out)}
 .skip-link:focus{top:1rem}
@@ -50,6 +51,31 @@ nav{position:fixed;top:14px;left:0;right:0;z-index:100;padding:0 1.5rem}
 .toggle-thumb{position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:var(--text-dim);transition:transform .25s cubic-bezier(0.34,1.56,0.64,1),background .2s}
 html[data-theme="light"] .toggle-thumb{transform:translateX(15px);background:var(--red-solid)}
 .icon-slot{display:inline-flex;align-items:center;justify-content:center;color:currentColor}
+/* ── ICON SIZING (client "icons look zoomed in" pass 2026-10-08) ─────────────
+   Icons sit in .icon-slot (inline-flex) inside running text, so the baseline
+   size is one em step — 1.05em — resolved against the ADJACENT type, not a
+   global px. width/height ATTRIBUTES stay on every <svg> as the no-CSS
+   fallback and intrinsic-size hint; both sheets in <head> are render-blocking,
+   so these overrides land in the first style pass (no layout shift).
+   Explicit px overrides where 1.05em still reads off:
+     .hero-contact  13px  (12px mono links; UP slightly over 1.05em)
+     .link-primary  14px  (13.5px row links — rows carry TEXT arrows (→ ↗)
+                           today; the rule guards any future inline SVG)
+     .btn-ghost     15px  (download icon at 14px type)
+     .stat-top      21px  (UP from the text baseline: the mark rides a
+                           24–34px display numeral)
+     .icon-octocat  15px  (filled GitHub glyph in Connect; its inner
+                           <g scale(.8333)> keeps the Lucide padding ring)
+   Control glyphs stay sized to their CONTROL, not to type — pinned at the
+   attribute 18px so the em baseline cannot pull them to 16.8px:
+     .menu-btn 18px glyph / 38px touch target · .theme-toggle 18px / 19px track */
+.icon-slot svg{width:1.05em;height:1.05em}
+.hero-contact svg{width:13px;height:13px}
+.link-primary svg{width:14px;height:14px}
+.btn-ghost svg{width:15px;height:15px}
+.stat-top svg{width:21px;height:21px}
+.menu-btn svg,.theme-toggle svg{width:18px;height:18px}
+.connect-link .icon-octocat svg{width:15px;height:15px}
 .menu-btn{display:none;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid var(--border);border-radius:50%;background:none;color:var(--white);cursor:pointer}
 .menu-btn .icon-close{display:none}
 .menu-btn[aria-expanded="true"] .icon-open{display:none}
@@ -65,8 +91,15 @@ section{position:relative}
 .eyebrow{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);display:inline-flex;align-items:center;gap:9px;margin-bottom:1.5rem}
 .eyebrow .dot{width:9px;height:8px;background:var(--red);flex-shrink:0;clip-path:polygon(0 0,100% 0,50% 100%)}
 h2{font-family:var(--fd);font-size:clamp(1.9rem,3.4vw,2.5rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:1rem;max-width:20ch}
-/* About header — same handwritten, centered voice as the intro */
-#about .eyebrow{display:flex;justify-content:center}
+/* Experience header — same handwritten, centered voice as the intro */
+#experience .eyebrow{display:flex;justify-content:center}
+/* ── HUMAN-TRACE REGISTER (DESIGN.delta.md D3 — client reversal 2026-10-08) ──
+   Caveat (--fh) is an intentional human-trace motif aligned to "human in the
+   loop": signature users (.ov-sign · .footer-tagline · .marginal <=16px) AND
+   statement lines (.ov-statement · .about-title) at clamp(2.1rem,4vw,3rem).
+   font-weight PINNED 600 everywhere; the <link> loads wght@600 only — the
+   sole weight used (trimmed 2026-10-08 from 500;600;700; 600-still-loads is
+   proven per page in studio/audit-out/icons-after.json). ── */
 .about-title{font-family:var(--fh);font-weight:600;font-size:clamp(2.1rem,4vw,3rem);line-height:1.25;letter-spacing:0;text-align:center;max-width:26ch;margin:0 auto 1rem}
 .lede{font-size:16px;color:var(--text);max-width:var(--measure);line-height:1.75;margin-bottom:2.75rem}
 .lede-strong{font-family:var(--fd);font-weight:700;color:var(--white);font-size:clamp(1.9rem,3.4vw,2.5rem);letter-spacing:-.02em;line-height:1.16;text-wrap:balance}
@@ -74,9 +107,13 @@ h2{font-family:var(--fd);font-size:clamp(1.9rem,3.4vw,2.5rem);font-weight:700;le
 /* Overview intro - centered, handwritten statement */
 .ov-quote{position:relative;text-align:center;max-width:38ch;margin:0 auto 1.75rem}
 .ov-mark{display:block;font-family:var(--fd);font-weight:700;font-size:clamp(2.5rem,5vw,3.5rem);line-height:1;color:var(--red);opacity:.85;margin-bottom:.25rem;pointer-events:none}
-.ov-statement{border-left:none;padding-left:0;max-width:none;margin-bottom:0;font-family:var(--fh);font-weight:600;font-size:clamp(2.1rem,4vw,3rem);line-height:1.25;letter-spacing:0}
+/* .ov-statement carries .lede-strong in the markup. Selector compounded to 0-2-0
+   so Caveat beats the .lede-strong guardrail below on specificity, not placement. */
+.lede-strong.ov-statement{border-left:none;padding-left:0;max-width:none;margin-bottom:0;font-family:var(--fh);font-weight:600;font-size:clamp(2.1rem,4vw,3rem);line-height:1.25;letter-spacing:0}
 .ov-body{text-align:center;margin-left:auto;margin-right:auto;margin-bottom:0}
-.ov-sign{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;justify-content:center;gap:10px;margin-top:1.75rem;margin-bottom:0;max-width:none}
+.ov-sign{font-family:var(--fh);font-weight:600;font-size:13px;letter-spacing:.01em;text-transform:none;color:var(--red-text);display:flex;align-items:center;justify-content:center;gap:10px;margin-top:1.75rem;margin-bottom:0;max-width:none}
+/* Display guardrail — Grotesk for true display type; the two Caveat statements win at 0-2-0 / 0-1-0. */
+h1,h2,.lede-strong,.connect-headline,.project-title,.exp-role{font-family:var(--fd)}
 .ov-sign .ov-dia{width:7px;height:7px;background:var(--red);transform:rotate(45deg);flex-shrink:0}
 @media print{.ov-mark{display:none}.ov-sign{color:#444}}
 p{max-width:var(--measure)}
@@ -109,7 +146,7 @@ html[data-theme="light"] .hero-scrim{background:linear-gradient(90deg,color-mix(
 @media (max-width:760px),(max-aspect-ratio:1/1){.hero-still.is-dark{object-position:50% center}.hero-still.is-light{object-position:50% center}.hero-still{opacity:.35}.hero-still.is-light{opacity:0}html[data-theme="light"] .hero-still.is-light{opacity:.35}html[data-theme="light"] .hero-still.is-dark{opacity:0}.hero-media.is-switching .hero-transition{opacity:1;visibility:visible}.hero-scrim{background:linear-gradient(90deg,color-mix(in srgb,var(--black) 88%,transparent) 0%,color-mix(in srgb,var(--black) 55%,transparent) 45%,transparent 75%)}}
 @media (max-height:500px) and (min-aspect-ratio:1/1){.hero-still,.hero-transition{object-position:78% 18%}}
 @media (min-aspect-ratio:21/9){.hero-still,.hero-transition{object-position:78% 22%}}
-.hero-status{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:2rem}
+.hero-status{font-family:var(--mono);font-size:12px;color:var(--red-text);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:2rem}
 .hero-status .pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 2.2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
 h1{font-family:var(--fd);font-weight:700;letter-spacing:-.035em;line-height:.96;color:var(--white);overflow-wrap:break-word}
@@ -138,7 +175,7 @@ h1 .line:nth-child(3) .w-word:nth-child(2){animation-delay:.52s}
 .hero-contact .sep{opacity:.4}
 .hero-stats{display:flex;gap:clamp(1.75rem,5vw,3.5rem);padding-top:1.75rem;margin-top:.5rem;flex-wrap:wrap}
 .stat{display:flex;flex-direction:column;gap:6px}
-.stat-top{display:flex;align-items:center;gap:8px;color:var(--red)}
+.stat-top{display:flex;align-items:center;gap:8px;color:var(--red-text)}
 .stat-num{font-family:var(--fd);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:700;color:var(--white);display:block;line-height:1}
 .stat-label{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:.04em}
 .scroll-cue{position:absolute;left:50%;bottom:2rem;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim)}
@@ -152,13 +189,40 @@ h1 .line:nth-child(3) .w-word:nth-child(2){animation-delay:.52s}
 .marquee-item{display:flex;align-items:center;gap:2.5rem;padding:1.1rem 1.25rem;font-family:var(--mono);font-size:12.5px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
 .marquee-item .dia{width:7px;height:7px;background:var(--red);transform:rotate(45deg);opacity:.5;flex-shrink:0}
 /* WORK - uniform equal-weight rows (work-scoped) */
-.work-scan{display:flex;flex-wrap:wrap;gap:.45rem 1.1rem;align-items:baseline;font-family:var(--mono);font-size:11.5px;color:var(--text-dim);margin:-1rem 0 2.5rem;letter-spacing:.02em}
-.work-scan a{color:var(--text-dim);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:1px;transition:color .2s,border-color .2s}
-.work-scan a:hover{color:var(--white);border-color:var(--red)}
-.work-scan .scan-label{color:var(--red);letter-spacing:.12em;text-transform:uppercase;font-size:10.5px}
+/* (.work-scan rules removed 2026-10-08: the scan row left the DOM in the
+   2026-10-08 design revert; dead selectors deleted per audit — history lives
+   in git and archived/index v2.html. Do not re-add without the DOM.) */
 .work-index{list-style:none;margin:0;padding:0}
 .project{padding:2.2rem 0;border-top:1px solid var(--border-lo);display:grid;grid-template-columns:84px 1fr;gap:clamp(1rem,3vw,2.25rem);align-items:start}
 .work-index .project:last-child{border-bottom:1px solid var(--border-lo)}
+/* ── WORK-INDEX MEDIA COLUMN (design/work-index-media-spec.md) ──────────────
+   TRAP A: every rule below is scoped #work .project. #background re-uses the
+   bare .project class for its Education + Skills rows (glyph, no media) — an
+   unscoped 3-column rule would shove the degree list and the whole skill-chip
+   cloud into the 260px media track. The base rule above stays 84px 1fr.      */
+#work .project{grid-template-columns:84px 260px 1fr}
+/* 4:3 on BOTH frame and img: frame holds the box open if the asset 404s (no CLS);
+   img derives height from 100% width. height:auto is LOAD-BEARING: the
+   width/height ATTRIBUTES on each <img> are presentational hints, and an
+   un-overridden height attribute (768/1315/1200/864px) defeats aspect-ratio —
+   both dimensions definite — so object-fit:cover painted every thumb at native
+   scale behind the 260x195 frame (client "all zoomed in", 2026-10-09).
+   Hairline 1px var(--border) is the theme
+   bridge — white_crane_studio/ui.png measures 0.82:1 against the dark band. */
+#work .project-media{display:block;aspect-ratio:4/3;border:1px solid var(--border);border-radius:2px;overflow:hidden;background:var(--border-lo);min-width:0;transition:border-color .28s var(--ease-out)}
+#work .project-media img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:center;transition:opacity .28s var(--ease-out)}
+/* Hover = one opacity step + hairline to interaction red. No scale, no lift,
+   no shadow, no filter. :focus-within is required: keyboard users tabbing to
+   a.project-title must get the same affordance. */
+#work .project:hover .project-media,
+#work .project:focus-within .project-media{border-color:var(--red)}
+#work .project:hover .project-media img,
+#work .project:focus-within .project-media img{opacity:.84}
+/* Row 04 Pratt — real photography hero (Ken Bai's own lab photo, EXIF-stripped); interim glyph tile retired 2026-10-09. */
+@media (prefers-reduced-motion:reduce){
+  #work .project-media,
+  #work .project-media img{transition:none}
+}
 .project-main{min-width:0}
 .project-num{font-family:var(--fd);font-size:clamp(2.6rem,5vw,3.8rem);font-weight:700;line-height:1;opacity:.14}
 .project.pj-red .project-num{color:var(--red)}.project.pj-gold .project-num{color:var(--gold)}.project.pj-green .project-num{color:var(--green)}.project.pj-violet .project-num{color:var(--violet)}.project.pj-blue .project-num{color:var(--blue)}.project.pj-white .project-num{color:var(--white)}
@@ -189,7 +253,7 @@ html[data-theme="light"] .cat-pill.c-white{color:var(--paper-fixed)}
 .coda-detail summary::-webkit-details-marker{display:none}
 .coda-detail summary::before{content:'';width:6px;height:6px;transform:rotate(45deg);border:1px solid var(--text-dim);flex-shrink:0;transition:transform .25s var(--ease-out),border-color .2s}
 .coda-detail[open] summary::before{transform:rotate(135deg);border-color:var(--red)}
-.coda-detail summary:hover{color:var(--red)}
+.coda-detail summary:hover{color:var(--red-text)}
 .coda-detail summary:hover::before{border-color:var(--red)}
 .coda-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;padding:1rem 0 .3rem;border-top:1px solid var(--border-lo)}
 .coda-cols h4{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
@@ -198,6 +262,11 @@ html[data-theme="light"] .cat-pill.c-white{color:var(--paper-fixed)}
 .coda-cols>div:nth-child(2) h4::before{background:var(--violet)}
 .coda-cols>div:nth-child(3) h4::before{background:var(--gold)}
 .coda-cols p{font-family:var(--mono);font-size:12px;color:var(--text);line-height:1.8;max-width:none}
+/* Coda rows (Education / Skills) — deliberately ranked below shipped work: smaller titles, quieter glyphs, tighter rhythm */
+.coda{padding:1.6rem 0}
+.coda .project-head{margin-bottom:.55rem}
+.coda .project-glyph{font-size:clamp(1.9rem,3.4vw,2.6rem);opacity:.1}
+.coda .project-title{font-size:clamp(1.05rem,1.9vw,1.3rem);color:var(--text)}
 /* Background rows: degrees gold-tinted, detail groups tinted */
 .edu-coda .edu-degrees{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:0 0 1rem;list-style:none;padding:0}
 .edu-degree{border:1px solid var(--border);border-left:2px solid var(--gold);border-radius:2px;padding:.85rem 1rem;background:color-mix(in srgb,var(--gold) 8%,transparent)}
@@ -213,7 +282,7 @@ html[data-theme="light"] .cat-pill.c-white{color:var(--paper-fixed)}
 .exp-num{font-family:var(--fd);font-size:clamp(2.2rem,4vw,3rem);font-weight:700;line-height:1;opacity:.14;color:var(--red)}
 .exp-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.3rem}
 .exp-role{font-family:var(--fd);font-size:clamp(1.25rem,2.4vw,1.5rem);font-weight:600;color:var(--white)}
-.exp-meta{font-family:var(--mono);font-size:11.5px;color:var(--red);margin-bottom:1rem}
+.exp-meta{font-family:var(--mono);font-size:11.5px;color:var(--red-text);margin-bottom:1rem}
 .exp-sub{margin:1.1rem 0 1.25rem}
 .exp-sub .sub{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap;font-size:13px;color:var(--text-dim);padding:.35rem 0}
 .exp-sub .sub::before{content:'';flex-shrink:0;width:6px;height:6px;transform:rotate(45deg);background:var(--red);opacity:.5;align-self:center}
@@ -221,7 +290,21 @@ html[data-theme="light"] .cat-pill.c-white{color:var(--paper-fixed)}
 .exp ul{list-style:none}
 .exp li{position:relative;padding-left:1.1rem;font-size:14.5px;color:var(--text);line-height:1.75;margin-bottom:.5rem;max-width:72ch}
 .exp li::before{content:'';position:absolute;left:0;top:.78em;width:5px;height:5px;background:var(--red);border-radius:50%}
-@media (max-width:640px){.project,.exp{grid-template-columns:1fr}.project-num,.exp-num,.project-glyph{display:none}.coda-cols{grid-template-columns:1fr}}
+/* 641–899px: three columns die here (main column falls under ~430px at 900px), so
+   drop back to 84px 1fr and hang the thumb at the head of the text column. */
+@media (max-width:899px){
+  #work .project{grid-template-columns:84px 1fr}
+  #work .project-num{grid-column:1;grid-row:1}
+  #work .project-media{grid-column:2;grid-row:1;max-width:220px}
+  #work .project-main{grid-column:2;grid-row:2}
+}
+/* TRAP B: #work .project is specificity 1-1-0 and out-ranks the 0-1-0 collapse
+   below, so every override here repeats #work — otherwise mobile stays 3-column. */
+@media (max-width:640px){.project,.exp{grid-template-columns:1fr}.project-num,.exp-num,.project-glyph{display:none}.coda-cols{grid-template-columns:1fr}
+  #work .project{grid-template-columns:1fr}
+  #work .project-media{grid-column:1;grid-row:1;max-width:none}
+  #work .project-main{grid-column:1;grid-row:2}
+}
 .connect-headline{font-family:var(--fd);font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--paper-fixed);font-size:clamp(2.6rem,7vw,4.8rem);max-width:12ch;margin-bottom:1.25rem}
 .connect-lede{font-size:16px;color:rgba(236,234,228,.65);max-width:46ch;line-height:1.7;margin-bottom:1.5rem}
 .connect-links{display:flex;flex-direction:column}
@@ -232,9 +315,9 @@ html[data-theme="light"] .cat-pill.c-white{color:var(--paper-fixed)}
 .connect-link .link-arrow{color:var(--red);opacity:.6;transition:transform .25s var(--ease-out);flex-shrink:0}
 .connect-link:hover .link-arrow{transform:translate(3px,-3px)}
 footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;border-top:1px solid var(--border-lo);position:relative;z-index:1;background:var(--black)}
-.footer-brand{display:flex;align-items:center;gap:8px;font-family:var(--fd);font-size:12px;font-weight:600;color:var(--text-dim)}
+/* .footer-brand typography: canonical rule in wc-tokens.css */
 .footer-copy{font-family:var(--mono);font-size:11.5px;color:var(--text-dim)}
-.footer-tagline{font-family:var(--mono);font-size:11.5px;color:var(--red)}
+.footer-tagline{font-family:var(--fh);font-weight:600;font-size:13px;color:var(--red-text)}
 .fade{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
 .fade.visible{opacity:1;transform:none}
 .fade [data-stagger]{opacity:0;transform:translateY(16px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out)}
@@ -250,7 +333,7 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 <a class="skip-link" href="#main">Skip to content</a>
 <nav id="nav" aria-label="Primary">
 <div class="nav-pill">
-<a href="#home" class="nav-logo"><svg class="crane" width="26" height="26" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor"/><polygon points="709,693 5,696 357,1306" fill="currentColor"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/><polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/></svg>White Crane Labs</a>
+<a href="#home" class="nav-logo"><svg class="crane" width="26" height="26" viewBox="-195 -194 2389 2389" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor"/><polygon points="709,693 5,696 357,1306" fill="currentColor"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/><polygon class="crane-accent" points="1723,197 1861,435 1994,204"/></svg>White Crane Labs</a>
 <div class="nav-right">
 <ul class="nav-links" id="primaryNav">
 <li><a href="#work">Work</a></li>
@@ -265,11 +348,11 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 </nav>
 <main id="main">
 <section id="home" class="band-black hero" aria-labelledby="pageTitle">
-<svg class="hero-mark" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor"/><polygon points="709,693 5,696 357,1306" fill="currentColor"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/><polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/></svg>
+<svg class="hero-mark" viewBox="-195 -194 2389 2389" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor"/><polygon points="709,693 5,696 357,1306" fill="currentColor"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/><polygon class="crane-accent" points="1723,197 1861,435 1994,204"/></svg>
 <div class="hero-media" id="heroMedia" aria-hidden="true">
 <picture><source media="(max-aspect-ratio: 1/1)" type="image/webp" srcset="assets/White%20Crane%20Lab%20Hero/dark-portrait-1536.webp"><source media="(max-aspect-ratio: 1/1)" srcset="assets/White%20Crane%20Lab%20Hero/dark-portrait.png"><source type="image/webp" srcset="assets/White%20Crane%20Lab%20Hero/dark-mode-2048.webp"><img class="hero-still is-dark" src="assets/White%20Crane%20Lab%20Hero/Dark%20Mode.png" alt="" fetchpriority="high" decoding="async"></picture>
 <picture><source media="(max-aspect-ratio: 1/1)" type="image/webp" srcset="assets/White%20Crane%20Lab%20Hero/light-portrait-1536.webp"><source media="(max-aspect-ratio: 1/1)" srcset="assets/White%20Crane%20Lab%20Hero/light-portrait.png"><source type="image/webp" srcset="assets/White%20Crane%20Lab%20Hero/light-mode-2048.webp"><img class="hero-still is-light" src="assets/White%20Crane%20Lab%20Hero/Light%20Mode.png" alt="" loading="eager" decoding="async"></picture>
-<video class="hero-transition" id="heroTransition" muted playsinline preload="auto" poster="assets/White%20Crane%20Lab%20Hero/Draft%20image.png"><source src="assets/White%20Crane%20Lab%20Hero/Transition.mp4" type="video/mp4"></video>
+<video class="hero-transition" id="heroTransition" muted playsinline preload="none" poster="assets/White%20Crane%20Lab%20Hero/transition-poster.png"></video>
 <div class="hero-scrim"></div>
 </div>
 <div class="wrap hero-inner">
@@ -288,9 +371,9 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 <a href="https://github.com/ChairmanWCD" target="_blank" rel="noopener">GitHub <span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
 </div>
 <div class="hero-stats">
-<div class="stat"><span class="stat-top" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594zM20 2v4m2-2h-4"/><circle cx="4" cy="20" r="2"/></svg></span><span class="stat-num">12+</span><span class="stat-label">YEARS BUILDING</span></div>
-<div class="stat"><span class="stat-top" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg></span><span class="stat-num">20+</span><span class="stat-label">TEAM LED</span></div>
-<div class="stat"><span class="stat-top" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v2m0-20v2m5 16v2m0-20v2M2 12h2m-2 5h2M2 7h2m16 5h2m-2 5h2M20 7h2M7 20v2M7 2v2"/><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="8" height="8" x="8" y="8" rx="1"/></svg></span><span class="stat-num">500+</span><span class="stat-label">AI USERS</span></div>
+<div class="stat"><span class="stat-top" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594zM20 2v4m2-2h-4"/><circle cx="4" cy="20" r="2"/></svg></span><span class="stat-num">12+</span><span class="stat-label">YEARS IN PRACTICE</span></div>
+<div class="stat"><span class="stat-top" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg></span><span class="stat-num">20+</span><span class="stat-label">STAFF MANAGED</span></div>
+<div class="stat"><span class="stat-top" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v2m0-20v2m5 16v2m0-20v2M2 12h2m-2 5h2M2 7h2m16 5h2m-2 5h2M20 7h2M7 20v2M7 2v2"/><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="8" height="8" x="8" y="8" rx="1"/></svg></span><span class="stat-num">500+</span><span class="stat-label">PRATT USERS ONBOARDED</span></div>
 <div class="stat"><span class="stat-num">NYC</span><span class="stat-label">BASED · QUEENS</span></div>
 </div>
 </div>
@@ -310,18 +393,19 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 <section id="work" class="band-surface" aria-labelledby="workTitle">
 <div class="wrap section-inner fade">
 <div class="eyebrow" data-stagger="1"><span class="dot"></span> Skills applied in work</div>
-<h2 id="workTitle" class="sr-only" data-stagger="1">Selected work</h2>
+<h2 id="workTitle" data-stagger="1">Selected work</h2>
 
 <div class="work-group" data-stagger="3"><span class="dot"></span> AI Systems &amp; Creative Infrastructure</div>
 <div class="project pj-blue" data-stagger="1">
 <div class="project-num">01</div>
+<div class="project-media"><img src="assets/heopet/master.png" alt="" width="1024" height="768" loading="lazy" decoding="async"></div>
 <div class="project-main">
 <div class="project-head">
 <span class="cat-pill c-blue">Health Companion App</span>
 <a href="HeoPet.html" target="_blank" rel="noopener" class="project-title">HeoPet</a>
 </div>
-<p class="project-role" data-stagger="2">Mobile digital pet · Expo / React Native</p>
-<p class="project-desc" data-stagger="3">A mobile pet whose wellbeing is derived from your own health, with auto-tracked steps and tapped water drive a mood that plays out as real-time animation. Health you can actually watch.</p>
+<p class="project-role" data-stagger="2">Mobile digital pet · Expo / React Native · 2026</p>
+<p class="project-desc" data-stagger="3">A mobile pet whose wellbeing is derived from your own health, with auto-tracked steps and tapped water drive a mood that plays out as real-time animation. Health you can actually watch. The result: steps feed the mood engine straight from the device, zero manual logging.</p>
 <div class="project-chips" data-stagger="4">
 <span class="chip">Expo</span><span class="chip">React Native</span><span class="chip">Pedometer</span><span class="chip">Mood Engine</span><span class="chip">Motion UI</span>
 </div>
@@ -334,13 +418,14 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 
 <div class="project pj-violet" data-stagger="1">
 <div class="project-num">02</div>
+<div class="project-media"><img src="assets/white_crane_studio/hero.png" alt="" width="1024" height="592" loading="lazy" decoding="async"></div>
 <div class="project-main">
 <div class="project-head">
 <span class="cat-pill c-violet">Generative Systems</span>
 <a href="WCD_Creative_Studio.html" class="project-title">WCD Creative Studio</a>
 </div>
-<p class="project-role" data-stagger="2">Art-direction studio · Local Z-Image engine · RTX 5070</p>
-<p class="project-desc" data-stagger="3">My art-direction studio with its own local Z-Image-Turbo engine, a FastAPI async queue on an RTX 5070.</p>
+<p class="project-role" data-stagger="2">Art-direction studio · Local Z-Image engine · RTX 5070 · 2026</p>
+<p class="project-desc" data-stagger="3">My art-direction studio with its own local Z-Image-Turbo engine, a FastAPI async queue on an RTX 5070. The result: zero per-image cost, unmetered generation — the studio owns its engine.</p>
 <div class="project-chips" data-stagger="4">
 <span class="chip">Z-Image-Turbo</span><span class="chip">FastAPI</span><span class="chip">Async queue</span><span class="chip">RTX 5070</span><span class="chip">Art-direction</span>
 </div>
@@ -353,13 +438,14 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 
 <div class="project pj-red" data-stagger="1">
 <div class="project-num">03</div>
+<div class="project-media"><img src="assets/critique/header.png" alt="" width="1600" height="1200" loading="lazy" decoding="async"></div>
 <div class="project-main">
 <div class="project-head">
 <span class="cat-pill c-red">Multi-Agent AI</span>
 <a href="Critique_Council_Thesis.html" target="_blank" rel="noopener" class="project-title">The Critique Council</a>
 </div>
-<p class="project-role" data-stagger="2">Scalable infrastructure · AI × Design</p>
-<p class="project-desc" data-stagger="3">A multi-agent AI system that simulates presenting to a real design jury. Three critics with distinct personas, each with a different voice, generate visual feedback as they critique.</p>
+<p class="project-role" data-stagger="2">Scalable infrastructure · AI × Design · 2024 — 2026</p>
+<p class="project-desc" data-stagger="3">A multi-agent AI system that simulates presenting to a real design jury. Three critics with distinct personas, each with a different voice, generate visual feedback as they critique. The result: rebuilt in 2026 on a model-per-persona stack — GPT-5 mini, Claude Opus 4.5, Gemini 3 Pro.</p>
 <div class="project-chips" data-stagger="4">
 <span class="chip">Multi-Agent AI</span><span class="chip">Claude</span><span class="chip">GPT</span><span class="chip">Gemini</span><span class="chip">Prompt Engineering</span>
 </div>
@@ -373,13 +459,14 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 
 <div class="project pj-gold" data-stagger="1">
 <div class="project-num">04</div>
+<div class="project-media"><picture><source type="image/webp" srcset="assets/pratt-ai/index-thumb.webp"><img src="assets/pratt-ai/hero.jpg" alt="" width="800" height="600" loading="lazy" decoding="async"></picture></div>
 <div class="project-main">
 <div class="project-head">
 <span class="cat-pill c-gold">Institutional AI</span>
 <a href="Pratt_AI_Infrastructure_Case_Study.html" target="_blank" rel="noopener" class="project-title">Pratt's AI Infrastructure</a>
 </div>
-<p class="project-role" data-stagger="2">Creative Technology Analyst, Mac Systems · Pratt Institute</p>
-<p class="project-desc" data-stagger="3">How institutional financial crisis forced the choice to build rather than buy AI capability, and how the institution scaled its AI capability while keeping its autonomy and culture intact.</p>
+<p class="project-role" data-stagger="2">Creative Technology Analyst, Mac Systems · Pratt Institute · 2024 — Present</p>
+<p class="project-desc" data-stagger="3">How institutional financial crisis forced the choice to build rather than buy AI capability, and how the institution scaled its AI capability while keeping its autonomy and culture intact. The result: 250+ Apple endpoints under management via Jamf Pro and Apple School Manager.</p>
 <div class="project-chips" data-stagger="4">
 <span class="chip">Python</span><span class="chip">LLM Pipelines</span><span class="chip">Enterprise Infra</span>
 </div>
@@ -393,13 +480,14 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 
 <div class="project pj-green" data-stagger="1">
 <div class="project-num">05</div>
+<div class="project-media"><img src="assets/green-kite/hero.png" alt="" width="1024" height="1024" loading="lazy" decoding="async"></div>
 <div class="project-main">
 <div class="project-head">
 <span class="cat-pill c-green">Brand Identity</span>
 <a href="Green_Kite_Brand_Identity.html" target="_blank" rel="noopener" class="project-title">Green Kite</a>
 </div>
-<p class="project-role" data-stagger="2">Social enterprise · Ireland</p>
-<p class="project-desc" data-stagger="3">A kite-as-metaphor mark and tagline system for a social enterprise backing community-led sustainability. Playful but refined, it lifts without being literal.</p>
+<p class="project-role" data-stagger="2">Social enterprise · Ireland · 2025</p>
+<p class="project-desc" data-stagger="3">A kite-as-metaphor mark and tagline system for a social enterprise backing community-led sustainability. Playful but refined, it lifts without being literal. The result: the identity is live in production at greenkite.ie.</p>
 <div class="project-chips" data-stagger="4">
 <span class="chip">Brand Strategy</span><span class="chip">Visual Identity</span><span class="chip">Logo Systems</span><span class="chip">SVG / PNG / JPG</span>
 </div>
@@ -412,13 +500,19 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 
 <div class="project pj-white" data-stagger="1">
 <div class="project-num">06</div>
+<div class="project-media">
+<picture>
+<source type="image/webp" srcset="assets/wcd-shop/index-thumb.webp">
+<img src="assets/wcd-shop/index-thumb.png" alt="" width="1152" height="864" loading="lazy" decoding="async">
+</picture>
+</div>
 <div class="project-main">
 <div class="project-head">
 <span class="cat-pill c-white">Commerce / Apparel</span>
 <a href="https://white-crane-design.square.site" target="_blank" rel="noopener" class="project-title">White Crane Design Shop</a>
 </div>
-<p class="project-role" data-stagger="2">Live storefront</p>
-<p class="project-desc" data-stagger="3">The commerce arm of White Crane Design. Anime-inspired apparel where generative tools assist, but humans do the designing. Concept to shirt, ready to buy.</p>
+<p class="project-role" data-stagger="2">Live storefront · 2023 — Present</p>
+<p class="project-desc" data-stagger="3">The commerce arm of White Crane Design. Anime-inspired apparel where generative tools assist, but humans do the designing. Concept to shirt, ready to buy. The result: a live Square storefront selling the studio's own line.</p>
 <div class="project-chips" data-stagger="4">
 <span class="chip">Generative Apparel</span><span class="chip">Human-in-the-Loop</span><span class="chip">E-commerce</span><span class="chip">Brand Direction</span>
 </div>
@@ -430,7 +524,7 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 
 </div>
 </section>
-<section id="about" class="band-black" aria-labelledby="aboutTitle">
+<section id="experience" class="band-black" aria-labelledby="aboutTitle">
 <div class="wrap section-inner fade">
 <div class="eyebrow" data-stagger="1"><span class="dot" aria-hidden="true"></span>Experience</div>
 <h2 id="aboutTitle" class="about-title" data-stagger="2">Bridging creativity and technology. Tools that empower humans, not replace them.</h2>
@@ -468,10 +562,11 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 </div></div>
 </div>
 </section>
-<section id="background" class="band-surface" aria-labelledby="eduTitle">
+<section id="background" class="band-surface" aria-labelledby="backgroundTitle">
 <div class="wrap section-inner fade">
+<h2 id="backgroundTitle" data-stagger="1">Background</h2>
 <div class="work-index">
-<div class="project pj-gold edu-coda" data-stagger="1">
+<div class="project pj-gold edu-coda coda" data-stagger="1">
 <div class="project-glyph glyph-gold" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0zM22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></div>
 <div class="project-main">
 <div class="project-head">
@@ -489,7 +584,7 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 <div><h4>Credentials</h4><p>AI: Google AI Essentials · Python. Platform: Jamf Tech + Associate · Apple CSP macOS 11.</p></div>
 </div></details>
 </div></div>
-<div class="project pj-blue" data-stagger="1">
+<div class="project pj-blue coda" data-stagger="1">
 <div class="project-glyph glyph-blue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg></div>
 <div class="project-main">
 <div class="project-head">
@@ -514,14 +609,14 @@ footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;ju
 <div class="connect-links" data-stagger="4">
 <a href="mailto:Kenbai1027@gmail.com" class="connect-link"><span class="link-left"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect width="20" height="16" x="2" y="4" rx="2"/></svg></span>Kenbai1027@gmail.com</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
 <a href="https://www.linkedin.com/in/ken-bai-916228158" target="_blank" rel="noopener" class="connect-link"><span class="link-left"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6M2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></span>LinkedIn · Ken Bai</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
-<a href="https://github.com/ChairmanWCD" target="_blank" rel="noopener" class="connect-link"><span class="link-left"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span>GitHub · @ChairmanWCD</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
+<a href="https://github.com/ChairmanWCD" target="_blank" rel="noopener" class="connect-link"><span class="link-left"><span class="icon-slot icon-octocat" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><g transform="translate(2 2) scale(0.8333)"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></g></svg></span>GitHub · @ChairmanWCD</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
 <a href="Ken_Bai_Resume.pdf" download class="connect-link"><span class="link-left"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m9 12v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg></span>Download resume</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
 </div>
 </div>
 </section>
 </main>
 <footer>
-<div class="footer-brand"><svg width="18" height="18" viewBox="0 0 2000 2000" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor" opacity="0.6"/><polygon points="709,693 5,696 357,1306" fill="currentColor" opacity="0.6"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor" opacity="0.6"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor" opacity="0.6"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor" opacity="0.6"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor" opacity="0.6"/><polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/></svg>Ken Bai · White Crane Labs</div>
+<div class="footer-brand"><svg width="18" height="18" viewBox="-195 -194 2389 2389" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor" opacity="0.6"/><polygon points="709,693 5,696 357,1306" fill="currentColor" opacity="0.6"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor" opacity="0.6"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor" opacity="0.6"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor" opacity="0.6"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor" opacity="0.6"/><polygon class="crane-accent" points="1723,197 1861,435 1994,204"/></svg>Ken Bai · White Crane Labs</div>
 <div class="footer-tagline">Human in the loop. Always.</div>
 <div class="footer-copy">© 2026 White Crane Design LLC</div>
 </footer>
@@ -533,11 +628,15 @@ try{var s=localStorage.getItem("wcl-theme");if(s==="light"||s==="dark")apply(s)}
 /* Direction-aware hero transition, landscape only — portrait swaps stills instantly */
 var heroMedia=document.getElementById("heroMedia"),heroVideo=document.getElementById("heroTransition"),switching=false;
 var SRC_FWD="assets/White%20Crane%20Lab%20Hero/Transition.mp4",SRC_REV="assets/White%20Crane%20Lab%20Hero/Transition-reverse.mp4";
+/* Prefetch transition clips only when they can actually play: landscape, motion OK, no data saver */
+var heroEligible=window.matchMedia("(min-aspect-ratio: 1/1)").matches&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches&&!(navigator.connection&&navigator.connection.saveData);
+function prefetchHero(){if(!heroEligible||!heroVideo)return;[SRC_FWD,SRC_REV].forEach(function(u){try{var l=document.createElement("link");l.rel="prefetch";l.as="video";l.href=u;document.head.appendChild(l)}catch(e){}})}
+if("requestIdleCallback" in window){requestIdleCallback(prefetchHero,{timeout:4000})}else{setTimeout(prefetchHero,3000)}
 var POSTER_DARK="assets/White%20Crane%20Lab%20Hero/dark-mode-2048.webp",POSTER_LIGHT="assets/White%20Crane%20Lab%20Hero/light-mode-2048.webp";
 function finishSwitch(){switching=false;if(heroMedia)heroMedia.classList.remove("is-switching");if(heroVideo){try{heroVideo.pause()}catch(e){}}}
 if(heroVideo){heroVideo.addEventListener("ended",finishSwitch);heroVideo.addEventListener("error",function(){if(switching){var cur=root.getAttribute("data-theme")==="light"?"dark":"light";apply(cur);try{localStorage.setItem("wcl-theme",cur)}catch(e){}}finishSwitch()})}
 function playTransition(n,src){try{var file=src.split("/").pop();if(heroVideo.currentSrc.indexOf(file)<0){heroVideo.src=src}try{heroVideo.poster=(n==="dark"?POSTER_LIGHT:POSTER_DARK)}catch(pe){}heroVideo.muted=true;heroVideo.currentTime=0;var p=heroVideo.play();if(p&&p.catch)p.catch(function(){apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){};finishSwitch()})}catch(e){apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){};finishSwitch();return}setTimeout(function(){if(switching){apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){}}},550);setTimeout(finishSwitch,3400)}
-if(btn)btn.addEventListener("click",function(){var n=root.getAttribute("data-theme")==="light"?"dark":"light";var reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;var portrait=window.matchMedia("(max-aspect-ratio: 1/1)").matches;if(reduceMotion||portrait||!heroVideo||!heroMedia||switching){apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){};return}switching=true;heroMedia.classList.add("is-switching");playTransition(n,n==="dark"?SRC_FWD:SRC_REV)});
+if(btn)btn.addEventListener("click",function(){var n=root.getAttribute("data-theme")==="light"?"dark":"light";var reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;var portrait=window.matchMedia("(max-aspect-ratio: 1/1)").matches;var saveData=navigator.connection&&navigator.connection.saveData;if(reduceMotion||portrait||saveData||!heroVideo||!heroMedia||switching){apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){};return}switching=true;heroMedia.classList.add("is-switching");playTransition(n,n==="dark"?SRC_FWD:SRC_REV)});
 var menu=document.getElementById("menuBtn"),links=document.getElementById("primaryNav");
 if(menu&&links)menu.addEventListener("click",function(){var open=links.getAttribute("data-open")==="true";links.setAttribute("data-open",open?"false":"true");menu.setAttribute("aria-expanded",open?"false":"true");menu.setAttribute("aria-label",open?"Open menu":"Close menu")});
 links&&links.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){if(window.innerWidth<=760){links.setAttribute("data-open","false");menu.setAttribute("aria-expanded","false");menu.setAttribute("aria-label","Open menu")}})});})();
