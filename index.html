@@ -256,6 +256,31 @@ html[data-theme="light"] .figure-plates .hero-img.rv-day{display:none}
   transition:opacity .4s ease-out}
 .hero.is-rv .hero-light{opacity:1;transition:none}
 .hero.is-exit .hero-light{opacity:0;transition:opacity .38s ease-out}
+/* ── D23 · hand-drawn hint — "Click me" arrow pointing at the moon toggle.
+   Ink-over-pencil: two shaft passes + two flick barbs, drawn once on load
+   (pathLength-normalized dash), word fades in behind. The whole annotation
+   is aria-hidden (the toggle carries its own label) and is NOT a reveal
+   host: it sits above the light (z3), never repaints under the cursor.
+   D23.4 (user call): compacted sweep + the arrow is fixed red like the
+   word — one token (--red-text) for every stroke, no white/dark flip.
+   JS placeHint pins the arrowhead (box coord 122,16) to just below the
+   pill's bottom edge; the calc() is only the pre-JS fallback. Hidden
+   ≤760px, in print, and on touch devices. ───────────────────────────────── */
+.hero-hint{position:absolute;z-index:3;width:150px;height:96px;pointer-events:none;
+  left:calc(50% + 152px);top:52px}
+.hero-hint svg{display:block;width:150px;height:96px;overflow:visible}
+.hero-hint .hint-pass,.hero-hint .hint-barb{fill:none;stroke:var(--red-text);stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:1;stroke-dashoffset:1;animation:hint-draw .7s var(--ease) forwards}
+.hero-hint .hint-pass{stroke-width:1.8}
+.hero-hint .p2{stroke-width:1.1;opacity:.45;animation-delay:.18s}
+.hero-hint .hint-barb{stroke-width:1.7}
+.hero-hint .hb1{animation-delay:.55s}
+.hero-hint .hb2{animation-delay:.64s}
+.hero-hint .hint-word{font-family:var(--fh);font-weight:600;font-size:27px;fill:var(--red-text);
+  animation:hint-in .35s var(--ease) .92s both}
+@keyframes hint-draw{to{stroke-dashoffset:0}}
+@keyframes hint-in{from{opacity:0}to{opacity:1}}
+@media (max-width:760px){.hero-hint{display:none}}
 /* meta strips flip with the canvas (user call): same duplicate mechanism */
 .rv-strip{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.35rem 1.1rem}
 /* night canvas reveals the day wardrobe (light-theme token values) */
@@ -564,7 +589,7 @@ main, footer{position:relative;z-index:1}
   .cursor{display:none!important}
 }
 @media print{
-  nav,.theme-toggle,.menu-btn,.rail,.skip,.marquee,.cursor{display:none!important}
+  nav,.theme-toggle,.menu-btn,.hero-hint,.rail,.skip,.marquee,.cursor{display:none!important}
   .rv-text,.hero-light{display:none!important}
   body{background:#fff;color:#111}
   .hero,.connect{min-height:0;padding:1.5rem 0;background:#fff;color:#111}
@@ -580,7 +605,7 @@ main, footer{position:relative;z-index:1}
   .foot{border-top:1px solid #ccc}
 }
 /* touch / no-hover devices never engage (JS gate agrees) — keep layers out */
-@media (hover:none),(pointer:coarse){.rv-text,.hero-light{display:none}}
+@media (hover:none),(pointer:coarse){.rv-text,.hero-light,.hero-hint{display:none}}
 </style>
 </head>
 <body>
@@ -611,6 +636,17 @@ main, footer{position:relative;z-index:1}
 <!-- ══ 01 · HERO — the operator, full figure (absorbs former §02) ═══════════ -->
 <section class="hero" id="about" aria-labelledby="heroTitle">
   <div class="hero-light" aria-hidden="true"></div>
+  <!-- D23: hand-drawn hint to the theme toggle. JS (placeHint) pins the
+       arrowhead to the toggle's corner; the calc() in CSS is the fallback. -->
+  <div class="hero-hint" id="heroHint" aria-hidden="true">
+    <svg viewBox="0 0 150 96" width="150" height="96">
+      <path class="hint-pass" pathLength="1" d="M46 52 C 72 58, 100 44, 122 16"/>
+      <path class="hint-pass p2" pathLength="1" d="M48 55 C 74 61, 100 47, 121 17"/>
+      <path class="hint-barb hb1" pathLength="1" d="M122 16 C 117.5 16.5, 113.5 17.5, 110 19"/>
+      <path class="hint-barb hb2" pathLength="1" d="M122 16 C 121.6 20, 121.2 24.5, 120.5 28.5"/>
+      <text class="hint-word" x="6" y="88" transform="rotate(-3 6 88)">Click me</text>
+    </svg>
+  </div>
   <div class="hero-grid gut">
     <div class="hero-left">
       <h1 class="d hero-title" id="heroTitle">
@@ -962,6 +998,25 @@ main, footer{position:relative;z-index:1}
   var menu=document.getElementById("menuBtn"), links=document.getElementById("primaryNav");
   if(menu&&links)menu.addEventListener("click",function(){var open=links.getAttribute("data-open")==="true";links.setAttribute("data-open",open?"false":"true");menu.setAttribute("aria-expanded",open?"false":"true");menu.setAttribute("aria-label",open?"Open menu":"Close menu")});
   links&&links.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){if(window.innerWidth<=760){links.setAttribute("data-open","false");menu.setAttribute("aria-expanded","false");menu.setAttribute("aria-label","Open menu")}})});
+
+  /* ── D23 hint: pin the arrowhead (box coord 122,16) to just below the
+     nav pill's bottom edge, aimed up-right at the moon toggle — outside the
+     pill's translucent box so the ink stays crisp. Recomputed on resize near
+     the top of the page; the CSS calc() covers the pre-JS paint. ────────── */
+  var hint=document.getElementById("heroHint"), hero=document.querySelector(".hero");
+  function placeHint(){
+    if(!hint||!hero) return;
+    if(window.innerWidth<=760){ hint.style.display="none"; return; }
+    hint.style.display="";
+    var tg=document.getElementById("themeToggle");
+    var pill=document.querySelector(".nav-pill");
+    if(!tg||!pill) return;
+    var tr=tg.getBoundingClientRect(), pr=pill.getBoundingClientRect(), hr=hero.getBoundingClientRect();
+    hint.style.left=Math.round(tr.left-hr.left-126)+"px";
+    hint.style.top=Math.round(pr.bottom-hr.top-10)+"px";
+  }
+  placeHint();
+  window.addEventListener("resize", function(){ if(window.scrollY<40) placeHint(); });
 
   /* ── reveal ──────────────────────────────────────────────────────────── */
   var items=document.querySelectorAll("[data-rv], .mask");
