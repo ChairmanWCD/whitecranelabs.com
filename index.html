@@ -4,281 +4,416 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>try{var t=localStorage.getItem("wcl-theme");if(t==="light"){document.documentElement.setAttribute("data-theme","light")}else{document.documentElement.removeAttribute("data-theme")}}catch(e){}</script>
-<title>Ken Bai - Creative Technologist | AI × Design</title>
-<meta name="description" content="Ken Bai, Creative Technologist building AI-powered creative infrastructure at Pratt Institute and through his studio, White Crane Labs. 12+ years at the intersection of technology, design, and strategy.">
-<meta property="og:title" content="Ken Bai - Creative Technologist | AI × Design">
-<meta property="og:description" content="Building AI-powered creative infrastructure at Pratt Institute and through White Crane Labs. Human in the loop. Always.">
+<title>Ken Bai, Creative Technologist | White Crane Labs</title>
+<meta name="description" content="Ken Bai, Creative Technologist. 12+ years at the intersection of design, technology, and AI systems, building the infrastructure that lets creative people do their best work.">
+<meta property="og:title" content="Ken Bai, Creative Technologist">
+<meta property="og:description" content="Human in the loop, always. Creative technology, AI systems, and brand infrastructure from Queens, NY.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://chairmanwcd.github.io/whitecranelabs.com/">
 <meta property="og:image" content="https://chairmanwcd.github.io/whitecranelabs.com/assets/repo-cover.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1C1B18">
+<meta name="theme-color" content="#0E0A06">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="wc-tokens.css">
 <style>
+/* ============================================================================
+   index-v3 — "darkroom" world
+   Grammar: warm near-black canvas, cream ink, uppercase at weight 500,
+   one mixed-case body voice, dashed hairlines, no shadows, flat surfaces.
+   Everything here is scoped to this page; wc-tokens.css keeps the other pages.
+   ============================================================================ */
+
+:root{
+  /* night — the default */
+  --black:#0E0A06;          /* canvas */
+  --surface:#171009;        /* the one elevated step */
+  --border:#3B3128;
+  --border-lo:#2A221B;
+  --white:#F3E8D8;          /* ink */
+  --text:#C9BCA9;
+  --text-dim:#8B7F6E;
+  --red:#E03030;
+  --red-text:#F2563F;
+  --red-solid:#C22B2B;
+  --maroon:#2A1613;
+  --crane-accent:#E03030;
+
+  --fd:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --fb:'Inter',ui-sans-serif,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --fh:'Caveat',cursive;
+
+  --gut:clamp(1.25rem,5.5vw,6.5rem);
+  --rule:1px dashed var(--border);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html[data-theme="light"]{
+  --black:#F4EEE2;
+  --surface:#EAE1D1;
+  --border:rgba(23,16,9,.18);
+  --border-lo:rgba(23,16,9,.10);
+  --white:#171009;
+  --text:#463A2C;
+  --text-dim:#6B5F50;
+  --red:#C23B22;
+  --red-text:#B93A20;
+  --red-solid:#C22B2B;
+  --crane-accent:#C23B22;
+}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-/* Tokens (--black … --crane-accent, light-theme overrides, .crane-accent, .footer-brand) live in wc-tokens.css */
-html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--text);font-family:var(--fb);font-size:16px;line-height:1.7;overflow-x:hidden;position:relative}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--black);color:var(--text);
+  font-family:var(--fb);font-size:16px;line-height:1.6;
+  overflow-x:hidden;position:relative;isolation:isolate;
+  transition:background-color .6s var(--ease),color .6s var(--ease);
+}
 a{color:inherit}
-svg{display:block;max-width:100%}
-::selection{background:var(--red-solid);color:var(--paper-fixed)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
-.skip-link{position:absolute;left:1rem;top:-4rem;z-index:200;background:var(--white);color:var(--ink-fixed);font-family:var(--mono);font-size:13px;padding:.6rem 1rem;border-radius:4px;text-decoration:none;transition:top .2s var(--ease-out)}
-.skip-link:focus{top:1rem}
-body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto}}
-nav{position:fixed;top:14px;left:0;right:0;z-index:100;padding:0 1.5rem}
-.nav-pill{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:color-mix(in srgb,var(--black) 82%,transparent);border:1px solid var(--border);border-radius:1000px;padding:.7rem 1rem .7rem 1.3rem;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 14px 40px rgba(0,0,0,.3);position:relative}
-.nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--fd);font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--white);text-decoration:none}
-.nav-logo .crane{transition:transform .5s var(--ease-out)}
-.nav-logo:hover .crane{transform:rotate(-8deg) scale(1.05)}
-.nav-links{display:flex;gap:1.9rem;list-style:none}
-.nav-links a{font-size:13px;color:var(--text-dim);text-decoration:none;position:relative;padding-bottom:4px;transition:color .2s}
-.nav-links a::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:0%;background:var(--red);transition:width .35s var(--ease-out)}
-.nav-links a:hover{color:var(--white)}
-.nav-links a:hover::after{width:100%}
-.nav-cta{font-family:var(--fd);font-size:13px;font-weight:600;color:var(--paper-fixed);background:var(--red-solid);padding:10px 22px;text-decoration:none;border-radius:1000px;transition:opacity .2s,transform .2s;white-space:nowrap}
-.nav-cta:hover{opacity:.88;transform:translateY(-1px)}
-.nav-right{display:flex;align-items:center;gap:1.1rem}
-.theme-toggle{display:flex;align-items:center;gap:7px;cursor:pointer;background:none;border:none;padding:.25rem;color:var(--text-dim);transition:color .15s}
-.theme-toggle:hover{color:var(--white)}
-.toggle-track{width:34px;height:19px;border:1px solid var(--border);background:var(--surface);border-radius:10px;position:relative;flex-shrink:0}
-.toggle-thumb{position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:var(--text-dim);transition:transform .25s cubic-bezier(0.34,1.56,0.64,1),background .2s}
-html[data-theme="light"] .toggle-thumb{transform:translateX(15px);background:var(--red-solid)}
-.icon-slot{display:inline-flex;align-items:center;justify-content:center;color:currentColor}
-/* ── ICON SIZING (client "icons look zoomed in" pass 2026-10-08) ─────────────
-   Icons sit in .icon-slot (inline-flex) inside running text, so the baseline
-   size is one em step — 1.05em — resolved against the ADJACENT type, not a
-   global px. width/height ATTRIBUTES stay on every <svg> as the no-CSS
-   fallback and intrinsic-size hint; both sheets in <head> are render-blocking,
-   so these overrides land in the first style pass (no layout shift).
-   Explicit px overrides where 1.05em still reads off:
-     .hero-contact  13px  (12px mono links; UP slightly over 1.05em)
-     .link-primary  14px  (13.5px row links — rows carry TEXT arrows (→ ↗)
-                           today; the rule guards any future inline SVG)
-     .btn-ghost     15px  (download icon at 14px type)
-     .stat-top      21px  (UP from the text baseline: the mark rides a
-                           24–34px display numeral)
-     .icon-octocat  15px  (filled GitHub glyph in Connect; its inner
-                           <g scale(.8333)> keeps the Lucide padding ring)
-   Control glyphs stay sized to their CONTROL, not to type — pinned at the
-   attribute 18px so the em baseline cannot pull them to 16.8px:
-     .menu-btn 18px glyph / 38px touch target · .theme-toggle 18px / 19px track */
-.icon-slot svg{width:1.05em;height:1.05em}
-.hero-contact svg{width:13px;height:13px}
-.link-primary svg{width:14px;height:14px}
-.btn-ghost svg{width:15px;height:15px}
-.stat-top svg{width:21px;height:21px}
-.menu-btn svg,.theme-toggle svg{width:18px;height:18px}
-.connect-link .icon-octocat svg{width:15px;height:15px}
-.menu-btn{display:none;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid var(--border);border-radius:50%;background:none;color:var(--white);cursor:pointer}
-.menu-btn .icon-close{display:none}
-.menu-btn[aria-expanded="true"] .icon-open{display:none}
-.menu-btn[aria-expanded="true"] .icon-close{display:inline-flex}
-@media (max-width:760px){.menu-btn{display:inline-flex}.nav-links{display:none;position:absolute;top:calc(100% + 10px);right:0;left:0;flex-direction:column;gap:0;background:color-mix(in srgb,var(--black) 94%,transparent);border:1px solid var(--border);border-radius:18px;padding:.6rem;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 18px 50px rgba(0,0,0,.4)}.nav-links[data-open="true"]{display:flex}.nav-links a{display:block;padding:.8rem 1rem;font-size:14px}.nav-cta{padding:10px 18px}}
-.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem);position:relative;z-index:1}
+img,svg{display:block;max-width:100%}
+img{height:auto}
+::selection{background:var(--red-solid);color:#F3E8D8}
+a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:4px}
+.skip{position:absolute;left:1rem;top:-5rem;z-index:200;background:var(--white);color:var(--black);
+  font-family:var(--mono);font-size:12px;padding:.7rem 1rem;text-decoration:none;transition:top .2s var(--ease)}
+.skip:focus{top:1rem}
+
+/* ── type primitives ─────────────────────────────────────────────────────── */
+.d{font-family:var(--fd);font-weight:500;text-transform:uppercase;line-height:.9;letter-spacing:0;color:var(--white)}
+.d-xl{font-size:clamp(2.9rem,7.2vw,6.2rem)}
+/* handwritten display register — the D8.2 contract on any .d heading: Caveat 600,
+   mixed case (overrides .d's uppercase), loose line box for the script's ink.
+   Size re-clamped: Caveat's optical size reads ~30% smaller than the grotesque
+   it replaces, so it takes ~1.3× the px to hold the same hierarchy. */
+.hand{font-family:var(--fh);font-weight:600;text-transform:none;
+  letter-spacing:0;line-height:1.2;font-size:clamp(2.2rem,4.35vw,3.8rem)}
+/* cap 3.8rem, not 3.9: at 3.9 the longest line ("Bridging creativity and
+   technology.") advances 979.8px inside the 984px .wrap column at 1440+ —
+   4px from the mask's right clip edge. Caveat ink paints past the advance
+   (see D8.2), so the cap keeps ~0.5em of clip headroom for any last glyph. */
+.body{font-family:var(--fb);font-weight:400;font-size:clamp(1.02rem,1.35vw,1.42rem);
+  line-height:1.35;max-width:44ch;color:var(--text)}
+.label{font-family:var(--mono);font-weight:500;font-size:11px;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--text-dim)}
+.label-red{color:var(--red-text)}
+.gut{padding-inline:var(--gut)}
+/* the site-wide content column (ported from index.html): sections keep their
+   full-bleed borders; the content inside is centred on a 1080px column */
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:clamp(1.25rem,4vw,3rem)}
 section{position:relative}
-.band-black{background:var(--black)}
-.band-surface{background:var(--surface);border-top:1px solid var(--border-lo);border-bottom:1px solid var(--border-lo)}
-.band-maroon{background:var(--maroon);border-top:1px solid rgba(224,48,48,.15);border-bottom:1px solid rgba(224,48,48,.15)}
-.section-inner{padding:clamp(4rem,9vw,7rem) 0}
-#work .section-inner{padding-top:clamp(2rem,5vw,3.5rem)}
-.eyebrow{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);display:inline-flex;align-items:center;gap:9px;margin-bottom:1.5rem}
-.eyebrow .dot{width:9px;height:8px;background:var(--red);flex-shrink:0;clip-path:polygon(0 0,100% 0,50% 100%)}
-h2{font-family:var(--fd);font-size:clamp(1.9rem,3.4vw,2.5rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:1rem;max-width:20ch}
-/* Experience header — same handwritten, centered voice as the intro */
-#experience .eyebrow{display:flex;justify-content:center}
-/* ── HUMAN-TRACE REGISTER (DESIGN.delta.md D3 — client reversal 2026-10-08) ──
-   Caveat (--fh) is an intentional human-trace motif aligned to "human in the
-   loop": signature users (.ov-sign · .footer-tagline · .marginal <=16px) AND
-   statement lines (.ov-statement · .about-title) at clamp(2.1rem,4vw,3rem).
-   font-weight PINNED 600 everywhere; the <link> loads wght@600 only — the
-   sole weight used (trimmed 2026-10-08 from 500;600;700; 600-still-loads is
-   proven per page in studio/audit-out/icons-after.json). ── */
-.about-title{font-family:var(--fh);font-weight:600;font-size:clamp(2.1rem,4vw,3rem);line-height:1.25;letter-spacing:0;text-align:center;max-width:26ch;margin:0 auto 1rem}
-.lede{font-size:16px;color:var(--text);max-width:var(--measure);line-height:1.75;margin-bottom:2.75rem}
-.lede-strong{font-family:var(--fd);font-weight:700;color:var(--white);font-size:clamp(1.9rem,3.4vw,2.5rem);letter-spacing:-.02em;line-height:1.16;text-wrap:balance}
-.lede-strong .accent{color:var(--red);font-style:normal}
-/* Overview intro - centered, handwritten statement */
-.ov-quote{position:relative;text-align:center;max-width:38ch;margin:0 auto 1.75rem}
-.ov-mark{display:block;font-family:var(--fd);font-weight:700;font-size:clamp(2.5rem,5vw,3.5rem);line-height:1;color:var(--red);opacity:.85;margin-bottom:.25rem;pointer-events:none}
-/* .ov-statement carries .lede-strong in the markup. Selector compounded to 0-2-0
-   so Caveat beats the .lede-strong guardrail below on specificity, not placement. */
-.lede-strong.ov-statement{border-left:none;padding-left:0;max-width:none;margin-bottom:0;font-family:var(--fh);font-weight:600;font-size:clamp(2.1rem,4vw,3rem);line-height:1.25;letter-spacing:0}
-.ov-body{text-align:center;margin-left:auto;margin-right:auto;margin-bottom:0}
-.ov-sign{font-family:var(--fh);font-weight:600;font-size:13px;letter-spacing:.01em;text-transform:none;color:var(--red-text);display:flex;align-items:center;justify-content:center;gap:10px;margin-top:1.75rem;margin-bottom:0;max-width:none}
-/* Display guardrail — Grotesk for true display type; the two Caveat statements win at 0-2-0 / 0-1-0. */
-h1,h2,.lede-strong,.connect-headline,.project-title,.exp-role{font-family:var(--fd)}
-.ov-sign .ov-dia{width:7px;height:7px;background:var(--red);transform:rotate(45deg);flex-shrink:0}
-@media print{.ov-mark{display:none}.ov-sign{color:#444}}
-p{max-width:var(--measure)}
-.lede a,.project-desc a,.exp li a,.connect-link,.hero-contact a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--red)}
-.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(6rem,12vh,9rem) 0 clamp(4rem,8vh,6rem);overflow:hidden;position:relative}
-.hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx) var(--my),rgba(224,48,48,.10),transparent 62%)}
-.hero-mark{position:absolute;top:50%;left:50%;width:clamp(360px,46vw,700px);transform:translate(-50%,-50%);color:var(--white);opacity:.05;pointer-events:none;z-index:0;animation:float 9s ease-in-out infinite}
-html[data-theme="light"] .hero-mark{opacity:.04}
-@keyframes float{0%,100%{transform:translate(-50%,-52%) rotate(0deg)}50%{transform:translate(-50%,-46%) rotate(2deg)}}
-.hero .wrap{max-width:1080px;width:100%;align-self:stretch;margin:0 auto;padding-left:1.3rem;padding-right:clamp(1.25rem,4vw,3rem)}
-.hero-inner{position:relative;z-index:2;max-width:760px;margin-right:auto}
-/* White Crane Lab Hero — full-bleed art, text aligned to nav-pill logo (1080px + 1.3rem) */
-.hero-media{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.hero-media picture{position:absolute;inset:0}
-.hero-still,.hero-transition{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% center;transition:opacity .6s var(--ease-out)}
-.hero-still.is-dark{opacity:1}
-.hero-still.is-light{opacity:0}
-html[data-theme="light"] .hero-still.is-dark{opacity:0}
-html[data-theme="light"] .hero-still.is-light{opacity:1}
-.hero-transition{opacity:0;visibility:hidden;background:#000}
-.hero-media.is-switching .hero-transition{opacity:1;visibility:visible}
-/* One moving layer at a time — stills black out while the video carries the transition */
-.hero-media.is-switching img.hero-still{opacity:0}
-.hero-scrim{position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--black) 90%,transparent) 0%,color-mix(in srgb,var(--black) 60%,transparent) 32%,transparent 58%),linear-gradient(0deg,var(--black) 6%,transparent 28%)}
-html[data-theme="light"] .hero-scrim{background:linear-gradient(90deg,color-mix(in srgb,var(--black) 84%,transparent) 0%,color-mix(in srgb,var(--black) 50%,transparent) 34%,transparent 58%),linear-gradient(0deg,var(--black) 6%,transparent 28%)}
-.hero-mark{opacity:.03}
-@media (max-width:1128px){.hero .wrap{padding-left:calc(1.5rem + 1.3rem);padding-right:1.5rem}}
-@media (max-width:760px){.hero-transition{object-position:68% center}}
-/* Dynamic art direction — portrait/narrow gets dimmed stage + mobile scrim, short landscape re-aims up */
-@media (max-width:760px),(max-aspect-ratio:1/1){.hero-still.is-dark{object-position:50% center}.hero-still.is-light{object-position:50% center}.hero-still{opacity:.35}.hero-still.is-light{opacity:0}html[data-theme="light"] .hero-still.is-light{opacity:.35}html[data-theme="light"] .hero-still.is-dark{opacity:0}.hero-media.is-switching .hero-transition{opacity:1;visibility:visible}.hero-scrim{background:linear-gradient(90deg,color-mix(in srgb,var(--black) 88%,transparent) 0%,color-mix(in srgb,var(--black) 55%,transparent) 45%,transparent 75%)}}
-@media (max-height:500px) and (min-aspect-ratio:1/1){.hero-still,.hero-transition{object-position:78% 18%}}
-@media (min-aspect-ratio:21/9){.hero-still,.hero-transition{object-position:78% 22%}}
-.hero-status{font-family:var(--mono);font-size:12px;color:var(--red-text);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:2rem}
-.hero-status .pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 2.2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
-h1{font-family:var(--fd);font-weight:700;letter-spacing:-.035em;line-height:.96;color:var(--white);overflow-wrap:break-word}
-h1 .line{display:block;font-size:clamp(3rem,9.5vw,7.5rem);margin-bottom:.02em}
-.w-word{display:inline-block;opacity:0;filter:blur(12px);animation:wordIn .8s var(--ease-out) forwards}
-@keyframes wordIn{to{opacity:1;filter:blur(0)}}
-h1 .line:nth-child(1) .w-word:nth-child(1){animation-delay:.10s}
-h1 .line:nth-child(1) .w-word:nth-child(2){animation-delay:.20s}
-h1 .line:nth-child(2) .w-word:nth-child(1){animation-delay:.30s;color:var(--red)}
-h1 .line:nth-child(3) .w-word:nth-child(1){animation-delay:.42s}
-h1 .line:nth-child(3) .w-word:nth-child(2){animation-delay:.52s}
-.hero-role{font-family:var(--fd);font-size:clamp(1.15rem,2.4vw,1.7rem);color:var(--text);display:flex;align-items:center;gap:.4rem;margin-top:1.4rem;min-height:2em;flex-wrap:wrap}
-.type-slot{display:inline-flex;color:var(--white);white-space:pre}
-.type-caret{display:inline-block;width:.08em;height:1.05em;background:var(--red);margin-left:3px;animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-top:2.4rem}
-.btn-primary{font-family:var(--fd);font-size:13px;font-weight:600;letter-spacing:.02em;background:var(--red-solid);color:var(--paper-fixed);padding:14px 28px;border:none;border-radius:2px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden;transition:box-shadow .3s,transform .15s;box-shadow:0 0 0 rgba(224,48,48,0)}
-.btn-primary:hover{box-shadow:0 12px 34px -10px rgba(224,48,48,.55);transform:translateY(-2px)}
-.btn-primary::after{content:'';position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.25),transparent);transform:skewX(-20deg);transition:left .7s var(--ease-out)}
-.btn-primary:hover::after{left:130%}
-.btn-ghost{font-size:14px;color:var(--text);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--border);display:inline-flex;align-items:center;gap:8px;padding-bottom:3px;transition:color .2s,text-decoration-color .2s}
-.btn-ghost:hover{color:var(--white);text-decoration-color:var(--text-dim)}
-.hero-contact{display:flex;flex-wrap:wrap;gap:.25rem 1.5rem;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border-lo);font-family:var(--mono);font-size:12px;color:var(--text-dim)}
-.hero-contact a{text-decoration:none;color:var(--text-dim);transition:color .2s;display:inline-flex;align-items:center;gap:6px}
-.hero-contact a:hover{color:var(--white);text-decoration:underline;text-underline-offset:3px}
-.hero-contact .sep{opacity:.4}
-.hero-stats{display:flex;gap:clamp(1.75rem,5vw,3.5rem);padding-top:1.75rem;margin-top:.5rem;flex-wrap:wrap}
-.stat{display:flex;flex-direction:column;gap:6px}
-.stat-top{display:flex;align-items:center;gap:8px;color:var(--red-text)}
-.stat-num{font-family:var(--fd);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:700;color:var(--white);display:block;line-height:1}
-.stat-label{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:.04em}
-.scroll-cue{position:absolute;left:50%;bottom:2rem;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim)}
-.scroll-cue .mouse{width:20px;height:32px;border:1px solid var(--border);border-radius:12px;position:relative}
-.scroll-cue .mouse::after{content:'';position:absolute;top:6px;left:50%;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--red);animation:wheel 1.8s var(--ease-out) infinite}
-@keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(9px);opacity:0}100%{opacity:0}}
-.marquee{overflow:hidden;border-top:1px solid var(--border-lo);border-bottom:1px solid var(--border-lo);background:var(--black);position:relative;z-index:1}
-.marquee-track{display:flex;width:max-content;animation:scrollX 32s linear infinite}
-.marquee:hover .marquee-track{animation-play-state:paused}
-@keyframes scrollX{to{transform:translateX(-50%)}}
-.marquee-item{display:flex;align-items:center;gap:2.5rem;padding:1.1rem 1.25rem;font-family:var(--mono);font-size:12.5px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
-.marquee-item .dia{width:7px;height:7px;background:var(--red);transform:rotate(45deg);opacity:.5;flex-shrink:0}
-/* WORK - uniform equal-weight rows (work-scoped) */
-/* (.work-scan rules removed 2026-10-08: the scan row left the DOM in the
-   2026-10-08 design revert; dead selectors deleted per audit — history lives
-   in git and archived/index v2.html. Do not re-add without the DOM.) */
-.work-index{list-style:none;margin:0;padding:0}
-.project{padding:2.2rem 0;border-top:1px solid var(--border-lo);display:grid;grid-template-columns:84px 1fr;gap:clamp(1rem,3vw,2.25rem);align-items:start}
+
+/* ── nav — the site-wide pill capsule (ported from index.html; 7 of 9 pages
+   ship it — v3 was the outlier). Brand + anchors + theme switch inside; the
+   red resume CTA rides the right end like every other page. ─────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:.9rem clamp(1rem,3vw,2rem);
+  transition:transform .5s var(--ease)}
+.nav.is-hidden{transform:translateY(-102%)}
+.nav-pill{max-width:1080px;margin:0 auto;position:relative;
+  display:flex;align-items:center;justify-content:space-between;gap:.55rem 1rem;
+  flex-wrap:wrap;
+  background:color-mix(in srgb,var(--black) 82%,transparent);
+  border:1px solid var(--border);border-radius:1000px;
+  padding:.7rem 1rem .7rem 1.3rem;
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 14px 40px rgba(0,0,0,.3);
+  transition:box-shadow .35s var(--ease)}
+.nav.is-stuck .nav-pill{box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;flex-shrink:0}
+.brand svg{width:22px;height:22px;flex-shrink:0;color:var(--white);transition:transform .5s var(--ease)}
+.brand:hover svg{transform:rotate(-8deg) scale(1.06)}
+.brand-name{font-family:var(--fd);font-weight:500;font-size:13px;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:clamp(.8rem,2vw,1.6rem);row-gap:.4rem;
+  flex-wrap:wrap;justify-content:flex-end;margin-left:auto}
+.nav-links{display:flex;align-items:center;gap:clamp(1rem,2vw,2rem);list-style:none}
+.nav-links a{font-family:var(--fd);font-size:12px;font-weight:500;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--text);text-decoration:none;padding-bottom:5px;
+  border-bottom:1px dashed transparent;transition:color .2s,border-color .3s}
+.nav-links a:hover{color:var(--white);border-bottom-color:var(--border)}
+.nav-cta{font-family:var(--fd);font-size:13px;font-weight:600;color:var(--paper-fixed);
+  background:var(--red-solid);padding:10px 22px;text-decoration:none;border-radius:1000px;
+  transition:opacity .2s,transform .2s;white-space:nowrap}
+.nav-cta:hover{opacity:.88;transform:translateY(-1px)}
+
+/* theme switch — day is a time of day, not a setting */
+.switch{display:flex;align-items:center;gap:.55rem;background:none;border:0;cursor:pointer;
+  padding:.35rem .1rem;color:var(--text);position:relative}
+.switch::after{content:"";position:absolute;inset:-11px -9px}
+.switch-label{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim)}
+.switch-track{position:relative;width:30px;height:12px;border:1px solid var(--border)}
+.switch-thumb{position:absolute;top:1px;left:1px;width:8px;height:8px;background:var(--red);
+  transition:transform .45s var(--ease)}
+html[data-theme="light"] .switch-thumb{transform:translateX(16px)}
+.switch:hover .switch-label{color:var(--white)}
+
+.menu{display:none;background:none;border:0;color:var(--white);cursor:pointer;padding:.55rem;position:relative}
+.menu::after{content:"";position:absolute;inset:-8px}
+.menu svg{width:20px;height:20px}
+
+/* ── hero — §02's three-track grid: the figure is a real in-flow plate stack
+   in the centre track (equal 1fr side tracks keep it mathematically centred
+   at every width), copy hugging it left and right. The cursor reveal lives on
+   .figure-plates — the figure's own box — so the oval never leaves the
+   sculpture. The hero is CONTENT-height (no 100svh centreing): the plate cap
+   sets the screen the hero fills and the marquee closes up under the strip.
+   The H1 is Caveat at display size — handwritten register per D3, one word
+   in the accent red. */
+.hero{position:relative;isolation:isolate;
+  display:flex;flex-direction:column;
+  padding-top:6rem;padding-bottom:1.75rem;
+  /* D18: no overflow clip. The hero-wide light must travel PAST the hero's
+     edge on exit; nothing else here paints outside the box anyway (title
+     lines self-clip via .line, the plates contain their imgs, ::before fades
+     out well inside the bounds). */
+  /* D19: circle geometry shared by the figure imgs, the text layers, and the
+     hero-wide light; --rv-patch is the opposite canvas the light paints */
+  --rv-w:90px;--rv-h:90px;--rv-patch:#F4EEE2}
+html[data-theme="light"] .hero{--rv-patch:#0E0A06}
+/* soft studio spotlight behind the centre track; var(--white) re-inks per theme */
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(44% 42% at 50% 42%,
+    color-mix(in srgb,var(--white) 8%,transparent),transparent 72%)}
+.hero-grid{display:grid;grid-template-columns:1fr minmax(280px,30vw) 1fr;
+  gap:clamp(1.5rem,4vw,4.5rem);align-items:center;width:100%;position:relative;z-index:1}
+.hero-left{justify-self:end;text-align:right;min-width:0}
+.hero-title{width:max-content;font-family:var(--fh);font-weight:600;
+  font-size:clamp(3.2rem,5vw,5.2rem);letter-spacing:0;line-height:1.2;
+  text-transform:none}
+/* Caveat's line box (hhea 976/-274 per em) needs ~1.25 for the descender of
+   "Technologist" — 1.2 keeps the stack tight and still clears the glyph
+   (measured actualBoundingBoxDescent 0.20em < 0.224em room); .line clips. */
+.hero-title .acc{color:var(--red)}
+.hero-title .line{display:block;overflow:hidden;padding-right:.25em}
+/* the .25em right padding is load-bearing: Caveat's slanted final glyphs paint
+   past their advance width, and width:max-content sizes .line to the advance —
+   without the padding the overflow:hidden mask shaves the last letter
+   ("Ken Bai" / "Creative" / "Technologist" all lose ink at the right edge). */
+.hero-title .line span{display:block;transform:translateY(105%);animation:rise .9s var(--ease) forwards}
+.hero-title .line:nth-child(2) span{animation-delay:.09s}
+.hero-title .line:nth-child(3) span{animation-delay:.18s}
+@keyframes rise{to{transform:translateY(0)}}
+.hb-lead{font-family:var(--fd);font-weight:500;font-size:18px;line-height:1.45;color:var(--white);
+  margin-top:clamp(1.2rem,2.4vh,1.9rem)}
+.hero-actions{display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap;
+  justify-content:flex-end;margin-top:clamp(1.2rem,2.4vh,1.9rem)}
+.hero-center{display:flex;flex-direction:column;align-items:center;gap:1rem}
+/* the plate stack: aspect-ratio reserves the source box (1600:2862 — the real
+   3072×5496 master) so nothing shifts before load; max-width derives from the
+   same fraction so the reserved box can never exceed the svh cap. It carries
+   the reveal's CSS vars — the engine reads them from this box. */
+.figure-plates{position:relative;width:100%;
+  max-width:calc(min(81svh,850px) * 1600/2862);aspect-ratio:1600/2862;
+  max-height:min(81svh,850px)}
+/* --rv-w/--rv-h live on .hero (shared with the D15 text reveal and the
+   hero-wide light) */
+.figure-plates .hero-img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:contain;object-position:center bottom;transform:translateZ(0);
+  pointer-events:none;user-select:none;-webkit-user-drag:none;
+  transition:opacity .75s var(--ease)}
+.figure-plates .hero-img.is-night{opacity:1}
+.figure-plates .hero-img.is-day{opacity:0}
+html[data-theme="light"] .figure-plates .hero-img.is-night{opacity:0}
+html[data-theme="light"] .figure-plates .hero-img.is-day{opacity:1}
+/* reveal — the opposite plate at full strength under the cursor oval */
+.figure-plates .hero-img.is-reveal{opacity:0;z-index:2;
+  -webkit-mask-image:radial-gradient(50% 50% at 50% 50%,#000 55%,transparent 100%);
+          mask-image:radial-gradient(50% 50% at 50% 50%,#000 55%,transparent 100%);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-size:var(--rv-w) var(--rv-h);mask-size:var(--rv-w) var(--rv-h);
+  -webkit-mask-position:var(--rv-x,-999px) var(--rv-y,-999px);
+          mask-position:var(--rv-x,-999px) var(--rv-y,-999px);
+  transition:opacity .4s ease-out;will-change:opacity}
+/* only the opposite theme's layers exist: in night the rv-day img is the
+   reveal and rv-night is display:none; in light, inverted */
+.figure-plates .hero-img.rv-night{display:none}
+html[data-theme="light"] .figure-plates .hero-img.rv-night{display:block}
+html[data-theme="light"] .figure-plates .hero-img.rv-day{display:none}
+.figure-plates.is-reveal .hero-img.is-reveal{opacity:1;transition:none}
+/* ── D17 · hero-wide cursor light ──────────────────────────────────────────
+   The whole hero flips under the ellipse: .hero-light paints the OPPOSITE
+   canvas behind everything, so the ink-only text duplicates sit on a canvas
+   that flips with them — no boxes, no erase. Every layer (figure imgs, text
+   duplicates, the light) shares one mask/gradient geometry: a 90px circle,
+   55%→transparent falloff, positioned from the shared --rv-x/--rv-y in each
+   element's own coords. Nav pill and CTAs sit above the light and never
+   change. */
+.hb-lead,.hero-title,.hb-quote,.hero-body,.fig-strip,.hb-meta{position:relative}
+.rv-text{position:absolute;inset:0;z-index:2;pointer-events:none;user-select:none;
+  opacity:0;transition:opacity .4s ease-out;will-change:opacity;
+  -webkit-mask-image:radial-gradient(50% 50% at 50% 50%,#000 55%,transparent 100%);
+          mask-image:radial-gradient(50% 50% at 50% 50%,#000 55%,transparent 100%);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-size:var(--rv-w) var(--rv-h);mask-size:var(--rv-w) var(--rv-h);
+  -webkit-mask-position:var(--rv-x,-999px) var(--rv-y,-999px);
+          mask-position:var(--rv-x,-999px) var(--rv-y,-999px)}
+.hero.is-rv .rv-text{opacity:1;transition:none}
+/* D18: the light outlives the hero's box. top/bottom -400px give the patch
+   room to travel fully past the hero edge (paint reach is one semi-axis,
+   45px, so 400px of headroom can never clip the gradient); the cached
+   rect-delta mapping absorbs the larger box with no JS change. Left/right
+   stay at the hero bounds — the hero is full-bleed, so sideways exits happen
+   at the viewport edge and the viewport clips there anyway; extending
+   horizontally would only create document scrollWidth overflow. Visibility
+   now rides the reveal state like the text layers: hidden by default,
+   snapped on with .is-rv, and .is-exit fades it while the exit glide
+   carries it off screen. */
+.hero-light{position:absolute;left:0;right:0;top:-400px;bottom:-400px;z-index:0;pointer-events:none;opacity:0;
+  background-image:radial-gradient(50% 50% at 50% 50%,var(--rv-patch) 55%,transparent 100%);
+  background-size:var(--rv-w) var(--rv-h);
+  background-position:var(--rv-x,-999px) var(--rv-y,-999px);
+  background-repeat:no-repeat;
+  transition:opacity .4s ease-out}
+.hero.is-rv .hero-light{opacity:1;transition:none}
+.hero.is-exit .hero-light{opacity:0;transition:opacity .38s ease-out}
+/* meta strips flip with the canvas (user call): same duplicate mechanism */
+.rv-strip{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.35rem 1.1rem}
+/* night canvas reveals the day wardrobe (light-theme token values) */
+.hb-lead .rv-text,.hero-title .rv-text{color:#171009}
+.hero-title .rv-text .acc{color:#C23B22}
+.hb-quote .rv-text{color:#6B5F50}
+.hero-body .rv-text{color:#463A2C}
+.hero-body .rv-text strong{color:#171009}
+.fig-strip .rv-text{color:#463A2C}
+.fig-strip .rv-text .dim{color:#6B5F50}
+.fig-strip .rv-text .fig-pill{border-color:#171009}
+.hb-meta .rv-text{color:#6B5F50}
+/* day canvas reveals the night wardrobe */
+html[data-theme="light"] .hb-lead .rv-text,
+html[data-theme="light"] .hero-title .rv-text{color:#F3E8D8}
+html[data-theme="light"] .hero-title .rv-text .acc{color:#E03030}
+html[data-theme="light"] .hb-quote .rv-text{color:#8B7F6E}
+html[data-theme="light"] .hero-body .rv-text{color:#C9BCA9}
+html[data-theme="light"] .hero-body .rv-text strong{color:#F3E8D8}
+html[data-theme="light"] .fig-strip .rv-text{color:#C9BCA9}
+html[data-theme="light"] .fig-strip .rv-text .dim{color:#8B7F6E}
+html[data-theme="light"] .fig-strip .rv-text .fig-pill{border-color:#F3E8D8}
+html[data-theme="light"] .hb-meta .rv-text{color:#8B7F6E}
+/* the former hero-top identity strip, demoted to a caption under the plate:
+   name + location, the ©2026 badge, availability — mono, wrapping, centred */
+.fig-strip{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:.35rem 1.1rem;font-family:var(--mono);font-weight:400;font-size:10px;
+  line-height:1.2;letter-spacing:.16em;text-transform:uppercase;color:var(--text)}
+.fig-strip .dim{color:var(--text-dim)}
+.fig-pill{border:1px solid var(--white);border-radius:999px;padding:3px 12px}
+.hero-body{color:var(--text)}
+/* epigraph above the hero body — handwritten register (the leading red dash
+   was an em dash and is gone per the no-dashes call) */
+.hb-quote{font-family:var(--fh);font-weight:600;font-size:22px;line-height:1.25;
+  color:var(--text-dim);margin-bottom:1.1rem}
+.hero-body strong{color:var(--white);font-weight:500}
+.hero-right{max-width:34ch;min-width:0}
+.hero-right .hero-body{margin-top:0;font-size:15.5px;line-height:1.6}
+.hb-meta{margin-top:20px;display:flex;justify-content:space-between;gap:1rem;
+  font-family:var(--mono);font-size:14px;letter-spacing:.02em;color:var(--text-dim)}
+/* short viewports: grid rows + figure cap must share one screen */
+@media (max-height:820px){
+  .hero{padding-top:5.25rem;padding-bottom:clamp(1.4rem,3vh,2rem)}
+  .hero-title{font-size:clamp(2.9rem,4.6vw,4.6rem)}
+  .figure-plates{max-width:calc(min(74svh,660px) * 1600/2862);max-height:min(74svh,660px)}
+  .hb-lead{font-size:16px}
+  .hero-right .hero-body{font-size:14.5px;line-height:1.55}
+}
+/* under ~515px the pill wraps to two rows (brand row / actions row) so the
+   menu, CTA and labelled switch all stay visible — the hero must clear it */
+@media (max-width:520px){.hero{padding-top:8rem}}
+
+.btn{font-family:var(--fd);font-size:12px;font-weight:500;text-transform:uppercase;
+  letter-spacing:.12em;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;
+  background:var(--red-solid);color:#F3E8D8;padding:1rem 1.7rem;
+  transition:background-color .25s,transform .2s var(--ease)}
+.btn:hover{background:var(--red);transform:translateY(-1px)}
+.link-u{font-family:var(--fd);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--white);text-decoration:none;padding-bottom:4px;border-bottom:1px solid var(--border);
+  transition:border-color .3s,color .2s}
+.link-u:hover{border-bottom-color:var(--red);color:var(--red-text)}
+
+/* vertical rail */
+.rail{position:fixed;right:calc(var(--gut) * .32);top:50%;transform:translateY(-50%) rotate(180deg);
+  writing-mode:vertical-rl;font-family:var(--mono);font-size:10px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--text-dim);z-index:90;pointer-events:none;
+  opacity:0;transition:opacity .6s var(--ease)}
+.rail.is-on{opacity:.85}
+.rail span{color:var(--red-text)}
+
+/* ── §02 work index ──────────────────────────────────────────────────────── */
+.work{padding-block:clamp(4rem,10vh,7rem)}
+.work-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;
+  flex-wrap:wrap;margin-bottom:clamp(2rem,4vh,3rem)}
+/* the work-head lede ("Six builds. …") was removed with the 01/06 counter
+   (D11) — no .body remains inside .work-head */
+/* work index — the project card grid, ported from index.html: number / media
+   / main. Media frame holds a 4:3 box open even if an asset 404s (no CLS);
+   height:auto on the img is LOAD-BEARING — the width/height ATTRIBUTES are
+   presentational hints and would defeat aspect-ratio, painting thumbs at
+   native scale behind the 260px frame. */
+.project{padding:2.2rem 0;border-top:1px solid var(--border-lo);display:grid;
+  grid-template-columns:84px 1fr;gap:clamp(1rem,3vw,2.25rem);align-items:start}
 .work-index .project:last-child{border-bottom:1px solid var(--border-lo)}
-/* ── WORK-INDEX MEDIA COLUMN (design/work-index-media-spec.md) ──────────────
-   TRAP A: every rule below is scoped #work .project. #background re-uses the
-   bare .project class for its Education + Skills rows (glyph, no media) — an
-   unscoped 3-column rule would shove the degree list and the whole skill-chip
-   cloud into the 260px media track. The base rule above stays 84px 1fr.      */
 #work .project{grid-template-columns:84px 260px 1fr}
-/* 4:3 on BOTH frame and img: frame holds the box open if the asset 404s (no CLS);
-   img derives height from 100% width. height:auto is LOAD-BEARING: the
-   width/height ATTRIBUTES on each <img> are presentational hints, and an
-   un-overridden height attribute (768/1315/1200/864px) defeats aspect-ratio —
-   both dimensions definite — so object-fit:cover painted every thumb at native
-   scale behind the 260x195 frame (client "all zoomed in", 2026-10-09).
-   Hairline 1px var(--border) is the theme
-   bridge — white_crane_studio/ui.png measures 0.82:1 against the dark band. */
-#work .project-media{display:block;aspect-ratio:4/3;border:1px solid var(--border);border-radius:2px;overflow:hidden;background:var(--border-lo);min-width:0;transition:border-color .28s var(--ease-out)}
-#work .project-media img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:center;transition:opacity .28s var(--ease-out)}
-/* Hover = one opacity step + hairline to interaction red. No scale, no lift,
-   no shadow, no filter. :focus-within is required: keyboard users tabbing to
-   a.project-title must get the same affordance. */
+#work .project-media{display:block;aspect-ratio:4/3;border:1px solid var(--border);
+  border-radius:2px;overflow:hidden;background:var(--border-lo);min-width:0;
+  transition:border-color .28s var(--ease)}
+#work .project-media img{display:block;width:100%;height:auto;aspect-ratio:4/3;
+  object-fit:cover;object-position:center;transition:opacity .28s var(--ease)}
+/* hover = one opacity step + hairline to red. No scale, no lift, no shadow.
+   :focus-within so keyboard users tabbing to the title get the same affordance */
 #work .project:hover .project-media,
 #work .project:focus-within .project-media{border-color:var(--red)}
 #work .project:hover .project-media img,
 #work .project:focus-within .project-media img{opacity:.84}
-/* Row 04 Pratt — real photography hero (Ken Bai's own lab photo, EXIF-stripped); interim glyph tile retired 2026-10-09. */
-@media (prefers-reduced-motion:reduce){
-  #work .project-media,
-  #work .project-media img{transition:none}
-}
 .project-main{min-width:0}
-.project-num{font-family:var(--fd);font-size:clamp(2.6rem,5vw,3.8rem);font-weight:700;line-height:1;opacity:.14}
-.project.pj-red .project-num{color:var(--red)}.project.pj-gold .project-num{color:var(--gold)}.project.pj-green .project-num{color:var(--green)}.project.pj-violet .project-num{color:var(--violet)}.project.pj-blue .project-num{color:var(--blue)}.project.pj-white .project-num{color:var(--white)}
-/* Ghost-glyph rails (MCP Lucide, 2px-stroke outline) - same scale + transparency as numerals */
-.project-glyph{font-size:clamp(2.6rem,5vw,3.8rem);line-height:1;opacity:.14;display:flex;align-items:flex-start}
-.project-glyph svg{width:1em;height:1em;display:block}
-.glyph-gold{color:var(--gold)}.glyph-blue{color:var(--blue)}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.work-group{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:9px;margin:3rem 0 .25rem}
-.work-group:first-of-type{margin-top:2.5rem}
+.project-num{font-family:var(--fd);font-size:clamp(2.6rem,5vw,3.8rem);font-weight:700;
+  line-height:1;opacity:.14}
+.project.pj-red .project-num{color:var(--red)}
+.project.pj-gold .project-num{color:var(--gold)}
+.project.pj-green .project-num{color:var(--green)}
+.project.pj-violet .project-num{color:var(--violet)}
+.project.pj-blue .project-num{color:var(--blue)}
+.project.pj-white .project-num{color:var(--white)}
+.work-group{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:9px;
+  margin:3rem 0 .25rem}
+.work-group:first-of-type{margin-top:0}
 .work-group .dot{width:9px;height:9px;background:var(--red);flex-shrink:0;transform:rotate(45deg);opacity:.8}
 .work-group::after{content:'';height:1px;background:var(--border-lo);flex:1;margin-left:1rem}
 .project-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.7rem}
-.project-title{font-family:var(--fd);font-size:clamp(1.4rem,2.6vw,1.75rem);font-weight:600;color:var(--white);letter-spacing:-.01em;transition:color .2s}
+.project-title{font-family:var(--fd);font-size:clamp(1.4rem,2.6vw,1.75rem);font-weight:600;
+  color:var(--white);letter-spacing:-.01em;transition:color .2s}
 a.project-title:hover{color:var(--red)}
 .project-role{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);margin-bottom:.8rem}
-.cat-pill{font-family:var(--mono);font-size:10px;font-weight:500;padding:3px 9px;border-radius:2px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-fixed);flex-shrink:0}
-.cat-pill.c-red{background:var(--red-solid);color:var(--paper-fixed)}.cat-pill.c-gold{background:var(--gold)}.cat-pill.c-green{background:var(--green)}.cat-pill.c-violet{background:var(--violet);color:var(--ink-fixed)}.cat-pill.c-blue{background:var(--blue);color:var(--ink-fixed)}.cat-pill.c-white{background:var(--white);color:var(--ink-fixed)}
+.cat-pill{font-family:var(--mono);font-size:10px;font-weight:500;padding:3px 9px;
+  border-radius:2px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-fixed);flex-shrink:0}
+.cat-pill.c-red{background:var(--red-solid);color:var(--paper-fixed)}
+.cat-pill.c-gold{background:var(--gold)}
+.cat-pill.c-green{background:var(--green)}
+.cat-pill.c-violet{background:var(--violet);color:var(--ink-fixed)}
+.cat-pill.c-blue{background:var(--blue);color:var(--ink-fixed)}
+.cat-pill.c-white{background:var(--white);color:var(--ink-fixed)}
 html[data-theme="light"] .cat-pill.c-white{color:var(--paper-fixed)}
 .project-desc{font-size:14.5px;color:var(--text);line-height:1.75;max-width:62ch;margin-bottom:1rem}
 .project-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.35rem;list-style:none}
-.chip{font-family:var(--mono);font-size:11px;padding:4px 10px;border:1px solid var(--border);color:var(--text-dim);letter-spacing:.02em;border-radius:2px}
+.chip{font-family:var(--mono);font-size:11px;padding:4px 10px;border:1px solid var(--border);
+  color:var(--text-dim);letter-spacing:.02em;border-radius:2px}
 .project-links{display:flex;gap:1.5rem;flex-wrap:wrap}
-.link-primary{font-size:13.5px;font-weight:500;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--red);color:var(--white);display:inline-flex;align-items:center;gap:6px;padding-bottom:1px}
+.link-primary{font-size:13.5px;font-weight:500;text-decoration:underline;text-underline-offset:4px;
+  text-decoration-color:var(--red);color:var(--white);display:inline-flex;align-items:center;gap:6px;padding-bottom:1px}
 .link-primary:hover{gap:10px}
-.coda-detail{margin-top:.2rem;border-top:1px solid var(--border-lo)}
-.coda-detail summary{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);letter-spacing:.04em;cursor:pointer;padding:.8rem 0;list-style:none;display:flex;align-items:center;gap:.6rem;transition:color .2s}
-.coda-detail summary::-webkit-details-marker{display:none}
-.coda-detail summary::before{content:'';width:6px;height:6px;transform:rotate(45deg);border:1px solid var(--text-dim);flex-shrink:0;transition:transform .25s var(--ease-out),border-color .2s}
-.coda-detail[open] summary::before{transform:rotate(135deg);border-color:var(--red)}
-.coda-detail summary:hover{color:var(--red-text)}
-.coda-detail summary:hover::before{border-color:var(--red)}
-.coda-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;padding:1rem 0 .3rem;border-top:1px solid var(--border-lo)}
-.coda-cols h4{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
-.coda-cols h4::before{content:'';width:6px;height:6px;transform:rotate(45deg);flex-shrink:0}
-.coda-cols>div:nth-child(1) h4::before{background:var(--blue)}
-.coda-cols>div:nth-child(2) h4::before{background:var(--violet)}
-.coda-cols>div:nth-child(3) h4::before{background:var(--gold)}
-.coda-cols p{font-family:var(--mono);font-size:12px;color:var(--text);line-height:1.8;max-width:none}
-/* Coda rows (Education / Skills) — deliberately ranked below shipped work: smaller titles, quieter glyphs, tighter rhythm */
-.coda{padding:1.6rem 0}
-.coda .project-head{margin-bottom:.55rem}
-.coda .project-glyph{font-size:clamp(1.9rem,3.4vw,2.6rem);opacity:.1}
-.coda .project-title{font-size:clamp(1.05rem,1.9vw,1.3rem);color:var(--text)}
-/* Background rows: degrees gold-tinted, detail groups tinted */
-.edu-coda .edu-degrees{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:0 0 1rem;list-style:none;padding:0}
-.edu-degree{border:1px solid var(--border);border-left:2px solid var(--gold);border-radius:2px;padding:.85rem 1rem;background:color-mix(in srgb,var(--gold) 8%,transparent)}
-.edu-degree .deg-year{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.3rem}
-.edu-degree .deg-name{font-family:var(--fd);font-size:14.5px;font-weight:600;color:var(--white);line-height:1.4;display:block}
-.edu-degree .deg-school{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);display:block;margin-top:.25rem}
-@media print{.edu-degree{border-color:#ccc!important;background:none!important;break-inside:avoid}.edu-degree .deg-name,.edu-degree .deg-year,.edu-degree .deg-school{color:#000!important}}
-.edu-coda .coda-cols.cols-2{grid-template-columns:repeat(2,1fr)}
-@media (max-width:700px){.edu-coda .edu-degrees{grid-template-columns:1fr}.edu-coda .coda-cols.cols-2{grid-template-columns:1fr}}
-@media (max-width:700px){.coda-cols{grid-template-columns:1fr;gap:.9rem}}
+
+/* ── §03 background ──────────────────────────────────────────────────────── */
+.bg{padding-block:clamp(4rem,10vh,7rem);border-top:1px solid var(--border-lo)}
+.bg-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(2rem,6vw,6rem);margin-top:clamp(2rem,4vh,3rem)}
+.bg-block h3{font-family:var(--fd);font-size:12px;font-weight:500;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--red-text);margin-bottom:1.4rem}
+/* experience — numbered rows ported from index.html (.exp). One v3 adaptation:
+   the round li dots become the studio's rotated diamonds, and the first row
+   loses its rule (it sits directly under the h3, as .role did). */
 .exp{display:grid;grid-template-columns:84px 1fr;gap:clamp(1rem,4vw,2rem);padding:2.4rem 0;border-top:1px solid var(--border-lo)}
-.exp:last-child{border-bottom:1px solid var(--border-lo)}
+.exp:first-of-type{border-top:0;padding-top:0}
 .exp-num{font-family:var(--fd);font-size:clamp(2.2rem,4vw,3rem);font-weight:700;line-height:1;opacity:.14;color:var(--red)}
 .exp-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.3rem}
 .exp-role{font-family:var(--fd);font-size:clamp(1.25rem,2.4vw,1.5rem);font-weight:600;color:var(--white)}
@@ -289,361 +424,887 @@ html[data-theme="light"] .cat-pill.c-white{color:var(--paper-fixed)}
 .exp-sub .sub-role{color:var(--text);font-weight:500}
 .exp ul{list-style:none}
 .exp li{position:relative;padding-left:1.1rem;font-size:14.5px;color:var(--text);line-height:1.75;margin-bottom:.5rem;max-width:72ch}
-.exp li::before{content:'';position:absolute;left:0;top:.78em;width:5px;height:5px;background:var(--red);border-radius:50%}
-/* 641–899px: three columns die here (main column falls under ~430px at 900px), so
-   drop back to 84px 1fr and hang the thumb at the head of the text column. */
-@media (max-width:899px){
+.exp li::before{content:'';position:absolute;left:0;top:.72em;width:5px;height:5px;background:var(--red);opacity:.45;transform:rotate(45deg)}
+.caps{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.2rem}
+.cap{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text);border:1px solid var(--border);padding:.4rem .65rem}
+.edu{padding-block:1rem;border-top:var(--rule);display:grid;gap:.25rem}
+.edu:first-of-type{border-top:0;padding-top:0}
+.edu-year{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--red-text);text-transform:uppercase}
+.edu-name{font-family:var(--fd);font-size:.98rem;font-weight:500;text-transform:uppercase;color:var(--white);line-height:1.2}
+.edu-school{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--text-dim);text-transform:uppercase}
+
+/* ── §04 connect ─────────────────────────────────────────────────────────── */
+.connect{background:#2A1613;color:#F3E8D8;border-top:1px solid var(--border-lo)}
+.connect .wrap{min-height:min(88svh,820px);display:flex;flex-direction:column;justify-content:center;
+  padding-block:clamp(4rem,10vh,7rem)}
+.connect .label{color:color-mix(in srgb,#F3E8D8 62%,transparent)}
+.connect .d{color:#F3E8D8}
+/* connect lede — the ask, handwritten register (D13): Caveat 600 at body-adjacent
+   size, cream ink lifted to 80% (Caveat's thin strokes need a touch more ink
+   than the 74% the grotesque .body used here). The two-sentence lede was cut to
+   its one working line. */
+.connect-lede{font-family:var(--fh);font-weight:600;
+  font-size:clamp(1.5rem,2.4vw,2rem);line-height:1.3;max-width:40ch;margin-top:1.4rem;
+  color:color-mix(in srgb,#F3E8D8 80%,transparent)}
+.connect-actions{display:flex;flex-wrap:wrap;gap:1.2rem 2rem;align-items:center;margin-top:clamp(2rem,4vh,3rem)}
+.connect .btn{background:#F3E8D8;color:#2A1613}
+.connect .btn:hover{background:#fff;transform:translateY(-1px)}
+.connect-list{display:flex;flex-wrap:wrap;gap:.6rem 2rem;margin-top:2.4rem;
+  padding-top:1.6rem;border-top:1px dashed rgba(243,232,216,.22)}
+.connect-list a{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:color-mix(in srgb,#F3E8D8 74%,transparent);text-decoration:none;padding-bottom:3px;
+  border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.connect-list a:hover{color:#F3E8D8;border-bottom-color:#E03030}
+
+/* ── footer ──────────────────────────────────────────────────────────────── */
+.foot{background:var(--black);border-top:1px solid var(--border-lo);
+  padding:1.6rem var(--gut);display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap}
+.foot-brand{display:flex;align-items:center;gap:.6rem;font-family:var(--fd);font-size:11px;
+  font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim)}
+.foot-brand svg{width:16px;height:16px;flex-shrink:0}
+.foot-sign{font-family:var(--fh);font-weight:600;font-size:15px;color:var(--red-text)}
+.foot-copy{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--text-dim)}
+
+/* ── reveal ──────────────────────────────────────────────────────────────── */
+[data-rv]{opacity:0;transform:translateY(14px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+[data-rv].is-in{opacity:1;transform:none}
+/* overflow-reserving wrapper (figure plates): the entrance rides the wrapper,
+   never create a transform/animation on it or it becomes the containing block
+   for its absolute plates at layout time and the reserved box collapses */
+
+/* ── motion layer ────────────────────────────────────────────────────────── */
+/* stagger: children inside [data-stagger] cascade instead of arriving at once */
+[data-rv]{transition-delay:calc(var(--i,0) * 80ms)}
+html.has-smooth{scroll-behavior:auto}
+
+/* masked headings — the line rises out of its own box. The clip+transform ride
+   an INNER .mask-in wrapper, not the observed element: an element whose own
+   clip-path hides it (inset bottom 104%) reports an empty intersection rect,
+   so IntersectionObserver never fires and the heading stays invisible FOREVER
+   (measured headed AND headless — IntersectionObserver computes against the
+   clipped geometry). .mask itself stays unclipped so IO can see it. */
+.mask .mask-in{display:block;clip-path:inset(-16% 0 104% 0);transform:translateY(.09em);
+  transition:clip-path 1.05s var(--ease),transform 1.05s var(--ease)}
+.mask.is-in .mask-in{clip-path:inset(-16% 0 -16% 0);transform:none}
+
+main, footer{position:relative;z-index:1}
+/* ── marquee ─────────────────────────────────────────────────────────────── */
+/* Plain canvas strip between the hero and the work index — the fold-texture
+   backdrop was removed (client call): no ::after layer, no --fold tokens.
+   The dashed rules carry the band's edges; text sits directly on --black,
+   which matches the canvas above and below, so there is no seam.
+   D4's "exactly once, full-bleed" rule is retired along with the asset. */
+#root{isolation:isolate}
+.marquee{position:relative;isolation:isolate;
+  background:var(--black);
+  overflow:hidden;border-top:var(--rule);border-bottom:var(--rule);padding-block:1.05rem;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
+.mq-track{position:relative;z-index:1;display:flex;width:max-content;animation:mq 46s linear infinite}
+.mq-track > span{display:inline-flex;align-items:center;gap:2.25rem;
+  font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--text-dim);white-space:nowrap}
+/* the dot's air lives INSIDE the span (margin-right, not track gap): a flex gap
+   on .mq-track would desync the -50% loop (track width = exactly `want` copies).
+   2.25rem both sides — the D14 call; the old build had 0 after the dot. */
+.mq-dia{display:block;width:5px;height:5px;background:var(--red);transform:rotate(45deg);flex-shrink:0;margin-right:2.25rem}
+@keyframes mq{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+.marquee:hover .mq-track{animation-play-state:paused}
+
+/* ── cursor companion (pointer devices only) ─────────────────────────────── */
+.cursor{position:fixed;left:0;top:0;width:26px;height:26px;margin:-13px 0 0 -13px;
+  border:1px solid var(--white);border-radius:50%;pointer-events:none;z-index:300;
+  opacity:0;mix-blend-mode:difference;
+  transition:opacity .35s var(--ease),width .3s var(--ease),height .3s var(--ease),
+    margin .3s var(--ease),background-color .3s,border-color .3s}
+.cursor.is-on{opacity:.55}
+.cursor.is-hot{width:52px;height:52px;margin:-26px 0 0 -26px;opacity:.9;
+  background:color-mix(in srgb,var(--white) 16%,transparent);border-color:var(--white)}
+@media (pointer:coarse){.cursor{display:none!important}}
+
+
+/* ── responsive ──────────────────────────────────────────────────────────── */
+@media (max-width:1100px){
+  .rail{display:none}
+}
+@media (max-width:900px){
+  /* three project columns die here (main column falls under ~430px), so drop
+     back to 84px 1fr and hang the thumb at the head of the text column */
   #work .project{grid-template-columns:84px 1fr}
   #work .project-num{grid-column:1;grid-row:1}
   #work .project-media{grid-column:2;grid-row:1;max-width:220px}
   #work .project-main{grid-column:2;grid-row:2}
+  .bg-grid{grid-template-columns:1fr;gap:2.6rem}
+  /* hero stack: the side tracks have nothing to balance, so the grid folds to
+     one column — figure first, copy blocks left-aligned under it */
+  .hero-grid{grid-template-columns:1fr}
+  .hero-center{order:-1}
+  .hero-left,.hero-right{text-align:left;justify-self:start}
+  .hero-actions{justify-content:flex-start}
+  .hero-title{font-size:clamp(2.6rem,8vw,4.6rem)}
 }
-/* TRAP B: #work .project is specificity 1-1-0 and out-ranks the 0-1-0 collapse
-   below, so every override here repeats #work — otherwise mobile stays 3-column. */
-@media (max-width:640px){.project,.exp{grid-template-columns:1fr}.project-num,.exp-num,.project-glyph{display:none}.coda-cols{grid-template-columns:1fr}
+@media (max-width:820px){
+  /* the dropdown anchors to the pill itself — .nav-pill is position:relative,
+     so top:100% lands under the capsule at its full rounded width */
+  .nav-links{display:none;position:absolute;top:calc(100% + 10px);left:0;right:0;
+    flex-direction:column;align-items:flex-start;gap:0;
+    background:var(--black);border:1px solid var(--border);border-radius:18px;
+    padding:.5rem 1rem}
+  .nav-links[data-open="true"]{display:flex}
+  .nav-links a{display:block;width:100%;padding:.85rem 0;border-bottom:var(--rule)}
+  .nav-links li:last-child a{border-bottom:0}
+  .menu{display:inline-flex}
+  /* while the overlay is open the page behind it must not scroll */
+  html.menu-open body{overflow:hidden}
+  /* TRAP-B collapse (index @640 → v3's phone breakpoint): #work .project is
+     specificity 1-1-0 and out-ranks the bare 0-1-0 collapse, so every override
+     repeats #work — otherwise mobile stays 3-column */
+  .project,.exp{grid-template-columns:1fr}
+  .project-num,.exp-num{display:none}
   #work .project{grid-template-columns:1fr}
   #work .project-media{grid-column:1;grid-row:1;max-width:none}
   #work .project-main{grid-column:1;grid-row:2}
 }
-.connect-headline{font-family:var(--fd);font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--paper-fixed);font-size:clamp(2.6rem,7vw,4.8rem);max-width:12ch;margin-bottom:1.25rem}
-.connect-lede{font-size:16px;color:rgba(236,234,228,.65);max-width:46ch;line-height:1.7;margin-bottom:1.5rem}
-.connect-links{display:flex;flex-direction:column}
-.connect-link{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.2rem .25rem;border-top:1px solid rgba(224,48,48,.22);text-decoration:none;color:rgba(236,234,228,.85);font-size:clamp(1.05rem,2.4vw,1.35rem);transition:padding-left .3s var(--ease-out),padding-right .3s var(--ease-out)}
-.connect-link:last-child{border-bottom:1px solid rgba(224,48,48,.22)}
-.connect-link:hover{color:var(--paper-fixed);padding-left:1rem;padding-right:.5rem}
-.connect-link .link-left{display:inline-flex;align-items:center;gap:12px;min-width:0}
-.connect-link .link-arrow{color:var(--red);opacity:.6;transition:transform .25s var(--ease-out);flex-shrink:0}
-.connect-link:hover .link-arrow{transform:translate(3px,-3px)}
-footer{padding:1.6rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;border-top:1px solid var(--border-lo);position:relative;z-index:1;background:var(--black)}
-/* .footer-brand typography: canonical rule in wc-tokens.css */
-.footer-copy{font-family:var(--mono);font-size:11.5px;color:var(--text-dim)}
-.footer-tagline{font-family:var(--fh);font-weight:600;font-size:13px;color:var(--red-text)}
-.fade{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
-.fade.visible{opacity:1;transform:none}
-.fade [data-stagger]{opacity:0;transform:translateY(16px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out)}
-.fade.visible [data-stagger]{opacity:1;transform:none}
-.fade.visible [data-stagger="1"]{transition-delay:.08s}.fade.visible [data-stagger="2"]{transition-delay:.16s}.fade.visible [data-stagger="3"]{transition-delay:.24s}.fade.visible [data-stagger="4"]{transition-delay:.32s}
-@media print{.fade,.fade [data-stagger]{opacity:1!important;transform:none!important}.hero-mark{display:none}footer{background:#fff;color:#000}body{background:#fff;color:#000}nav,.hero-actions,.scroll-cue,.marquee,.theme-toggle,.menu-btn,.hero-status,.hero-role{display:none}.hero{min-height:0;padding:1.5rem 0}.section-inner{padding:1.5rem 0}.wrap{max-width:100%;padding:0 .5in}.project,.exp{break-inside:avoid}*{animation:none!important;transition:none!important}.band-surface,.band-maroon,.band-black{background:#fff;color:#000}h2,.exp-role,h1,.stat-num,.connect-headline{color:#000}.project-desc,.exp li,.lede,.coda-cols p{color:#222}.project,.exp{border-color:#ccc}.chip{border-color:#999;color:#111}.cat-pill{background:#eee!important;color:#000;border-color:#999}.btn-primary,.nav-cta{background:#000;color:#fff}.eyebrow,.exp-meta,.hero-contact,.stat-label{color:#444}.coda-detail:not([open])>:not(summary){display:block}.coda-detail summary{color:#444}.coda-detail,.coda-cols{border-color:#ccc}.coda-cols h4::before{background:#000!important}}
-@media (prefers-reduced-motion:reduce){.marquee-track,.hero-mark,.hero::after,.scroll-cue .mouse::after,.hero-status .pulse-dot,.type-caret,.w-word{animation:none!important}.hero::after{background:none!important}.w-word{opacity:1;filter:none}.fade,.fade [data-stagger]{opacity:1;transform:none;transition:none}.hero-still{transition:none}.hero-transition{display:none!important}}
-@media (max-width:360px){h1 .line{font-size:clamp(2.6rem,15vw,3rem)}.nav-pill{padding:.6rem .8rem .6rem 1rem}.nav-cta{padding:10px 16px}}
+@media (max-width:360px){
+  .nav-pill{padding:.6rem .8rem .6rem 1rem}
+  .nav-cta{padding:10px 16px}
+}
+@media (max-width:560px){
+  .foot{flex-direction:column;align-items:flex-start;gap:.7rem}
+}
+
+/* ── motion / print ──────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;
+    transition-duration:.01ms!important}
+  .hero-title .line span{transform:none}
+  [data-rv]{opacity:1;transform:none}
+  .mask{clip-path:none;transform:none}
+  .mask .mask-in{clip-path:none;transform:none}
+  .hero-img{transform:none}
+  .mq-track{animation:none}
+  .rv-text,.hero-light{display:none}
+  .cursor{display:none!important}
+}
+@media print{
+  .nav,.switch,.menu,.rail,.skip,.marquee,.cursor{display:none!important}
+  .rv-text,.hero-light{display:none!important}
+  body{background:#fff;color:#111}
+  .hero,.connect{min-height:0;padding:1.5rem 0;background:#fff;color:#111}
+  .d,.body,.label,.fig-strip,.hb-quote,.connect-lede{color:#111}
+  .fig-strip .dim{color:#111}
+  .fig-pill{border-color:#111}
+  .mask{clip-path:none!important;transform:none!important}
+  .mask .mask-in{clip-path:none!important;transform:none!important}
+  /* the plate stack is the only art: print the night plate as a plain static
+     img — the reveal/day layers (mask vars included) must not paint */
+  .figure-plates .hero-img{position:static;display:none}
+  .figure-plates .hero-img.is-night{display:block;width:100%;height:auto}
+  .foot{border-top:1px solid #ccc}
+}
+/* touch / no-hover devices never engage (JS gate agrees) — keep layers out */
+@media (hover:none),(pointer:coarse){.rv-text,.hero-light{display:none}}
 </style>
-<noscript><style>.fade,.fade [data-stagger]{opacity:1!important;transform:none!important;transition:none!important}.w-word{opacity:1!important;filter:none!important}.marquee-track{animation:none!important}</style></noscript>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
-<nav id="nav" aria-label="Primary">
-<div class="nav-pill">
-<a href="#home" class="nav-logo"><svg class="crane" width="26" height="26" viewBox="-195 -194 2389 2389" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor"/><polygon points="709,693 5,696 357,1306" fill="currentColor"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/><polygon class="crane-accent" points="1723,197 1861,435 1994,204"/></svg>White Crane Labs</a>
-<div class="nav-right">
-<ul class="nav-links" id="primaryNav">
-<li><a href="#work">Work</a></li>
-<li><a href="About.html">About</a></li>
-<li><a href="#connect">Connect</a></li>
-</ul>
-<button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark mode" aria-pressed="false"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg></span><span class="toggle-track"><span class="toggle-thumb"></span></span></button>
-<a href="Ken_Bai_Resume.pdf" class="nav-cta" download>Download resume</a>
-<button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu"><span class="icon-slot icon-open" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h16M4 19h16"/></svg></span><span class="icon-slot icon-close" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span></button>
-</div>
-</div>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <div class="nav-pill">
+    <a class="brand" href="#top" aria-label="White Crane Labs, back to top">
+      <svg viewBox="-195 -194 2389 2389" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor"/><polygon points="709,693 5,696 357,1306" fill="currentColor"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/><polygon class="crane-accent" points="1723,197 1861,435 1994,204"/></svg>
+      <span class="brand-name">White Crane</span>
+    </a>
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#background">Background</a></li>
+        <li><a href="#connect">Connect</a></li>
+      </ul>
+      <button class="switch" id="themeSwitch" type="button" aria-pressed="false" aria-label="Night, switch to day mode">
+        <span class="switch-label" id="switchLabel">Night</span>
+        <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+      </button>
+      <a class="nav-cta" href="Ken_Bai_Resume.pdf" download>Download resume</a>
+      <button class="menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+      </button>
+    </div>
+  </div>
 </nav>
+
+<div class="rail" id="rail" aria-hidden="true">White Crane <span>·</span> Portfolio 2026</div>
+
 <main id="main">
-<section id="home" class="band-black hero" aria-labelledby="pageTitle">
-<svg class="hero-mark" viewBox="-195 -194 2389 2389" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor"/><polygon points="709,693 5,696 357,1306" fill="currentColor"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/><polygon class="crane-accent" points="1723,197 1861,435 1994,204"/></svg>
-<div class="hero-media" id="heroMedia" aria-hidden="true">
-<picture><source media="(max-aspect-ratio: 1/1)" type="image/webp" srcset="assets/White%20Crane%20Lab%20Hero/dark-portrait-1536.webp"><source media="(max-aspect-ratio: 1/1)" srcset="assets/White%20Crane%20Lab%20Hero/dark-portrait.png"><source type="image/webp" srcset="assets/White%20Crane%20Lab%20Hero/dark-mode-2048.webp"><img class="hero-still is-dark" src="assets/White%20Crane%20Lab%20Hero/Dark%20Mode.png" alt="" fetchpriority="high" decoding="async"></picture>
-<picture><source media="(max-aspect-ratio: 1/1)" type="image/webp" srcset="assets/White%20Crane%20Lab%20Hero/light-portrait-1536.webp"><source media="(max-aspect-ratio: 1/1)" srcset="assets/White%20Crane%20Lab%20Hero/light-portrait.png"><source type="image/webp" srcset="assets/White%20Crane%20Lab%20Hero/light-mode-2048.webp"><img class="hero-still is-light" src="assets/White%20Crane%20Lab%20Hero/Light%20Mode.png" alt="" loading="eager" decoding="async"></picture>
-<video class="hero-transition" id="heroTransition" muted playsinline preload="none" poster="assets/White%20Crane%20Lab%20Hero/transition-poster.png"></video>
-<div class="hero-scrim"></div>
-</div>
-<div class="wrap hero-inner">
-<div class="hero-status"><span class="pulse-dot" aria-hidden="true"></span>Creative Technology · NYC</div>
-<h1 id="pageTitle"><span class="line"><span class="w-word">Ken</span> <span class="w-word">Bai</span></span><span class="line"><span class="w-word">Creative</span></span><span class="line"><span class="w-word">Technologist</span></span></h1>
-<p class="hero-role"><span>Building</span> <span class="type-slot" id="typeSlot" aria-hidden="true"></span><span class="sr-only">AI workflows, generative systems, creative infrastructure, human-in-the-loop tools.</span><span class="type-caret" aria-hidden="true"></span></p>
-<div class="hero-actions">
-<a href="#work" class="btn-primary">View the work</a>
-<a href="Ken_Bai_Resume.pdf" class="btn-ghost" download>Download resume <span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m9 12v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg></span></a>
-</div>
-<div class="hero-contact">
-<a href="mailto:Kenbai1027@gmail.com">Kenbai1027@gmail.com</a><span class="sep" aria-hidden="true">·</span>
-<a href="tel:+19174287990">917-428-7990</a><span class="sep" aria-hidden="true">·</span>
-<span>Queens, NY</span><span class="sep" aria-hidden="true">·</span>
-<a href="https://www.linkedin.com/in/ken-bai-916228158" target="_blank" rel="noopener">LinkedIn <span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a><span class="sep" aria-hidden="true">·</span>
-<a href="https://github.com/ChairmanWCD" target="_blank" rel="noopener">GitHub <span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
-</div>
-<div class="hero-stats">
-<div class="stat"><span class="stat-top" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594zM20 2v4m2-2h-4"/><circle cx="4" cy="20" r="2"/></svg></span><span class="stat-num">12+</span><span class="stat-label">YEARS IN PRACTICE</span></div>
-<div class="stat"><span class="stat-top" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg></span><span class="stat-num">20+</span><span class="stat-label">STAFF MANAGED</span></div>
-<div class="stat"><span class="stat-top" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v2m0-20v2m5 16v2m0-20v2M2 12h2m-2 5h2M2 7h2m16 5h2m-2 5h2M20 7h2M7 20v2M7 2v2"/><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="8" height="8" x="8" y="8" rx="1"/></svg></span><span class="stat-num">500+</span><span class="stat-label">PRATT USERS ONBOARDED</span></div>
-<div class="stat"><span class="stat-num">NYC</span><span class="stat-label">BASED · QUEENS</span></div>
-</div>
-</div>
-<div class="scroll-cue" aria-hidden="true"><div class="mouse"></div><span>Scroll</span></div>
+<span id="top"></span>
+
+<!-- ══ 01 · HERO — the operator, full figure (absorbs former §02) ═══════════ -->
+<section class="hero" id="about" aria-labelledby="heroTitle">
+  <div class="hero-light" aria-hidden="true"></div>
+  <div class="hero-grid gut">
+    <div class="hero-left">
+      <h1 class="d hero-title" id="heroTitle">
+        <span class="line"><span>Ken Bai</span></span>
+        <span class="line"><span class="acc">Creative</span></span>
+        <span class="line"><span>Technologist</span></span>
+        <span class="rv-text" aria-hidden="true"><span class="line"><span>Ken Bai</span></span><span class="line"><span class="acc">Creative</span></span><span class="line"><span>Technologist</span></span></span>
+      </h1>
+      <p class="hb-lead">Creative technology<br>human in the loop, always.<span class="rv-text" aria-hidden="true">Creative technology<br>human in the loop, always.</span></p>
+      <div class="hero-actions">
+        <a class="btn" href="#work">View the work</a>
+        <a class="link-u" href="Ken_Bai_Resume.pdf" download>Download resume</a>
+      </div>
+    </div>
+
+    <div class="hero-center" data-rv>
+      <div class="figure-plates" aria-hidden="true">
+        <img class="hero-img is-night" src="assets/hero-v3/figure-night-1600.webp"
+             srcset="assets/hero-v3/figure-night-900.webp 900w, assets/hero-v3/figure-night-1600.webp 1600w"
+             sizes="(max-width:900px) 70vw, 34vw" width="1600" height="2862" alt="" fetchpriority="high" decoding="async">
+        <img class="hero-img is-day" src="assets/hero-v3/figure-day-1600.webp"
+             srcset="assets/hero-v3/figure-day-900.webp 900w, assets/hero-v3/figure-day-1600.webp 1600w"
+             sizes="(max-width:900px) 70vw, 34vw" width="1600" height="2862" alt="" fetchpriority="low" decoding="async">
+        <img class="hero-img is-reveal rv-day" src="assets/hero-v3/figure-day-900.webp"
+             srcset="assets/hero-v3/figure-day-900.webp 900w, assets/hero-v3/figure-day-1600.webp 1600w"
+             sizes="(max-width:900px) 70vw, 34vw" width="1600" height="2862" alt="" loading="lazy" decoding="async">
+        <img class="hero-img is-reveal rv-night" src="assets/hero-v3/figure-night-900.webp"
+             srcset="assets/hero-v3/figure-night-900.webp 900w, assets/hero-v3/figure-night-1600.webp 1600w"
+             sizes="(max-width:900px) 70vw, 34vw" width="1600" height="2862" alt="" loading="lazy" decoding="async">
+      </div>
+      <div class="fig-strip">
+        <span>White Crane <span class="dim">Studio · Queens, NYC</span></span>
+        <span class="fig-pill">©2026</span>
+        <div class="rv-text rv-strip" aria-hidden="true"><span>White Crane <span class="dim">Studio · Queens, NYC</span></span><span class="fig-pill">©2026</span></div>
+      </div>
+    </div>
+
+    <div class="hero-right" data-rv>
+      <p class="hb-quote">“Great creative environments are designed with intent.”<span class="rv-text" aria-hidden="true">“Great creative environments are designed with intent.”</span></p>
+      <p class="body hero-body"><strong>12+ years</strong> at the intersection of design, technology, and AI systems, building the infrastructure that lets creative people do their best work. AI is a tool; humans still direct everything that matters.<span class="rv-text" aria-hidden="true"><strong>12+ years</strong> at the intersection of design, technology, and AI systems, building the infrastructure that lets creative people do their best work. AI is a tool; humans still direct everything that matters.</span></p>
+      <div class="hb-meta"><span>( scroll ↓ )</span><span class="rv-text" aria-hidden="true">( scroll ↓ )</span></div>
+    </div>
+  </div>
 </section>
-<div class="marquee" aria-hidden="true"><div class="marquee-track" id="marqueeTrack"></div></div>
-<section id="overview" class="band-black" aria-labelledby="overviewTitle">
-<div class="wrap section-inner fade">
-<div class="ov-quote" data-stagger="2">
-<span class="ov-mark" aria-hidden="true">”</span>
-<h2 class="lede lede-strong ov-statement" id="overviewTitle">Great creative environments are <em class="accent">designed with intent.</em></h2>
+
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track" id="mqTrack">
+    <span>White Crane Design LLC<i class="mq-dia"></i></span>
+    <span>Creative technology<i class="mq-dia"></i></span>
+    <span>New York City<i class="mq-dia"></i></span>
+    <span>AI workflows<i class="mq-dia"></i></span>
+    <span>Brand systems<i class="mq-dia"></i></span>
+    <span>Portfolio 2026<i class="mq-dia"></i></span>
+  </div>
 </div>
-<p class="lede ov-body" data-stagger="3">12+ years at the intersection of design, technology, and AI systems, building the infrastructure that lets creative people do their best work. Working within creative technology operations as an analyst at Pratt Institute and leading White Crane Design LLC. AI amplifies judgment.</p>
-<p class="ov-sign" data-stagger="4"><span class="ov-dia" aria-hidden="true"></span>Human in the loop, always.</p>
-</div>
+
+<!-- ══ 02 · WORK ══════════════════════════════════════════════════════════ -->
+<section class="work" id="work" aria-labelledby="workTitle">
+  <div class="wrap">
+  <div class="work-head" data-rv>
+    <div>
+      <p class="label label-red">Selected work</p>
+      <h2 class="d hand mask" id="workTitle" style="margin-top:1rem"><span class="mask-in">Skills applied on projects.</span></h2>
+    </div>
+  </div>
+
+  <div class="work-index" id="workList" data-stagger>
+    <div class="work-group" data-rv><span class="dot"></span> Design &amp; Art Direction</div>
+    <div class="project pj-blue" data-rv>
+      <div class="project-num">01</div>
+      <div class="project-media"><img src="assets/heopet/master.png" alt="" width="1024" height="768" loading="lazy" decoding="async"></div>
+      <div class="project-main">
+        <div class="project-head">
+          <span class="cat-pill c-blue">Health Companion App</span>
+          <a href="HeoPet.html" target="_blank" rel="noopener" class="project-title">HeoPet</a>
+        </div>
+        <p class="project-role">Mobile digital pet · Expo / React Native · 2026</p>
+        <p class="project-desc">A mobile pet whose wellbeing is derived from your own health, with auto-tracked steps and tapped water drive a mood that plays out as real-time animation. Health you can actually watch. The result: steps feed the mood engine straight from the device, zero manual logging.</p>
+        <div class="project-chips">
+          <span class="chip">Figma</span><span class="chip">Adobe Suite</span><span class="chip">Canva</span><span class="chip">ComfyUI</span><span class="chip">APIs</span>
+        </div>
+        <div class="project-links">
+          <a href="HeoPet.html" target="_blank" rel="noopener" class="link-primary">Read the case study →</a>
+          <a href="https://github.com/ChairmanWCD/HeoPet" target="_blank" rel="noopener" class="link-primary">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="project pj-green" data-rv>
+      <div class="project-num">02</div>
+      <div class="project-media"><img src="assets/green-kite/hero.png" alt="" width="1024" height="1024" loading="lazy" decoding="async"></div>
+      <div class="project-main">
+        <div class="project-head">
+          <span class="cat-pill c-green">Brand Identity</span>
+          <a href="Green_Kite_Brand_Identity.html" target="_blank" rel="noopener" class="project-title">Green Kite</a>
+        </div>
+        <p class="project-role">Social enterprise · Ireland · 2025</p>
+        <p class="project-desc">A kite-as-metaphor mark and tagline system for a social enterprise backing community-led sustainability. Playful but refined, it lifts without being literal. The result: the identity is live in production at greenkite.ie.</p>
+        <div class="project-chips">
+          <span class="chip">Brand Strategy</span><span class="chip">Visual Identity</span><span class="chip">Logo Systems</span><span class="chip">SVG / PNG / JPG</span>
+        </div>
+        <div class="project-links">
+          <a href="Green_Kite_Brand_Identity.html" target="_blank" rel="noopener" class="link-primary">View the brand identity →</a>
+          <a href="https://greenkite.ie" target="_blank" rel="noopener" class="link-primary">greenkite.ie ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="project pj-white" data-rv>
+      <div class="project-num">03</div>
+      <div class="project-media"><picture><source type="image/webp" srcset="assets/wcd-shop/index-thumb.webp"><img src="assets/wcd-shop/index-thumb.png" alt="" width="1152" height="864" loading="lazy" decoding="async"></picture></div>
+      <div class="project-main">
+        <div class="project-head">
+          <span class="cat-pill c-white">Commerce / Apparel</span>
+          <a href="https://white-crane-design.square.site" target="_blank" rel="noopener" class="project-title">White Crane Design Shop</a>
+        </div>
+        <p class="project-role">Live storefront · 2023 - Present</p>
+        <p class="project-desc">The commerce arm of White Crane Design. Anime-inspired apparel where generative tools assist, but humans do the designing. Concept to shirt, ready to buy. The result: a live Square storefront selling the studio's own line.</p>
+        <div class="project-chips">
+          <span class="chip">Generative Apparel</span><span class="chip">Human-in-the-Loop</span><span class="chip">E-commerce</span><span class="chip">Brand Direction</span>
+        </div>
+        <div class="project-links">
+          <a href="https://white-crane-design.square.site" target="_blank" rel="noopener" class="link-primary">Visit the store ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="work-group" data-rv><span class="dot"></span> AI Systems &amp; Creative Infrastructure</div>
+    <div class="project pj-violet" data-rv>
+      <div class="project-num">04</div>
+      <div class="project-media"><img src="assets/white_crane_studio/hero.png" alt="" width="1024" height="592" loading="lazy" decoding="async"></div>
+      <div class="project-main">
+        <div class="project-head">
+          <span class="cat-pill c-violet">Generative Systems</span>
+          <a href="WCD_Creative_Studio.html" class="project-title">WCD Creative Studio</a>
+        </div>
+        <p class="project-role">Art-direction studio · Local Z-Image engine · RTX 5070 · 2026</p>
+        <p class="project-desc">My art-direction studio with its own local Z-Image-Turbo engine, a FastAPI async queue on an RTX 5070. The result: zero per-image cost, unmetered generation. The studio owns its engine.</p>
+        <div class="project-chips">
+          <span class="chip">Z-Image-Turbo</span><span class="chip">FastAPI</span><span class="chip">Async queue</span><span class="chip">RTX 5070</span><span class="chip">Art-direction</span>
+        </div>
+        <div class="project-links">
+          <a href="WCD_Creative_Studio.html" class="link-primary">Read the case study →</a>
+          <a href="https://github.com/ChairmanWCD/WCD-Creative-Studio" target="_blank" rel="noopener" class="link-primary">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="project pj-red" data-rv>
+      <div class="project-num">05</div>
+      <div class="project-media"><img src="assets/critique/header.png" alt="" width="1600" height="1200" loading="lazy" decoding="async"></div>
+      <div class="project-main">
+        <div class="project-head">
+          <span class="cat-pill c-red">Multi-Agent AI</span>
+          <a href="Critique_Council_Thesis.html" target="_blank" rel="noopener" class="project-title">The Critique Council</a>
+        </div>
+        <p class="project-role">Scalable infrastructure · AI × Design · 2024 - 2026</p>
+        <p class="project-desc">A multi-agent AI system that simulates presenting to a real design jury. Three critics with distinct personas, each with a different voice, generate visual feedback as they critique. The result: rebuilt in 2026 on a stack of GPT-5 mini, Claude Opus 4.5, Gemini 3 Pro.</p>
+        <div class="project-chips">
+          <span class="chip">Multi-Agent AI</span><span class="chip">Claude</span><span class="chip">GPT</span><span class="chip">Gemini</span><span class="chip">Prompt Engineering</span>
+        </div>
+        <div class="project-links">
+          <a href="Critique_Council_Thesis.html" target="_blank" rel="noopener" class="link-primary">Read the thesis →</a>
+          <a href="Critique_Council_Live.html" target="_blank" rel="noopener" class="link-primary">Live demo ↗</a>
+          <a href="https://github.com/ChairmanWCD/critique-council" target="_blank" rel="noopener" class="link-primary">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="project pj-gold" data-rv>
+      <div class="project-num">06</div>
+      <div class="project-media"><picture><source type="image/webp" srcset="assets/pratt-ai/index-thumb.webp"><img src="assets/pratt-ai/hero.jpg" alt="" width="800" height="600" loading="lazy" decoding="async"></picture></div>
+      <div class="project-main">
+        <div class="project-head">
+          <span class="cat-pill c-gold">Institutional AI</span>
+          <a href="Pratt_AI_Infrastructure_Case_Study.html" target="_blank" rel="noopener" class="project-title">Pratt's AI Infrastructure</a>
+        </div>
+        <p class="project-role">Creative Technology Analyst, Mac Systems · Pratt Institute · 2024 - Present</p>
+        <p class="project-desc">How institutional financial crisis forced the choice to build rather than buy AI capability, and how the institution scaled its AI capability while keeping its autonomy and culture intact. The result: 250+ Apple endpoints under management via Jamf Pro and Apple School Manager.</p>
+        <div class="project-chips">
+          <span class="chip">Python</span><span class="chip">LLM Pipelines</span><span class="chip">Enterprise Infra</span>
+        </div>
+        <div class="project-links">
+          <a href="Pratt_AI_Infrastructure_Case_Study.html" target="_blank" rel="noopener" class="link-primary">Read the case study →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 </section>
-<section id="work" class="band-surface" aria-labelledby="workTitle">
-<div class="wrap section-inner fade">
-<div class="eyebrow" data-stagger="1"><span class="dot"></span> Skills applied in work</div>
-<h2 id="workTitle" data-stagger="1">Selected work</h2>
 
-<div class="work-group" data-stagger="3"><span class="dot"></span> AI Systems &amp; Creative Infrastructure</div>
-<div class="project pj-blue" data-stagger="1">
-<div class="project-num">01</div>
-<div class="project-media"><img src="assets/heopet/master.png" alt="" width="1024" height="768" loading="lazy" decoding="async"></div>
-<div class="project-main">
-<div class="project-head">
-<span class="cat-pill c-blue">Health Companion App</span>
-<a href="HeoPet.html" target="_blank" rel="noopener" class="project-title">HeoPet</a>
-</div>
-<p class="project-role" data-stagger="2">Mobile digital pet · Expo / React Native · 2026</p>
-<p class="project-desc" data-stagger="3">A mobile pet whose wellbeing is derived from your own health, with auto-tracked steps and tapped water drive a mood that plays out as real-time animation. Health you can actually watch. The result: steps feed the mood engine straight from the device, zero manual logging.</p>
-<div class="project-chips" data-stagger="4">
-<span class="chip">Expo</span><span class="chip">React Native</span><span class="chip">Pedometer</span><span class="chip">Mood Engine</span><span class="chip">Motion UI</span>
-</div>
-<div class="project-links">
-<a href="HeoPet.html" target="_blank" rel="noopener" class="link-primary">Read the case study →</a>
-<a href="https://github.com/ChairmanWCD/HeoPet" target="_blank" rel="noopener" class="link-primary">GitHub ↗</a>
-</div>
-</div>
-</div>
+<!-- ══ 03 · BACKGROUND ════════════════════════════════════════════════════ -->
+<section class="bg" id="background" aria-labelledby="bgTitle">
+  <div class="wrap">
+  <p class="label label-red">Background</p>
+  <h2 class="d hand mask" id="bgTitle" style="margin-top:1rem"><span class="mask-in">Bridging creativity and technology.<br>Tools that empower humans, not replace them.</span></h2>
 
-<div class="project pj-violet" data-stagger="1">
-<div class="project-num">02</div>
-<div class="project-media"><img src="assets/white_crane_studio/hero.png" alt="" width="1024" height="592" loading="lazy" decoding="async"></div>
-<div class="project-main">
-<div class="project-head">
-<span class="cat-pill c-violet">Generative Systems</span>
-<a href="WCD_Creative_Studio.html" class="project-title">WCD Creative Studio</a>
-</div>
-<p class="project-role" data-stagger="2">Art-direction studio · Local Z-Image engine · RTX 5070 · 2026</p>
-<p class="project-desc" data-stagger="3">My art-direction studio with its own local Z-Image-Turbo engine, a FastAPI async queue on an RTX 5070. The result: zero per-image cost, unmetered generation — the studio owns its engine.</p>
-<div class="project-chips" data-stagger="4">
-<span class="chip">Z-Image-Turbo</span><span class="chip">FastAPI</span><span class="chip">Async queue</span><span class="chip">RTX 5070</span><span class="chip">Art-direction</span>
-</div>
-<div class="project-links">
-<a href="WCD_Creative_Studio.html" class="link-primary">Read the case study →</a>
-<a href="https://github.com/ChairmanWCD/WCD-Creative-Studio" target="_blank" rel="noopener" class="link-primary">GitHub ↗</a>
-</div>
-</div>
-</div>
+  <div class="bg-grid" data-stagger>
+    <div class="bg-block" data-rv>
+      <h3>Experience</h3>
 
-<div class="project pj-red" data-stagger="1">
-<div class="project-num">03</div>
-<div class="project-media"><img src="assets/critique/header.png" alt="" width="1600" height="1200" loading="lazy" decoding="async"></div>
-<div class="project-main">
-<div class="project-head">
-<span class="cat-pill c-red">Multi-Agent AI</span>
-<a href="Critique_Council_Thesis.html" target="_blank" rel="noopener" class="project-title">The Critique Council</a>
-</div>
-<p class="project-role" data-stagger="2">Scalable infrastructure · AI × Design · 2024 — 2026</p>
-<p class="project-desc" data-stagger="3">A multi-agent AI system that simulates presenting to a real design jury. Three critics with distinct personas, each with a different voice, generate visual feedback as they critique. The result: rebuilt in 2026 on a model-per-persona stack — GPT-5 mini, Claude Opus 4.5, Gemini 3 Pro.</p>
-<div class="project-chips" data-stagger="4">
-<span class="chip">Multi-Agent AI</span><span class="chip">Claude</span><span class="chip">GPT</span><span class="chip">Gemini</span><span class="chip">Prompt Engineering</span>
-</div>
-<div class="project-links">
-<a href="Critique_Council_Thesis.html" target="_blank" rel="noopener" class="link-primary">Read the thesis →</a>
-<a href="Critique_Council_Live.html" target="_blank" rel="noopener" class="link-primary">Live demo ↗</a>
-<a href="https://github.com/ChairmanWCD/critique-council" target="_blank" rel="noopener" class="link-primary">GitHub ↗</a>
-</div>
-</div>
-</div>
+      <div class="exp">
+        <div class="exp-num" aria-hidden="true">01</div>
+        <div>
+          <div class="exp-head"><span class="exp-role">Founder &amp; Creative Director</span></div>
+          <div class="exp-meta">White Crane Design LLC · New York, NY · Jan 2023 - Present</div>
+          <ul>
+            <li>Directing creative strategy, identity, and design systems, turning business goals into coherent brand experiences.</li>
+            <li>Prototyping generative AI workflows and LLM-integrated pipelines that expand what small creative teams can ship.</li>
+            <li>Launched the White Crane apparel brand, from concept through production, with AI-assisted but human-driven design.</li>
+          </ul>
+        </div>
+      </div>
 
-<div class="project pj-gold" data-stagger="1">
-<div class="project-num">04</div>
-<div class="project-media"><picture><source type="image/webp" srcset="assets/pratt-ai/index-thumb.webp"><img src="assets/pratt-ai/hero.jpg" alt="" width="800" height="600" loading="lazy" decoding="async"></picture></div>
-<div class="project-main">
-<div class="project-head">
-<span class="cat-pill c-gold">Institutional AI</span>
-<a href="Pratt_AI_Infrastructure_Case_Study.html" target="_blank" rel="noopener" class="project-title">Pratt's AI Infrastructure</a>
-</div>
-<p class="project-role" data-stagger="2">Creative Technology Analyst, Mac Systems · Pratt Institute · 2024 — Present</p>
-<p class="project-desc" data-stagger="3">How institutional financial crisis forced the choice to build rather than buy AI capability, and how the institution scaled its AI capability while keeping its autonomy and culture intact. The result: 250+ Apple endpoints under management via Jamf Pro and Apple School Manager.</p>
-<div class="project-chips" data-stagger="4">
-<span class="chip">Python</span><span class="chip">LLM Pipelines</span><span class="chip">Enterprise Infra</span>
-</div>
-<div class="project-links">
-<a href="Pratt_AI_Infrastructure_Case_Study.html" target="_blank" rel="noopener" class="link-primary">Read the case study →</a>
-</div>
-</div>
-</div>
+      <div class="exp">
+        <div class="exp-num" aria-hidden="true">02</div>
+        <div>
+          <div class="exp-head"><span class="exp-role">Creative Technology Analyst and Mac Systems</span></div>
+          <div class="exp-meta">Pratt Institute · Brooklyn, NY · Apr 2022 - Present</div>
+          <ul>
+            <li>Supporting creative technology infrastructure for a top design school.</li>
+            <li>Architecting and managing a 250+ Apple endpoint ecosystem via Jamf Pro and Apple School Manager.</li>
+            <li>Integrating generative AI tools and Python automation into lab systems to remove friction for makers.</li>
+          </ul>
+        </div>
+      </div>
 
-<div class="work-group" data-stagger="3"><span class="dot"></span> Design &amp; Art Direction</div>
+      <div class="exp">
+        <div class="exp-num" aria-hidden="true">03</div>
+        <div>
+          <div class="exp-head"><span class="exp-role">Technology &amp; AV Operations</span></div>
+          <div class="exp-meta">Pratt Institute · Brooklyn, NY · Jun 2014 - Apr 2022</div>
+          <ul>
+            <li>Leading a cross-functional team of 20+ staff across IT infrastructure, AV systems, and technical operations.</li>
+            <li>Learning creative environments at scale through IT infrastructure, AV systems, and technical operations.</li>
+          </ul>
+          <div class="exp-sub">
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div class="project pj-green" data-stagger="1">
-<div class="project-num">05</div>
-<div class="project-media"><img src="assets/green-kite/hero.png" alt="" width="1024" height="1024" loading="lazy" decoding="async"></div>
-<div class="project-main">
-<div class="project-head">
-<span class="cat-pill c-green">Brand Identity</span>
-<a href="Green_Kite_Brand_Identity.html" target="_blank" rel="noopener" class="project-title">Green Kite</a>
-</div>
-<p class="project-role" data-stagger="2">Social enterprise · Ireland · 2025</p>
-<p class="project-desc" data-stagger="3">A kite-as-metaphor mark and tagline system for a social enterprise backing community-led sustainability. Playful but refined, it lifts without being literal. The result: the identity is live in production at greenkite.ie.</p>
-<div class="project-chips" data-stagger="4">
-<span class="chip">Brand Strategy</span><span class="chip">Visual Identity</span><span class="chip">Logo Systems</span><span class="chip">SVG / PNG / JPG</span>
-</div>
-<div class="project-links">
-<a href="Green_Kite_Brand_Identity.html" target="_blank" rel="noopener" class="link-primary">View the brand identity →</a>
-<a href="https://greenkite.ie" target="_blank" rel="noopener" class="link-primary">greenkite.ie ↗</a>
-</div>
-</div>
-</div>
+    <div class="bg-block" data-rv>
+      <h3>Education</h3>
+      <div class="edu">
+        <span class="edu-year">2027 · Expected</span>
+        <span class="edu-name">MPS, Design Management</span>
+        <span class="edu-school">Pratt Institute</span>
+      </div>
+      <div class="edu">
+        <span class="edu-year">2012</span>
+        <span class="edu-name">BFA, Interior Design</span>
+        <span class="edu-school">Pratt Institute</span>
+      </div>
 
-<div class="project pj-white" data-stagger="1">
-<div class="project-num">06</div>
-<div class="project-media">
-<picture>
-<source type="image/webp" srcset="assets/wcd-shop/index-thumb.webp">
-<img src="assets/wcd-shop/index-thumb.png" alt="" width="1152" height="864" loading="lazy" decoding="async">
-</picture>
-</div>
-<div class="project-main">
-<div class="project-head">
-<span class="cat-pill c-white">Commerce / Apparel</span>
-<a href="https://white-crane-design.square.site" target="_blank" rel="noopener" class="project-title">White Crane Design Shop</a>
-</div>
-<p class="project-role" data-stagger="2">Live storefront · 2023 — Present</p>
-<p class="project-desc" data-stagger="3">The commerce arm of White Crane Design. Anime-inspired apparel where generative tools assist, but humans do the designing. Concept to shirt, ready to buy. The result: a live Square storefront selling the studio's own line.</p>
-<div class="project-chips" data-stagger="4">
-<span class="chip">Generative Apparel</span><span class="chip">Human-in-the-Loop</span><span class="chip">E-commerce</span><span class="chip">Brand Direction</span>
-</div>
-<div class="project-links">
-<a href="https://white-crane-design.square.site" target="_blank" rel="noopener" class="link-primary">Visit the store ↗</a>
-</div>
-</div>
-</div>
+      <h3 style="margin-top:2.4rem">Credentials</h3>
+      <div class="caps">
+        <span class="cap">Google AI Essentials</span>
+        <span class="cap">Jamf Certified Tech</span>
+        <span class="cap">Jamf Certified Associate</span>
+        <span class="cap">Apple Certified Support Professional</span>
+      </div>
 
-</div>
+      <h3 style="margin-top:2.4rem">Practice</h3>
+      <div class="caps">
+        <span class="cap">Figma</span><span class="cap">Adobe Suite</span><span class="cap">Canva</span><span class="cap">Python</span>
+        <span class="cap">Claude</span><span class="cap">GPT</span><span class="cap">Gemini</span>
+        <span class="cap">ComfyUI</span><span class="cap">Flux</span><span class="cap">MCP</span>
+        <span class="cap">Jamf Pro</span><span class="cap">MDM</span><span class="cap">Git</span><span class="cap">GitHub</span><span class="cap">APIs</span><span class="cap">Asana</span>
+      </div>
+    </div>
+  </div>
+  </div>
 </section>
-<section id="experience" class="band-black" aria-labelledby="aboutTitle">
-<div class="wrap section-inner fade">
-<div class="eyebrow" data-stagger="1"><span class="dot" aria-hidden="true"></span>Experience</div>
-<h2 id="aboutTitle" class="about-title" data-stagger="2">Bridging creativity and technology. Tools that empower humans, not replace them.</h2>
-<div class="exp" data-stagger="1"><div class="exp-num" aria-hidden="true">01</div><div>
-<div class="exp-head"><span class="exp-role">Founder &amp; Creative Director</span></div>
-<div class="exp-meta" data-stagger="2">White Crane Design LLC · New York, NY · Jan 2023 to Present</div>
-<ul data-stagger="3">
-<li>Directing creative strategy, identity, and design systems, turning business goals into coherent brand experiences.</li>
-<li>Prototyping generative AI workflows and LLM-integrated pipelines that expand what small creative teams can ship.</li>
-<li>Launched the White Crane apparel brand, from concept through production, with AI-assisted but human-driven design.</li>
-<li>A human-in-the-loop philosophy throughout.</li>
-</ul>
-</div></div>
-<div class="exp" data-stagger="1"><div class="exp-num" aria-hidden="true">02</div><div>
-<div class="exp-head"><span class="exp-role">Creative Technology Analyst and Mac Systems</span></div>
-<div class="exp-meta" data-stagger="2">Pratt Institute · Brooklyn, NY · Apr 2022 to Present</div>
-<ul data-stagger="3">
-<li>Supporting creative technology infrastructure for a top design school.</li>
-<li>Architecting and managing a 250+ Apple endpoint ecosystem via Jamf Pro and Apple School Manager.</li>
-<li>Integrating generative AI tools and Python automation into lab systems to remove friction for makers.</li>
-<li>Partnering with faculty to align infrastructure with curriculum, accessibility, and institutional policy.</li>
-</ul>
-</div></div>
-<div class="exp" data-stagger="1"><div class="exp-num" aria-hidden="true">03</div><div>
-<div class="exp-head"><span class="exp-role">Technology & AV Operations</span></div>
-<div class="exp-meta" data-stagger="2">Pratt Institute · Brooklyn, NY · Jun 2014 to Apr 2022</div>
-<ul data-stagger="3">
-<li>Leading a cross-functional team of 20+ staff across IT infrastructure, AV systems, and technical operations.</li>
-<li>Learning creative environments at scale through IT infrastructure, AV systems, and technical operations.</li>
-</ul>
-<div class="exp-sub" data-stagger="4">
-<div class="sub"><span class="sub-role">Audio Visual Specialist</span><span>Pratt Institute</span></div>
-<div class="sub"><span class="sub-role">Information Technology Specialist</span><span>Pratt Institute</span></div>
-</div>
-</div></div>
-</div>
-</section>
-<section id="background" class="band-surface" aria-labelledby="backgroundTitle">
-<div class="wrap section-inner fade">
-<h2 id="backgroundTitle" data-stagger="1">Background</h2>
-<div class="work-index">
-<div class="project pj-gold edu-coda coda" data-stagger="1">
-<div class="project-glyph glyph-gold" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0zM22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></div>
-<div class="project-main">
-<div class="project-head">
-<span class="cat-pill c-gold">Education</span>
-<h3 class="project-title" id="eduTitle">Education</h3>
-</div>
-<p class="project-role">Formal training + certs · degree first, detail on demand</p>
-<ul class="edu-degrees">
-<li class="edu-degree"><span class="deg-year">2027 · Expected</span><span class="deg-name">Master of Professional Studies, Design Management</span><span class="deg-school">Pratt Institute</span></li>
-<li class="edu-degree"><span class="deg-year">2012</span><span class="deg-name">Bachelor of Fine Arts, Interior Design</span><span class="deg-school">Pratt Institute</span></li>
-</ul>
-<ul class="project-chips" aria-label="Certifications"><li class="chip g-ai">Google AI Essentials</li><li class="chip g-sw">Jamf Certified Tech</li><li class="chip g-sw">Jamf Certified Associate</li><li class="chip g-sw">Apple Certified Support Professional</li></ul>
-<details class="coda-detail"><summary>Detail by group</summary><div class="coda-cols cols-2">
-<div><h4>Degrees</h4><p>MPS Design Management (exp. 2027) · BFA Interior Design (2012), both Pratt Institute. Trained as a designer, operating as a builder.</p></div>
-<div><h4>Credentials</h4><p>AI: Google AI Essentials · Python. Platform: Jamf Tech + Associate · Apple CSP macOS 11.</p></div>
-</div></details>
-</div></div>
-<div class="project pj-blue coda" data-stagger="1">
-<div class="project-glyph glyph-blue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg></div>
-<div class="project-main">
-<div class="project-head">
-<span class="cat-pill c-blue">Skills</span>
-<h3 class="project-title" id="work-stack-t">Skills</h3>
-</div>
-<p class="project-role">Go-to tools · detail by group on demand</p>
-<ul class="project-chips" aria-label="Skills"><li class="chip g-sw">Figma</li><li class="chip g-sw">Adobe Suite</li><li class="chip g-sw">Canva</li><li class="chip g-ai">Claude</li><li class="chip g-ai">GPT</li><li class="chip g-ai">Gemini</li><li class="chip g-ai">ComfyUI</li><li class="chip g-ai">Flux</li><li class="chip g-green">Python</li><li class="chip g-sw">Git/GitHub</li><li class="chip g-sw">APIs</li><li class="chip g-sw">Jamf Pro</li><li class="chip g-sw">MDM</li><li class="chip g-gold">Asana</li><li class="chip g-ai">MCP</li></ul>
-<details class="coda-detail"><summary>Detail by group</summary><div class="coda-cols">
-<div><h4>Design</h4><p>Figma · Adobe Suite: product, brand, and production art. Systems first, pixels with intent.</p></div>
-<div><h4>AI Systems</h4><p>Claude · GPT · Gemini · ComfyUI · Flux · MCP: multi-model critique, prompt craft, and local inference pipelines.</p></div>
-<div><h4>Ops &amp; Infra</h4><p>Python · Jamf Pro · MDM · Asana: fleet, automation, and delivery rhythm that keep studios running.</p></div>
-</div></details>
-</div></div>
-</div>
-</div>
-</section>
-<section id="connect" class="band-maroon" aria-labelledby="connectTitle">
-<div class="wrap section-inner fade">
-<h2 class="connect-headline" id="connectTitle" data-stagger="2">Let's build.</h2>
-<p class="connect-lede" data-stagger="3">Select collaborations in AI workflows, creative infrastructure, and brand systems. Tell me what you are making.</p>
-<div class="connect-links" data-stagger="4">
-<a href="mailto:Kenbai1027@gmail.com" class="connect-link"><span class="link-left"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect width="20" height="16" x="2" y="4" rx="2"/></svg></span>Kenbai1027@gmail.com</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
-<a href="https://www.linkedin.com/in/ken-bai-916228158" target="_blank" rel="noopener" class="connect-link"><span class="link-left"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6M2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></span>LinkedIn · Ken Bai</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
-<a href="https://github.com/ChairmanWCD" target="_blank" rel="noopener" class="connect-link"><span class="link-left"><span class="icon-slot icon-octocat" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><g transform="translate(2 2) scale(0.8333)"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></g></svg></span>GitHub · @ChairmanWCD</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
-<a href="Ken_Bai_Resume.pdf" download class="connect-link"><span class="link-left"><span class="icon-slot" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m9 12v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg></span>Download resume</span><span class="icon-slot link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
-</div>
-</div>
+
+<!-- ══ 04 · CONNECT ═══════════════════════════════════════════════════════ -->
+<section class="connect" id="connect" aria-labelledby="connectTitle">
+  <div class="wrap" data-stagger>
+    <p class="label label-red" data-rv>Fig. 02 · The next build</p>
+    <h2 class="d d-xl mask" id="connectTitle" style="margin-top:1.2rem"><span class="mask-in">Let’s<br>build.</span></h2>
+    <p class="connect-lede" data-rv>Tell me what you’re making.</p>
+    <div class="connect-actions" data-rv>
+      <a class="btn" href="mailto:Kenbai1027@gmail.com?subject=Let%27s%20build">Start a conversation</a>
+      <a class="link-u" href="Ken_Bai_Resume.pdf" download style="color:#F3E8D8;border-bottom-color:rgba(243,232,216,.35)">Download resume</a>
+    </div>
+    <div class="connect-list" data-rv>
+      <a href="mailto:Kenbai1027@gmail.com">Kenbai1027@gmail.com</a>
+      <a href="tel:+19174287990">917-428-7990</a>
+      <a href="https://www.linkedin.com/in/ken-bai-916228158" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://github.com/ChairmanWCD" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="About.html">About ↗</a>
+    </div>
+  </div>
 </section>
 </main>
-<footer>
-<div class="footer-brand"><svg width="18" height="18" viewBox="-195 -194 2389 2389" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor" opacity="0.6"/><polygon points="709,693 5,696 357,1306" fill="currentColor" opacity="0.6"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor" opacity="0.6"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor" opacity="0.6"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor" opacity="0.6"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor" opacity="0.6"/><polygon class="crane-accent" points="1723,197 1861,435 1994,204"/></svg>Ken Bai · White Crane Labs</div>
-<div class="footer-tagline">Human in the loop. Always.</div>
-<div class="footer-copy">© 2026 White Crane Design LLC</div>
+
+<footer class="foot">
+  <div class="foot-brand">
+    <svg viewBox="-195 -194 2389 2389" aria-hidden="true"><polygon points="1575,201 1365,564 1780,563" fill="currentColor" opacity=".55"/><polygon points="709,693 5,696 357,1306" fill="currentColor" opacity=".55"/><polygon points="1711,693 1009,693 1357,1303" fill="currentColor" opacity=".55"/><polygon points="857,700 506,1307 1208,1309" fill="currentColor" opacity=".55"/><polygon points="863,1435 1074,1796 1279,1435" fill="currentColor" opacity=".55"/><polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor" opacity=".55"/><polygon class="crane-accent" points="1723,197 1861,435 1994,204"/></svg>
+    Ken Bai · White Crane Labs
+  </div>
+  <div class="foot-sign">Human in the loop. Always.</div>
+  <div class="foot-copy">© 2026 White Crane Design LLC</div>
 </footer>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
 <script>
-(function(){var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-var root=document.documentElement,btn=document.getElementById("themeToggle");
-function apply(t){if(t==="light"){root.setAttribute("data-theme","light");if(btn)btn.setAttribute("aria-pressed","true")}else{root.removeAttribute("data-theme");if(btn)btn.setAttribute("aria-pressed","false")}}
-try{var s=localStorage.getItem("wcl-theme");if(s==="light"||s==="dark")apply(s)}catch(e){}
-/* Direction-aware hero transition, landscape only — portrait swaps stills instantly */
-var heroMedia=document.getElementById("heroMedia"),heroVideo=document.getElementById("heroTransition"),switching=false;
-var SRC_FWD="assets/White%20Crane%20Lab%20Hero/Transition.mp4",SRC_REV="assets/White%20Crane%20Lab%20Hero/Transition-reverse.mp4";
-/* Prefetch transition clips only when they can actually play: landscape, motion OK, no data saver */
-var heroEligible=window.matchMedia("(min-aspect-ratio: 1/1)").matches&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches&&!(navigator.connection&&navigator.connection.saveData);
-function prefetchHero(){if(!heroEligible||!heroVideo)return;[SRC_FWD,SRC_REV].forEach(function(u){try{var l=document.createElement("link");l.rel="prefetch";l.as="video";l.href=u;document.head.appendChild(l)}catch(e){}})}
-if("requestIdleCallback" in window){requestIdleCallback(prefetchHero,{timeout:4000})}else{setTimeout(prefetchHero,3000)}
-var POSTER_DARK="assets/White%20Crane%20Lab%20Hero/dark-mode-2048.webp",POSTER_LIGHT="assets/White%20Crane%20Lab%20Hero/light-mode-2048.webp";
-function finishSwitch(){switching=false;if(heroMedia)heroMedia.classList.remove("is-switching");if(heroVideo){try{heroVideo.pause()}catch(e){}}}
-if(heroVideo){heroVideo.addEventListener("ended",finishSwitch);heroVideo.addEventListener("error",function(){if(switching){var cur=root.getAttribute("data-theme")==="light"?"dark":"light";apply(cur);try{localStorage.setItem("wcl-theme",cur)}catch(e){}}finishSwitch()})}
-function playTransition(n,src){try{var file=src.split("/").pop();if(heroVideo.currentSrc.indexOf(file)<0){heroVideo.src=src}try{heroVideo.poster=(n==="dark"?POSTER_LIGHT:POSTER_DARK)}catch(pe){}heroVideo.muted=true;heroVideo.currentTime=0;var p=heroVideo.play();if(p&&p.catch)p.catch(function(){apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){};finishSwitch()})}catch(e){apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){};finishSwitch();return}setTimeout(function(){if(switching){apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){}}},550);setTimeout(finishSwitch,3400)}
-if(btn)btn.addEventListener("click",function(){var n=root.getAttribute("data-theme")==="light"?"dark":"light";var reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;var portrait=window.matchMedia("(max-aspect-ratio: 1/1)").matches;var saveData=navigator.connection&&navigator.connection.saveData;if(reduceMotion||portrait||saveData||!heroVideo||!heroMedia||switching){apply(n);try{localStorage.setItem("wcl-theme",n)}catch(e){};return}switching=true;heroMedia.classList.add("is-switching");playTransition(n,n==="dark"?SRC_FWD:SRC_REV)});
-var menu=document.getElementById("menuBtn"),links=document.getElementById("primaryNav");
-if(menu&&links)menu.addEventListener("click",function(){var open=links.getAttribute("data-open")==="true";links.setAttribute("data-open",open?"false":"true");menu.setAttribute("aria-expanded",open?"false":"true");menu.setAttribute("aria-label",open?"Open menu":"Close menu")});
-links&&links.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){if(window.innerWidth<=760){links.setAttribute("data-open","false");menu.setAttribute("aria-expanded","false");menu.setAttribute("aria-label","Open menu")}})});})();
-(function(){var els=document.querySelectorAll(".fade");if(!("IntersectionObserver" in window)){els.forEach(function(e){e.classList.add("visible")});return}var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("visible");o.unobserve(e.target)}})},{threshold:.1});els.forEach(function(e){o.observe(e)})})();
-(function(){var hero=document.getElementById("home");if(!hero)return;if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;hero.addEventListener("mousemove",function(e){var r=hero.getBoundingClientRect();hero.style.setProperty("--mx",(e.clientX-r.left)+"px");hero.style.setProperty("--my",(e.clientY-r.top)+"px")},{passive:true})})();
-(function(){var slot=document.getElementById("typeSlot");if(!slot)return;var roles=["AI workflows","generative systems","creative infrastructure","human-in-the-loop tools"];if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){slot.textContent=roles[0];return}var r=0,ci=0,del=false;function tick(){var t=roles[r];slot.textContent=t.slice(0,ci);var d=del?28:55;if(!del&&ci===t.length){d=1500;del=true}else if(del&&ci===0){del=false;r=(r+1)%roles.length;d=350}ci+=del?-1:1;setTimeout(tick,d)}tick()})();
-(function(){var items=["AI Workflows","LLM Pipelines","Prompt Engineering","Generative Systems","Creative Infrastructure","Human-in-the-Loop","Python","Claude","GPT","Gemini","ComfyUI","Jamf Pro","Model Context Protocol","Figma","Brand Strategy","Design Systems"];var track=document.getElementById("marqueeTrack");if(!track)return;function chunk(){return items.map(function(t){return '<div class="marquee-item"><span>'+t+'</span><span class="dia"></span></div>'}).join("")}track.innerHTML=chunk()+chunk()})();
+(function(){
+  "use strict";
+  var root=document.documentElement;
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ── day / night ─────────────────────────────────────────────────────── */
+  var sw=document.getElementById("themeSwitch"), swLabel=document.getElementById("switchLabel");
+  function label(t){
+    if(!sw||!swLabel) return;
+    var light = t==="light";
+    swLabel.textContent = light ? "Day" : "Night";
+    sw.setAttribute("aria-pressed", light ? "true" : "false");
+    sw.setAttribute("aria-label", light ? "Day, switch to night mode" : "Night, switch to day mode");
+  }
+  function apply(t){
+    if(t==="light"){ root.setAttribute("data-theme","light"); }
+    else { root.removeAttribute("data-theme"); }
+    label(t);
+  }
+  try{ var saved=localStorage.getItem("wcl-theme"); if(saved==="light"||saved==="dark") apply(saved); else { label("dark"); } }
+  catch(e){ label("dark"); }
+
+  if(sw){
+    sw.addEventListener("click", function(){
+      var next = root.getAttribute("data-theme")==="light" ? "dark" : "light";
+      apply(next);
+      try{ localStorage.setItem("wcl-theme", next); }catch(e){}
+    });
+  }
+  /* both plates are in the viewport; warm the inactive (day) one on idle */
+  if("requestIdleCallback" in window){
+    requestIdleCallback(function(){
+      var d=document.querySelector(".hero-img.is-day"); if(d&&d.complete===false){ d.loading="eager"; }
+    },{timeout:3500});
+  }
+
+  /* ── nav state ───────────────────────────────────────────────────────── */
+  var nav=document.getElementById("nav"), rail=document.getElementById("rail");
+  var stuck=false;
+  function onScroll(){
+    var on = window.scrollY > 40;
+    if(on!==stuck){
+      stuck=on;
+      if(nav) nav.classList.toggle("is-stuck", on);
+      if(rail) rail.classList.toggle("is-on", on);
+    }
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  /* ── mobile menu ─────────────────────────────────────────────────────── */
+  var menu=document.getElementById("menuBtn"), links=document.getElementById("navLinks");
+  if(menu&&links){
+    function setMenu(open){
+      links.setAttribute("data-open", open ? "true" : "false");
+      menu.setAttribute("aria-expanded", open ? "true" : "false");
+      menu.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      root.classList.toggle("menu-open", open);
+      if(open){
+        var first=links.querySelector("a");
+        if(first) first.focus();
+      } else {
+        menu.focus();
+      }
+    }
+    menu.addEventListener("click", function(){
+      setMenu(links.getAttribute("data-open")!=="true");
+    });
+    links.addEventListener("click", function(e){
+      if(e.target.closest("a")){ setMenu(false); }
+    });
+    document.addEventListener("keydown", function(e){
+      if(e.key==="Escape" && links.getAttribute("data-open")==="true"){ setMenu(false); }
+    });
+  }
+
+  /* ── reveal ──────────────────────────────────────────────────────────── */
+  var items=document.querySelectorAll("[data-rv], .mask");
+  if(reduce || !("IntersectionObserver" in window)){
+    items.forEach(function(el){ el.classList.add("is-in"); });
+  } else {
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add("is-in"); io.unobserve(en.target); }
+      });
+    },{rootMargin:"0px 0px -8% 0px",threshold:.12});
+    items.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ── stagger: give each child in a group its index ───────────────────── */
+  var groups=document.querySelectorAll("[data-stagger]");
+  for(var g=0;g<groups.length;g++){
+    var kids=groups[g].querySelectorAll("[data-rv]");
+    for(var k=0;k<kids.length;k++){ if(k) kids[k].style.setProperty("--i", k); }
+  }
+
+  /* ── scroll-linked: auto-hiding nav ─────────────────────────────────── */
+  var finePointer=window.matchMedia("(pointer:fine)").matches;
+  var lastY=window.scrollY, ticking=false, navHidden=false;
+
+  function frame(){
+    ticking=false;
+    var y=window.scrollY;
+    if(nav){
+      var dy=y-lastY;
+      if(Math.abs(dy)>6){
+        var open=links&&links.getAttribute("data-open")==="true";
+        var hide=dy>0&&y>260&&!open;
+        if(hide!==navHidden){ navHidden=hide; nav.classList.toggle("is-hidden",hide); }
+        lastY=y;
+      }
+    }
+  }
+  window.addEventListener("scroll", function(){
+    if(!ticking){ ticking=true; requestAnimationFrame(frame); }
+  }, {passive:true});
+  frame();
+
+  /* ── inertia scroll — native scrollTop easing, so sticky/snap keep working */
+  if(!reduce && finePointer){
+    root.classList.add("has-smooth");
+    var tgt=window.scrollY, cur=tgt, easing=false;
+    function maxY(){ return Math.max(0, document.documentElement.scrollHeight-window.innerHeight); }
+    function step(){
+      var d=tgt-cur;
+      if(Math.abs(d)<0.4){ cur=tgt; window.scrollTo(0,cur); easing=false; return; }
+      cur+=d*0.115;
+      window.scrollTo(0,cur);
+      requestAnimationFrame(step);
+    }
+    function goTo(y){
+      tgt=Math.max(0,Math.min(maxY(),y));
+      cur=window.scrollY;
+      if(!easing){ easing=true; requestAnimationFrame(step); }
+    }
+    window.addEventListener("wheel", function(e){
+      if(e.ctrlKey || e.defaultPrevented) return;
+      if(e.target.closest && e.target.closest("textarea,select,[data-nosmooth]")) return;
+      e.preventDefault();
+      var mul = e.deltaMode===1 ? 16 : (e.deltaMode===2 ? window.innerHeight : 1);
+      tgt=Math.max(0,Math.min(maxY(), tgt+e.deltaY*mul));
+      cur=window.scrollY;
+      if(!easing){ easing=true; requestAnimationFrame(step); }
+    }, {passive:false});
+
+    document.addEventListener("click", function(e){
+      var a=e.target.closest && e.target.closest('a[href^="#"]');
+      if(!a) return;
+      var href=a.getAttribute("href");
+      if(href.length<2) return;
+      var el=document.querySelector(href);
+      if(!el) return;
+      e.preventDefault();
+      goTo(el.getBoundingClientRect().top+window.scrollY);
+      if(history.replaceState) history.replaceState(null,"",href);
+    });
+
+    document.addEventListener("keydown", function(e){
+      if(e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey) return;
+      if(e.target.closest && e.target.closest("input,textarea,select,button,a")) return;
+      var d=0;
+      if(e.key===" "||e.key==="PageDown") d=window.innerHeight*0.88;
+      else if(e.key==="PageUp") d=-window.innerHeight*0.88;
+      else if(e.key==="ArrowDown") d=96;
+      else if(e.key==="ArrowUp") d=-96;
+      else if(e.key==="Home"){ e.preventDefault(); goTo(0); return; }
+      else if(e.key==="End"){ e.preventDefault(); goTo(maxY()); return; }
+      else return;
+      e.preventDefault();
+      goTo(tgt+d);
+    });
+  }
+
+  /* ── magnetic buttons ────────────────────────────────────────────────── */
+  if(!reduce && finePointer){
+    var mags=document.querySelectorAll(".btn");
+    Array.prototype.forEach.call(mags, function(el){
+      el.addEventListener("mousemove", function(e){
+        var r=el.getBoundingClientRect();
+        var dx=(e.clientX-(r.left+r.width/2))/r.width;
+        var dy=(e.clientY-(r.top+r.height/2))/r.height;
+        el.style.transform="translate("+(dx*7).toFixed(2)+"px,"+(dy*5).toFixed(2)+"px)";
+      });
+      el.addEventListener("mouseleave", function(){ el.style.transform=""; });
+    });
+  }
+
+  /* ── cursor companion ────────────────────────────────────────────────── */
+  if(!reduce && finePointer){
+    var ring=document.getElementById("cursor");
+    if(ring){
+      var rx=0, ry=0, mx=0, my=0, moving=false, seeded=false;
+      function trail(){
+        rx+=(mx-rx)*0.18; ry+=(my-ry)*0.18;
+        ring.style.transform="translate3d("+rx.toFixed(1)+"px,"+ry.toFixed(1)+"px,0)";
+        if(Math.abs(mx-rx)>0.3||Math.abs(my-ry)>0.3){ requestAnimationFrame(trail); }
+        else { moving=false; }
+      }
+      document.addEventListener("mousemove", function(e){
+        mx=e.clientX; my=e.clientY;
+        if(!seeded){ seeded=true; rx=mx; ry=my; ring.classList.add("is-on"); }
+        if(!moving){ moving=true; requestAnimationFrame(trail); }
+      }, {passive:true});
+      document.addEventListener("mouseover", function(e){
+        var hot=e.target.closest&&e.target.closest("a,button");
+        ring.classList.toggle("is-hot", !!hot);
+      }, {passive:true});
+      document.addEventListener("mouseleave", function(){ ring.classList.remove("is-on"); });
+    }
+  }
+
+  /* ── marquee: repeat the phrase set until it overruns the viewport ────── */
+  var mq=document.getElementById("mqTrack");
+  if(mq && !reduce){
+    var base=mq.innerHTML, unit=mq.scrollWidth;
+    if(unit>0){
+      var want=Math.max(2, Math.ceil((window.innerWidth*1.35)/unit));
+      if(want%2) want++;
+      mq.innerHTML=base.repeat(want);
+      mq.style.animationDuration=Math.max(28, mq.scrollWidth/62).toFixed(1)+"s";
+    }
+  }
+})();
+
+/* ══ §01 cursor reveal — the opposite wardrobe surfaces under the pointer ═══════
+   Desktop only: gated by (hover:hover)+(pointer:fine), re-checked on change,
+   and off entirely under reduced motion. The reveal imgs hold the OPPOSITE
+   theme's plate; .is-reveal on the plates box un-hides the active one inside a
+   feathered ellipse whose mask-position glides after the cursor. D15: the
+   hero's prose blocks carry duplicate opposite-theme layers (.rv-text) driven
+   by the SAME ellipse — .is-rv on the section activates them, and each block
+   gets the ellipse in its own local coords (offsets cached at engage, scroll-
+   proof, refreshed on resize). One rAF, one write per frame; the loop stops
+   when settled (<0.3px) and on scroll-away. First movement snaps; leaving
+   no longer cuts (D18): the travel target extends along the pointer's
+   direction so the light glides out past the hero edge, fading via
+   .is-exit, and the reveal state resets when the glide settles. */
+(function(){
+  "use strict";
+  var section=document.querySelector(".hero");
+  var box=section&&section.querySelector(".figure-plates");
+  if(!section||!box) return;
+
+  var fine=window.matchMedia("(hover: hover) and (pointer: fine)");
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)");
+  var root=document.documentElement;
+  var W=90,H=90; /* kept in sync with --rv-w/--rv-h in CSS; re-read at boot */
+
+  /* D17: reveal hosts — the .rv-text duplicates AND the hero-wide light.
+     The ellipse position is written per element in its OWN local coords.
+     Box→element offsets are viewport-rect deltas — scroll shifts both
+     equally, so they're cached at engage and refreshed on resize only. */
+  var hosts=[].map.call(section.querySelectorAll(".rv-text,.hero-light"),function(el){
+    return {el:el,dx:0,dy:0};
+  });
+  function measure(){
+    var br=box.getBoundingClientRect();
+    for(var i=0;i<hosts.length;i++){
+      var r=hosts[i].el.getBoundingClientRect();
+      hosts[i].dx=br.left-r.left; hosts[i].dy=br.top-r.top;
+    }
+  }
+
+  var st={x:0,y:0,tx:0,ty:0,px:0,py:0,raf:0,on:false,exiting:false};
+  /* D18: how far past the leave point the light keeps travelling */
+  var EXIT=240;
+  function dims(){
+    var s=getComputedStyle(box);
+    var w=parseFloat(s.getPropertyValue("--rv-w"));
+    var h=parseFloat(s.getPropertyValue("--rv-h"));
+    if(isFinite(w)&&w>10) W=w;
+    if(isFinite(h)&&h>10) H=h;
+  }
+  function write(){
+    box.style.setProperty("--rv-x",(st.x-W/2).toFixed(1)+"px");
+    box.style.setProperty("--rv-y",(st.y-H/2).toFixed(1)+"px");
+    for(var i=0;i<hosts.length;i++){
+      hosts[i].el.style.setProperty("--rv-x",(st.x+hosts[i].dx-W/2).toFixed(1)+"px");
+      hosts[i].el.style.setProperty("--rv-y",(st.y+hosts[i].dy-H/2).toFixed(1)+"px");
+    }
+  }
+  function settled(){ return Math.abs(st.tx-st.x)<0.3&&Math.abs(st.ty-st.y)<0.3; }
+  function frame(){
+    st.raf=0;
+    st.x+=(st.tx-st.x)*0.22; st.y+=(st.ty-st.y)*0.22;
+    write();
+    /* D18: mid-exit the glide runs to its extended target while .is-exit
+       fades the light; the ink layers unmask as the sweep passes them.
+       Settle ends the ramp. Re-enter is handled in engage(). */
+    if(st.exiting&&settled()){ hide(); return; }
+    st.raf=requestAnimationFrame(frame);
+  }
+  function stop(){ if(st.raf){ cancelAnimationFrame(st.raf); st.raf=0; } }
+  function hide(){
+    st.on=false; st.exiting=false; stop();
+    if(box.classList.contains("is-reveal")) box.classList.remove("is-reveal");
+    section.classList.remove("is-rv");
+    section.classList.remove("is-exit");
+  }
+  function enabled(){ return fine.matches&&!reduce.matches; }
+  function engage(e){
+    if(!enabled()) return;
+    var r=box.getBoundingClientRect();
+    var nx=e.clientX-r.left, ny=e.clientY-r.top;
+    if(!st.on){ /* first movement snaps position, reveal on */
+      st.on=true; st.x=nx; st.y=ny; st.tx=nx; st.ty=ny; st.px=nx; st.py=ny;
+      st.exiting=false; measure(); write();
+      box.classList.add("is-reveal");
+      section.classList.add("is-rv");
+      section.classList.remove("is-exit");
+    }else{
+      /* D18: keep the previous target so a leave can extend the travel */
+      st.px=st.tx; st.py=st.ty; st.tx=nx; st.ty=ny;
+      if(st.exiting){ st.exiting=false; section.classList.remove("is-exit"); }
+    }
+    if(!st.raf) st.raf=requestAnimationFrame(frame);
+  }
+  /* D18: the light leaves the room. On leave the reveal stays on and the
+     travel target extends along the pointer's direction (prev to last), so
+     the ellipse glides out past the hero edge while .is-exit fades it. The
+     ink layers' masks are clipped to their own blocks, so they unmask in
+     place as the sweep passes. Settle resets state; re-enter snaps. */
+  function leave(){
+    if(!st.on||st.exiting) return;
+    var dx=st.tx-st.px, dy=st.ty-st.py, len=Math.hypot(dx,dy);
+    st.exiting=true;
+    section.classList.add("is-exit");
+    if(len>0.5){ st.tx+=dx/len*EXIT; st.ty+=dy/len*EXIT; }
+    if(!st.raf) st.raf=requestAnimationFrame(frame);
+  }
+  /* D15: the tracking surface is the whole hero — one light sweeps text and
+     figure from a single pointer. Coords stay box-local (figure math
+     unchanged); text blocks map them via the cached offsets. */
+  section.addEventListener("pointermove",engage,{passive:true});
+  section.addEventListener("pointerleave",leave);
+  section.addEventListener("pointercancel",hide);
+  window.addEventListener("resize",function(){ if(st.on) measure(); },{passive:true});
+
+  /* scrolled away: fully reset — no raf, no reveal */
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(es){
+      if(!es[es.length-1].isIntersecting) hide();
+    }).observe(section);
+  }
+  /* theme flip with the cursor parked: drop the reveal; the next move
+     re-snaps onto the new pair (CSS swaps rv-night/rv-day itself) */
+  if("MutationObserver" in window){
+    new MutationObserver(function(){ hide(); })
+      .observe(root,{attributes:true,attributeFilter:["data-theme"]});
+  }
+  /* docks, undocks, OS settings: re-gate live */
+  function regate(){ if(!enabled()) hide(); }
+  if(fine.addEventListener) fine.addEventListener("change",regate);
+  if(reduce.addEventListener) reduce.addEventListener("change",regate);
+
+  dims();
+})();
 </script>
 </body>
 </html>
