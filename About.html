@@ -11,47 +11,18 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://chairmanwcd.github.io/whitecranelabs.com/About.html">
 <meta property="og:image" content="https://chairmanwcd.github.io/whitecranelabs.com/assets/repo-cover.png">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1C1B18">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wc-tokens.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --black:      #1C1B18;
-    --surface:    #212121;   /* neutral gray */
-    --maroon:     #2A1613;
-    --border:     #3A3A3A;
-    --border-lo:  #2C2C2C;
-    --white:      #ECEAE4;
-    --ink-fixed:  #1C1B18;
-    --paper-fixed:#ECEAE4;
-    --text:       #C7C4BC;
-    --text-dim:   #A3A096;
-    --red:        #E03030;
-    --red-solid:  #C22B2B;
-    --gold:       #C49A2A;
-    --teal:       #2A9D8F;
-    --fd: 'Space Grotesk', sans-serif;
-    --fb: 'Inter', sans-serif;
-    --mono: 'JetBrains Mono', 'SF Mono', monospace;
-    --fh: 'Caveat', 'Segoe Script', cursive;
-    --measure: 60ch;
-  }
-
-  /* ── LIGHT THEME - toggled via [data-theme="light"] on <html> ── */
-  html[data-theme="light"] {
-    --black:      #F5F2EC;
-    --surface:    #EDE9E0;
-    --border:     rgba(30,28,24,0.14);
-    --border-lo:  rgba(30,28,24,0.09);
-    --white:      #1E1C18;
-    --text:       #3A3830;
-    --text-dim:   #6B6860;
-    --red:        #C23B22;
-  }
+  /* Tokens (--black … --crane-accent) and light-theme overrides live in wc-tokens.css */
 
   html { scroll-behavior: smooth; }
   body {
@@ -60,7 +31,7 @@
   }
   a { color: inherit; }
   img, svg { display: block; max-width: 100%; }
-  ::selection { background: var(--red); color: var(--paper-fixed); }
+  ::selection { background: var(--red-solid); color: var(--paper-fixed); }
   a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 2px; }
   .skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 200; background: var(--white); color: var(--ink-fixed); font-family: var(--mono); font-size: 13px; padding: .6rem 1rem; border-radius: 4px; text-decoration: none; transition: top .2s ease; }
   .skip-link:focus { top: 1rem; }
@@ -151,7 +122,10 @@
   section { position: relative; }
   .band-black   { background: var(--black); }
   .band-surface { background: var(--surface); border-top: 1px solid var(--border-lo); border-bottom: 1px solid var(--border-lo); }
-  .band-maroon  { background: var(--maroon); border-top: 1px solid rgba(224,48,48,0.15); border-bottom: 1px solid rgba(224,48,48,0.15); }
+  /* D24 promotion sweep: .band-maroon and the .stat-* / .project-role /
+     .project-title print selectors below were carried from the frozen
+     About.html with zero markup consumers; deleted at promotion, recorded
+     in the D24 delta entry. */
   .section-inner { padding: clamp(4rem, 9vw, 7.5rem) 0; }
 
   .eyebrow {
@@ -165,26 +139,12 @@
     font-weight: 700; letter-spacing: -0.02em; line-height: 1.12;
     color: var(--white); margin-bottom: 1rem; max-width: 18ch;
   }
-  .lede { font-size: 16px; color: var(--text); max-width: var(--measure); line-height: 1.75; margin-bottom: 2.75rem; }
-  .lede-strong {
-    font-family: var(--fd); font-weight: 700; color: var(--white);
-    letter-spacing: -0.02em; line-height: 1.16; text-wrap: balance;
-  }
-  .lede-strong .accent { color: var(--red); font-style: normal; }
   p { max-width: var(--measure); }
 
-  /* ── SHARED ROW LANGUAGE (mirrors index: work rows, stats, chips) ── */
+  /* ── SHARED ROW LANGUAGE (mirrors index: work rows, stats) ── */
   .project { padding: 2.2rem 0; border-top: 1px solid var(--border-lo); display: grid; grid-template-columns: 84px 1fr; gap: clamp(1rem, 3vw, 2.25rem); align-items: start; }
   .project-main { min-width: 0; }
-  .project-glyph { font-size: clamp(2.6rem, 5vw, 3.8rem); line-height: 1; opacity: .14; display: flex; align-items: flex-start; }
-  .project-glyph svg { width: 1em; height: 1em; display: block; }
-  .glyph-dim { color: var(--white); opacity: .1; }
-  .glyph-dim svg { width: .85em; height: .85em; }
-  .bio-mark { width: 1em; height: 1em; display: block; object-fit: cover; mix-blend-mode: screen; }
-  html[data-theme="light"] .bio-mark { mix-blend-mode: multiply; filter: invert(1); }
   .project-desc { font-size: 15px; color: var(--text); line-height: 1.7; max-width: none; margin-bottom: 1rem; }
-  .project-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 0; list-style: none; padding: 0; }
-  .chip { font-family: var(--mono); font-size: 11px; padding: 4px 10px; border: 1px solid var(--border); color: var(--text-dim); letter-spacing: .02em; border-radius: 2px; }
   .exp-head { display: flex; align-items: baseline; gap: .75rem; flex-wrap: wrap; margin-bottom: .3rem; }
   .exp-role { font-family: var(--fd); font-size: 15px; font-weight: 600; color: var(--white); line-height: 1.4; }
   .exp-meta { font-family: var(--mono); font-size: 11.5px; color: var(--red); margin-bottom: 0; }
@@ -193,35 +153,92 @@
   .cred-group { grid-column: 1 / -1; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--red); display: flex; align-items: center; justify-content: flex-start; gap: 9px; margin: 2.25rem 0 .25rem; }
   .cred-group::before { content: ''; width: 7px; height: 7px; background: var(--red); transform: rotate(45deg); flex-shrink: 0; opacity: .8; }
   .cred-list > .cred-group:first-child { margin-top: .5rem; }
-  .cred-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem; border-bottom: 1px solid var(--border-lo); }
-  @media (max-width: 700px) { .cred-list { grid-template-columns: 1fr; } }
-  @media (max-width: 640px) { .project { grid-template-columns: 1fr; } .project-glyph { display: none; } }
+  /* D24.10: credentials ledger is single-column (user call: every
+     entry must start on the "Who I am" left line). Reduced from two
+     columns to one - the 700px collapse media block is retired with the
+     two-column layout; meta stays right-aligned at the measure edge
+     (cred-row space-between, unchanged). */
+  .cred-list { display: grid; grid-template-columns: 1fr; border-bottom: 1px solid var(--border-lo); }
+  @media (max-width: 640px) { .project { grid-template-columns: 1fr; } }
 
-  /* ── PHILOSOPHY - Caveat voice (mirrors index ov-statement / about-title) ── */
-  .manifesto {
-    font-family: var(--fh); font-weight: 600; letter-spacing: 0; line-height: 1.25; text-align: left;
-    color: var(--white); font-size: clamp(2.1rem, 4vw, 3rem); max-width: 26ch; margin: 0 0 2.5rem;
+  /* ── HERO (D24 draft) - full-bleed studio, day/night plates ──
+     Plates: assets/hero-v3 webp ladders (960/1600/2560) - the same desk scene
+     shot in daylight and at night, so the theme crossfade reads as a light
+     switch, not a swap. Crossfade is pure CSS off html[data-theme] (no JS).
+     Statement stays in the D3-locked Caveat register: font-weight pinned 600
+     (the <link> loads Caveat 600 only - do not request other weights).
+     D24.2: the content column stretches to the plate height, the statement
+     group sits vertically centered, and the metadata strip is pinned as a
+     full-width bottom rail. height (not min-height): the plate needs a
+     definite height so the content's height:100% resolves and stretch holds.
+     D24.3: the content div also gets width:100% - as a flex item it
+     shrink-wrapped to the 22ch statement (measured 495px wide at 1000vw,
+     left edge 244.83 vs body text left 0); width:100% forces the .wrap
+     measure so the hero left text line matches the body left text line, and
+     the absolute strip (left:0; right:0) now spans the full wrap width.
+     D24.5: pillars moved in as a simplified three-part table (color bars
+     + titles + descriptions; numerals, chips, ebeam, and lede dropped);
+     the standalone Foundation section is deleted.
+     D24.6: single pillar (AI x Design, U+00D7) pinned in a bottom-anchored
+     .about-foot above the rail (20px gap); caption + kicker removed.
+     D24.7: print forces a text-only cover (both plates hidden; the
+     statement + foot carry the page); the foot prints static.
+     D24.8 (superseded by D24.9): the in-column margin-top:auto on
+     .about-foot absorbed all free space - measured 228.47px
+     statement-to-red-line gap at 1440 - so the spacing fix did not land.
+     D24.9: composition is bottom-pinned (Fix C): the eyebrow + statement +
+     3rem gap + foot form one block anchored to the plate bottom
+     (justify-content: flex-end; the auto margin is removed), the rail sits
+     flush with the bottom edge, free space (if any) falls above the
+     eyebrow, and the 5.5rem top padding is a minimum clearance for the
+     nav pill. */
+  .about-hero { position: relative; height: 92svh; display: flex; align-items: stretch; overflow: hidden; }
+  .about-plate { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; transition: opacity .8s ease; }
+  .about-plate.is-day { opacity: 0; }
+  html[data-theme="light"] .about-plate.is-day { opacity: 1; }
+  html[data-theme="light"] .about-plate.is-night { opacity: 0; }
+  /* D24.2: left-dominant scrim (mirrors .scrim in index-v3.pre-motion.html,
+     lines 155-164): the 90deg layer is the primary legibility gradient;
+     180/0deg are soft vignettes. Under the light theme --black redefines in
+     place to paper (#F5F2EC via wc-tokens.css), so the same stack becomes a
+     paper wash supporting the ink statement (var(--white) flips to #1E1C18).
+     Tokens only - no hexes in these rules. */
+  .about-hero::before {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--black) 76%, transparent) 0%, color-mix(in srgb, var(--black) 26%, transparent) 9%, transparent 18%),
+      linear-gradient(90deg, color-mix(in srgb, var(--black) 97%, transparent) 0%, color-mix(in srgb, var(--black) 90%, transparent) 30%, color-mix(in srgb, var(--black) 46%, transparent) 54%, transparent 74%),
+      linear-gradient(0deg, var(--black) 0%, color-mix(in srgb, var(--black) 72%, transparent) 20%, transparent 52%);
   }
-  .manifesto .muted { color: rgba(236,234,228,0.42); }
-  /* ── COLONNADE - three pillars holding one beam ── */
-  .ebeam { border-top: 2px solid var(--border); border-bottom: 1px solid var(--border-lo); padding: 1.5rem 0 1.75rem; margin: 0 0 2.75rem; }
-  .ebeam h2 { margin-bottom: .75rem; }
-  .ebeam .lede { margin-bottom: 0; }
-  .colonnade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
-  .column { display: flex; flex-direction: column; }
-  .col-capital { height: 14px; background: var(--surface); border: 1px solid var(--border); border-bottom: none; }
-  .col-red .col-capital { border-top: 3px solid var(--red); }
-  .col-gold .col-capital { border-top: 3px solid var(--gold); }
-  .col-teal .col-capital { border-top: 3px solid var(--teal); }
-  .col-shaft { flex: 1; background: var(--surface); padding: 2rem 1.5rem; }
-  .col-num { font-family: var(--fd); font-weight: 700; font-size: 2.2rem; line-height: 1; color: var(--white); opacity: .2; text-shadow: 0 1px 0 rgba(0,0,0,.6), 0 -1px 0 rgba(255,255,255,.08); margin-bottom: 1rem; }
-  .col-title { font-family: var(--fd); font-size: 1.35rem; font-weight: 600; color: var(--white); letter-spacing: -.01em; margin-bottom: .6rem; }
-  .col-desc { font-size: 13.5px; color: var(--text); line-height: 1.7; margin-bottom: 1.1rem; }
-  .col-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; }
-  .col-base { height: 22px; background: var(--surface); border: 1px solid var(--border); border-top: none; }
-  .stylobate { height: 12px; background: var(--surface); border: 1px solid var(--border); border-top: none; }
-  @media (max-width: 760px) { .colonnade { grid-template-columns: 1fr; } }
-
+  html[data-theme="light"] .about-hero::before {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--black) 82%, transparent) 0%, color-mix(in srgb, var(--black) 30%, transparent) 9%, transparent 18%),
+      linear-gradient(90deg, color-mix(in srgb, var(--black) 98%, transparent) 0%, color-mix(in srgb, var(--black) 92%, transparent) 30%, color-mix(in srgb, var(--black) 48%, transparent) 56%, transparent 76%),
+      linear-gradient(0deg, var(--black) 0%, color-mix(in srgb, var(--black) 74%, transparent) 20%, transparent 52%);
+  }
+  .about-hero__content { position: relative; z-index: 2; height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; padding: 5.5rem 0 0; }
+  .about-statement {
+    font-family: var(--fh); font-weight: 600; color: var(--white);
+    font-size: clamp(2.6rem, 5vw, 4rem); line-height: 1.2; letter-spacing: 0;
+    text-align: left; max-width: 22ch; margin: 0 0 3rem;
+  }
+  .about-statement .muted { color: color-mix(in srgb, var(--white) 60%, var(--black)); }
+  /* D24.9: bottom-pinned composition (Fix C). The foot is the last
+     in-flow item of the content column; the column's justify-content:
+     flex-end anchors the eyebrow + statement + 3rem gap + foot block to
+     the plate bottom, rail flush with the bottom edge; free space (if any)
+     falls above the eyebrow. D24.8's margin-top:auto on .about-foot
+     absorbed all in-column free space (measured 228.47px gap at 1440) and
+     is removed; print keeps a static foot at 1.5rem. */
+  .about-foot { align-self: stretch; }
+  .about-pillars { display: grid; grid-template-columns: 1fr; max-width: 40rem; margin-bottom: 1.25rem; }
+  .ap { border-top: 3px solid var(--red); padding-top: .9rem; }
+  .ap-title { font-family: var(--fd); font-size: 15px; font-weight: 600; letter-spacing: -.01em; color: var(--white); margin: 0 0 .4rem; }
+  .ap-desc { font-size: 11.5px; line-height: 1.55; color: var(--text); margin: 0; max-width: none; }
+  .about-strip { display: flex; align-items: center; flex-wrap: wrap; align-self: stretch; gap: .75rem 1.5rem; border-top: 1px solid var(--border); padding-top: 1.1rem; font-family: var(--mono); font-size: 11.5px; letter-spacing: .02em; color: var(--white); }
+  .about-strip .dim { color: var(--text-dim); }
+  .strip-pill { font-size: 11px; border: 1px solid var(--border); border-radius: 1000px; padding: 3px 10px; color: var(--text-dim); }
+  .about-sign { font-family: var(--fh); font-weight: 600; font-size: clamp(1.5rem, 2.6vw, 2rem); color: var(--white); margin: 2.5rem 0 0; }
   .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: pulse 2.4s ease-in-out infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
@@ -232,38 +249,75 @@
   .connect-link:hover { color: var(--paper-fixed); transform: translateX(.75rem); }
   .connect-link .link-left { display: inline-flex; align-items: center; gap: 12px; min-width: 0; }
   .connect-link .link-arrow { color: var(--red); opacity: .6; transition: transform .25s ease; flex-shrink: 0; }
+  /* Icon optical sizing (2026-10-08): the arrow lands 1.15× the connect row's
+     own 16.8–21.6px type via --icon-lg (see wc-tokens.css). width/height attrs
+     stay on the <svg> as the no-CSS fallback; CSS overrides pre-first-paint. */
+  .connect-link .link-arrow svg { width: var(--icon-lg); height: var(--icon-lg); }
   .connect-link:hover .link-arrow { transform: translate(3px,-3px); }
+
+  /* --- D24.2 - body sections: display-scale headers, data rows, resume pill --- */
+  /* D24.11: the Who I am bio text elongates to the full measure (user
+     call) so its right edge lines up with the cred-group label bands'
+     right edge; the D24.2 65ch max-width cap is removed - the base
+     rule's max-width: none (SHARED ROW LANGUAGE block) restores the
+     full-measure box. */
+  .eyebrow-toggle {
+    font-family: var(--fd); font-size: clamp(1.9rem, 3.4vw, 2.5rem); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.12; text-transform: none;
+    color: var(--white); margin-bottom: 2.5rem;
+  }
+  .eyebrow-toggle .dot { width: 12px; height: 10px; margin-top: -2px; }
+  .project { grid-template-columns: 1fr; }
+  .project-desc { font-size: 16px; line-height: 1.75; }
+  .project-main > p:first-child { font-size: 17px; color: var(--white); }
+  .cred-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; }
+  .exp-meta { color: var(--text-dim); text-align: right; }
+  .connect-pill {
+    background: var(--white); color: var(--black);
+    align-self: flex-start; width: fit-content;
+    padding: .95rem 1.9rem; border-radius: 1000px; border-top: none; border-bottom: none;
+    margin-top: 1.5rem; font-family: var(--fd); font-size: 16px; font-weight: 600;
+  }
+  .connect-pill .link-arrow { color: currentColor; opacity: 1; }
+  .connect-pill:hover { transform: none; color: var(--black); opacity: .88; }
 
   /* ── FOOTER ── */
   footer {
     padding: 1.5rem clamp(1.25rem, 4vw, 3rem); display: flex; align-items: center; justify-content: space-between;
     flex-wrap: wrap; gap: 0.75rem; border-top: 1px solid var(--border-lo); position: relative; z-index: 1; background: var(--black);
   }
-  .footer-brand { display: flex; align-items: center; gap: 8px; font-family: var(--fd); font-size: 12px; font-weight: 600; color: var(--text-dim); }
+  /* .footer-brand canonical rule lives in wc-tokens.css */
   .footer-copy { font-family: var(--mono); font-size: 11.5px; color: var(--text-dim); }
-  .footer-tagline { font-family: var(--mono); font-size: 11.5px; color: var(--red); }
+  /* Signature register (D3): Caveat at PINNED 600 — the <link> loads wght@600
+     only (trimmed 2026-10-08; every Caveat rule on this site pins 600), so an
+     unpinned weight would silently substitute a face that was never fetched. */
+  .footer-tagline { font-family: var(--fh); font-weight: 600; font-size: 13px; color: var(--red-text); }
 
   @media print {
     body { background: #fff; color: #000; }
     nav, .theme-toggle, .menu-btn { display: none; }
-    .band-black, .band-surface, .band-maroon { background: #fff; color: #000; }
+    .band-black, .band-surface { background: #fff; color: #000; }
     .section-inner { padding: 1.5rem 0; }
     .wrap { max-width: 100%; padding: 0 .5in; }
     .fade { opacity: 1 !important; transform: none !important; }
     .collapsible { display: block !important; }
-    .project, .column, .cred-row { break-inside: avoid; }
-    .col-shaft { background: #fff !important; border-color: #ccc; }
-    .col-capital, .col-base, .stylobate { background: #fff !important; border-color: #ccc; }
-    .col-num { opacity: .3; }
-    .col-title { color: #000 !important; }
-    .col-desc { color: #222; }
-    .project-glyph { display: none; }
-    .chip { border-color: #999 !important; color: #111 !important; }
-    .stat-label, .project-role, .exp-meta { color: #444; }
-    h1, h2, .project-title, .exp-role, .stat-num { color: #000; }
-    .project-desc, .col-desc { color: #222; }
-    .manifesto { color: #000; }
-    .manifesto .muted { color: #444; }
+    .project, .cred-row { break-inside: avoid; }
+    .exp-meta { color: #444; }
+    h1, h2, .exp-role { color: #000; }
+    .project-desc { color: #222; }
+    .about-hero { min-height: 0; height: auto; display: block; overflow: visible; }
+    .about-hero::before { display: none; }
+    .about-hero__content { padding: 0 0 1rem; height: auto; }
+    .about-plate.is-night { display: none; }
+    .about-plate.is-day { display: none; }
+    .about-statement { color: #000; }
+    .about-statement .muted { color: #444; }
+    .about-foot { margin-top: 1.5rem; }
+    .ap-title { color: #000; }
+    .ap-desc { color: #222; }
+    .about-strip { color: #000; border-color: #999; }
+    .about-strip .dim, .strip-pill { color: #444; }
+    .about-sign { color: #000; }
     .pillar { background: #fff; border-color: #ccc; }
     .tag { border-color: #999; color: #111; }
     .footer-tagline { color: #444; }
@@ -282,14 +336,14 @@
 <nav aria-label="Primary">
   <div class="nav-pill">
   <a href="index.html" class="nav-logo">
-    <svg width="26" height="26" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <svg width="26" height="26" viewBox="-195 -194 2389 2389" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <polygon points="1575,201 1365,564 1780,563" fill="currentColor"/>
       <polygon points="709,693 5,696 357,1306" fill="currentColor"/>
       <polygon points="1711,693 1009,693 1357,1303" fill="currentColor"/>
       <polygon points="857,700 506,1307 1208,1309" fill="currentColor"/>
       <polygon points="863,1435 1074,1796 1279,1435" fill="currentColor"/>
       <polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor"/>
-      <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
+      <polygon class="crane-accent" points="1723,197 1861,435 1994,204"/>
     </svg>
     White Crane Labs
   </a>
@@ -313,15 +367,38 @@
 </nav>
 <main id="main">
 
+<!-- ═══ HERO - full-bleed studio, day/night plates (D24 draft) ═══ -->
+<section class="about-hero" aria-labelledby="aboutStatement">
+  <img class="about-plate is-night" src="assets/hero-v3/night-1600.webp"
+       srcset="assets/hero-v3/night-960.webp 960w, assets/hero-v3/night-1600.webp 1600w, assets/hero-v3/night-2560.webp 2560w"
+       sizes="100vw" width="2560" height="1440" alt="" fetchpriority="high" decoding="async" aria-hidden="true">
+  <img class="about-plate is-day" src="assets/hero-v3/day-1600.webp"
+       srcset="assets/hero-v3/day-960.webp 960w, assets/hero-v3/day-1600.webp 1600w, assets/hero-v3/day-2560.webp 2560w"
+       sizes="100vw" width="2560" height="1440" alt="" fetchpriority="low" loading="eager" decoding="async" aria-hidden="true">
+  <div class="wrap about-hero__content">
+    <p class="eyebrow"><span class="dot"></span> About · The studio</p>
+    <p class="about-statement" id="aboutStatement">Humans is the critical layer. <span class="muted">AI is the technical.</span></p>
+    <div class="about-foot">
+      <div class="about-pillars">
+        <div class="ap ap-red"><h3 class="ap-title">Design × AI</h3><p class="ap-desc">How AI empowers, and elevate, creative work. Generative systems, workflow architecture, and human-in-the-loop design: AI handles execution while the human directs critically and strategically..</p></div>
+      </div>
+      <div class="about-strip">
+        <span>Ken Bai <span class="dim">· Creative Technologist</span></span>
+        <span class="dim">Queens, NY</span>
+        <span class="dim">( scroll ↓ )</span>
+        <span class="strip-pill">©2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ GUIDING PRINCIPLE + BIO ═══ -->
-<section class="band-black" aria-labelledby="philosophyTitle">
+<section class="band-black" aria-labelledby="whoTitle">
   <div class="wrap section-inner fade">
-    <button class="eyebrow eyebrow-toggle" type="button" aria-expanded="true" aria-controls="bio-body"><span class="dot"></span> Guiding principle</button>
+    <button class="eyebrow eyebrow-toggle" type="button" aria-expanded="true" aria-controls="bio-body"><span class="dot"></span> Who I am</button>
     <div class="collapsible" id="bio-body"><div class="collapsible-inner">
-    <h2 class="sr-only" id="philosophyTitle">Guiding principle</h2>
-    <div class="manifesto">AI is a tool. <span class="muted">Humans still direct everything that matters.</span></div>
+    <h2 class="sr-only" id="whoTitle">Who I am</h2>
     <div class="project" style="border-top:none;padding-top:0;">
-      <div class="project-glyph glyph-dim" aria-hidden="true"><img class="bio-mark" src="icon.png" alt=""></div>
       <div class="project-main">
         <p class="project-desc">Ken Bai, a Creative Technologist based in Queens, NY. 12+ years bridging design, technology, and AI systems; removing the friction between creative people and the tools they use.</p>
         <p class="project-desc">Creative Technology Analyst and Mac Systems Lead at Pratt Institute: deploying AI applications across the Institute, building LLM-powered workflows for 500+ active users, leading a cross-functional team of 20+, architecting a 250+ Apple endpoint fleet. Working directly with faculty to translate curriculum needs into technical solutions: emerging AI tools plus the infrastructure that makes them usable in a creative institution.</p>
@@ -341,52 +418,7 @@
       <div class="cred-row"><div class="exp-head"><span class="exp-role">Jamf Certified Associate</span></div><div class="exp-meta">Jamf</div></div>
       <div class="cred-row"><div class="exp-head"><span class="exp-role">Apple Certified Support Professional</span></div><div class="exp-meta">Apple</div></div>
     </div>
-    </div></div>
-  </div>
-</section>
-
-<!-- ═══ FOUNDATION / PILLARS ═══ -->
-<section id="pillars" class="band-surface" aria-labelledby="pillarsTitle">
-  <div class="wrap section-inner fade">
-    <button class="eyebrow eyebrow-toggle" type="button" aria-expanded="true" aria-controls="pillars-body"><span class="dot"></span> Foundation</button>
-    <div class="collapsible" id="pillars-body"><div class="collapsible-inner">
-    <div class="ebeam">
-    <h2 id="pillarsTitle">Three pillars. One practice.</h2>
-    <p class="lede lede-strong">Every project traces back to one of these: <em class="accent">color-coded here, and carried through the work on the homepage.</em></p>
-    </div>
-    <div class="colonnade">
-      <div class="column col-red">
-        <div class="col-capital" aria-hidden="true"></div>
-        <div class="col-shaft">
-          <div class="col-num" aria-hidden="true">I</div>
-          <h3 class="col-title">AI × Design</h3>
-          <p class="col-desc">How AI changes, and doesn't change, creative work. Generative systems, workflow architecture, and human-in-the-loop design: How does AI evolve your workflow instead of replacing it.</p>
-          <ul class="col-chips"><li class="chip">Generative systems</li><li class="chip">LLM workflows</li></ul>
-        </div>
-        <div class="col-base" aria-hidden="true"></div>
-      </div>
-      <div class="column col-gold">
-        <div class="col-capital" aria-hidden="true"></div>
-        <div class="col-shaft">
-          <div class="col-num" aria-hidden="true">II</div>
-          <h3 class="col-title">Creative Infrastructure</h3>
-          <p class="col-desc">The environments where creative teams thrive: physical labs, digital systems, and the creative infrastructure behind great work. A master can use any tool and is not beholden to the tool.</p>
-          <ul class="col-chips"><li class="chip">Systems design</li><li class="chip">Toolstack</li></ul>
-        </div>
-        <div class="col-base" aria-hidden="true"></div>
-      </div>
-      <div class="column col-teal">
-        <div class="col-capital" aria-hidden="true"></div>
-        <div class="col-shaft">
-          <div class="col-num" aria-hidden="true">III</div>
-          <h3 class="col-title">The Hybrid Perspective</h3>
-          <p class="col-desc">What pure designers and pure engineers each miss: the opinions that only come from operating at the intersection. The hybrid identity is the advantage: fluency in both worlds is the discipline. From concept to fruition, end to end workflow.</p>
-          <ul class="col-chips"><li class="chip">Designer + engineer</li><li class="chip">Direction</li></ul>
-        </div>
-        <div class="col-base" aria-hidden="true"></div>
-      </div>
-    </div>
-    <div class="stylobate" aria-hidden="true"></div>
+    <p class="about-sign">Human in the loop. Always.</p>
     </div></div>
   </div>
 </section>
@@ -397,7 +429,7 @@
     <div class="connect-links">
       <a href="index.html#work" class="connect-link"><span class="link-left">See the work</span><span class="link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
       <a href="index.html#connect" class="connect-link"><span class="link-left">Get in touch</span><span class="link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10M7 17 17 7"/></svg></span></a>
-      <a href="Ken_Bai_Resume.pdf" download class="connect-link"><span class="link-left">Download resume</span><span class="link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m9 12v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg></span></a>
+      <a href="Ken_Bai_Resume.pdf" download class="connect-link connect-pill"><span class="link-left">Download resume</span><span class="link-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m9 12v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -406,14 +438,14 @@
 <!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="footer-brand">
-    <svg width="18" height="18" viewBox="0 0 2000 2000" aria-hidden="true">
+    <svg width="18" height="18" viewBox="-195 -194 2389 2389" aria-hidden="true">
       <polygon points="1575,201 1365,564 1780,563" fill="currentColor" opacity="0.6"/>
       <polygon points="709,693 5,696 357,1306" fill="currentColor" opacity="0.6"/>
       <polygon points="1711,693 1009,693 1357,1303" fill="currentColor" opacity="0.6"/>
       <polygon points="857,700 506,1307 1208,1309" fill="currentColor" opacity="0.6"/>
       <polygon points="863,1435 1074,1796 1279,1435" fill="currentColor" opacity="0.6"/>
       <polygon points="1359,1563 1217,1803 1494,1802" fill="currentColor" opacity="0.6"/>
-      <polygon points="1723,197 1861,435 1994,204" fill="#FF0000"/>
+      <polygon class="crane-accent" points="1723,197 1861,435 1994,204"/>
     </svg>
     Ken Bai · White Crane Labs
   </div>
