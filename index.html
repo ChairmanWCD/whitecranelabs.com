@@ -171,25 +171,32 @@ html[data-theme="light"] .hero{--rv-patch:#0E0A06}
 .hero-grid{display:grid;grid-template-columns:1fr minmax(280px,30vw) 1fr;
   gap:clamp(1.5rem,4vw,4.5rem);align-items:center;width:100%;position:relative;z-index:1}
 .hero-left{justify-self:end;text-align:right;min-width:0}
-.hero-title{width:max-content;font-family:var(--fh);font-weight:600;
+.hero-title{width:max-content;max-width:100%;font-family:var(--fh);font-weight:600;
   font-size:clamp(3.2rem,5vw,5.2rem);letter-spacing:0;line-height:1.2;
   text-transform:none}
 /* Caveat's line box (hhea 976/-274 per em) needs ~1.25 for the descender of
    "Technologist" — 1.2 keeps the stack tight and still clears the glyph
-   (measured actualBoundingBoxDescent 0.20em < 0.224em room); .line clips.
-   D25 Safari fix: that clip is font-metric-sensitive. While Caveat is
-   loading or blocked, Safari renders a taller script face inside the hard
-   1.2 box and shaves ink. The mask is now clip-path with negative vertical
-   insets: paint-only (zero layout change, Chrome rest frame byte-identical,
-   measured), ~.16em headroom above and below for any fallback face. The
-   .25em right padding stays - it sizes .line past the advance and its clip
-   edge is reproduced exactly by the 0 right inset. */
+   (measured actualBoundingBoxDescent 0.20em < 0.224em room).
+   D25 Safari report: a box cut the right end of all three lines AT REST -
+   the resting clip itself was the cutter, and no static inset is safe
+   against every face Safari can substitute. Fix: the mask expires. .line
+   keeps the clip only while the rise needs it; line-unmask (.01s duration,
+   1.1s delay - just past the last staggered rise end at 1.08s, forwards
+   fill) then leaves clip-path none, so at rest the title is plain
+   unclipped text no box can shave. Reduced motion: the global killer
+   zeroes the delay, so the mask never shows there either. Until 1.1s the
+   clip-path holds ~.16em vertical / .12em right headroom for fallback
+   faces; the .25em right padding stays (sizes .line past the advance).
+   max-width:100% on .hero-title bounds the h1 so a fat fallback overflows
+   visibly instead of shoving the column. */
 .hero-title .acc{color:var(--red)}
 .hero-title .line{display:block;overflow:visible;padding-right:.25em;
-  clip-path:inset(-.16em -.12em -.16em 0)}
+  clip-path:inset(-.16em -.12em -.16em 0);
+  animation:line-unmask .01s linear 1.1s forwards}
+@keyframes line-unmask{to{clip-path:none;overflow:visible}}
 /* the .25em right padding is load-bearing: Caveat's slanted final glyphs paint
    past their advance width, and width:max-content sizes .line to the advance —
-   without the padding the overflow:hidden mask shaves the last letter
+   without the padding the mask shaves the last letter
    ("Ken Bai" / "Creative" / "Technologist" all lose ink at the right edge). */
 .hero-title .line span{display:block;transform:translateY(105%);animation:rise .9s var(--ease) forwards}
 .hero-title .line:nth-child(2) span{animation-delay:.09s}
