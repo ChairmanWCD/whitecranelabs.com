@@ -45,7 +45,11 @@
   --fd:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
   --fb:'Inter',ui-sans-serif,system-ui,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,monospace;
-  --fh:'Caveat',cursive;
+  /* D25 hero-clip fix: named script fallbacks before the generic. Bare
+     `cursive` resolves per-platform (Safari/macOS lands on a tall script
+     that overruns the .line clip box while Caveat is loading or blocked);
+     named faces keep the fallback ink height predictable. */
+  --fh:'Caveat','Segoe Script','Apple Chancery','Snell Roundhand',cursive;
 
   --gut:clamp(1.25rem,5.5vw,6.5rem);
   --rule:1px dashed var(--border);
@@ -172,9 +176,17 @@ html[data-theme="light"] .hero{--rv-patch:#0E0A06}
   text-transform:none}
 /* Caveat's line box (hhea 976/-274 per em) needs ~1.25 for the descender of
    "Technologist" — 1.2 keeps the stack tight and still clears the glyph
-   (measured actualBoundingBoxDescent 0.20em < 0.224em room); .line clips. */
+   (measured actualBoundingBoxDescent 0.20em < 0.224em room); .line clips.
+   D25 Safari fix: that clip is font-metric-sensitive. While Caveat is
+   loading or blocked, Safari renders a taller script face inside the hard
+   1.2 box and shaves ink. The mask is now clip-path with negative vertical
+   insets: paint-only (zero layout change, Chrome rest frame byte-identical,
+   measured), ~.16em headroom above and below for any fallback face. The
+   .25em right padding stays - it sizes .line past the advance and its clip
+   edge is reproduced exactly by the 0 right inset. */
 .hero-title .acc{color:var(--red)}
-.hero-title .line{display:block;overflow:hidden;padding-right:.25em}
+.hero-title .line{display:block;overflow:visible;padding-right:.25em;
+  clip-path:inset(-.16em -.12em -.16em 0)}
 /* the .25em right padding is load-bearing: Caveat's slanted final glyphs paint
    past their advance width, and width:max-content sizes .line to the advance —
    without the padding the overflow:hidden mask shaves the last letter
